@@ -1,0 +1,315 @@
+---
+id: "final-2022-02-22"
+titulo: "Final 2022-02-22 (U8–U10)"
+fecha: "22/02/22"
+tipo: "final"
+fuente: "finales/practicos/22-02-2022.pdf"
+paginasEnunciado: "1"
+orden: 107
+unidades: ["U9", "U10"]
+---
+
+import Ejercicio from '../../components/Ejercicio.astro';
+import Enunciado from '../../components/Enunciado.astro';
+import Solucion from '../../components/Solucion.astro';
+import Pista from '../../components/Pista.astro';
+import Paso from '../../components/Paso.astro';
+import Comprobacion from '../../components/Comprobacion.astro';
+
+Del final se incluyen solo los ejercicios de U8–U10; el resto queda fuera del alcance del 2º parcial.
+
+Fuente: PDF con enunciados (pág. 1) y resolución tipeada (págs. 2 a 4); se usó la resolución solo para contrastar: coincide con los resultados de abajo. Encabezado del examen: "Condición mínima de aprobación (6 puntos): 3 problemas correctamente resueltos"; no hay puntaje por ejercicio, así que no se cargan puntos.
+
+<Ejercicio id="final-2022-02-22#1" numero={1} fuente="finales/practicos/22-02-2022.pdf" pagina={1} unidad="U9" tema="Distancia entre rectas paralelas y plano que las contiene" criterios={{ bien: "L1 paralela a L2 reconocida, distancia punto-recta con producto vectorial, k=1 y k=-33/5, y plano -4x+10y+z-24=0 (o múltiplo) para k=2.", medias: "Una sola de las dos raíces de k, o plano correcto con error al elegir el vector normal.", mal: "Aplicar la fórmula de alabeadas a rectas paralelas, director de L2 mal, o plano que no contiene a ambas rectas." }}>
+<Enunciado fuente="finales/practicos/22-02-2022.pdf" pagina="1">
+Dadas las rectas $\mathbb L_1:(x,y,z)=(-2,-1,2)\lambda+(2,3,k),\ \lambda\in\mathbb R$ y
+
+$$\mathbb L_2:\begin{cases}3x+4y+5z=5\\2x+2y+3z=2.\end{cases}$$
+
+**a)** Determinar todos los valores reales de $k$ para los cuales la distancia de $\mathbb L_1$ a $\mathbb L_2$ es igual a $\sqrt{74}/3$.
+
+**b)** Para $k=2$, determinar la ecuación del plano $\pi$ que contiene $\mathbb L_1$ y a $\mathbb L_2$.
+</Enunciado>
+<Pista>
+
+¿Cómo viene dada cada recta? ¿Cómo se saca el director de una recta definida por dos planos? Comparando los directores, ¿qué posición relativa tienen? Eso decide qué fórmula de distancia usar.
+
+</Pista>
+<Pista>
+
+El director de $\mathbb L_2$ es el producto vectorial de las normales. Si resulta proporcional al de $\mathbb L_1$, son paralelas y la distancia es la de un punto de $\mathbb L_1$ a $\mathbb L_2$: $\dfrac{\|\overrightarrow{PQ}\times\vec d_1\|}{\|\vec d_1\|}$. Para el plano: contiene a $\vec d_1$ y a $\overrightarrow{PQ}$ (un punto de cada recta).
+
+</Pista>
+<Pista>
+
+$\vec d_1=(-2;-1;2)$, $P(2;3;k)$. $\vec d_2=(3;4;5)\times(2;2;3)$; $Q\in\mathbb L_2$ con $z=0$. Planteá $\|\overrightarrow{PQ}\times\vec d_1\|^2=74$ (porque $\|\vec d_1\|=3$) y resolvé la cuadrática en $k$. En (b): $\vec n=\overrightarrow{PQ}\times\vec d_1$ con $k=2$.
+
+</Pista>
+<Paso>
+
+**Qué:** director de $\mathbb L_2$. **Por qué:** $\mathbb L_2$ es la intersección de dos planos.
+
+$$\vec d_2=\begin{vmatrix}\vec i&\vec j&\vec k\\3&4&5\\2&2&3\end{vmatrix}=(4\cdot3-5\cdot2)\vec i-(3\cdot3-5\cdot2)\vec j+(3\cdot2-4\cdot2)\vec k=(2;1;-2)$$
+
+</Paso>
+<Paso>
+
+**Qué:** un punto de $\mathbb L_2$. Con $z=0$: $3x+4y=5$ y $2x+2y=2$, o sea $x+y=1$.
+
+$$y=1-x\Rightarrow3x+4-4x=5\Rightarrow x=-1,\ y=2$$
+$$Q(-1;2;0)$$
+
+Chequeo: $-3+8+0=5$ ✓ y $-2+4+0=2$ ✓.
+
+</Paso>
+<Paso>
+
+**Qué:** posición relativa. $\vec d_1=(-2;-1;2)=-\vec d_2$ ⇒ $\mathbb L_1\parallel\mathbb L_2$. Entonces la distancia entre las rectas es la distancia de un punto $P$ de $\mathbb L_1$ a $\mathbb L_2$ (no corresponde la fórmula de alabeadas).
+
+$$P(2;3;k)\qquad\overrightarrow{PQ}=Q-P=(-3;-1;-k)$$
+
+</Paso>
+<Paso>
+
+**Qué (a):** distancia punto-recta.
+
+$$\overrightarrow{PQ}\times\vec d_1=\begin{vmatrix}\vec i&\vec j&\vec k\\-3&-1&-k\\-2&-1&2\end{vmatrix}=(-2-k)\vec i-(-6-2k)\vec j+(3-2)\vec k=(-2-k;\ 2k+6;\ 1)$$
+$$d=\frac{\|\overrightarrow{PQ}\times\vec d_1\|}{\|\vec d_1\|}=\frac{\sqrt{(k+2)^2+(2k+6)^2+1}}{3}$$
+
+</Paso>
+<Paso>
+
+**Qué:** igualar a $\dfrac{\sqrt{74}}{3}$ y resolver.
+
+$$(k+2)^2+(2k+6)^2+1=74$$
+$$k^2+4k+4+4k^2+24k+36+1=74$$
+$$5k^2+28k+41=74$$
+$$5k^2+28k-33=0$$
+$$k=\frac{-28\pm\sqrt{784+660}}{10}=\frac{-28\pm38}{10}$$
+
+$$k=1\quad\text{o}\quad k=-\tfrac{33}{5}$$
+
+Las dos sirven (y para ambas $\mathbb L_1\neq\mathbb L_2$, porque la distancia es positiva).
+
+</Paso>
+<Paso>
+
+**Qué (b):** plano para $k=2$. **Por qué:** contiene a $\vec d_1$ y a $\overrightarrow{PQ}$ (no paralelos, porque las rectas son distintas); la normal es su producto vectorial, que ya está calculado con $k=2$.
+
+$$\overrightarrow{PQ}\times\vec d_1=(-2-2;\ 4+6;\ 1)=(-4;10;1)$$
+
+Con el punto $Q(-1;2;0)$:
+
+$$-4(x+1)+10(y-2)+1\cdot z=0$$
+$$-4x-4+10y-20+z=0$$
+$$-4x+10y+z-24=0$$
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+(a) $k=1$ o $k=-\tfrac{33}{5}$.
+
+(b) $\pi:\ -4x+10y+z-24=0$ (equivalente a $4x-10y-z+24=0$).
+
+**Ojo con:** usar la fórmula de alabeadas con rectas paralelas (el producto vectorial de los directores da $\vec 0$), y con perder una de las dos raíces de $k$.
+
+**Errores comunes**
+- Director de $\mathbb L_2$ mal por un signo en el cofactor de $\vec j$.
+- Olvidar dividir por $\|\vec d_1\|=3$.
+- En (b) usar $\vec d_1\times\vec d_2$ (nulo) como normal.
+
+</Solucion>
+<Comprobacion>
+
+(b) $P(2;3;2)$: $-8+30+2-24=0$ ✓; $Q(-1;2;0)$: $4+20+0-24=0$ ✓. La normal es perpendicular a ambos directores: $(-4;10;1)\cdot(-2;-1;2)=8-10+2=0$ ✓ y $(-4;10;1)\cdot(2;1;-2)=-8+10-2=0$ ✓.
+
+(a) Para $k=1$: $\|(-3;8;1)\|=\sqrt{74}$ y $\dfrac{\sqrt{74}}{3}$ ✓. Para $k=-\tfrac{33}5$: $\|(\tfrac{23}5;-\tfrac{36}5;1)\|=\sqrt{\tfrac{529+1296+25}{25}}=\sqrt{74}$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-2022-02-22#4" numero={4} fuente="finales/practicos/22-02-2022.pdf" pagina={1} unidad="U10" tema="Cuádrica: constantes por trazas, clasificación y parametrización" criterios={{ bien: "C=1/9, B=1/4 y A=-7/36 con justificación, hiperboloide de una hoja de eje x, y parametrización de la hipérbola y=0 con tan/sec.", medias: "Constantes y clasificación correctas pero parametrización mal (semiejes intercambiados).", mal: "Interpretar al vértice como extremo del eje menor, no usar la relación b^2=a^2-c^2 en la elipse, o clasificar mal la superficie." }}>
+<Enunciado fuente="finales/practicos/22-02-2022.pdf" pagina="1">
+La ecuación $A(x-2)^2+By^2+Cz^2=1$ define una superficie en $\mathbb R^3$. Se sabe que su intersección con el plano $x=2$ es una elipse con uno de sus focos $F(2,0,\sqrt5)$ y vértice en $V(2,0,3)$. Además, la intersección de la superficie con el plano $y=0$ pasa por el punto $P(4,0,4)$.
+
+**a)** Clasificar la superficie.
+
+**b)** Dar una parametrización de la cónica que resulta de intersecar la superficie con el plano $y=0$.
+</Enunciado>
+<Pista>
+
+¿Qué ecuación queda al intersecar con $x=2$? ¿Qué dicen el foco y el vértice sobre la posición del eje mayor y sobre $a$ y $c$? ¿Cuántas incógnitas hay y qué dato usa cada una?
+
+</Pista>
+<Pista>
+
+Con $x=2$ queda $By^2+Cz^2=1$ (elipse ⇒ $B,C>0$). Foco y vértice están sobre el eje $z$ ⇒ el eje mayor es el $z$, con $a=3$ (distancia al centro $(2;0;0)$) y $c=\sqrt5$; de $b^2=a^2-c^2$ sale $B$. $C$ sale del vértice. $A$ sale del punto $P$. Para clasificar contá los signos.
+
+</Pista>
+<Pista>
+
+$C\cdot3^2=1$; $b^2=9-5$ y $B=1/b^2$; $A\cdot(4-2)^2+C\cdot4^2=1$. Con los tres signos ($A<0$, $B>0$, $C>0$, 2.º miembro $+1$) clasificás. Para (b) escribí $-\dfrac{(x-2)^2}{36/7}+\dfrac{z^2}9=1$ y parametrizá con $\sec$ y $\tan$.
+
+</Pista>
+<Paso>
+
+**Qué:** traza con $x=2$. **Por qué:** se anula el término con $A$.
+
+$$By^2+Cz^2=1$$
+
+Es una elipse ⇒ $B>0$ y $C>0$.
+
+</Paso>
+<Paso>
+
+**Qué:** $C$ con el vértice. $V(2;0;3)$ está sobre el eje $z$ (en la traza: $y=0$, $z=3$):
+
+$$C\cdot3^2=1\ \Rightarrow\ C=\frac19$$
+
+Entonces la elipse es $By^2+\dfrac{z^2}9=1$, con semieje $a=3$ sobre $z$.
+
+</Paso>
+<Paso>
+
+**Qué:** $B$ con el foco. **Por qué:** el foco $F(2;0;\sqrt5)$ también está sobre el eje $z$ ⇒ el eje focal es $z$, el vértice es un extremo del eje mayor ($a=3$) y $c=\sqrt5$.
+
+$$b^2=a^2-c^2=9-5=4\ \Rightarrow\ \frac1B=4\ \Rightarrow\ B=\frac14$$
+
+($a>b$ ✓: $3>2$, consistente con que el vértice $V$ sea del eje mayor.)
+
+</Paso>
+<Paso>
+
+**Qué:** $A$ con $P(4;0;4)$.
+
+$$A(4-2)^2+\frac14\cdot0^2+\frac19\cdot4^2=1$$
+$$4A+\frac{16}9=1$$
+$$4A=-\frac79\ \Rightarrow\ A=-\frac7{36}$$
+
+</Paso>
+<Paso>
+
+**Qué (a):** clasificar. La superficie es
+
+$$-\frac{7}{36}(x-2)^2+\frac14y^2+\frac19z^2=1\ \Longleftrightarrow\ -\frac{(x-2)^2}{36/7}+\frac{y^2}{4}+\frac{z^2}{9}=1$$
+
+Dos términos positivos y uno negativo, igual a $1$ ⇒ **hiperboloide de una hoja**. El eje es el de la variable con signo negativo: el eje $x$ (paralelo a él, por $(2;0;0)$).
+
+</Paso>
+<Paso>
+
+**Qué (b):** traza con $y=0$.
+
+$$-\frac{(x-2)^2}{36/7}+\frac{z^2}{9}=1$$
+
+Hipérbola con centro $(2;0;0)$ y eje transverso paralelo a $z$ (el término positivo): $a^2=9$, $b^2=\tfrac{36}7$.
+
+</Paso>
+<Paso>
+
+**Qué:** parametrizar con $\sec^2t-\tan^2t=1$. El término de $z$ lleva $\sec$ y el de $x$ lleva $\tan$.
+
+$$\frac z3=\sec t,\qquad\frac{x-2}{6/\sqrt7}=\tan t$$
+
+$$x=2+\frac{6}{\sqrt7}\tan t,\qquad y=0,\qquad z=3\sec t$$
+
+con $t\in[0,2\pi)$, $t\neq\tfrac\pi2$, $t\neq\tfrac{3\pi}2$.
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+(a) $A=-\tfrac7{36}$, $B=\tfrac14$, $C=\tfrac19$: **hiperboloide de una hoja** de eje $x$.
+
+(b) La traza $y=0$ es la hipérbola $-\dfrac{(x-2)^2}{36/7}+\dfrac{z^2}9=1$, parametrizada por
+
+$$x=2+\tfrac{6}{\sqrt7}\tan t,\qquad y=0,\qquad z=3\sec t.$$
+
+**Ojo con:** el vértice $V$ es extremo del eje mayor ($a=3$, no $b$): si se lo toma al revés queda $b=3$, $c$ imposible. Y el eje del hiperboloide es el de la variable con signo distinto.
+
+**Errores comunes**
+- Calcular $b^2=a^2+c^2$ (eso es hipérbola).
+- Olvidar el $-2$ en $(x-2)$ al evaluar $P$.
+- Parametrizar con $\sin$ y $\cos$.
+
+</Solucion>
+<Comprobacion>
+
+$P(4;0;4)$ en la superficie: $-\tfrac7{36}\cdot4+0+\tfrac{16}9=-\tfrac79+\tfrac{16}9=1$ ✓. $V(2;0;3)$: $0+0+1=1$ ✓.
+
+La parametrización cumple la ecuación: $-\dfrac{(6/\sqrt7)^2\tan^2t}{36/7}+\dfrac{9\sec^2t}9=-\tan^2t+\sec^2t=1$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-2022-02-22#5" numero={5} fuente="finales/practicos/22-02-2022.pdf" pagina={1} unidad="U10" tema="Cónica con término xy: ¿hipérbola? (V o F)" criterios={{ bien: "Falso, justificado con los autovalores 4 y 9 (mismo signo) o con el discriminante B^2-4AC<0, concluyendo que es una elipse.", medias: "Falso sin justificar, o justificación con el discriminante mal calculado pero conclusión correcta.", mal: "Verdadero, o justificar mirando solo el signo del coeficiente de xy." }}>
+<Enunciado fuente="finales/practicos/22-02-2022.pdf" pagina="1">
+Dar el valor de verdad (**V** o **F**) de cada una de las siguientes proposiciones. JUSTIFICAR.
+
+*(Se omite el inciso a), que es de matrices: fuera de alcance.)*
+
+**b)** La cónica $\mathcal C$ cuya ecuación es
+
+$$5x^2-4xy+8y^2-3=0$$
+
+es una hipérbola.
+</Enunciado>
+<Pista>
+
+¿Alcanza con mirar si aparece el término $xy$ para decidir si es una hipérbola? ¿Qué determina el tipo de cónica cuando hay término $xy$?
+
+</Pista>
+<Pista>
+
+El tipo lo determinan los signos de los autovalores de la matriz simétrica de la forma cuadrática: signos iguales ⇒ elipse, opuestos ⇒ hipérbola, uno nulo ⇒ parábola. Alternativa: el signo de $B^2-4AC$.
+
+</Pista>
+<Pista>
+
+$\begin{pmatrix}5&-2\\-2&8\end{pmatrix}$ (el $-4$ se reparte $-2,-2$). Hallá $\det(M-\lambda I)=0$ y mirá los dos autovalores.
+
+</Pista>
+<Paso>
+
+**Qué:** matriz de la forma cuadrática. **Por qué:** el término cruzado $-4xy$ se reparte en partes iguales en las dos posiciones no diagonales.
+
+$$M=\begin{pmatrix}5&-2\\-2&8\end{pmatrix}$$
+
+</Paso>
+<Paso>
+
+**Qué:** autovalores.
+
+$$\det(M-\lambda I)=(5-\lambda)(8-\lambda)-4=\lambda^2-13\lambda+36=0$$
+$$(\lambda-4)(\lambda-9)=0$$
+$$\lambda=4\quad\text{o}\quad\lambda=9$$
+
+</Paso>
+<Paso>
+
+**Qué:** concluir. **Por qué:** al rotar a los ejes principales la ecuación queda $4x'^2+9y'^2=3$, con los dos coeficientes **positivos**: eso es una **elipse** (de semiejes $\tfrac{\sqrt3}{2}$ y $\tfrac{1}{\sqrt3}$), no una hipérbola.
+
+Chequeo con el discriminante: $B^2-4AC=(-4)^2-4\cdot5\cdot8=16-160=-144<0$ ⇒ elipse.
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+**Falso.** La cónica es una elipse: autovalores $4$ y $9$ (mismo signo), $4x'^2+9y'^2=3$; equivalentemente $B^2-4AC=-144<0$.
+
+**Ojo con:** pensar que "tiene término $xy$" implica hipérbola. El término cruzado solo indica rotación; el tipo lo dan los signos de los autovalores.
+
+</Solucion>
+<Comprobacion>
+
+El determinante de $M$ es $5\cdot8-4=36=4\cdot9$ ✓ y la traza $13=4+9$ ✓. Autovector de $\lambda=4$: $(M-4I)\vec v=\vec 0$ da $\vec v=(2;1)$ y $M\vec v=(8;4)=4\vec v$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+

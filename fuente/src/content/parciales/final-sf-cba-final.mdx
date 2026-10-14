@@ -1,0 +1,172 @@
+---
+id: "final-sf-cba-final"
+titulo: "Final sin fecha, Córdoba: Examen Final (U9–U10)"
+tipo: "final"
+fuente: "finales/practicos/Finales Practicos .pdf"
+paginasEnunciado: "3"
+orden: 204
+unidades: ["U9", "U10"]
+---
+
+import Ejercicio from '../../components/Ejercicio.astro';
+import Enunciado from '../../components/Enunciado.astro';
+import Solucion from '../../components/Solucion.astro';
+import Pista from '../../components/Pista.astro';
+import Paso from '../../components/Paso.astro';
+import Comprobacion from '../../components/Comprobacion.astro';
+
+Del final se incluyen solo los ejercicios de U8–U10; el resto queda fuera del alcance del 2º parcial.
+
+Fuente: foto de la hoja impresa con una mano, legible. Encabezado "Universidad Tecnológica Nacional – Facultad Córdoba, Cátedra Algebra y Geometría Analítica, Examen Final"; no trae fecha impresa legible. Tiene un "No Aprobado" manuscrito y nombre y legajo manuscritos: no se transcriben. Sin resolución ni puntajes.
+
+<Ejercicio id="final-sf-cba-final#2" numero={2} fuente="finales/practicos/Finales Practicos .pdf" pagina={3} unidad="U10" tema="Elipse: canónica, puntos característicos y excentricidad" criterios={{ bien: "Completar cuadrados, (x-2)²+(y+4)²/9=1, elipse vertical, a=3, b=1, c=2√2, e=2√2/3, todos los puntos característicos (C, V, A, F, extremos de LL') y gráfico.", medias: "Canónica correcta pero sin excentricidad o sin graficar los focos y los lados rectos.", mal: "Dividir mal y llegar a un a² incorrecto, o poner el eje focal horizontal." }}>
+<Enunciado fuente="finales/practicos/Finales Practicos .pdf" pagina="3">
+Dada la ecuación de la cónica $9x^2+y^2-36x+8y+43=0$ Obtener:
+
+a- La ecuación canónica u ordinaria de la cónica
+
+b- Coordenada de los puntos característicos de la cónica y excentricidad
+
+c- Graficar
+</Enunciado>
+<Pista>
+
+¿Qué tipo de cónica es según los coeficientes de $x^2$ e $y^2$? ¿Qué se hace con los términos lineales para pasar a la forma ordinaria?
+
+</Pista>
+<Pista>
+
+Elipse (mismo signo, distintos coeficientes). Agrupá, completá cuadrados y dividí por el segundo miembro. El mayor denominador es $a^2$ y marca el eje focal. Puntos característicos: centro, vértices, extremos del eje menor y focos.
+
+</Pista>
+<Pista>
+
+$9(x^2-4x)+(y^2+8y)=-43$. Al completar sumás $9\cdot4$ y $16$ a los dos miembros: $9(x-2)^2+(y+4)^2=9$. Dividí por $9$.
+
+</Pista>
+<Paso>
+
+**Qué (a):** completar cuadrados.
+
+$$9(x^2-4x)+(y^2+8y)=-43$$
+$$9(x^2-4x+4)+(y^2+8y+16)=-43+36+16$$
+$$9(x-2)^2+(y+4)^2=9$$
+$$(x-2)^2+\frac{(y+4)^2}{9}=1$$
+
+Elipse de centro $C(2;-4)$. El mayor denominador está bajo $y$: $a^2=9$, $b^2=1$ ⇒ eje focal vertical ($x=2$).
+
+</Paso>
+<Paso>
+
+**Qué (b):** $c$ y excentricidad.
+
+$$a=3,\quad b=1,\quad c=\sqrt{9-1}=2\sqrt2,\quad e=\frac ca=\frac{2\sqrt2}{3}$$
+
+</Paso>
+<Paso>
+
+**Qué (b):** puntos característicos.
+
+| Elemento | Coordenadas |
+|---|---|
+| Centro $C$ | $(2;-4)$ |
+| Vértices $V,V'$ | $(2;-1)$, $(2;-7)$ |
+| Extremos del eje menor $A,A'$ | $(3;-4)$, $(1;-4)$ |
+| Focos $F,F'$ | $(2;-4+2\sqrt2)$, $(2;-4-2\sqrt2)$ |
+| Lado recto $LL'=2b^2/a$ | $\tfrac23$, extremos $L(\tfrac73;-4+2\sqrt2)$, $L'(\tfrac53;-4+2\sqrt2)$ y $M$, $M'$ por $F'$ |
+
+Los focos están cerca de los vértices porque $e=\tfrac{2\sqrt2}{3}\approx0{,}94$ (elipse muy alargada).
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$(x-2)^2+\frac{(y+4)^2}{9}=1$$
+
+Elipse vertical, $C(2;-4)$, $a=3$, $b=1$, $c=2\sqrt2$, $e=\tfrac{2\sqrt2}{3}$, $V(2;-1)$, $V'(2;-7)$, $A(3;-4)$, $A'(1;-4)$, $F(2;-4\pm2\sqrt2)$, $LL'=\tfrac23$.
+
+<figure>
+<img src={`${import.meta.env.BASE_URL}figuras/final-sf-cba-final/ej2-elipse.svg`} alt="Elipse vertical de centro (2;-4), muy alargada, con vértices V y V', extremos del eje menor A y A', focos F y F' cerca de los vértices, lados rectos y ejes graduados de a 1." style="max-width:100%;height:auto" />
+<figcaption>Gráfico del ejercicio 2: centro, vértices, extremos del eje menor, focos y lados rectos (LL' = 2/3).</figcaption>
+</figure>
+
+**Ojo con:** dividir por $9$ solo un término: $\dfrac{9(x-2)^2}{9}=(x-2)^2$ queda con denominador $1$.
+
+</Solucion>
+<Comprobacion>
+
+$V(2;-1)$ en la original: $36+1-72-8+43=0$ ✓. $A(3;-4)$: $81+16-108-32+43=0$ ✓. Definición $PF+PF'=2a$ con $P=A(3;-4)$: cada distancia es $\sqrt{1+8}=3$, suma $6=2a$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-sf-cba-final#3" numero={3} fuente="finales/practicos/Finales Practicos .pdf" pagina={3} unidad="U9" tema="Plano: traza con un plano coordenado y recta paralela por el origen" criterios={{ bien: "Traza con YZ: x=0 y z=-2 (recta paralela al eje y); recta por el origen con director perpendicular a n=(-2;0;1), p.ej. (1;0;2).", medias: "Una de las dos partes bien, o la recta paralela con un director que no es perpendicular a la normal.", mal: "Confundir la intersección con el plano YZ con z=0 o y=0, o dar un plano en vez de una recta." }}>
+<Enunciado fuente="finales/practicos/Finales Practicos .pdf" pagina="3">
+Dado el plano $\pi$ (Pi) definido por $\pi: -2x+z=-2$. Se solicita:
+
+a- Determinar la intersección del plano $\pi$ con el plano coordenado YZ
+
+b- Obtener la ecuación vectorial de una recta paralela al plano $\pi$ y que contiene al origen del sistema de referencia.
+</Enunciado>
+<Pista>
+
+¿Qué ecuación tiene el plano coordenado YZ? Una recta paralela a un plano, ¿qué relación tiene con la normal del plano?
+
+</Pista>
+<Pista>
+
+El plano YZ es $x=0$: la intersección sale de resolver las dos ecuaciones juntas. Para (b), el director $\vec d$ de la recta debe cumplir $\vec d\cdot\vec n=0$; hay infinitas soluciones y alcanza con dar una.
+
+</Pista>
+<Pista>
+
+(a) Reemplazá $x=0$ en $-2x+z=-2$ y escribí el resultado como recta con $y$ libre. (b) $\vec n=(-2;0;1)$: buscá $\vec d=(d_1;d_2;d_3)$ con $-2d_1+d_3=0$.
+
+</Pista>
+<Paso>
+
+**Qué (a):** el plano YZ es $x=0$. Se resuelven juntas las dos ecuaciones.
+
+$$x=0\qquad-2\cdot0+z=-2\Rightarrow z=-2$$
+
+La intersección es la recta $\begin{cases}x=0\\z=-2\end{cases}$ (paralela al eje $y$), o en forma paramétrica $(x;y;z)=(0;t;-2)$, $t\in\mathbb R$.
+
+</Paso>
+<Paso>
+
+**Qué (b):** normal y director. **Por qué:** una recta es paralela a $\pi$ si su director es perpendicular a $\vec n$.
+
+$$\vec n=(-2;0;1)$$
+$$-2d_1+0\cdot d_2+d_3=0\Rightarrow d_3=2d_1$$
+
+Elijo $d_1=1$, $d_2=0$: $\vec d=(1;0;2)$ (con $\vec d=(0;1;0)$ también serviría).
+
+</Paso>
+<Paso>
+
+**Qué (b):** por el origen.
+
+$$(x;y;z)=(0;0;0)+\lambda(1;0;2),\ \lambda\in\mathbb R$$
+
+El origen no pertenece a $\pi$ ($-2\cdot0+0=0\neq-2$), así que la recta es paralela y distinta: no está contenida en $\pi$.
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+a) $\pi\cap\{x=0\}$: la recta $x=0,\ z=-2$, o sea $(x;y;z)=(0;0;-2)+t(0;1;0)$.
+
+b) Por ejemplo $(x;y;z)=(0;0;0)+\lambda(1;0;2)$, $\lambda\in\mathbb R$ (cualquier director con $d_3=2d_1$ sirve).
+
+**Ojo con:** el enunciado pide *una* recta y hay infinitas: justificar que el director es perpendicular a $\vec n$, y no escribir $z=0$ para el plano YZ (ese es el plano XY).
+
+</Solucion>
+<Comprobacion>
+
+(a) Todos los puntos $(0;t;-2)$ cumplen $-2\cdot0+(-2)=-2$ ✓. (b) $\vec d\cdot\vec n=(1;0;2)\cdot(-2;0;1)=-2+2=0$ ✓ y el origen no está en $\pi$.
+
+</Comprobacion>
+</Ejercicio>

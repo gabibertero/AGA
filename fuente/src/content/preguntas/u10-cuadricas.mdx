@@ -1,0 +1,112 @@
+---
+titulo: "Cuádricas"
+unidad: "U10"
+orden: 4
+---
+import Pregunta from '../../components/Pregunta.astro';
+import Fig from '../../components/PreguntaFigura.astro';
+
+<Pregunta id="u10-12" unidad="U10" q="Q26" titulo="Cuádricas: definición, ecuación general y método de las trazas"
+  enunciado="Superficies cuádricas: definición y ecuación general. ¿Cómo se estudian (simetrías y trazas)?" fq="Ap:285-286" fr="Ap:285-286; U10:2">
+
+**Definición.** Las **cuádricas** son las superficies definidas por una ecuación de segundo grado en $x,y,z$:
+$$Ax^2+By^2+Cz^2+Dxy+Exz+Fyz+Gx+Hy+Iz+K=0 .$$
+Los términos mixtos ($xy,xz,yz$) indican una **rotación** de ejes y los lineales una **traslación**; con rotación y traslación (o completando cuadrados) se llega a las formas canónicas:
+- **con centro:** $\pm\dfrac{x^2}{a^2}\pm\dfrac{y^2}{b^2}\pm\dfrac{z^2}{c^2}=1$ (elipsoide, hiperboloides);
+- **sin centro:** $\pm\dfrac{x^2}{a^2}\pm\dfrac{y^2}{b^2}=cz$ (paraboloides).
+
+**Método de estudio:** (1) **simetrías** (si cambiar el signo de una variable no altera la ecuación, hay simetría respecto del plano coordenado correspondiente); (2) **trazas**: intersección con los planos coordenados ($z=0$, $y=0$, $x=0$) y con planos paralelos ($z=k$); (3) con eso se dibuja.
+</Pregunta>
+
+<Pregunta id="u10-13" unidad="U10" q="Q26" titulo="Esfera"
+  enunciado="Esfera: ecuación, trazas y gráfico." fr="Ap:287; U10:2">
+
+Caso particular del elipsoide con $a=b=c=r$: lugar geométrico de los puntos a distancia $r$ de un centro. Con centro $(h;k;l)$:
+$$(x-h)^2+(y-k)^2+(z-l)^2=r^2;\qquad\text{en el origen: }x^2+y^2+z^2=r^2 .$$
+Trazas con los planos coordenados: **circunferencias** (el apunte indica que cuando $a=b=c$ los cortes son circunferencias). General: $x^2+y^2+z^2+Gx+Hy+Iz+K=0$ (coeficientes cuadráticos iguales, sin términos mixtos); se completa cuadrados como en la circunferencia.
+
+<Fig src="cuad-esfera" alt="Esfera en perspectiva, malla alámbrica" />
+</Pregunta>
+
+<Pregunta id="u10-14" unidad="U10" q="Q26" titulo="Elipsoide"
+  enunciado="Elipsoide: ecuación canónica, simetrías y trazas." fr="Ap:286-287; U10:2">
+
+$$\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}=1\qquad(\text{todos los coeficientes positivos}).$$
+- **Simetría:** respecto de los tres planos coordenados, los tres ejes y el origen (la ecuación no cambia al cambiar el signo de cualquier variable).
+- **Trazas:** $z=0$: elipse $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$; $y=0$: elipse $\frac{x^2}{a^2}+\frac{z^2}{c^2}=1$; $x=0$: elipse $\frac{y^2}{b^2}+\frac{z^2}{c^2}=1$. Los planos $z=k$, $|k|<c$, también dan elipses.
+- Se estira según el eje del semieje mayor. Si dos semiejes son iguales es de **revolución**; si $a=b=c$, esfera.
+
+<Fig src="cuad-elipsoide" alt="Elipsoide con semiejes distintos en perspectiva" />
+</Pregunta>
+
+<Pregunta id="u10-15" unidad="U10" q="Q26" titulo="Hiperboloide de una hoja"
+  enunciado="Hiperboloide de una hoja: ecuación canónica, eje, trazas." fr="Ap:288-289; U10:2">
+
+$$\frac{x^2}{a^2}+\frac{y^2}{b^2}-\frac{z^2}{c^2}=1\qquad(\text{dos coeficientes positivos y uno negativo}).$$
+- **Eje del hiperboloide:** la variable de coeficiente **negativo** ($z$ en esta forma). Las otras formas son $\frac{x^2}{a^2}-\frac{y^2}{b^2}+\frac{z^2}{c^2}=1$ y $-\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}=1$.
+- **Trazas:** $z=0$: elipse $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$ (la "garganta"); $y=0$: hipérbola $\frac{x^2}{a^2}-\frac{z^2}{c^2}=1$; $x=0$: hipérbola $\frac{y^2}{b^2}-\frac{z^2}{c^2}=1$. Cortes $z=k$: elipses que crecen con $|k|$.
+- Simétrica respecto de planos coordenados, ejes y origen. Es una superficie conexa (de una sola hoja).
+
+<Fig src="cuad-hiperboloide1" alt="Hiperboloide de una hoja: superficie conexa con garganta elíptica" />
+</Pregunta>
+
+<Pregunta id="u10-16" unidad="U10" q="Q26" titulo="Hiperboloide de dos hojas"
+  enunciado="Hiperboloide de dos hojas: ecuación canónica, eje, trazas." fr="Ap:289-290; U10:2">
+
+$$-\frac{x^2}{a^2}-\frac{y^2}{b^2}+\frac{z^2}{c^2}=1\ \ \Longleftrightarrow\ \ \frac{z^2}{c^2}-\frac{x^2}{a^2}-\frac{y^2}{b^2}=1\qquad(\text{un coeficiente positivo y dos negativos}).$$
+- **Eje:** la variable de coeficiente **positivo** ($z$). **No hay traza** con el plano coordenado perpendicular al eje ($z=0$ da $-\frac{x^2}{a^2}-\frac{y^2}{b^2}=1$, imposible).
+- **Trazas:** $y=0$: hipérbola $\frac{z^2}{c^2}-\frac{x^2}{a^2}=1$; $x=0$: hipérbola $\frac{z^2}{c^2}-\frac{y^2}{b^2}=1$. Cortes $z=k$ con $|k|>c$: elipses; para $|k|<c$ vacío. Dos hojas separadas ($|z|\ge c$).
+- Simetrías: respecto de planos coordenados, ejes y origen.
+
+<Fig src="cuad-hiperboloide2" alt="Hiperboloide de dos hojas: dos superficies separadas, una arriba y otra abajo" />
+</Pregunta>
+
+<Pregunta id="u10-17" unidad="U10" q="Q26" titulo="Paraboloide elíptico"
+  enunciado="Paraboloide elíptico: ecuación canónica, eje, trazas." fr="Ap:291; U10:2">
+
+$$\frac{x^2}{a^2}+\frac{y^2}{b^2}=cz\qquad(\text{los dos coeficientes cuadráticos del mismo signo}).$$
+- **Eje:** la variable elevada a la **primera** potencia ($z$). Para $c>0$ abre hacia $+z$; para $c<0$ hacia $-z$. Otras formas: $\frac{x^2}{a^2}+\frac{z^2}{b^2}=cy$ y $\frac{y^2}{a^2}+\frac{z^2}{b^2}=cx$.
+- **Trazas:** $y=0$: parábola $\frac{x^2}{a^2}=cz$; $x=0$: parábola $\frac{y^2}{b^2}=cz$; cortes $z=k$ (con $ck>0$): elipses; $z=0$: solo el origen (vértice).
+- Es una superficie sin centro, simétrica respecto de los planos $xz$ e $yz$ y del eje $z$.
+
+<Fig src="cuad-paraboloide-elip" alt="Paraboloide elíptico abierto hacia arriba" />
+</Pregunta>
+
+<Pregunta id="u10-18" unidad="U10" q="Q26" titulo="Paraboloide hiperbólico (silla de montar)"
+  enunciado="Paraboloide hiperbólico: ecuación canónica, trazas y forma." fr="Ap:291-292; U10:2">
+
+$$\frac{x^2}{a^2}-\frac{y^2}{b^2}=cz\qquad(\text{los dos coeficientes cuadráticos de signo distinto}).$$
+- **Eje:** la variable de primer grado ($z$). Otras formas: $\frac{x^2}{a^2}-\frac{z^2}{b^2}=cy$ y $\frac{y^2}{a^2}-\frac{z^2}{b^2}=cx$.
+- **Trazas:** $y=0$: parábola $\frac{x^2}{a^2}=cz$ (abre hacia un lado de $z$); $x=0$: parábola $-\frac{y^2}{b^2}=cz$ (abre hacia el **lado opuesto**); cortes $z=k\ne0$: hipérbolas; $z=0$: par de rectas $y=\pm\frac bax$.
+- Forma de silla de montar; sin centro.
+
+<Fig src="cuad-paraboloide-hip" alt="Paraboloide hiperbólico con forma de silla de montar" />
+</Pregunta>
+
+<Pregunta id="u10-19" unidad="U10" q="Q26" titulo="Cono y cilindros cuádricos"
+  enunciado="Cono elíptico y cilindros: ecuaciones y trazas. (No están desarrollados en las fuentes de cátedra: complemento elaborado.)" fr="U10:2">
+
+Complemento elaborado, ya que ni el PDF de U10 ni el Apunte de cátedra los desarrollan (el Apunte los menciona solo como "etc." en el programa, p. 6):
+
+- **Cono elíptico:** $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=\dfrac{z^2}{c^2}$. Es el caso límite entre el hiperboloide de una hoja ($=1$) y el de dos hojas ($=-1$): igualado a $0$. Eje $z$, vértice en el origen; cortes $z=k$: elipses; $y=0$: par de rectas $z=\pm\frac cax$.
+- **Cilindros:** falta una variable. Ej. con eje $z$: elíptico $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$, hiperbólico $\frac{x^2}{a^2}-\frac{y^2}{b^2}=1$, parabólico $y^2=4px$. La curva (directriz) en el plano $xy$ se repite paralela al eje de la variable que falta.
+
+<Fig src="cuad-cono" alt="Cono elíptico de doble hoja con vértice en el origen" />
+<Fig src="cuad-cilindro" alt="Cilindro elíptico de eje z" />
+</Pregunta>
+
+<Pregunta id="u10-20" unidad="U10" q="Q26" titulo="Reconocer una cuádrica por los signos de la ecuación"
+  enunciado="Dada una ecuación canónica de segundo grado en $x,y,z$, ¿cómo se identifica la cuádrica?" fr="Ap:286-291">
+
+Se pasa a la forma canónica y se mira la **cantidad de términos cuadráticos** y sus **signos**:
+
+| Forma | Signos | Cuádrica |
+|---|---|---|
+| $\pm\frac{x^2}{a^2}\pm\frac{y^2}{b^2}\pm\frac{z^2}{c^2}=1$ | los tres $+$ | **elipsoide** |
+| | dos $+$ y uno $-$ | **hiperboloide de una hoja** (eje = variable con $-$) |
+| | uno $+$ y dos $-$ | **hiperboloide de dos hojas** (eje = variable con $+$) |
+| $\pm\frac{x^2}{a^2}\pm\frac{y^2}{b^2}=cz$ | mismo signo | **paraboloide elíptico** (eje = variable lineal) |
+| | signo distinto | **paraboloide hiperbólico** |
+
+Truco: las variables al cuadrado **todas** → con centro (igualado a 1); **una lineal** → paraboloide. Si el segundo miembro es $0$ → cono; si falta una variable → cilindro. Con términos lineales se completa cuadrados (traslación).
+</Pregunta>

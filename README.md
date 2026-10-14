@@ -1,42 +1,74 @@
 <div align="center">
 
-<img src="assets/machete.png" alt="Machete de AGA" width="100%">
+<img src="assets/home.png" alt="Inicio del sitio AGA" width="100%">
 
-# 📐 AGA · 1er Parcial
+# 📐 AGA · Álgebra y Geometría Analítica
 
-### Todo lo que necesitás para el primer parcial de **Álgebra y Geometría Analítica** (UTN FRC), en un solo lugar.
+### Toda la materia (UTN FRC) en un solo lugar: 1º parcial, 2º parcial y, más adelante, el final.
 
-[![Abrir el sitio](https://img.shields.io/badge/▶_ABRIR_EL_SITIO-1d1b18?style=for-the-badge)](https://gabibertero.github.io/AGA-primerparcial/)
+[![Abrir el sitio](https://img.shields.io/badge/▶_ABRIR_EL_SITIO-1d1b18?style=for-the-badge)](https://gabibertero.github.io/AGA/)
 
-![Unidades](https://img.shields.io/badge/unidades-1_a_7-3b82c4?style=flat-square)
-![Preguntas](https://img.shields.io/badge/preguntas-150%2B-b0477f?style=flat-square)
-![Simulacros](https://img.shields.io/badge/simulacros-7-14876b?style=flat-square)
-![Ejercicios](https://img.shields.io/badge/ejercicios-infinitos-7a5cc7?style=flat-square)
+![Unidades](https://img.shields.io/badge/unidades-1_a_10-3b82c4?style=flat-square)
+![Exámenes](https://img.shields.io/badge/exámenes_resueltos_2P-21-14876b?style=flat-square)
+![Ejercicios](https://img.shields.io/badge/ejercicios_2P-59-b0477f?style=flat-square)
+![Verificado](https://img.shields.io/badge/verificado_con-sympy-7a5cc7?style=flat-square)
 ![Celular](https://img.shields.io/badge/funciona_en-celular-c2671f?style=flat-square)
 ![Licencia](https://img.shields.io/badge/licencia-MIT-555?style=flat-square)
 
-[📘 Machete](https://gabibertero.github.io/AGA-primerparcial/) &nbsp;·&nbsp; [❓ Preguntero](https://gabibertero.github.io/AGA-primerparcial/preguntero.html) &nbsp;·&nbsp; [✎ Prácticos](https://gabibertero.github.io/AGA-primerparcial/practicos.html) &nbsp;·&nbsp; [∑ Laboratorio](https://gabibertero.github.io/AGA-primerparcial/laboratorio.html)
+[🏠 Inicio](https://gabibertero.github.io/AGA/) &nbsp;·&nbsp; [1️⃣ 1º parcial](https://gabibertero.github.io/AGA/primer-parcial/) &nbsp;·&nbsp; [2️⃣ 2º parcial](https://gabibertero.github.io/AGA/segundo-parcial/)
 
 </div>
 
 ---
 
-## 📘 Machete
-> El resumen para tener al lado mientras estudiás.
+## 🏠 Inicio
+> La portada de toda la materia.
 
-Cada unidad viene con:
-
-- 🧮 **Fórmulas y propiedades**, cada una con una aclaración corta de qué significa.
-- 🎯 **"¿Qué me piden?"**: tarjetas con *me dan → me piden → entonces*, para saber qué hacer apenas leés el enunciado.
-- ✅ **Ejercicio resuelto tipo parcial**, paso a paso y con verificación.
-- ⚠️ **Errores comunes**: los que más bajan puntos, como restar los puntos al revés, olvidarse de trasponer la adjunta o poner `A − 2` en vez de `A − 2I`.
-- 💬 **Frases para justificar**, listas para escribir en la hoja.
-
-🖨️ El botón **PDF** arma una versión en escala de grises, compacta y lista para imprimir doble faz, con números de página.
+- 🗺️ **Mapa de la materia:** las 11 unidades del programa, agrupadas en 1º parcial, 2º parcial y final.
+- ⏳ **Cuenta regresiva:** cargás la fecha del parcial y del final, y te dice cuántos días faltan.
+- 📈 **Tu progreso:** ejercicios resueltos y la nota de tus últimos modo examen.
+- ↩️ **Seguir donde dejaste:** vuelve al último parcial que abriste.
+- 🌙 **Tema claro y oscuro.**
 
 ---
 
-## ❓ Preguntero
+## 2️⃣ 2º parcial · U8 a U10
+> Producto escalar, vectorial y mixto · Rectas y planos · Cónicas y cuádricas.
+
+### 📄 Parciales y modelos
+- ⭐ **Los 2 modelos oficiales de la profe** (Modelo 1 y Modelo 2), íntegros y en el orden original, resueltos paso a paso.
+- 📝 **El parcial del curso 1R5**, con la foto del original.
+- 🗂️ **Banco extra: 18 finales** con sus ejercicios de U8 a U10 (2017 a 2024), más ejercicios sueltos y relatos de alumnos.
+- ✅ Cada resultado está **verificado con sympy**, y cada ejercicio dice de qué archivo y página sale.
+- 📊 Gráficos de cónicas con **todos los elementos que exige la cátedra** (V/V', A/A', F/F', LL', ejes, asíntotas, directriz).
+
+### ⏱️ Modo examen
+- Cronómetro con pausa y soluciones ocultas hasta que entregás.
+- Autocorrección **Bien / A medias / Mal** con criterios por ejercicio y la nota con los puntajes del parcial (30/30/40 en el Modelo 1).
+- Guarda tu último intento.
+
+### ❓ Preguntero teórico
+- **53 preguntas** de U8, U9 y U10 (cónicas y cuádricas), con respuesta tipo parcial y fuente.
+- Filtro por unidad, marcás **"la sé / repasar"** y armás un **simulacro teórico** de 3 preguntas, con el formato del parcial.
+
+### 📘 Machetes
+U8, U9, cónicas y cuádricas en formato **me dan → me piden → hago**, con errores comunes y qué pide la cátedra en el gráfico.
+
+### ∑ Laboratorio
+- 🎰 **Generadores** de vectores, rectas, planos y cónicas, con números nuevos cada vez, comprobación de tu respuesta (acepta `3/2`, `1,5`, `2√5`) y solución paso a paso.
+- 🎛️ **Cónicas interactivas:** movés h, k, a, b o p y ves el gráfico con todos los elementos y las ecuaciones ordinaria y general en vivo.
+
+---
+
+## 1️⃣ 1º parcial · U1 a U7
+> El sitio original del primer parcial, sin cambios: [Machete](https://gabibertero.github.io/AGA/primer-parcial/) · [Preguntero](https://gabibertero.github.io/AGA/primer-parcial/preguntero.html) · [Prácticos](https://gabibertero.github.io/AGA/primer-parcial/practicos.html) · [Laboratorio](https://gabibertero.github.io/AGA/primer-parcial/laboratorio.html)
+
+<img src="assets/machete.png" alt="Machete de AGA" width="100%">
+
+### 📘 Machete
+El resumen para tener al lado mientras estudiás: fórmulas, tarjetas *me dan → me piden → entonces*, ejercicio resuelto tipo parcial, errores comunes, frases para justificar y botón **PDF** para imprimir.
+
+### ❓ Preguntero
 > Más de 150 preguntas de teoría y práctica de todas las unidades.
 
 <img src="assets/preguntero.png" alt="Preguntero" width="100%">
@@ -52,7 +84,7 @@ Hay preguntas de opción múltiple, varias correctas, verdadero/falso con justif
 
 ---
 
-## ✎ Prácticos
+### ✎ Prácticos
 > Entrená el parcial práctico como es de verdad.
 
 <img src="assets/practicos.png" alt="Prácticos" width="100%">
@@ -65,12 +97,12 @@ Hay preguntas de opción múltiple, varias correctas, verdadero/falso con justif
 
 ---
 
-## ∑ Laboratorio
+### ∑ Laboratorio
 > Ejercicios que no se terminan nunca, y una calculadora que te muestra cómo se hace.
 
 <img src="assets/laboratorio-proc.png" alt="Laboratorio" width="100%">
 
-### 🎰 Generador de ejercicios
+#### 🎰 Generador de ejercicios
 Elegís el tipo y te arma uno nuevo con otros números cada vez:
 
 `Aplicación · Sistema 3×3` `Aplicación · Producto de matrices` `Cambio de base` `Núcleo e imagen ℝ³→ℝ²` `Núcleo e imagen ℝ³→ℝ³` `Ecuación matricial` `Inversa 3×3` `Rango` `Determinante` `Vectores` `Autovalores`
@@ -81,7 +113,7 @@ Elegís el tipo y te arma uno nuevo con otros números cada vez:
 
 En núcleos y autovectores acepta **cualquier** vector válido, no solo uno.
 
-### 🧮 Calculadora paso a paso
+#### 🧮 Calculadora paso a paso
 Cargás una matriz (de 1×1 a 6×7) en casillas grandes, elegís la operación y ves **cada operación entre filas**, con fracciones exactas:
 
 | Operación | Cómo lo hace |
@@ -107,22 +139,43 @@ Cargás una matriz (de 1×1 a 6×7) en casillas grandes, elegís la operación y
 | 🔷 | **U5 · Espacios vectoriales** | Subespacios, bases, dimensión, coordenadas, cambio de base |
 | 🩷 | **U6 · Transformaciones lineales** | Matriz asociada, núcleo, imagen, teorema de la dimensión |
 | 🟩 | **U7 · Autovalores** | Polinomio característico, autoespacios, diagonalización |
+| 🧭 | **U8 · Producto escalar, vectorial y mixto** | Ángulo, proyección, área, volumen, coplanaridad |
+| 📏 | **U9 · Rectas y planos** | Ecuaciones, posiciones relativas, distancias, haz de planos |
+| 🥚 | **U10 · Cónicas y cuádricas** | Circunferencia, elipse, hipérbola, parábola, cuádricas |
+| ⏳ | **U11 · Números complejos** | Próximamente, para el final |
 
 ---
 
 ## 🚀 Cómo usarlo
 
-**Online:** [gabibertero.github.io/AGA-primerparcial](https://gabibertero.github.io/AGA-primerparcial/). No necesitás cuenta y tu progreso se guarda en el navegador.
+**Online:** [gabibertero.github.io/AGA](https://gabibertero.github.io/AGA/). No necesitás cuenta: tu progreso se guarda en el navegador (claves `aga:v1:`).
 
-**Sin internet:** descargá los `.html` en una misma carpeta y abrilos con el navegador.
+**Plan sugerido para el 2º parcial:**
+```
+1. Machetes      → repasá la unidad
+2. Preguntero    → probá la teoría
+3. Laboratorio   → generá ejercicios hasta que salgan solos
+4. Modo examen   → rendí el Modelo 1 y el Modelo 2 con tiempo
+5. Banco extra   → finales de U8–U10
+```
 
-**Plan sugerido:**
+---
+
+## 🛠️ Para desarrollar
+
+El sitio es [Astro](https://astro.build) + MDX + KaTeX. El código está en `fuente/` y se compila a `docs/`, que es lo que publica GitHub Pages (rama `main`, carpeta `/docs`, sin Actions).
+
+```bash
+cd fuente
+npm install
+npm run dev        # servidor local
+npm run build      # compila a ../docs (commitear docs/)
+npm test           # Playwright, desktop y celular
+npm run test:lab   # tests de los generadores
+python3 tests/check_modelo1.py   # verificación sympy (hay un check_*.py por examen)
 ```
-1. Machete      → leé la unidad
-2. Preguntero   → probá la teoría
-3. Laboratorio  → generá ejercicios hasta que salgan solos
-4. Prácticos    → rendí un simulacro con tiempo
-```
+
+Las 4 páginas del 1º parcial viven tal cual en `fuente/public/primer-parcial/`.
 
 ---
 
@@ -134,7 +187,7 @@ Cargás una matriz (de 1×1 a 6×7) en casillas grandes, elegís la operación y
 </tr>
 </table>
 
-¿Encontraste algo mal o tenés una idea? Abrí un [issue](https://github.com/gabibertero/AGA-primerparcial/issues) y contá en qué sección está.
+¿Encontraste algo mal o tenés una idea? Abrí un [issue](https://github.com/gabibertero/AGA/issues) y contá en qué sección está.
 
 ---
 

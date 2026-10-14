@@ -1,0 +1,25 @@
+---
+// Dibujo del hero: elipse con focos, ejes y vectores que se mecen apenas (CSS; se apaga con prefers-reduced-motion).
+---
+<svg class="hero-svg" viewBox="0 0 320 260" role="img" aria-label="Dibujo decorativo: una elipse con sus focos y dos vectores sobre ejes cartesianos">
+  <defs>
+    <marker id="pta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="context-stroke" /></marker>
+  </defs>
+  <g class="h-ejes" stroke-width="1.5" fill="none">
+    <path d="M20 130 H304" marker-end="url(#pta)" /><path d="M160 244 V14" marker-end="url(#pta)" />
+  </g>
+  <g class="h-grilla" stroke-width="1">
+    <path d="M60 20V240M110 20V240M210 20V240M260 20V240M30 80H300M30 180H300" />
+  </g>
+  <g transform="rotate(-18 160 130)">
+    <ellipse class="h-elipse" cx="160" cy="130" rx="118" ry="64" fill="none" stroke-width="3" />
+    <circle class="h-foco" cx="94" cy="130" r="5" /><circle class="h-foco" cx="226" cy="130" r="5" />
+  </g>
+  <g class="h-vecs" fill="none" stroke-width="3.5" stroke-linecap="round">
+    <path class="h-v1" d="M160 130 L238 70" marker-end="url(#pta)" />
+    <path class="h-v2" d="M160 130 L112 56" marker-end="url(#pta)" />
+  </g>
+  <circle class="h-origen" cx="160" cy="130" r="5" />
+  <text class="h-txt" x="244" y="64" font-size="17" font-style="italic">v</text>
+  <text class="h-txt" x="96" y="52" font-size="17" font-style="italic">w</text>
+</svg>

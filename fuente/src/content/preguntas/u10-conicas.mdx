@@ -1,0 +1,164 @@
+---
+titulo: "Cónicas"
+unidad: "U10"
+orden: 3
+---
+import Pregunta from '../../components/Pregunta.astro';
+import Fig from '../../components/PreguntaFigura.astro';
+
+<Pregunta id="u10-01" unidad="U10" q="Q19" titulo="Cónicas: secciones del cono y figuras que se generan"
+  enunciado="Cónicas: intersecciones del plano con la superficie cónica. Figuras que se generan." literal parcial="T1, T2" sim="C" fq="F3:Tema 1 y Tema 2, preg. 3; G:47-49" fr="U10:3-5; Ap:239-240">
+
+**Superficie cónica:** la genera una recta **generatriz** que gira pasando siempre por un punto fijo, el **vértice**, y por una curva fija, la **directriz**; el eje del cono pasa por el vértice. Tiene dos hojas (a cada lado del vértice).
+
+**Cónicas:** curvas que resultan de cortar la superficie cónica con un plano que **no pasa por el vértice**:
+
+| Posición del plano | Curva |
+|---|---|
+| Perpendicular al eje | **Circunferencia** |
+| Inclinado: no paralelo a la generatriz ni al eje; corta una sola hoja | **Elipse** |
+| Paralelo a una generatriz; corta una sola hoja | **Parábola** |
+| Paralelo al eje (o más inclinado que la generatriz); corta las dos hojas | **Hipérbola** (dos ramas) |
+
+**Casos degenerados:** si el plano pasa por el vértice se obtiene un punto, una recta (contiene a la generatriz) o un par de rectas que se cortan (contiene al eje).
+
+<Fig src="secciones-conicas" alt="Las cuatro cónicas: circunferencia, elipse, parábola e hipérbola con sus dos ramas" pie="Las cuatro curvas según la inclinación del plano de corte." />
+</Pregunta>
+
+<Pregunta id="u10-02" unidad="U10" q="Q21" titulo="Ecuación general de las cónicas y cómo reconocer cada una"
+  enunciado="Ecuación general de las cónicas. Clasificación según los coeficientes." fq="G:49-50" fr="U10:7, 45, 66; Ap:240">
+
+**Ecuación general** (segunda grado en dos variables):
+$$Ax^2+Bxy+Cy^2+Dx+Ey+F=0 .$$
+El término rectangular $Bxy$ indica que la cónica está **girada**; en el curso se trabaja **sin** $Bxy$: $\;Ax^2+Cy^2+Dx+Ey+F=0$ (ejes paralelos a los coordenados).
+
+| Condición sobre $A$ y $C$ | Cónica |
+|---|---|
+| $A=C$ | circunferencia |
+| $A=0$ **o** $C=0$ (no ambos) | parábola |
+| $A$ y $C$ del mismo signo, $A\ne C$ | elipse |
+| $A$ y $C$ de distinto signo | hipérbola |
+
+Se confirma **completando cuadrados** (pasar a la forma ordinaria). Pueden aparecer casos degenerados (un punto, vacío, dos rectas) si el segundo miembro sale $0$ o negativo cuando debería ser positivo.
+</Pregunta>
+
+<Pregunta id="u10-03" unidad="U10" q="Q22" titulo="Circunferencia: definición, elementos y ecuaciones"
+  enunciado="Circunferencia: definición, elementos, ecuación ordinaria y general." fq="G:50-52" fr="U10:8-12; Ap:241-243">
+
+**Definición.** Lugar geométrico de los puntos del plano que están a distancia constante $r$ (radio) de un punto fijo $C$ (centro).
+
+<Fig src="circunferencia" alt="Circunferencia con centro C(h;k), radio r y un punto genérico P(x;y)" />
+
+Con $C(h;k)$ y $P(x;y)$: $\overline{CP}=r\Rightarrow\sqrt{(x-h)^2+(y-k)^2}=r$:
+- **Ordinaria:** $(x-h)^2+(y-k)^2=r^2$; **canónica** (centro en el origen): $x^2+y^2=r^2$.
+- **General:** desarrollando, $x^2+y^2+Dx+Ey+F=0$ con $D=-2h$, $E=-2k$, $F=h^2+k^2-r^2$ (es $A=C$ sin $Bxy$).
+- **De general a ordinaria (completar cuadrados):** $\left(x+\tfrac D2\right)^2+\left(y+\tfrac E2\right)^2=\tfrac{D^2}4+\tfrac{E^2}4-F$; centro $\left(-\tfrac D2;-\tfrac E2\right)$, $r^2=\tfrac{D^2+E^2}{4}-F$ (debe ser $>0$).
+
+Ejemplo: $x^2+y^2-4x+2y-5=0\Rightarrow(x-2)^2+(y+1)^2=10$: $C(2;-1)$, $r=\sqrt{10}$. Excentricidad $e=0$.
+</Pregunta>
+
+<Pregunta id="u10-04" unidad="U10" q="Q23" titulo="Parábola: definición, elementos y ecuación"
+  enunciado="Parábola: definición, elementos, ecuación canónica, ordinaria y general." fq="G:52-54" fr="U10:53-62, 64; Ap:251-259">
+
+**Definición.** Lugar geométrico de los puntos del plano que equidistan de un punto fijo $F$ (foco) y de una recta fija $\ell$ (directriz), con $F\notin\ell$: $\;PF=DP$ ($D$ = pie de la perpendicular a $\ell$).
+
+<Fig src="parabola" alt="Parábola con vértice V, foco F, directriz l, eje a, lado recto LL' y un punto P con su distancia a la directriz" />
+
+**Elementos (notación de cátedra):** $\ell$ directriz; $F$ foco; $a$ eje de la parábola (perpendicular a $\ell$, pasa por $F$); $A=\ell\cap a$; $V$ vértice (punto medio de $AF$); $LL'$ lado recto (perpendicular al eje por $F$); $p$ = distancia del vértice al foco = distancia del vértice a la directriz.
+
+**Deducción** (vértice en el origen, eje $x$, $F(p;0)$, $\ell:x=-p$): $\sqrt{(x-p)^2+y^2}=x+p\Rightarrow x^2-2px+p^2+y^2=x^2+2px+p^2\Rightarrow$
+$$y^2=4px\qquad(p>0\text{ abre a la derecha, }p<0\text{ a la izquierda}).$$
+Con eje $y$: $x^2=4py$ (arriba si $p>0$). **Lado recto** $LL'=4p$ (en $x=p$: $y=\pm2p$). **Excentricidad** $e=1$.
+
+**Vértice en $(h;k)$:** $(y-k)^2=4p(x-h)$ (eje paralelo a $x$; foco $(h+p;k)$, directriz $x=h-p$) y $(x-h)^2=4p(y-k)$ (eje paralelo a $y$; foco $(h;k+p)$, directriz $y=k-p$).
+**General:** $Cy^2+Dx+Ey+F=0$ ($A=0$) o $Ax^2+Dx+Ey+F=0$ ($C=0$): solo una variable al cuadrado. Se pasa a ordinaria completando el cuadrado de esa variable.
+</Pregunta>
+
+<Pregunta id="u10-05" unidad="U10" q="Q20" titulo="Elipse: definición, elementos, gráfico y ecuación con centro en el origen y eje focal x"
+  enunciado="Desarrollar Elipse: Definición, Elementos notables. Gráficas. Ecuación de la elipse con centro en origen de coord. y eje focal en “x”." literal parcial="T1, T2" sim="C" fq="F3:Tema 1 y Tema 2, preg. 3; G:54-56" fr="U10:14-17; Ap:260-266">
+
+**Definición.** Lugar geométrico de los puntos $P$ del plano cuya **suma de distancias a dos puntos fijos** (focos $F$ y $F'$) es **constante** e igual a $2a$, mayor que la distancia focal $2c$: $\;PF+PF'=2a$.
+
+<Fig src="elipse" alt="Elipse con centro en el origen: vértices V y V', extremos del eje menor A y A', focos F y F', lado recto LL' y un punto P" pie="Elementos con la notación de la cátedra." />
+
+**Elementos notables:** $\ell$ eje focal (recta de los focos); $F,F'$ focos; $V,V'$ vértices (sobre el eje focal); $VV'=2a$ eje mayor; $AA'=2b$ eje menor; $FF'=2c$ distancia focal; $C$ centro (punto medio de $FF'$); $LL'$ lado recto (cuerda por un foco, perpendicular al eje focal), $LL'=\dfrac{2b^2}{a}$; excentricidad $e=\dfrac ca<1$.
+**Relación fundamental:** $a^2=b^2+c^2$ (triángulo rectángulo de catetos $b$ y $c$ e hipotenusa $a$).
+
+**Deducción** con $C(0;0)$, $F(c;0)$, $F'(-c;0)$:
+$$\sqrt{(x-c)^2+y^2}+\sqrt{(x+c)^2+y^2}=2a\ \Rightarrow\ \sqrt{(x-c)^2+y^2}=2a-\sqrt{(x+c)^2+y^2}.$$
+Elevando al cuadrado y simplificando: $a\sqrt{(x+c)^2+y^2}=a^2+cx$. Elevando otra vez: $(a^2-c^2)x^2+a^2y^2=a^2(a^2-c^2)$. Con $b^2=a^2-c^2$ y dividiendo por $a^2b^2$:
+$$\boxed{\frac{x^2}{a^2}+\frac{y^2}{b^2}=1}\qquad\text{(ecuación canónica o primera ordinaria).}$$
+**Análisis:** vértices $V(\pm a;0)$, $A(0;\pm b)$; simétrica respecto de ambos ejes y del origen; contenida en el rectángulo $|x|\le a$, $|y|\le b$; en $x=\pm c$, $y=\pm\dfrac{b^2}{a}$.
+</Pregunta>
+
+<Pregunta id="u10-06" unidad="U10" q="Q20" titulo="Elipse: eje focal en y, centro (h;k) y paso de la general a la ordinaria"
+  enunciado="Elipse con eje focal en $y$, centro $(h;k)$ y ecuación general." fq="G:54-56" fr="U10:19-25; Ap:267-270">
+
+- **Eje focal en $y$** (centro en el origen): $\dfrac{x^2}{b^2}+\dfrac{y^2}{a^2}=1$; $V(0;\pm a)$, $F(0;\pm c)$, $A(\pm b;0)$. El **denominador mayor** ($a^2$) va con la variable del eje focal.
+- **Centro $(h;k)$, eje focal paralelo a $x$:** $\dfrac{(x-h)^2}{a^2}+\dfrac{(y-k)^2}{b^2}=1$; $V(h\pm a;k)$, $F(h\pm c;k)$, $A(h;k\pm b)$. Eje paralelo a $y$: $\dfrac{(x-h)^2}{b^2}+\dfrac{(y-k)^2}{a^2}=1$.
+- **General:** $Ax^2+Cy^2+Dx+Ey+F=0$ con $A,C$ del mismo signo y distintos.
+- **De general a ordinaria:** agrupar por variable, sacar factor común del coeficiente cuadrático, completar cuadrados, pasar el término independiente y dividir para que el segundo miembro sea $1$. Ejemplo: $9x^2+25y^2-54x+100y-44=0\Rightarrow\dfrac{(x-3)^2}{25}+\dfrac{(y+2)^2}{9}=1$: $C(3;-2)$, $a=5$, $b=3$, $c=4$, $F(7;-2)$ y $F'(-1;-2)$.
+</Pregunta>
+
+<Pregunta id="u10-07" unidad="U10" q="Q24" titulo="Hipérbola: definición, elementos y ecuación canónica"
+  enunciado="Hipérbola: definición, elementos, ecuación canónica." fq="G:56-58" fr="U10:28-31, 33; Ap:271-277">
+
+**Definición.** Lugar geométrico de los puntos $P$ del plano tales que el **valor absoluto de la diferencia de sus distancias** a dos puntos fijos (focos) es **constante**, igual a $2a$, y menor que la distancia focal $2c$: $\;|PF-PF'|=2a$.
+
+<Fig src="hiperbola" alt="Hipérbola con centro en el origen: ramas, vértices V y V', focos F y F', extremos del eje conjugado A y A', lado recto LL' y asíntotas" />
+
+**Elementos (cátedra):** $\ell$ eje focal; $F,F'$ focos ($FF'=2c$); $V,V'$ vértices ($VV'=2a$, eje transverso); $AA'=2b$ eje conjugado; $C$ centro; $LL'=\dfrac{2b^2}{a}$ lado recto; asíntotas $y=\pm\dfrac bax$; excentricidad $e=\dfrac ca>1$.
+**Relación fundamental:** $c^2=a^2+b^2$.
+
+**Deducción** ($F(c;0)$, $F'(-c;0)$): $\sqrt{(x-c)^2+y^2}-\sqrt{(x+c)^2+y^2}=\pm2a$; mismo procedimiento que en la elipse da $(c^2-a^2)x^2-a^2y^2=a^2(c^2-a^2)$ y con $b^2=c^2-a^2$:
+$$\boxed{\frac{x^2}{a^2}-\frac{y^2}{b^2}=1}.$$
+**Análisis:** vértices $V(\pm a;0)$; no corta al eje $y$; no está definida para $-a<x<a$; dos ramas; simétrica respecto de ambos ejes y del origen. Con eje focal $y$: $\dfrac{y^2}{a^2}-\dfrac{x^2}{b^2}=1$. El **eje transverso corresponde a la variable con coeficiente positivo**.
+</Pregunta>
+
+<Pregunta id="u10-08" unidad="U10" q="Q24" titulo="Hipérbola: asíntotas, centro (h;k), general, equilátera y conjugadas"
+  enunciado="Hipérbola: asíntotas, ecuación con centro $(h;k)$, forma general, hipérbola equilátera y conjugadas." fq="G:56-58" fr="U10:31, 34-41; Ap:277-282">
+
+- **Asíntotas** (eje focal $x$): $y=\pm\dfrac bax$. Con eje focal $y$: $y=\pm\dfrac abx$. Se obtienen despejando $y=\pm\dfrac ba\sqrt{x^2-a^2}$: para $|x|$ grande $\sqrt{x^2-a^2}\to|x|$. Con centro $(h;k)$ pasan por el centro: $y-k=\pm\dfrac ba(x-h)$.
+- **Centro $(h;k)$:** $\dfrac{(x-h)^2}{a^2}-\dfrac{(y-k)^2}{b^2}=1$ (eje paralelo a $x$) o $\dfrac{(y-k)^2}{a^2}-\dfrac{(x-h)^2}{b^2}=1$ (eje paralelo a $y$); $V$ y $F$ a distancia $a$ y $c$ del centro sobre el eje focal, $A$ a distancia $b$.
+- **General:** $Ax^2+Cy^2+Dx+Ey+F=0$ con $A$ y $C$ de signo distinto. Se completa cuadrados igual que en la elipse. Ej.: $-x^2+3y^2+4x-6y-13=0\Rightarrow\dfrac{(y-1)^2}{4}-\dfrac{(x-2)^2}{12}=1$: $C(2;1)$, $a=2$, $b=\sqrt{12}$, $c=4$, eje paralelo a $y$.
+- **Equilátera o rectangular:** $a=b$ (eje transverso = eje conjugado); asíntotas perpendiculares; $e=\sqrt2$.
+- **Conjugadas:** el eje transverso de una es el conjugado de la otra y viceversa; comparten centro y asíntotas, y los focos equidistan del centro.
+</Pregunta>
+
+<Pregunta id="u10-09" unidad="U10" q="Q25" titulo="Excentricidad de las cónicas"
+  enunciado="Excentricidad: concepto y valores para cada cónica." fq="G:58-59" fr="U10:18, 32, 44, 56; Ap:261-262, 283">
+
+La **excentricidad** mide cuán "abierta" o achatada es la curva. Para elipse e hipérbola $e=\dfrac ca$ (distancia al foco sobre distancia al vértice).
+
+| Curva | $e$ | Significado |
+|---|---|---|
+| Circunferencia | $e=0$ | el centro coincide con el foco ($c=0$) |
+| Elipse | $0<e<1$ (pues $c<a$) | $e\to0$: casi circunferencia; $e\to1$: muy achatada |
+| Parábola | $e=1$ | $PF=DP$: la distancia al foco es igual a la distancia a la directriz |
+| Hipérbola | $e>1$ (pues $c>a$) | $e\to1$: ramas cerradas; $e$ grande: ramas más abiertas |
+</Pregunta>
+
+<Pregunta id="u10-10" unidad="U10" q="Q21 / Q25" titulo="Cuadro comparativo: constantes, relaciones y ecuaciones"
+  enunciado="Cuadro comparativo de las cónicas: constantes, relación fundamental, ecuaciones ordinarias, lado recto, excentricidad." fq="G:49-59" fr="U10:45, 66; Ap:283">
+
+| | Circunferencia | Parábola | Elipse | Hipérbola |
+|---|---|---|---|---|
+| Constantes | $r$ | $p$ | $a,b,c$: $a^2=b^2+c^2$ | $a,b,c$: $c^2=a^2+b^2$ |
+| Eje focal $x$, centro/vértice en el origen | $x^2+y^2=r^2$ | $y^2=4px$ | $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$ | $\frac{x^2}{a^2}-\frac{y^2}{b^2}=1$ |
+| Eje focal $y$ | — | $x^2=4py$ | $\frac{x^2}{b^2}+\frac{y^2}{a^2}=1$ | $\frac{y^2}{a^2}-\frac{x^2}{b^2}=1$ |
+| Centro/vértice $(h;k)$ | $(x-h)^2+(y-k)^2=r^2$ | $(y-k)^2=4p(x-h)$ | $\frac{(x-h)^2}{a^2}+\frac{(y-k)^2}{b^2}=1$ | $\frac{(x-h)^2}{a^2}-\frac{(y-k)^2}{b^2}=1$ |
+| Lado recto $LL'$ | — | $4p$ | $\frac{2b^2}{a}$ | $\frac{2b^2}{a}$ |
+| Excentricidad | $0$ | $1$ | $\frac ca<1$ | $\frac ca>1$ |
+| General $Ax^2+Cy^2+\dots$ | $A=C$ | $A=0$ o $C=0$ | $A,C$ mismo signo | $A,C$ signo distinto |
+</Pregunta>
+
+<Pregunta id="u10-11" unidad="U10" q="Q19-Q20" titulo="Parcial teórico: Cónicas y Elipse (pregunta completa)"
+  enunciado="Cónicas: Intersecciones del plano con la superficie cónica. Figuras que se generan. Desarrollar Elipse: Definición, Elementos notables. Gráficas. Ecuación de la elipse con centro en origen de coord. y eje focal en “x”." literal parcial="T1, T2" sim="C" fq="F3:Tema 1 y Tema 2, preg. 3; T" fr="U10:3-5, 14-17; Ap:239-240, 260-266">
+
+Esquema de respuesta:
+
+1. **Cónicas:** curvas de la intersección de un plano con una superficie cónica (generatriz que pasa por el vértice y gira sobre una directriz). Plano $\perp$ eje: circunferencia; inclinado: elipse; $\parallel$ generatriz: parábola; $\parallel$ eje: hipérbola. Degeneradas si el plano pasa por el vértice. *Gráfico:* cono con los cuatro cortes.
+2. **Elipse, definición:** lugar geométrico de los $P$ con $PF+PF'=2a>2c$.
+3. **Elementos:** focos $F,F'$; vértices $V,V'$; eje mayor $VV'=2a$; eje menor $AA'=2b$; distancia focal $2c$; centro; lado recto $LL'=\frac{2b^2}{a}$; $e=\frac ca<1$; $a^2=b^2+c^2$. *Gráfico:* elipse con todos rotulados.
+4. **Ecuación** (centro en el origen, eje focal $x$): de $PF+PF'=2a$ con $F(\pm c;0)$ se llega a $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$ (desarrollar la deducción como en la pregunta de la elipse).
+</Pregunta>

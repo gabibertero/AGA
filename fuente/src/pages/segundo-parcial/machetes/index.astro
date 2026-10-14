@@ -1,0 +1,20 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+const items = (await getCollection('machetes')).sort((a, b) => a.data.orden - b.data.orden);
+---
+<Layout titulo="Machetes · 2º parcial">
+  <p class="eyebrow"><a href={`${base}segundo-parcial/`}>2º parcial</a> · Machetes</p>
+  <h1>Machetes de teoría</h1>
+  <p class="lead">Fórmulas y recetas del 2º parcial en formato «me dan → me piden → hago», con errores comunes y lo que la cátedra exige en el gráfico. Cada fórmula trae su fuente (archivo y página).</p>
+  <ul class="grilla lista-tarjetas">
+    {items.map((i) => (
+      <li class="tarjeta tarjeta-u" data-unidad={i.data.unidad}>
+        <a class="ec-titulo" href={`${base}segundo-parcial/machetes/${i.id}/`}><span class="chip chip-u chip-lg" data-unidad={i.data.unidad}>{i.data.unidad}</span> {i.data.titulo}</a>
+        <p class="meta">{i.data.resumen}</p>
+      </li>
+    ))}
+  </ul>
+  <p class="suave">¿Querés practicar? Mirá el <a href={`${base}segundo-parcial/teoria/`}>preguntero teórico</a>.</p>
+</Layout>

@@ -1,0 +1,57 @@
+---
+titulo: "U8 · Producto escalar, vectorial y mixto"
+unidad: "U8"
+orden: 1
+resumen: "Ángulo, proyección, área, volumen, coplanaridad: me dan → me piden → hago."
+---
+import Fuente from '../../components/MacheteFuente.astro';
+import Fig from '../../components/PreguntaFigura.astro';
+
+## Fórmulas clave
+
+| Qué | Fórmula | Fuente |
+|---|---|---|
+| Producto escalar | $\bar a\cdot\bar b=\lvert\bar a\rvert\lvert\bar b\rvert\cos\theta=a_1b_1+a_2b_2+a_3b_3$ | <Fuente f="U8 p.2-3" /> |
+| Módulo | $\lvert\bar a\rvert=\sqrt{\bar a\cdot\bar a}=\sqrt{a_1^2+a_2^2+a_3^2}$ | <Fuente f="U8 p.5" /> |
+| Ángulo | $\theta=\arccos\dfrac{\bar a\cdot\bar b}{\lvert\bar a\rvert\lvert\bar b\rvert}$ | <Fuente f="U8 p.4" /> |
+| Perpendiculares | $\bar a\cdot\bar b=0$ (no nulos) | <Fuente f="U8 p.2" /> |
+| Proyección de $\bar a$ sobre $\bar b$ | $\bar w_1=\dfrac{\bar a\cdot\bar b}{\lvert\bar b\rvert^2}\bar b$; $\ \bar w_2=\bar a-\bar w_1$ | <Fuente f="U8 p.6" /> |
+| Producto vectorial | $\bar a\times\bar b=\begin{vmatrix}\bar i&\bar j&\bar k\\a_1&a_2&a_3\\b_1&b_2&b_3\end{vmatrix}$, $\ \lvert\bar a\times\bar b\rvert=\lvert\bar a\rvert\lvert\bar b\rvert\,\mathrm{sen}\,\theta$ | <Fuente f="U8 p.8, 13-14" /> |
+| Paralelos | $\bar a\times\bar b=\bar0$ | <Fuente f="U8 p.10" /> |
+| Producto mixto | $(\bar a\times\bar b)\cdot\bar c=\begin{vmatrix}a_1&a_2&a_3\\b_1&b_2&b_3\\c_1&c_2&c_3\end{vmatrix}$ | <Fuente f="U8 p.15-17" /> |
+| Cosenos directores | $\cos\alpha=\dfrac{a_x}{\lvert\bar a\rvert}$, etc.; $\sum\cos^2=1$ | <Fuente f="U9 p.42" /> |
+
+Tabla de versores: $\bar i\times\bar j=\bar k$, $\bar j\times\bar k=\bar i$, $\bar k\times\bar i=\bar j$ (los inversos con signo $-$) <Fuente f="U8 p.13" />.
+
+## Me dan → me piden → hago
+
+| Me dan | Me piden | Hago |
+|---|---|---|
+| $\bar a,\bar b$ | ángulo entre ellos | $\cos\theta=\dfrac{\bar a\cdot\bar b}{\lvert\bar a\rvert\lvert\bar b\rvert}$ y $\arccos$ <Fuente f="U8 p.4" /> |
+| $\bar a,\bar b$ | ¿son perpendiculares? | calcular $\bar a\cdot\bar b$; si da $0$, sí |
+| $\bar a,\bar b$ | ¿son paralelos? ¿mismo sentido? | $\bar a\times\bar b=\bar0$, o razones $\frac{a_i}{b_i}$ iguales; signo de la razón = sentido <Fuente f="Ap p.173-174" /> |
+| $\bar a,\bar b$ | componente de $\bar a$ en la dirección de $\bar b$ | $\bar w_1=\frac{\bar a\cdot\bar b}{\lvert\bar b\rvert^2}\bar b$, y $\bar w_2=\bar a-\bar w_1\perp\bar b$ <Fuente f="U8 p.6-7" /> |
+| $\bar a,\bar b$ | un vector perpendicular a ambos | $\bar a\times\bar b$ (dividir por su módulo si piden versor) |
+| $\bar a,\bar b$ | área del paralelogramo / triángulo | $\lvert\bar a\times\bar b\rvert$ / $\tfrac12\lvert\bar a\times\bar b\rvert$ <Fuente f="U8 p.8, 10; Ap p.171" /> |
+| 3 puntos $P_1,P_2,P_3$ | área del triángulo | $\bar a=\overrightarrow{P_1P_2}$, $\bar b=\overrightarrow{P_1P_3}$, $\tfrac12\lvert\bar a\times\bar b\rvert$ <Fuente f="Ap p.173" /> |
+| $\bar a,\bar b,\bar c$ | volumen del paralelepípedo | $\lvert(\bar a\times\bar b)\cdot\bar c\rvert$ (determinante $3\times3$) <Fuente f="U8 p.15" /> |
+| $\bar a,\bar b,\bar c$ o 4 puntos | volumen del tetraedro | $\tfrac16\lvert(\bar a\times\bar b)\cdot\bar c\rvert$ (elaborado) |
+| $\bar a,\bar b,\bar c$ | ¿son coplanares? | producto mixto $=0$ <Fuente f="U8 p.16" /> |
+| $\bar F,\bar D$ | trabajo | $W=\bar F\cdot\bar D$ <Fuente f="U8 p.1" /> |
+| $\bar a$ | ángulos con los ejes | cosenos directores $\frac{a_x}{\lvert\bar a\rvert},\frac{a_y}{\lvert\bar a\rvert},\frac{a_z}{\lvert\bar a\rvert}$ |
+
+## Errores frecuentes
+
+- Confundir: el escalar da **número**, el vectorial da **vector**, el mixto da **número**.
+- Orden en el vectorial: $\bar a\times\bar b=-\bar b\times\bar a$. La fila 2 del determinante es el vector que **premultiplica**.
+- Signo del cofactor de $\bar j$: lleva $-$ al desarrollar por la primera fila.
+- El ángulo entre vectores va de $0^\circ$ a $180^\circ$; si el coseno da negativo es obtuso (no usar valor absoluto salvo para el ángulo entre rectas).
+- En la proyección dividir por $\lvert\bar b\rvert^2$ (no por $\lvert\bar b\rvert$) y multiplicar por $\bar b$.
+- El producto mixto da volumen **con signo**: tomar valor absoluto para el volumen.
+- El vectorial no es asociativo.
+
+## Qué exige la cátedra en el gráfico
+
+En el parcial teórico un enunciado sin gráfico se considera incompleto. Dibujar: $\bar a$ y $\bar b$ desde un origen común con el ángulo $\theta$; para el vectorial, el **paralelogramo** y $\bar c=\bar a\times\bar b$ perpendicular a su plano (mano derecha); para el mixto, el **paralelepípedo** con $\bar a\times\bar b$, la altura $h$ y el ángulo $\varphi$ con $\bar c$.
+
+<Fig src="mixto" alt="Paralelepípedo sobre los vectores a, b, c con a por b y la altura" />

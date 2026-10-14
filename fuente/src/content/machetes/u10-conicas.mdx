@@ -1,0 +1,84 @@
+---
+titulo: "U10 · Cónicas"
+unidad: "U10"
+orden: 3
+resumen: "Circunferencia, elipse, hipérbola y parábola: ecuaciones, elementos, excentricidad y cómo reconocerlas."
+---
+import Fuente from '../../components/MacheteFuente.astro';
+import Fig from '../../components/PreguntaFigura.astro';
+
+## Cuadro de las cónicas (ejes paralelos a los coordenados)
+
+| | Circunferencia | Parábola | Elipse | Hipérbola |
+|---|---|---|---|---|
+| Definición | $CP=r$ | $PF=DP$ ($\ell$ directriz) | $PF+PF'=2a$ | $\lvert PF-PF'\rvert=2a$ |
+| Constantes | $r$ | $p$ | $a>b$, $a^2=b^2+c^2$ | $c^2=a^2+b^2$ |
+| Ordinaria, centro/vértice $(h;k)$ | $(x-h)^2+(y-k)^2=r^2$ | $(y-k)^2=4p(x-h)$ ó $(x-h)^2=4p(y-k)$ | $\frac{(x-h)^2}{a^2}+\frac{(y-k)^2}{b^2}=1$ (focal $\parallel x$) | $\frac{(x-h)^2}{a^2}-\frac{(y-k)^2}{b^2}=1$ (focal $\parallel x$) |
+| Canónica (origen) | $x^2+y^2=r^2$ | $y^2=4px$ ó $x^2=4py$ | $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$; focal $y$: $\frac{x^2}{b^2}+\frac{y^2}{a^2}=1$ | $\frac{x^2}{a^2}-\frac{y^2}{b^2}=1$; focal $y$: $\frac{y^2}{a^2}-\frac{x^2}{b^2}=1$ |
+| Excentricidad | $0$ | $1$ | $e=\frac ca<1$ | $e=\frac ca>1$ |
+| Lado recto $LL'$ | — | $4p$ | $\frac{2b^2}{a}$ | $\frac{2b^2}{a}$ |
+| General | $A=C$ | $A=0$ ó $C=0$ | $A,C$ mismo signo | $A,C$ signo distinto |
+
+Fuentes: <Fuente f="U10 p.45, 66" /> (cuadros de cátedra), <Fuente f="U10 p.9-10" /> circunferencia, <Fuente f="U10 p.15-17" /> elipse, <Fuente f="U10 p.29-31" /> hipérbola, <Fuente f="U10 p.54-56" /> parábola.
+
+## Elementos y notación de cátedra
+
+| Elemento | Elipse | Hipérbola | Parábola |
+|---|---|---|---|
+| Centro $C$ / vértice $V$ | $C(h;k)$ | $C(h;k)$ | $V(h;k)$ |
+| Vértices $V,V'$ (eje focal $\parallel x$) | $(h\pm a;k)$ | $(h\pm a;k)$ | un único $V$ |
+| Extremos del otro eje $A,A'$ | $(h;k\pm b)$ | $(h;k\pm b)$ (eje conjugado) | $A=\ell\cap a$ |
+| Focos $F,F'$ | $(h\pm c;k)$ | $(h\pm c;k)$ | $F(h+p;k)$ |
+| Ejes | mayor $2a$, menor $2b$ | transverso $2a$, conjugado $2b$ | eje $a$ de la parábola |
+| Distancia focal | $FF'=2c$ | $FF'=2c$ | $VF=p$ |
+| Asíntotas / directriz | — | $y-k=\pm\frac ba(x-h)$ | $\ell: x=h-p$ |
+| Lado recto | $LL'=\frac{2b^2}{a}$ | $LL'=\frac{2b^2}{a}$ | $LL'=4p$ |
+
+Eje focal $\parallel y$: se intercambia el papel de $x$ e $y$ (los vértices y focos se desplazan en $y$; asíntotas $y-k=\pm\frac ab(x-h)$). **Elipse:** el denominador **mayor** ($a^2$) acompaña a la variable del eje focal. **Hipérbola:** el eje transverso va con la variable de coeficiente **positivo** <Fuente f="U10 p.30" />.
+
+## Me dan → me piden → hago
+
+**1. Me dan la ecuación general, me piden la cónica y sus elementos.**
+
+1. Ordenar $Ax^2+Cy^2+Dx+Ey+F=0$ y mirar $A$ y $C$ (tabla de arriba) <Fuente f="U10 p.7, 66" />.
+2. Agrupar por variable y **sacar factor común** del coeficiente cuadrático: $A\left(x^2+\tfrac DAx\right)+C\left(y^2+\tfrac ECy\right)=-F$.
+3. **Completar cuadrados**: sumar $\left(\tfrac D{2A}\right)^2$ y $\left(\tfrac E{2C}\right)^2$ dentro, y **multiplicarlos por $A$ y $C$** al segundo miembro <Fuente f="U10 p.24-25, 38-39" />.
+4. Dividir para que el segundo miembro sea $1$ (elipse, hipérbola) o dejar $(y-k)^2=4p(x-h)$ (parábola).
+5. Leer $h,k$ y los denominadores $\Rightarrow a^2,b^2$; calcular $c$ con la relación fundamental, $e=\frac ca$, $LL'$, y rotular $V,V',A,A',F,F'$.
+
+**Circunferencia:** completar cuadrados da centro $\left(-\frac D2;-\frac E2\right)$ y $r^2=\frac{D^2+E^2}4-F$ <Fuente f="U10 p.11-12" />.
+
+**2. Me dan elementos, me piden la ecuación.**
+
+| Me dan | Hago |
+|---|---|
+| Vértices y focos de una elipse/hipérbola | centro = punto medio; $a=$ distancia centro-vértice; $c=$ centro-foco; $b^2=a^2-c^2$ (elipse) o $b^2=c^2-a^2$ (hipérbola) |
+| Vértice y foco de una parábola | $p=\overline{VF}$ (con signo según hacia dónde abre); ecuación $(y-k)^2=4p(x-h)$ o $(x-h)^2=4p(y-k)$ |
+| Centro y un punto de la circunferencia | $r=\overline{CP}$ |
+| $e$ y $a$ (o $c$) | $c=ea$ y $b$ con la relación fundamental |
+| Una asíntota y un punto | $\frac ba$ de la asíntota y reemplazar el punto |
+
+**3. Me piden la directriz, el lado recto o los extremos del lado recto.** Parábola: $\ell: x=h-p$ (eje horizontal), $LL'=4p$, extremos $(h+p;k\pm2p)$. Elipse/hipérbola: en $x=h\pm c$, $y=k\pm\frac{b^2}{a}$ <Fuente f="U10 p.17, 31, 56" />.
+
+## Atajos para reconocer
+
+- Solo **una** variable al cuadrado $\Rightarrow$ parábola. Si está $y^2$ y $x$ lineal, el eje es paralelo a $x$; si está $x^2$ e $y$ lineal, paralelo a $y$ <Fuente f="U10 p.64" />.
+- Término $Bxy\ne0$: cónica girada (fuera de lo que se resuelve en el curso) <Fuente f="U10 p.7" />.
+- Después de completar cuadrados, un segundo miembro $0$ o negativo $\Rightarrow$ degenerada (punto, vacío, rectas).
+
+## Errores frecuentes
+
+- Olvidar multiplicar por el factor común al sumar los cuadrados completados al segundo miembro.
+- Confundir $a$ con el mayor denominador en la elipse y con el término **positivo** en la hipérbola: la relación es $a^2=b^2+c^2$ (elipse) vs $c^2=a^2+b^2$ (hipérbola).
+- Centro con el signo cambiado: $(x+1)^2\Rightarrow h=-1$.
+- $LL'=\frac{2b^2}{a}$, no $\frac{b^2}{a}$ (cada semilado vale $\frac{b^2}{a}$).
+- Parábola: $p$ no es la distancia focal total; es de $V$ a $F$, y la directriz está del lado opuesto.
+- Asíntotas: la pendiente es $\pm\frac ba$ para eje focal horizontal, $\pm\frac ab$ para vertical.
+- Excentricidad: $e<1$ elipse, $e=1$ parábola, $e>1$ hipérbola; circunferencia $e=0$.
+
+## Qué exige la cátedra en el gráfico
+
+Ejes coordenados con escala; **centro** (o vértice $V$ en la parábola); **vértices $V,V'$**, **extremos $A,A'$** del otro eje, **focos $F,F'$**; **lado recto $LL'$**; **eje focal** rotulado; en la hipérbola, las **asíntotas** (dibujar primero el rectángulo $2a\times2b$ y sus diagonales) y en la parábola la **directriz $\ell$** y el eje $a$. Un enunciado sin gráfico se considera incorrecto.
+
+<Fig src="elipse" alt="Elipse con todos sus elementos rotulados" />
+<Fig src="hiperbola" alt="Hipérbola con asíntotas y elementos rotulados" />

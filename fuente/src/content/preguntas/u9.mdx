@@ -1,0 +1,247 @@
+---
+titulo: "Recta y plano"
+unidad: "U9"
+orden: 2
+---
+import Pregunta from '../../components/Pregunta.astro';
+import Fig from '../../components/PreguntaFigura.astro';
+
+<Pregunta id="u9-01" unidad="U9" q="Q07" titulo="Recta: definición"
+  enunciado="Recta. Definición." literal parcial="T1, T2" sim="A" fq="F3:Tema 1 y Tema 2, preg. 1; T" fr="U9:1, 3-4; Ap:180">
+
+**Definición.** La recta es el **lugar geométrico** de todos los puntos $P$ tales que, pasando por un punto conocido $P_1$, se encuentran sobre una misma dirección dada por un vector conocido $\bar a$ (vector director): $\overrightarrow{P_1P}\parallel\bar a$. (Lugar geométrico: todo punto de la figura cumple la propiedad y todo punto que la cumple pertenece a la figura.)
+
+<Fig src="recta-r2" alt="Recta en el plano con el punto P1, el vector director a, el punto genérico P y el vector lambda por a" pie="P₁P = λa con λ real: la ecuación vectorial de la recta." />
+
+Como $\overrightarrow{P_1P}\parallel\bar a$ existe $\lambda\in\mathbb R$ (parámetro, $-\infty<\lambda<\infty$) con $\overrightarrow{P_1P}=\lambda\bar a$, y como $\overrightarrow{OP}=\overrightarrow{OP_1}+\overrightarrow{P_1P}$:
+$$\overrightarrow{OP}=\overrightarrow{OP_1}+\lambda\,\bar a\qquad\text{(ecuación vectorial; vale igual en }\mathbb R^2\text{ y en }\mathbb R^3).$$
+</Pregunta>
+
+<Pregunta id="u9-02" unidad="U9" q="Q08" titulo="Ecuaciones de la recta en R2 (gráfico y formas)"
+  enunciado="Gráfico y ecuaciones de la recta (al menos 8 de las 10). Caso plano ($\mathbb R^2$)." literal parcial="T1, T2" sim="A" fq="F3:Tema 1 y Tema 2, preg. 1; G:34-36" fr="U9:3, 5-6, 14-15; Ap:180-187, 197-198">
+
+Con $P_1(x_1;y_1)$ punto conocido, $\bar a=(a_1;a_2)$ director, $P(x;y)$ genérico:
+
+| # | Forma | Ecuación |
+|---|---|---|
+| 1 | Vectorial paramétrica | $(x;y)=(x_1;y_1)+\lambda(a_1;a_2)$ |
+| 2 | Cartesiana paramétrica | $x=x_1+\lambda a_1,\ \ y=y_1+\lambda a_2$ |
+| 3 | Simétrica (despejando $\lambda$) | $\dfrac{x-x_1}{a_1}=\dfrac{y-y_1}{a_2}$ |
+| 4 | Punto-pendiente | $y-y_1=m(x-x_1)$, $m=\dfrac{a_2}{a_1}=\operatorname{tg}\alpha$ |
+| 5 | Explícita | $y=mx+b$ |
+| 6 | General o implícita | $Ax+By+C=0$, con $\bar n=(A;B)\perp$ recta |
+| 7 | Por dos puntos | $y-y_1=\dfrac{y_2-y_1}{x_2-x_1}(x-x_1)$ |
+| 8 | Segmentaria | $\dfrac xa+\dfrac yb=1$, $a=-\tfrac CA$, $b=-\tfrac CB$ |
+| 9 | Normal (de Hesse) | $x\cos w+y\,\mathrm{sen}\,w-p=0$ |
+| 10 | Vectorial por punto y normal | $\bar n\cdot\overrightarrow{P_1P}=0\ \Rightarrow\ A(x-x_1)+B(y-y_1)=0$ |
+
+**Cómo salen:** (3) se obtiene despejando $\lambda$ de (2); (4) es (3) con $m=a_2/a_1$; (5) es (4) con $b=y_1-mx_1$; (6) pasando todo a un miembro; (8) dividiendo (6) por $-C$; (9) dividiendo (6) por $\pm\sqrt{A^2+B^2}$, con $p$ la distancia del origen a la recta y $w$ el ángulo de la normal con el eje $x$.
+
+<Fig src="recta-r2" alt="Recta en el plano con punto P1, vector director a y punto genérico P" />
+</Pregunta>
+
+<Pregunta id="u9-03" unidad="U9" q="Q08" titulo="Ecuaciones de la recta en R3"
+  enunciado="Gráfico y ecuaciones de la recta en el espacio ($\mathbb R^3$)." literal parcial="T1, T2" fq="F3:Tema 1 y Tema 2, preg. 1; G:37-39" fr="U9:4-5; Ap:181, 186-187, 200-201">
+
+Con $P_1(x_1;y_1;z_1)$ y $\bar a=(a_1;a_2;a_3)$:
+
+- **Vectorial paramétrica:** $(x;y;z)=(x_1;y_1;z_1)+\lambda(a_1;a_2;a_3)$.
+- **Cartesiana paramétrica:** $x=x_1+\lambda a_1,\quad y=y_1+\lambda a_2,\quad z=z_1+\lambda a_3$.
+- **Simétrica** (si $a_1a_2a_3\neq0$): $\dfrac{x-x_1}{a_1}=\dfrac{y-y_1}{a_2}=\dfrac{z-z_1}{a_3}$.
+- **Por dos puntos:** se toma $\bar a=\overrightarrow{P_1P_2}$ y se usa cualquiera de las anteriores.
+- **Como intersección de dos planos** (forma general): $\begin{cases}A_1x+B_1y+C_1z+D_1=0\\A_2x+B_2y+C_2z+D_2=0\end{cases}$, con director $\bar a=\bar n_1\times\bar n_2$.
+
+En $\mathbb R^3$ **no existe** la ecuación explícita ni la general de una sola ecuación: una sola ecuación lineal es un plano.
+</Pregunta>
+
+<Pregunta id="u9-04" unidad="U9" q="Q09" titulo="Ángulo entre dos rectas"
+  enunciado="Ángulo entre dos rectas: considerando los vectores dirección de las rectas." literal parcial="T1, T2" sim="A" fq="F3:Tema 1 y Tema 2, preg. 1; G:36-37" fr="U9:8-9; Ap:188-190">
+
+**Definición.** El ángulo entre dos rectas es el ángulo entre sus vectores directores $\bar a_1$ y $\bar a_2$. Por el producto escalar:
+$$\cos\alpha=\frac{|\bar a_1\cdot\bar a_2|}{|\bar a_1|\,|\bar a_2|}\qquad(\text{con valor absoluto se obtiene el ángulo agudo}).$$
+- $\cos\alpha=0$ ($\bar a_1\cdot\bar a_2=0$) $\Rightarrow r_1\perp r_2$.
+- $\bar a_1=\lambda\bar a_2$ (o $\bar a_1\times\bar a_2=\bar 0$) $\Rightarrow r_1\parallel r_2$.
+- En $\mathbb R^2$, con pendientes: $\operatorname{tg}\alpha=\left|\dfrac{m_2-m_1}{1+m_1m_2}\right|$ (sale de $\alpha=\beta_2-\beta_1$ y la tangente de la diferencia).
+</Pregunta>
+
+<Pregunta id="u9-05" unidad="U9" q="Q10" titulo="Familia o haz de rectas"
+  enunciado="Familia o haz de rectas." literal parcial="T1, T2" sim="A" fq="F3:Tema 1 y Tema 2, preg. 1; G:42-43" fr="U9:12-13; Ap:194-196">
+
+**Definición.** Una familia o haz de rectas es el conjunto de rectas que cumplen una condición geométrica común; la ecuación depende de un parámetro $k$ ($-\infty<k<\infty$) que se fija con una segunda condición.
+
+1. **Paralelas** (misma pendiente): $y=m_1x+k$ — o $Ax+By+k=0$.
+2. **Concurrentes** (pasan por $P_1(x_1;y_1)$, distinta pendiente): $y-y_1=k(x-x_1)$. (No incluye la vertical.)
+3. **Por la intersección de dos rectas** $r_1:A_1x+B_1y+C_1=0$ y $r_2:A_2x+B_2y+C_2=0$ (no paralelas), sin conocer el punto:
+$$(A_1x+B_1y+C_1)+k\,(A_2x+B_2y+C_2)=0 .$$
+Todo punto de $r_1\cap r_2$ anula ambos paréntesis, así que pertenece a todas las rectas del haz. (Para incluir también a $r_2$ se usa $k_1(\cdot)+k_2(\cdot)=0$ con $k_1,k_2$ no ambos nulos.)
+</Pregunta>
+
+<Pregunta id="u9-06" unidad="U9" q="Q11" titulo="Posiciones relativas de rectas en R2: paralelismo y perpendicularidad"
+  enunciado="Posiciones relativas de dos rectas en el plano." fq="G:36-37" fr="U9:8-11; Ap:190-192">
+
+Dos rectas del plano son **paralelas**, **coincidentes** o **concurrentes** (se cortan en un punto; en particular pueden ser perpendiculares).
+
+| Dato | Paralelas ($r_1\parallel r_2$) | Perpendiculares ($r_1\perp r_2$) |
+|---|---|---|
+| Pendientes | $m_1=m_2$ | $m_1=-\dfrac1{m_2}$ |
+| General $A_ix+B_iy+C_i=0$ | $\dfrac{A_1}{A_2}=\dfrac{B_1}{B_2}$ (normales proporcionales) | $A_1A_2+B_1B_2=0$ |
+| Directores | $\bar a_1=\lambda\bar a_2$ | $\bar a_1\cdot\bar a_2=0$ |
+
+Si además $\dfrac{A_1}{A_2}=\dfrac{B_1}{B_2}=\dfrac{C_1}{C_2}$ son coincidentes.
+</Pregunta>
+
+<Pregunta id="u9-07" unidad="U9" q="Q08 / Q18" titulo="Forma normal de la recta y distancia punto-recta en R2"
+  enunciado="Ecuación normal de la recta. Distancia de un punto a una recta en el plano." fq="G:34-36" fr="U9:14-19; Ap:197-199">
+
+Si $\bar n=(A;B)$ es normal a la recta, $\overrightarrow{P_1P}\cdot\bar n=0$ da $Ax+By+C=0$. Dividiendo por $|\bar n|=\sqrt{A^2+B^2}$ (con $\cos w=\tfrac{A}{|\bar n|}$, $\mathrm{sen}\,w=\tfrac{B}{|\bar n|}$):
+$$x\cos w+y\,\mathrm{sen}\,w-p=0,$$
+donde $p\ge0$ es la distancia del origen a la recta y el signo del radical se elige para que el término independiente sea $-p$.
+
+**Distancia a un punto** $P_0(x_0;y_0)$: la recta paralela por $P_0$ es $x\cos w+y\,\mathrm{sen}\,w-(p\pm d)=0$, de donde
+$$d=\frac{|Ax_0+By_0+C|}{\sqrt{A^2+B^2}} .$$
+Sin valor absoluto el signo dice si $P_0$ y el origen están del mismo lado o no. Ejemplo: $3x-4y+12=0$ y $(4;-1)$: $d=\dfrac{|12+4+12|}{5}=\dfrac{28}{5}$.
+</Pregunta>
+
+<Pregunta id="u9-08" unidad="U9" q="Q12" titulo="Posiciones relativas de rectas en R3"
+  enunciado="Posiciones relativas de dos rectas en el espacio: concurrentes, paralelas, coincidentes, alabeadas." fq="G:43-44" fr="U9:20; Ap:200-202">
+
+Sean $r_1$ por $P_1$ con director $\bar a_1$ y $r_2$ por $P_2$ con director $\bar a_2$.
+
+| Caso | Condición |
+|---|---|
+| **Paralelas** | $\bar a_1\parallel\bar a_2$ (comparten un plano o son coincidentes si además $P_2\in r_1$) |
+| **Concurrentes** (se cortan en un punto; comparten un plano) | $\bar a_1\not\parallel\bar a_2$ y el sistema $P_1+\lambda\bar a_1=P_2+\rho\bar a_2$ tiene solución; equivale a $(\bar a_1\times\bar a_2)\cdot\overrightarrow{P_1P_2}=0$ |
+| **Alabeadas** (se cruzan; no hay plano que las contenga) | $\bar a_1\not\parallel\bar a_2$ y no se cortan: $(\bar a_1\times\bar a_2)\cdot\overrightarrow{P_1P_2}\neq0$ |
+
+Receta de la cátedra para alabeadas: ver si son paralelas; si no, ver si tienen punto en común (igualar componentes); si tampoco, son alabeadas. Las alabeadas están en planos paralelos distintos.
+</Pregunta>
+
+<Pregunta id="u9-09" unidad="U9" q="Q18" titulo="Distancia de un punto a una recta en R3 (y entre rectas paralelas)"
+  enunciado="Distancia de un punto a una recta en el espacio." fr="U9:21; Ap:203-204">
+
+Sea $r$ por $P_1$ con director $\bar a$ y $P_0$ el punto. Con el ángulo $\alpha$ entre $\bar a$ y $\overrightarrow{P_1P_0}$: $d=|\overrightarrow{P_1P_0}|\,\mathrm{sen}\,\alpha$ y $|\overrightarrow{P_1P_0}\times\bar a|=|\overrightarrow{P_1P_0}||\bar a|\,\mathrm{sen}\,\alpha$. Por lo tanto
+$$d=\frac{|\overrightarrow{P_1P_0}\times\bar a|}{|\bar a|}.$$
+(Es el área del paralelogramo dividida la base $|\bar a|$.) Para dos rectas paralelas se toma un punto de una de ellas como $P_0$.
+</Pregunta>
+
+<Pregunta id="u9-10" unidad="U9" q="Q12" titulo="Distancia entre dos rectas alabeadas"
+  enunciado="Distancia entre dos rectas alabeadas." fq="G:43-44" fr="U9:22-23; Ap:204-205">
+
+<Fig src="alabeadas" alt="Dos rectas alabeadas en planos paralelos, con la distancia d medida sobre la normal común" pie="La distancia es la proyección de P₁P₂ sobre la normal común n = a₁ × a₂." />
+
+Las alabeadas viven en planos paralelos distintos. La normal común es $\bar n=\bar a_1\times\bar a_2$ (perpendicular a ambas). La distancia es la proyección de $\overrightarrow{P_1P_2}$ ($P_1\in r_1$, $P_2\in r_2$) sobre $\bar n$: de $\cos\alpha=d/|\overrightarrow{P_1P_2}|$ y $\overrightarrow{P_1P_2}\cdot\bar n=|\overrightarrow{P_1P_2}||\bar n|\cos\alpha=d\,|\bar n|$,
+$$d=\frac{\big|\overrightarrow{P_1P_2}\cdot(\bar a_1\times\bar a_2)\big|}{|\bar a_1\times\bar a_2|}.$$
+Es el valor absoluto del producto mixto dividido el área del paralelogramo de los directores.
+</Pregunta>
+
+<Pregunta id="u9-11" unidad="U9" q="Q07-Q10" titulo="Parcial teórico: Recta (pregunta completa)"
+  enunciado="Recta. Definición. Gráfico y ecuaciones de la recta (al menos 8 de las 10). Ángulo entre dos rectas: considerando los vectores dirección de las rectas. Familia o haz de rectas." literal parcial="T1, T2" sim="A" fq="F3:Tema 1 y Tema 2, preg. 1; T" fr="U9:3-13; Ap:180-196">
+
+Esquema de respuesta (el detalle está en las preguntas anteriores de esta unidad):
+
+1. **Definición:** lugar geométrico de los puntos $P$ con $\overrightarrow{P_1P}=\lambda\bar a$, $\lambda\in\mathbb R$ ($P_1$ conocido, $\bar a$ director). *Gráfico:* recta con $P_1$, $\bar a$, $P$ y $\lambda\bar a$.
+2. **Ecuaciones** (escribir 8 o más, con $P_1(x_1;y_1)$ y $\bar a=(a_1;a_2)$): vectorial $(x;y)=(x_1;y_1)+\lambda(a_1;a_2)$; paramétrica $x=x_1+\lambda a_1,\ y=y_1+\lambda a_2$; simétrica $\frac{x-x_1}{a_1}=\frac{y-y_1}{a_2}$; punto-pendiente $y-y_1=m(x-x_1)$; explícita $y=mx+b$; general $Ax+By+C=0$; por dos puntos; segmentaria $\frac xa+\frac yb=1$; normal $x\cos w+y\,\mathrm{sen}\,w-p=0$; punto-normal $A(x-x_1)+B(y-y_1)=0$.
+3. **Ángulo entre rectas:** $\cos\alpha=\dfrac{|\bar a_1\cdot\bar a_2|}{|\bar a_1||\bar a_2|}$; perpendiculares si $\bar a_1\cdot\bar a_2=0$, paralelas si $\bar a_1=\lambda\bar a_2$.
+4. **Haz de rectas:** paralelas $y=mx+k$; concurrentes $y-y_1=k(x-x_1)$; por la intersección de dos: $r_1+k\,r_2=0$.
+</Pregunta>
+
+<Pregunta id="u9-12" unidad="U9" q="Q13" titulo="Plano: gráfica y ecuación por un punto y un vector normal"
+  enunciado="Plano. Gráfica. Ecuación vectorial del plano que pasa por un punto y es perpendicular a un vector." literal parcial="T1" sim="B" fq="F3:Tema 1, preg. 2; T" fr="U9:24-26; Ap:213-215">
+
+**Definición.** El plano que pasa por $P_1(x_1;y_1;z_1)$ y es perpendicular a $\bar n=(A;B;C)$ (normal) es el lugar geométrico de los puntos $P(x;y;z)$ tales que $\overrightarrow{P_1P}\perp\bar n$.
+
+<Fig src="plano-normal" alt="Plano con el punto P1, un punto genérico P, el vector P1P contenido en el plano y el vector normal n perpendicular" pie="P₁P está en el plano, n es perpendicular al plano: n · P₁P = 0." />
+
+**Ecuación vectorial:** como el producto escalar de perpendiculares es nulo,
+$$\bar n\cdot\overrightarrow{P_1P}=0 .$$
+En componentes, con $\overrightarrow{P_1P}=(x-x_1;y-y_1;z-z_1)$:
+$$A(x-x_1)+B(y-y_1)+C(z-z_1)=0\ \Longrightarrow\ Ax+By+Cz+D=0,\quad D=-(Ax_1+By_1+Cz_1)$$
+(ecuación general o implícita; $A,B,C$ son las componentes de la normal, "números directores").
+
+Ejemplo: por $T(-2;-1;5)$ y normal $(5;-2;4)$: $5(x+2)-2(y+1)+4(z-5)=0$, o sea $5x-2y+4z-12=0$.
+</Pregunta>
+
+<Pregunta id="u9-13" unidad="U9" q="Q14" titulo="Plano: ecuación vectorial paramétrica"
+  enunciado="Ecuación vectorial paramétrica del plano." literal parcial="T1" sim="B" fq="F3:Tema 1, preg. 2; T" fr="U9:27-28; Ap:214">
+
+Un plano queda determinado por un punto $P_1$ y **dos vectores directores** $\bar u,\bar v$ no paralelos (contenidos o paralelos al plano).
+
+<Fig src="plano-param" alt="Plano con el punto P1, los vectores directores u y v y un punto genérico P" pie="P se alcanza desde P₁ con α·v + β·u." />
+
+Para cada $P$ del plano, $\overrightarrow{P_1P}$ es combinación lineal de $\bar u$ y $\bar v$ (están en el mismo plano y no son paralelos), así que existen $\alpha,\beta\in\mathbb R$ (parámetros):
+$$\overrightarrow{OP}=\overrightarrow{OP_1}+\alpha\,\bar v+\beta\,\bar u,\qquad (x;y;z)=(x_1;y_1;z_1)+\alpha(v_x;v_y;v_z)+\beta(u_x;u_y;u_z).$$
+Igualando componentes (cartesiana paramétrica): $x=x_1+\alpha v_x+\beta u_x,\ y=y_1+\alpha v_y+\beta u_y,\ z=z_1+\alpha v_z+\beta u_z$. Eliminando $\alpha,\beta$ se llega a la general; y la normal es $\bar n=\bar u\times\bar v$.
+</Pregunta>
+
+<Pregunta id="u9-14" unidad="U9" q="Q15" titulo="Ecuaciones del plano: general, segmentaria, por tres puntos y normal"
+  enunciado="Ecuaciones del plano en $\mathbb R^3$: general, segmentaria, por tres puntos, normal (Hesse)." fq="G:40-42" fr="U9:24-25, 29, 35-38, 41; Ap:214-215, 222, 231-232">
+
+- **General:** $Ax+By+Cz+D=0$, $\bar n=(A;B;C)$.
+- **Segmentaria** (si $A,B,C,D\ne0$): $\dfrac xa+\dfrac yb+\dfrac zc=1$ con $a=-\tfrac DA$, $b=-\tfrac DB$, $c=-\tfrac DC$: son las coordenadas donde el plano corta a los ejes, $(a;0;0)$, $(0;b;0)$, $(0;0;c)$.
+- **Por tres puntos no alineados** $P_1,P_2,P_3$: $\overrightarrow{P_1P}$, $\overrightarrow{P_1P_2}$ y $\overrightarrow{P_1P_3}$ son coplanares, entonces
+$$\overrightarrow{P_1P}\cdot(\overrightarrow{P_1P_2}\times\overrightarrow{P_1P_3})=\begin{vmatrix}x-x_1&y-y_1&z-z_1\\x_2-x_1&y_2-y_1&z_2-z_1\\x_3-x_1&y_3-y_1&z_3-z_1\end{vmatrix}=0 .$$
+- **Normal o de Hesse:** $x\cos\alpha+y\cos\beta+z\cos\gamma-p=0$, con $\bar n$ unitario, $\alpha,\beta,\gamma$ ángulos directores ($\cos^2\alpha+\cos^2\beta+\cos^2\gamma=1$) y $p$ la distancia del origen al plano. Se obtiene dividiendo la general por $\pm\sqrt{A^2+B^2+C^2}$ (signo opuesto al de $D$).
+</Pregunta>
+
+<Pregunta id="u9-15" unidad="U9" q="Q16" titulo="Familia o haz de planos"
+  enunciado="Familia o haz de planos." fq="G:43" fr="U9:39-40; Ap:222-226">
+
+- **Paralelos** a $\pi: Ax+By+Cz+D=0$: $Ax+By+Cz+k=0$ (misma normal; cada $k$ da un plano).
+- **Que pasan por un punto** $P_0(x_0;y_0;z_0)$: $k_1(x-x_0)+k_2(y-y_0)+k_3(z-z_0)=0$ (cambia la normal).
+- **Que pasan por la intersección de dos planos** no paralelos $\pi_1,\pi_2$ (haz de eje la recta $r=\pi_1\cap\pi_2$):
+$$(A_1x+B_1y+C_1z+D_1)+k\,(A_2x+B_2y+C_2z+D_2)=0 .$$
+Todo punto de $r$ anula ambos paréntesis. Se fija $k$ imponiendo una condición extra (pasar por un punto, ser perpendicular a otro plano...). El plano $\pi_2$ no se obtiene con ningún $k$ finito.
+</Pregunta>
+
+<Pregunta id="u9-16" unidad="U9" q="Q17" titulo="Posiciones relativas de dos planos: paralelismo, perpendicularidad, ángulo"
+  enunciado="Posiciones relativas de planos; paralelismo y perpendicularidad; ángulo entre planos." fq="G:44-47" fr="U9:30; Ap:217-218">
+
+Con $\pi_1:A_1x+B_1y+C_1z+D_1=0$, $\bar n_1=(A_1;B_1;C_1)$, y $\pi_2$ análogo:
+
+- **Paralelos:** $\bar n_1\parallel\bar n_2$, $\ \dfrac{A_1}{A_2}=\dfrac{B_1}{B_2}=\dfrac{C_1}{C_2}$ (producto vectorial nulo).
+- **Coincidentes:** además $=\dfrac{D_1}{D_2}$.
+- **Perpendiculares:** $\bar n_1\cdot\bar n_2=A_1A_2+B_1B_2+C_1C_2=0$.
+- **Secantes** (si no son paralelos): se cortan en una recta de director $\bar n_1\times\bar n_2$.
+- **Ángulo entre planos** = ángulo entre sus normales:
+$$\cos\theta=\frac{|A_1A_2+B_1B_2+C_1C_2|}{\sqrt{A_1^2+B_1^2+C_1^2}\,\sqrt{A_2^2+B_2^2+C_2^2}} .$$
+</Pregunta>
+
+<Pregunta id="u9-17" unidad="U9" q="Q17" titulo="Plano respecto de los ejes y planos coordenados"
+  enunciado="Posiciones del plano $Ax+By+Cz+D=0$ cuando faltan variables o el término independiente." fq="G:44-47" fr="U9:31-34; Ap:216">
+
+Reglas de la cátedra:
+
+- **Falta una variable** ($A=0$, $B=0$ o $C=0$): el plano es **paralelo al eje de la variable que falta** y perpendicular al plano coordenado de las otras dos. Ej.: $By+Cz+D=0\parallel$ eje $x$, $\perp$ plano $yz$.
+- **Faltan dos variables** ($Ax+D=0$, etc.): paralelo al plano coordenado de las variables que **faltan** y perpendicular al eje de la variable presente. Ej.: $Cz+D=0\parallel$ plano $xy$.
+- **Falta $D$** (pasa por el origen): $Ax+By+Cz=0$. Si además falta una variable, el plano **contiene** al eje de la variable que falta: $Ax+By=0$ contiene al eje $z$.
+- $x=0$, $y=0$, $z=0$ son los planos coordenados $yz$, $xz$, $xy$.
+</Pregunta>
+
+<Pregunta id="u9-18" unidad="U9" q="Q18" titulo="Recta y plano: posiciones relativas y ángulo"
+  enunciado="Ángulo entre una recta y un plano. Posiciones relativas recta-plano." fr="U9:45-46; Ap:221">
+
+Sea $\pi:Ax+By+Cz+D=0$ con normal $\bar n=(A;B;C)$ y $r$ con director $\bar r=(a;b;c)$.
+
+- **Perpendicular:** $r\perp\pi\Leftrightarrow\bar r\parallel\bar n$: $\dfrac Aa=\dfrac Bb=\dfrac Cc$.
+- **Paralela:** $r\parallel\pi\Leftrightarrow\bar r\perp\bar n$: $Aa+Bb+Cc=0$ (si además un punto de $r$ está en $\pi$, $r\subset\pi$).
+- **Ángulo** $\beta$ entre $r$ y $\pi$ (con su proyección sobre el plano): es complementario del ángulo $\gamma$ entre $\bar r$ y $\bar n$ ($\beta+\gamma=90^\circ$), entonces $\mathrm{sen}\,\beta=\cos\gamma$:
+$$\mathrm{sen}\,\beta=\frac{|\bar n\cdot\bar r|}{|\bar n||\bar r|}=\frac{|Aa+Bb+Cc|}{\sqrt{A^2+B^2+C^2}\sqrt{a^2+b^2+c^2}} .$$
+Ojo: con **seno**, no coseno.
+</Pregunta>
+
+<Pregunta id="u9-19" unidad="U9" q="Q18" titulo="Distancia de un punto a un plano y entre planos paralelos"
+  enunciado="Distancia de un punto a un plano. Distancia entre dos planos paralelos." fr="U9:43-44; Ap:231-233">
+
+Con el plano en forma normal, $x\cos\alpha+y\cos\beta+z\cos\gamma-p=0$, el plano paralelo que pasa por $Q_0(x_0;y_0;z_0)$ es $x\cos\alpha+y\cos\beta+z\cos\gamma-(p+d)=0$; reemplazando $Q_0$:
+$$d=x_0\cos\alpha+y_0\cos\beta+z_0\cos\gamma-p=\frac{Ax_0+By_0+Cz_0+D}{\pm\sqrt{A^2+B^2+C^2}},\qquad |d|=\frac{|Ax_0+By_0+Cz_0+D|}{\sqrt{A^2+B^2+C^2}} .$$
+El signo indica de qué lado está el punto. **Entre dos planos paralelos:** se toma un punto de uno y se aplica la fórmula al otro. Ej.: $8x-4y+z+9=0$ y $8x-4y+z-36=0$: punto $(0;0;36)$ del segundo, $d=\dfrac{|36+9|}{\sqrt{81}}=5$.
+</Pregunta>
+
+<Pregunta id="u9-20" unidad="U9" q="Q13-Q14" titulo="Parcial teórico: Plano (pregunta completa)"
+  enunciado="Plano: Gráfica. Ecuación vectorial del plano que pasa por un punto y es perpendicular a un vector. Ecuación vectorial paramétrica del plano." literal parcial="T1" sim="B" fq="F3:Tema 1, preg. 2; T" fr="U9:24-28; Ap:213-215">
+
+Esquema de respuesta:
+
+1. **Plano por $P_1$ y normal $\bar n=(A;B;C)$.** *Gráfico:* plano con $P_1$, $P$ genérico, $\overrightarrow{P_1P}$ dentro del plano y $\bar n$ perpendicular. Como $\overrightarrow{P_1P}\perp\bar n$: $\;\bar n\cdot\overrightarrow{P_1P}=0$, o sea $A(x-x_1)+B(y-y_1)+C(z-z_1)=0\Rightarrow Ax+By+Cz+D=0$.
+2. **Paramétrica.** Con $P_1$ y dos directores $\bar u,\bar v$ no paralelos: $\overrightarrow{OP}=\overrightarrow{OP_1}+\alpha\bar v+\beta\bar u$, $\alpha,\beta\in\mathbb R$. *Gráfico:* plano con $P_1$, $\bar u$, $\bar v$ y $P$. Relación: $\bar n=\bar u\times\bar v$.
+</Pregunta>

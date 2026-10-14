@@ -1,0 +1,57 @@
+---
+titulo: "U10 · Cuádricas"
+unidad: "U10"
+orden: 4
+resumen: "Esfera, elipsoide, hiperboloides, paraboloides, conos y cilindros con sus trazas."
+---
+import Fuente from '../../components/MacheteFuente.astro';
+import Fig from '../../components/PreguntaFigura.astro';
+
+Las cuádricas **no** aparecieron en los parciales relevados; se estudian en el Apunte de cátedra <Fuente f="Ap p.285-292" />. Cono y cilindros no están desarrollados en las fuentes de cátedra: se marcan como *(elaborado)*.
+
+## Cómo reconocerlas
+
+Pasar a la forma canónica (completando cuadrados / traslación) y mirar los signos <Fuente f="Ap p.286, 291" />:
+
+- Los **tres** al cuadrado, igualado a $1$: tres $+$ elipsoide; dos $+$ y un $-$ hiperboloide de **una** hoja; uno $+$ y dos $-$ hiperboloide de **dos** hojas.
+- **Dos** al cuadrado y la otra **lineal** ($=cz$): mismo signo paraboloide elíptico; signo distinto paraboloide hiperbólico.
+- Igualado a $0$ con tres cuadrados: cono *(elaborado)*. Falta una variable: cilindro *(elaborado)*.
+
+## Cuadro de cuádricas
+
+| Cuádrica | Ecuación canónica | Eje | Trazas (planos coordenados) | Fuente |
+|---|---|---|---|---|
+| Esfera | $x^2+y^2+z^2=r^2$ | — | tres circunferencias | <Fuente f="Ap p.287" /> |
+| Elipsoide | $\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}=1$ | — | tres elipses | <Fuente f="Ap p.286-287" /> |
+| Hiperboloide de **1** hoja | $\frac{x^2}{a^2}+\frac{y^2}{b^2}-\frac{z^2}{c^2}=1$ | variable con $-$ ($z$) | $z=0$ elipse; $y=0$ y $x=0$ hipérbolas | <Fuente f="Ap p.288-289" /> |
+| Hiperboloide de **2** hojas | $\frac{z^2}{c^2}-\frac{x^2}{a^2}-\frac{y^2}{b^2}=1$ | variable con $+$ ($z$) | $z=0$ ninguna; $y=0$ y $x=0$ hipérbolas | <Fuente f="Ap p.289-290" /> |
+| Paraboloide elíptico | $\frac{x^2}{a^2}+\frac{y^2}{b^2}=cz$ | variable lineal ($z$) | $y=0$ y $x=0$ parábolas; $z=k$ elipses | <Fuente f="Ap p.291" /> |
+| Paraboloide hiperbólico | $\frac{x^2}{a^2}-\frac{y^2}{b^2}=cz$ | variable lineal ($z$) | $y=0$ y $x=0$ parábolas (opuestas); $z=k$ hipérbolas; $z=0$ par de rectas | <Fuente f="Ap p.292" /> |
+| Cono elíptico *(elaborado)* | $\frac{x^2}{a^2}+\frac{y^2}{b^2}=\frac{z^2}{c^2}$ | $z$ | $z=k$ elipses; $x=0$, $y=0$ pares de rectas | — |
+| Cilindro *(elaborado)* | falta una variable, ej. $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$ | la que falta | la curva del plano se repite | — |
+
+## Me dan → me piden → hago
+
+| Me dan | Me piden | Hago |
+|---|---|---|
+| Ecuación canónica | qué superficie es | contar cuadrados y signos (arriba) |
+| Ecuación | trazas | reemplazar $z=0$, $y=0$, $x=0$ y reconocer la cónica resultante <Fuente f="Ap p.286" /> |
+| Ecuación | cortes con $z=k$ | reemplazar $z=k$: elipse / hipérbola / parábola / vacío según $k$ |
+| Ecuación | simetrías | cambiar el signo de una variable: si no cambia, hay simetría respecto del plano coordenado <Fuente f="Ap p.286" /> |
+| Ecuación general | forma canónica | completar cuadrados en $x$, $y$, $z$; dividir para igualar a $1$ (o a $cz$) |
+| Ecuación | eje de la superficie | hiperboloide 1 hoja: variable con $-$; 2 hojas: variable con $+$; paraboloide: la lineal |
+
+## Errores frecuentes
+
+- Hiperboloides: el de **una** hoja tiene **un** signo negativo; el de **dos** hojas tiene **dos** negativos.
+- En el de dos hojas, el corte con el plano perpendicular al eje es **vacío** (suma de negativos $=1$) <Fuente f="Ap p.290" />.
+- Paraboloide: la variable lineal marca el eje y el sentido ($c>0$ o $c<0$).
+- Paraboloide hiperbólico: las dos parábolas de las trazas abren hacia lados **opuestos**.
+- Esfera: coeficientes cuadráticos **iguales** (no solo del mismo signo).
+
+## Qué conviene dibujar
+
+Ejes $x,y,z$ en perspectiva, las **trazas** con los planos coordenados (con su nombre: elipse, hipérbola, parábola) y la superficie esbozada; indicar el eje y las simetrías.
+
+<Fig src="cuad-hiperboloide1" alt="Hiperboloide de una hoja" />
+<Fig src="cuad-paraboloide-hip" alt="Paraboloide hiperbólico" />

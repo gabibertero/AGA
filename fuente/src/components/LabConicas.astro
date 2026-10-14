@@ -1,0 +1,75 @@
+---
+// Cónicas interactivas: SVG sin librerías + KaTeX. Lógica en scripts/lab/.
+---
+<section class="lab-con" aria-labelledby="h-con" data-lab-con data-unidad="U10" hidden>
+  <h2 id="h-con">Cónicas interactivas</h2>
+  <p class="suave">Elegí el tipo y movés los controles: ves el gráfico con ejes graduados de a 1, todos los elementos rotulados y las ecuaciones ordinaria y general.</p>
+  <div class="lab-layout">
+    <form class="lab-ctl" aria-label="Parámetros de la cónica" onsubmit="return false">
+      <div class="lab-campo"><label for="c-tipo">Tipo</label>
+        <select id="c-tipo" data-c-tipo>
+          <option value="circunferencia">Circunferencia</option><option value="elipse" selected>Elipse</option><option value="hiperbola">Hipérbola</option><option value="parabola">Parábola</option>
+        </select></div>
+      <div class="lab-campo"><label for="c-ori">Orientación</label><select id="c-ori" data-c-ori></select></div>
+      <div class="lab-campo"><label for="c-h">h (abscisa del centro/vértice)</label><div class="lab-rng"><input id="c-h" data-c-h type="range" min="-6" max="6" step="1" value="3" /><output for="c-h">3</output></div></div>
+      <div class="lab-campo"><label for="c-k">k (ordenada del centro/vértice)</label><div class="lab-rng"><input id="c-k" data-c-k type="range" min="-6" max="6" step="1" value="-2" /><output for="c-k">-2</output></div></div>
+      <div class="lab-campo"><label for="c-a" data-c-a-etq>a (semieje mayor)</label><div class="lab-rng"><input id="c-a" data-c-a type="range" min="2" max="8" step="1" value="5" /><output for="c-a">5</output></div></div>
+      <div class="lab-campo"><label for="c-b">b (semieje menor / imaginario)</label><div class="lab-rng"><input id="c-b" data-c-b type="range" min="1" max="8" step="1" value="3" /><output for="c-b">3</output></div></div>
+      <div class="lab-campo" hidden><label for="c-p">p (distancia vértice-foco)</label><div class="lab-rng"><input id="c-p" data-c-p type="range" min="0.5" max="5" step="0.5" value="2" /><output for="c-p">2</output></div></div>
+    </form>
+    <div class="lab-der">
+      <div class="lab-graf" data-c-graf></div>
+    </div>
+  </div>
+  <div class="lab-ecs" aria-live="polite">
+    <h3 class="lab-h3">Ecuación ordinaria</h3>
+    <div class="lab-eq" data-c-ord></div>
+    <h3 class="lab-h3">Ecuación general</h3>
+    <div class="lab-eq" data-c-gen></div>
+  </div>
+  <h3 class="lab-h3">Elementos de la <span data-c-nombre></span></h3>
+  <ul class="lab-elem" data-c-elem></ul>
+</section>
+
+<script>
+  import { iniciarConicas } from '../scripts/lab/ui.js';
+  iniciarConicas(document.querySelector('[data-lab-con]'));
+</script>
+
+<style>
+  .lab-layout { display: grid; grid-template-columns: minmax(0, 17rem) minmax(0, 1fr); gap: 20px; align-items: start; }
+  .lab-ctl { display: flex; flex-direction: column; gap: 14px; background: var(--sup); border: 1px solid var(--borde); border-radius: var(--r); padding: 16px; box-shadow: var(--sombra); }
+  .lab-campo { display: flex; flex-direction: column; gap: 4px; }
+  .lab-campo[hidden] { display: none; }
+  .lab-campo label { font-weight: 600; font-size: .92rem; }
+  .lab-rng { display: flex; align-items: center; gap: 10px; }
+  .lab-rng input { flex: 1; min-width: 0; min-height: 32px; accent-color: var(--acento); }
+  .lab-rng output { min-width: 2.4em; text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+  select { font: inherit; padding: 8px 12px; min-height: 44px; border: 1px solid var(--borde-fuerte); border-radius: var(--r-s); background: var(--sup); color: var(--texto); max-width: 100%; }
+  .lab-graf { background: var(--sup); border: 1px solid var(--borde); border-radius: var(--r); padding: 8px; box-shadow: var(--sombra); min-width: 0; }
+  .lab-ecs { background: var(--sup); border: 1px solid var(--borde); border-radius: var(--r); padding: 4px 18px 10px; margin-top: 20px; }
+  .lab-h3 { font-size: 1rem; margin: 1em 0 .2em; font-family: var(--f-ui); color: var(--suave); }
+  .lab-elem { position: relative; overflow-x: auto; } /* asíntotas largas en KaTeX inline */
+  .lab-eq { position: relative; overflow-x: auto; font-size: 1.1rem; } /* relative: contiene el MathML absoluto de KaTeX */
+  .lab-elem { columns: 2 16rem; column-gap: 28px; padding-left: 1.2em; }
+  .lab-elem li { margin: 0 0 .3em; break-inside: avoid; }
+  @media (max-width: 720px) { .lab-layout { grid-template-columns: minmax(0, 1fr); } }
+
+  /* El SVG se inyecta como texto: estilos globales acotados a .lab-svg */
+  :global(.lab-svg) { display: block; margin: 0 auto; width: 100%; height: auto; font-family: var(--f-ui); }
+  :global(.lab-svg .lab-grid) { stroke: var(--borde); stroke-width: .6; opacity: .7; }
+  :global(.lab-svg .lab-eje) { stroke: var(--texto); stroke-width: 1.4; }
+  :global(.lab-svg .lab-tick) { stroke: var(--texto); stroke-width: 1; }
+  :global(.lab-svg .lab-num) { fill: var(--suave); font-size: 10.5px; }
+  :global(.lab-svg .lab-ax) { fill: var(--texto); font-size: 13px; font-style: italic; font-weight: 600; }
+  :global(.lab-svg .lab-curva) { fill: none; stroke: var(--acento); stroke-width: 2.6; }
+  :global(.lab-svg .lab-simetria) { stroke: var(--borde-fuerte); stroke-width: 1.2; stroke-dasharray: 5 4; }
+  :global(.lab-svg .lab-asint) { stroke: var(--u9); stroke-width: 1.6; stroke-dasharray: 7 4; }
+  :global(.lab-svg .lab-dir) { stroke: var(--u8); stroke-width: 2; stroke-dasharray: 7 4; }
+  :global(.lab-svg .lab-pt) { stroke: var(--sup); stroke-width: 1.5; fill: var(--texto); }
+  :global(.lab-svg .lab-g-v) { fill: var(--u10); } :global(.lab-svg .lab-g-a) { fill: var(--u5); }
+  :global(.lab-svg .lab-g-f) { fill: var(--u8); } :global(.lab-svg .lab-g-lr) { fill: var(--u9); }
+  :global(.lab-svg .lab-rot) { font-size: 13px; font-weight: 700; fill: var(--texto); paint-order: stroke; stroke: var(--sup); stroke-width: 3.5px; stroke-linejoin: round; }
+  :global(.lab-svg .lab-t-v) { fill: var(--u10); } :global(.lab-svg .lab-t-a) { fill: var(--u5); }
+  :global(.lab-svg .lab-t-f) { fill: var(--u8); } :global(.lab-svg .lab-t-lr) { fill: var(--u9); }
+</style>

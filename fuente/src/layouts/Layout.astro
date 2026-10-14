@@ -1,0 +1,77 @@
+---
+import 'katex/dist/katex.min.css';
+import '@fontsource/instrument-sans/latin-400.css';
+import '@fontsource/instrument-sans/latin-500.css';
+import '@fontsource/instrument-sans/latin-600.css';
+import '@fontsource/instrument-sans/latin-700.css';
+import '@fontsource/stix-two-text/latin-600.css';
+import '@fontsource/stix-two-text/latin-700.css';
+import '../styles/global.css';
+
+const { titulo } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const nav = [
+  ['Inicio', base],
+  ['1º parcial', `${base}primer-parcial/index.html`],
+  ['2º parcial', `${base}segundo-parcial/`],
+];
+const actual = Astro.url.pathname;
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titulo} · AGA</title>
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <meta name="color-scheme" content="light dark" />
+    <script is:inline>
+      // Tema guardado, antes de pintar (evita el flash). Sin elección: manda prefers-color-scheme.
+      try { var t = localStorage.getItem('aga:v1:tema'); if (t === 'light' || t === 'dark') document.documentElement.dataset.tema = t; } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+    <header class="sitio">
+      <div class="sitio-in">
+        <a class="marca" href={base}><span aria-hidden="true">∑</span> AGA <span class="marca-sub">· Álgebra y Geometría Analítica</span></a>
+        <nav aria-label="Principal">
+          <ul>
+            {nav.map(([texto, href]) => (
+              <li><a href={href} aria-current={(href === base ? actual === href : actual.startsWith(href)) ? 'page' : undefined}>{texto}</a></li>
+            ))}
+          </ul>
+        </nav>
+        <button type="button" class="tema" data-tema-toggle hidden aria-pressed="false" aria-label="Modo oscuro"><span aria-hidden="true" class="tema-ico"></span></button>
+      </div>
+    </header>
+    <main id="contenido"><slot /></main>
+    <footer class="pie">
+      <div class="pie-in">
+        <p><strong>AGA · UTN FRC</strong><br />Sitio de estudio no oficial, armado para preparar la materia.</p>
+        <p><strong>Fuentes</strong><br />Material de cátedra. Las soluciones son elaboradas, no oficiales, y se verifican con sympy.</p>
+        <p><a href="https://github.com/gabibertero/AGA">Código en GitHub</a><br />Licencia MIT.</p>
+      </div>
+    </footer>
+    <script>
+      import '../scripts/progreso.js';
+      import '../ui.js';
+      import '../scripts/examen.js';
+      import { guardar } from '../scripts/progreso.js';
+
+      // Toggle de tema: la elección se guarda; sin elección manda el sistema.
+      const raiz = document.documentElement;
+      const oscuro = () => (raiz.dataset.tema ? raiz.dataset.tema === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches);
+      const btn = document.querySelector('[data-tema-toggle]');
+      const pintarTema = () => btn.setAttribute('aria-pressed', String(oscuro()));
+      btn.onclick = () => { raiz.dataset.tema = oscuro() ? 'light' : 'dark'; guardar('tema', raiz.dataset.tema); pintarTema(); };
+      pintarTema();
+      btn.hidden = false; // sin JS no se muestra
+
+      // Último parcial visitado, para "Seguir donde dejaste" en el Inicio.
+      if (/\/segundo-parcial\/parciales\/[^/]+\/?$/.test(location.pathname)) {
+        guardar('ultimo', JSON.stringify({ href: location.pathname, t: document.querySelector('h1')?.textContent?.trim() || document.title, at: Date.now() }));
+      }
+    </script>
+  </body>
+</html>

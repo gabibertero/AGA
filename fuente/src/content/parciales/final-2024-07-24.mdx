@@ -1,0 +1,171 @@
+---
+id: "final-2024-07-24"
+titulo: "Final 2024-07-24 (U9–U10)"
+fecha: "24/07/2024"
+tipo: "final"
+fuente: "finales/practicos/Finales Practicos .pdf"
+paginasEnunciado: "7"
+orden: 201
+unidades: ["U9", "U10"]
+---
+
+import Ejercicio from '../../components/Ejercicio.astro';
+import Enunciado from '../../components/Enunciado.astro';
+import Solucion from '../../components/Solucion.astro';
+import Pista from '../../components/Pista.astro';
+import Paso from '../../components/Paso.astro';
+import Comprobacion from '../../components/Comprobacion.astro';
+
+Del final se incluyen solo los ejercicios de U8–U10; el resto queda fuera del alcance del 2º parcial.
+
+Fuente: foto de la hoja impresa, legible. Tiene un "No Aprobado" manuscrito y nombre y legajo tapados: no se transcriben. Los incisos del ej. 2 están rotulados d), e), f) en el original. Sin resolución ni puntajes.
+
+<Ejercicio id="final-2024-07-24#3" numero={3} fuente="finales/practicos/Finales Practicos .pdf" pagina={7} unidad="U9" tema="Recta en R² por pendiente, por el corte de dos rectas" criterios={{ bien: "Punto de corte P(-3;4) resuelto, recta de pendiente 1 por P (x-y+7=0) y gráfico con las tres rectas graduado.", medias: "Recta correcta pero sin gráfico o con una de las rectas mal dibujada.", mal: "Confundir pendiente con vector director, o no hallar el punto de intersección." }}>
+<Enunciado fuente="finales/practicos/Finales Practicos .pdf" pagina="7">
+Encontrar la ecuación general de la recta de **pendiente** 1 que pasa por el punto de **intersección** de las rectas $r_1: 2x+3y-6=0$ y $r_2: x+y-1=0$. Graficar todas las rectas.
+</Enunciado>
+<Pista>
+
+¿Qué punto tienen en común las dos rectas dadas? ¿Qué datos necesitás para escribir una recta en el plano?
+
+</Pista>
+<Pista>
+
+El punto es la solución del sistema formado por $r_1$ y $r_2$. Una recta por $P(x_0;y_0)$ con pendiente $m$ es $y-y_0=m(x-x_0)$. Después se pasa a la forma general $Ax+By+C=0$.
+
+</Pista>
+<Pista>
+
+Despejá $y=1-x$ de $r_2$ y reemplazá en $r_1$. Con $P$ y $m=1$ planteá $y-y_0=1\cdot(x-x_0)$ y pasá todo a un miembro.
+
+</Pista>
+<Paso>
+
+**Qué:** punto de intersección.
+
+$$2x+3y=6\qquad x+y=1\Rightarrow y=1-x$$
+$$2x+3(1-x)=6$$
+$$-x+3=6$$
+$$x=-3,\qquad y=1-(-3)=4$$
+
+$$P(-3;4)$$
+
+</Paso>
+<Paso>
+
+**Qué:** recta de pendiente $1$ por $P$.
+
+$$y-4=1\cdot(x+3)$$
+$$y=x+7$$
+$$x-y+7=0$$
+
+</Paso>
+<Paso>
+
+**Qué:** para graficar se usan puntos fáciles de cada recta: $r_1$ corta los ejes en $(3;0)$ y $(0;2)$; $r_2$ en $(1;0)$ y $(0;1)$; $r_3$ en $(-7;0)$ y $(0;7)$. Las tres pasan por $P(-3;4)$.
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$x-y+7=0\qquad(\text{pendiente }1,\ y=x+7)$$
+
+<figure>
+<img src={`${import.meta.env.BASE_URL}figuras/final-2024-07-24/ej3-rectas.svg`} alt="Las rectas r1: 2x+3y-6=0, r2: x+y-1=0 y r3: x-y+7=0 en el plano con ejes graduados; las tres se cortan en P(-3;4)." style="max-width:100%;height:auto" />
+<figcaption>Gráfico del ejercicio 3: $r_1$, $r_2$ y la recta pedida $r_3$, todas por $P(-3;4)$.</figcaption>
+</figure>
+
+**Ojo con:** el enunciado habla de *pendiente* 1, no de vector director $(1;1)$ (aunque en este caso lleva a lo mismo, $m=1$ ⇔ $\vec d=(1;1)$).
+
+</Solucion>
+<Comprobacion>
+
+$P$ está en las tres: $r_1$: $-6+12-6=0$ ✓; $r_2$: $-3+4-1=0$ ✓; $r_3$: $-3-4+7=0$ ✓. Pendiente de $r_3$: de $y=x+7$ sale $m=1$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-2024-07-24#4" numero={4} fuente="finales/practicos/Finales Practicos .pdf" pagina={7} unidad="U10" tema="Hipérbola dados los focos y la excentricidad" criterios={{ bien: "Centro (3;1), c=3, a=3/2 (por e=2), b²=27/4, clasificar como hipérbola (e>1), ecuación ordinaria y general, V, A, F, LL'=9, asíntotas y gráfico completo.", medias: "Ecuación correcta pero sin general, o gráfico sin asíntotas/focos/lado recto.", mal: "No reconocer que e=2 implica hipérbola, o tomar c=6 en vez de 3." }}>
+<Enunciado fuente="finales/practicos/Finales Practicos .pdf" pagina="7">
+Hallar la ecuación de la cónica que tiene por focos los puntos $(3,4)$ y $(3,-2)$ y su excentricidad es igual a 2. Clasificar la cónica, obtener todos sus elementos notables y graficar.
+</Enunciado>
+<Pista>
+
+¿Qué valor de $e$ separa elipse, parábola e hipérbola? Con eso ¿qué cónica es? ¿Dónde está el centro respecto de los focos y hacia dónde apunta el eje focal?
+
+</Pista>
+<Pista>
+
+$e=2>1$ ⇒ hipérbola. El centro es el punto medio de los focos y la distancia entre focos es $2c$. Con $e=c/a$ sale $a$ y con $c^2=a^2+b^2$ sale $b$. Como los focos tienen la misma $x$, el eje focal es vertical.
+
+</Pista>
+<Pista>
+
+$C=\left(\frac{3+3}{2};\frac{4-2}{2}\right)$, $2c=6$. Despejá $a=c/e$, calculá $b^2=c^2-a^2$ y escribí $\dfrac{(y-k)^2}{a^2}-\dfrac{(x-h)^2}{b^2}=1$.
+
+</Pista>
+<Paso>
+
+**Qué:** clasificar y ubicar. **Por qué:** $e=2>1$ ⇒ hipérbola; los focos comparten $x=3$ ⇒ eje focal vertical $x=3$.
+
+$$C(3;1),\qquad 2c=|4-(-2)|=6\Rightarrow c=3$$
+
+</Paso>
+<Paso>
+
+**Qué:** semiejes.
+
+$$e=\frac ca\Rightarrow a=\frac ce=\frac32$$
+$$b^2=c^2-a^2=9-\frac94=\frac{27}{4},\qquad b=\frac{3\sqrt3}{2}$$
+
+</Paso>
+<Paso>
+
+**Qué:** ecuación ordinaria y general.
+
+$$\frac{(y-1)^2}{9/4}-\frac{(x-3)^2}{27/4}=1$$
+$$12(y-1)^2-4(x-3)^2=27$$
+$$12y^2-24y+12-4x^2+24x-36-27=0$$
+$$4x^2-12y^2-24x+24y+51=0$$
+
+</Paso>
+<Paso>
+
+**Qué:** elementos notables.
+
+| Elemento | Coordenadas |
+|---|---|
+| Centro $C$ | $(3;1)$ |
+| Vértices $V,V'$ | $(3;\tfrac52)$, $(3;-\tfrac12)$ |
+| Extremos del eje conjugado $A,A'$ | $(3\pm\tfrac{3\sqrt3}{2};1)$ (no están en la hipérbola) |
+| Focos $F,F'$ | $(3;4)$, $(3;-2)$ |
+| Lado recto $LL'=2b^2/a$ | $9$, con extremos $L(\tfrac{15}{2};4)$, $L'(-\tfrac32;4)$ y $M(\tfrac{15}{2};-2)$, $M'(-\tfrac32;-2)$ |
+| Asíntotas | $y-1=\pm\dfrac ab(x-3)=\pm\dfrac1{\sqrt3}(x-3)$ |
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$\frac{(y-1)^2}{9/4}-\frac{(x-3)^2}{27/4}=1\qquad\Leftrightarrow\qquad4x^2-12y^2-24x+24y+51=0$$
+
+Hipérbola de eje focal vertical, $a=\tfrac32$, $b=\tfrac{3\sqrt3}{2}$, $c=3$, $e=2$, $V(3;\tfrac52)$, $V'(3;-\tfrac12)$, $F(3;4)$, $F'(3;-2)$, $LL'=9$.
+
+<figure>
+<img src={`${import.meta.env.BASE_URL}figuras/final-2024-07-24/ej4-hiperbola.svg`} alt="Hipérbola de eje focal vertical x=3 con centro (3;1), vértices V y V', extremos del eje conjugado A y A', focos F y F', lados rectos LL' y MM', rectángulo auxiliar y asíntotas; ejes graduados de a 1." style="max-width:100%;height:auto" />
+<figcaption>Gráfico del ejercicio 4: centro, vértices, focos, extremos del eje conjugado (A y A' no pertenecen a la curva), lados rectos, rectángulo auxiliar y asíntotas.</figcaption>
+</figure>
+
+**Ojo con:** tomar $c=6$ (es la distancia entre focos, o sea $2c$) y con $e=2$ dividir mal para $a$.
+
+</Solucion>
+<Comprobacion>
+
+Definición $|PF-PF'|=2a$ con $P=V(3;\tfrac52)$: $|\tfrac52-4|=\tfrac32$ y $|\tfrac52+2|=\tfrac92$, diferencia $=3=2a$ ✓.
+
+Un extremo del lado recto, $L(\tfrac{15}{2};4)$, en la ordinaria: $\dfrac{9}{9/4}-\dfrac{(9/2)^2}{27/4}=4-3=1$ ✓.
+
+</Comprobacion>
+</Ejercicio>

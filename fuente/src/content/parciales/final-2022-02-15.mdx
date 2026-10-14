@@ -1,0 +1,238 @@
+---
+id: "final-2022-02-15"
+titulo: "Final 2022-02-15 (U8–U10)"
+fecha: "15/02/2022"
+tipo: "final"
+fuente: "finales/practicos/15-02-2022.pdf"
+paginasEnunciado: "1, 7"
+orden: 105
+unidades: ["U9", "U10"]
+---
+
+import Ejercicio from '../../components/Ejercicio.astro';
+import Enunciado from '../../components/Enunciado.astro';
+import Solucion from '../../components/Solucion.astro';
+import Pista from '../../components/Pista.astro';
+import Paso from '../../components/Paso.astro';
+import Comprobacion from '../../components/Comprobacion.astro';
+
+Del final se incluyen solo los ejercicios de U8–U10; el resto queda fuera del alcance del 2º parcial.
+
+Fuente: el PDF es el "Modelo de Resolución" tipeado de los 5 ejercicios; el enunciado de cada uno se tomó de ahí (ej. 1 en la pág. 1, ej. 4 en la pág. 7). Se usó la resolución solo para contrastar: coincide con los resultados de abajo. No trae puntajes.
+
+<Ejercicio id="final-2022-02-15#1" numero={1} fuente="finales/practicos/15-02-2022.pdf" pagina={1} unidad="U9" tema="Haz de planos: proyección de una recta y distancia recta-plano" criterios={{ bien: "(a) Normal del haz paralela al director de r con alfa=beta, k=3 y plano x-2y+z+3=0; (b) L paralela al plano (n.v=0, punto fuera del plano) y d=raíz de 5.", medias: "(a) correcto pero sin justificar que proyección puntual exige recta perpendicular al plano, o (b) distancia correcta sin verificar el paralelismo.", mal: "No relacionar la proyección-punto con n paralela a v, hallar k sin usar el punto dado, o calcular la distancia sin comprobar que L es paralela al plano." }}>
+<Enunciado fuente="finales/practicos/15-02-2022.pdf" pagina="1">
+Consideremos el haz de planos de ecuación $\alpha(2x-y+k)+\beta(z-x-y)=0$ con $\alpha,\beta,k\in\mathbb R$.
+
+**(a)** Hallar, si existe, un plano en el haz tal que la proyección de la recta $r: x-2=\dfrac{1-y}{2}=z+3$ sobre el mismo sea $(2,1,-3)$.
+
+**(b)** Calcular la distancia entre $L:(x,y,z)=\lambda(1,2,1)+(2,0,1)$, con $\lambda\in\mathbb R$, y el plano del haz que se obtiene cuando $\alpha=k=1$ y $\beta=0$.
+</Enunciado>
+<Pista>
+
+(a) ¿Cuándo la proyección ortogonal de una recta sobre un plano es un solo punto? ¿Qué relación hay entonces entre el director de la recta y la normal del plano? (b) Si una recta es paralela a un plano, ¿qué distancia hay que calcular?
+
+</Pista>
+<Pista>
+
+(a) La proyección es un punto cuando la recta es perpendicular al plano: $\vec n\parallel\vec v$. Escribí la normal del haz agrupando por $x$, $y$, $z$ y pedí $\vec n=t\vec v$. Después $k$ sale de que el punto proyectado pertenece al plano. (b) Reemplazá $\alpha,\beta,k$, mirá si $\vec n\cdot\vec v=0$ y, si es así, la distancia recta-plano es la de un punto de la recta al plano.
+
+</Pista>
+<Pista>
+
+Haz: $(2\alpha-\beta)x-(\alpha+\beta)y+\beta z+\alpha k=0$. $r$: pasa por $(2;1;-3)$ con director $(1;-2;1)$. Planteá $(2\alpha-\beta;-\alpha-\beta;\beta)=t(1;-2;1)$ y resolvé; luego $k$ con el punto $(2;1;-3)$. En (b): $\pi:2x-y+1=0$.
+
+</Pista>
+<Paso>
+
+**Qué (a):** reconocer el caso. **Por qué:** la proyección ortogonal de una recta sobre un plano es un único punto solo cuando la recta es perpendicular al plano; entonces el director $\vec v$ de $r$ y la normal $\vec n$ del plano son paralelos.
+
+</Paso>
+<Paso>
+
+**Qué:** director de $r$. $r$ está en simétricas, pero con $1-y$: se pasa a $y-1$ cambiando el signo del denominador.
+
+$$x-2=\frac{1-y}{2}=z+3\ \Longleftrightarrow\ \frac{x-2}{1}=\frac{y-1}{-2}=\frac{z+3}{1}$$
+$$\vec v=(1;-2;1)\qquad r\text{ pasa por }(2;1;-3)$$
+
+</Paso>
+<Paso>
+
+**Qué:** normal del plano genérico del haz. Agrupo por variable:
+
+$$(2\alpha-\beta)x-(\alpha+\beta)y+\beta z+\alpha k=0$$
+$$\vec n=(2\alpha-\beta;\,-\alpha-\beta;\,\beta)$$
+
+</Paso>
+<Paso>
+
+**Qué:** imponer $\vec n=t\vec v$ con $t\neq0$.
+
+$$2\alpha-\beta=t\qquad-\alpha-\beta=-2t\qquad\beta=t$$
+
+De la 3.ª, $\beta=t$. En la 1.ª: $2\alpha-t=t$, o sea $\alpha=t$. Verifico en la 2.ª: $-t-t=-2t$ ✓. Entonces $\alpha=\beta$: tomo $\alpha=\beta=1$ y la ecuación del haz queda
+
+$$(2x-y+k)+(z-x-y)=0\ \Rightarrow\ x-2y+z+k=0$$
+
+</Paso>
+<Paso>
+
+**Qué:** hallar $k$. **Por qué:** el punto proyectado, $(2;1;-3)$, está en el plano (es donde $r$ lo atraviesa).
+
+$$2-2\cdot1+(-3)+k=0$$
+$$-3+k=0$$
+$$k=3$$
+
+El plano es $x-2y+z+3=0$. Chequeo: $r(s)=(2+s;1-2s;-3+s)$ en el plano da $2+s-2+4s-3+s+3=6s=0\Rightarrow s=0$, o sea $r$ lo corta en $(2;1;-3)$ ✓.
+
+</Paso>
+<Paso>
+
+**Qué (b):** el plano con $\alpha=k=1$ y $\beta=0$.
+
+$$1\cdot(2x-y+1)+0=0\ \Rightarrow\ \pi:\ 2x-y+1=0\qquad\vec n=(2;-1;0)$$
+
+$L$ tiene director $\vec w=(1;2;1)$ y pasa por $P(2;0;1)$. $\vec n\cdot\vec w=2-2+0=0$ ⇒ $L\parallel\pi$ o $L\subset\pi$. $P$ en $\pi$: $4-0+1=5\neq0$ ⇒ $L$ **no** está contenida: es paralela y a distancia positiva.
+
+</Paso>
+<Paso>
+
+**Qué:** distancia. **Por qué:** si $L\parallel\pi$, todos sus puntos están a la misma distancia del plano; sirve $P$.
+
+$$d(L,\pi)=d(P,\pi)=\frac{|2\cdot2-0+1|}{\sqrt{2^2+(-1)^2+0^2}}=\frac{5}{\sqrt5}=\sqrt5$$
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+(a) Existe: $\alpha=\beta$ y $k=3$, plano $x-2y+z+3=0$.
+
+(b) $L\parallel\pi:2x-y+1=0$ y
+
+$$d(L,\pi)=\sqrt5$$
+
+**Ojo con:** en (a) $k$ es un parámetro del haz y se despeja al final con el punto; en (b) usar la fórmula de distancia punto-plano solo después de chequear $\vec n\cdot\vec w=0$.
+
+**Errores comunes**
+- Igualar $\vec n=\vec v$ sin el factor $t$ (puede ser múltiplo).
+- Olvidar que $\beta=0$ elimina el segundo plano del haz.
+- Dar $d=0$ por creer que $L$ está en el plano (se verifica con un punto).
+
+</Solucion>
+<Comprobacion>
+
+(a) $\vec n=(1;-2;1)=\vec v$ ⇒ $r\perp\pi$; además $(2;1;-3)$ está en $r$ y en $\pi$ ($2-2-3+3=0$) ⇒ la proyección de $r$ sobre $\pi$ es ese punto ✓.
+
+(b) Mínima distancia por otro punto de $L$: $\lambda=1$ da $(3;2;2)$ y $\dfrac{|6-2+1|}{\sqrt5}=\sqrt5$ ✓ (mismo valor, como corresponde a una recta paralela).
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-2022-02-15#4" numero={4} fuente="finales/practicos/15-02-2022.pdf" pagina={7} unidad="U10" tema="Cuádrica: cono, tipo y parametrización de una traza" criterios={{ bien: "Completar cuadrados, A=-1 justificado (A^2=1 y signos), hiperboloide de dos hojas para A=-2 y parametrización de la hipérbola z=3 con sec/tan.", medias: "A=-1 y tipo correctos pero parametrización con error (por ejemplo semiejes intercambiados o sin condición sobre theta).", mal: "A=1 o A=+-1 como respuesta final, tipo mal clasificado o parametrización que no cumple la ecuación de la curva." }}>
+<Enunciado fuente="finales/practicos/15-02-2022.pdf" pagina="7">
+Sea la ecuación $x^2+A(y-1)^2+(z-3)^2-2x+A^2=0$.
+
+**(a)** Hallar todos los valores de $A\in\mathbb R$ para que la misma represente un cono.
+
+**(b)** Para $A=-2$, indicar el tipo de superficie resultante y dar una parametrización de la curva que se obtiene al intersecarla con el plano $z=3$.
+</Enunciado>
+<Pista>
+
+¿Cómo conviene reescribir una ecuación cuadrática con $x^2$ y $-2x$ juntos? ¿Qué forma tiene la ecuación de un cono centrado, y cuánto vale su segundo miembro?
+
+</Pista>
+<Pista>
+
+Completá cuadrados en $x$ (en $y$ y en $z$ ya están). Un cono tiene segundo miembro $0$ y los tres términos cuadráticos con signos no todos iguales (dos de un signo y uno de otro). Para (b), dividí para que el segundo miembro sea $\pm1$ y contá los signos para clasificar; la traza $z=3$ es una hipérbola y se parametriza con $\sec$ y $\tan$.
+
+</Pista>
+<Pista>
+
+$(x-1)^2+A(y-1)^2+(z-3)^2=1-A^2$. (a) Pedí $1-A^2=0$ y mirá el signo de $A$. (b) Con $A=-2$: $(x-1)^2-2(y-1)^2+(z-3)^2=-3$; dividí por $-3$. En $z=3$ usá $\sec^2\theta-\tan^2\theta=1$.
+
+</Pista>
+<Paso>
+
+**Qué:** completar cuadrados en $x$. **Por qué:** para reconocer el centro y la forma de la superficie.
+
+$$x^2-2x=(x-1)^2-1$$
+$$(x-1)^2-1+A(y-1)^2+(z-3)^2+A^2=0$$
+$$(x-1)^2+A(y-1)^2+(z-3)^2=1-A^2$$
+
+</Paso>
+<Paso>
+
+**Qué (a):** condición de cono. **Por qué:** el cono es la cuádrica con segundo miembro 0 (superficie homogénea respecto del centro $(1;1;3)$) y términos cuadráticos de signos mixtos.
+
+$$1-A^2=0\ \Rightarrow\ A=1\ \text{ o }\ A=-1$$
+
+</Paso>
+<Paso>
+
+**Qué:** descartar uno. **Por qué:** con $A=1$: $(x-1)^2+(y-1)^2+(z-3)^2=0$, suma de cuadrados igual a $0$: es **un solo punto**, no un cono. Con $A=-1$: $(x-1)^2-(y-1)^2+(z-3)^2=0$, un cuadrado con signo opuesto a los otros dos: **cono** (de eje $y$).
+
+$$A=-1$$
+
+</Paso>
+<Paso>
+
+**Qué (b):** $A=-2$ en la forma con cuadrados completos.
+
+$$(x-1)^2-2(y-1)^2+(z-3)^2=-3$$
+
+Divido por $-3$ para que el segundo miembro sea $1$:
+
+$$-\frac{(x-1)^2}{3}+\frac{(y-1)^2}{3/2}-\frac{(z-3)^2}{3}=1$$
+
+Un solo término positivo (el de $y$) ⇒ **hiperboloide de dos hojas**, de eje paralelo a $y$.
+
+</Paso>
+<Paso>
+
+**Qué:** la curva con $z=3$.
+
+$$-\frac{(x-1)^2}{3}+\frac{(y-1)^2}{3/2}=1,\qquad z=3$$
+
+Es una hipérbola con centro $(1;1;3)$ y eje transverso paralelo al eje $y$ ($a^2=\tfrac32$, $b^2=3$).
+
+</Paso>
+<Paso>
+
+**Qué:** parametrizar. **Por qué:** $\sec^2\theta-\tan^2\theta=1$ calza con "(término positivo) $-$ (término negativo) $=1$": el término de $y$ lleva la secante y el de $x$ la tangente.
+
+$$\frac{y-1}{\sqrt{3/2}}=\sec\theta,\qquad\frac{x-1}{\sqrt3}=\tan\theta$$
+
+$$x=1+\sqrt3\tan\theta,\qquad y=1+\sqrt{\tfrac32}\sec\theta,\qquad z=3$$
+
+con $\theta\in[0,2\pi)$, $\theta\neq\tfrac\pi2$, $\theta\neq\tfrac{3\pi}2$ (ahí $\tan$ y $\sec$ no están definidas).
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+(a) $A=-1$.
+
+(b) Para $A=-2$ es un hiperboloide de dos hojas, $-\dfrac{(x-1)^2}{3}+\dfrac{(y-1)^2}{3/2}-\dfrac{(z-3)^2}{3}=1$, y la curva $z=3$ es la hipérbola
+
+$$x=1+\sqrt3\tan\theta,\quad y=1+\sqrt{\tfrac32}\sec\theta,\quad z=3.$$
+
+**Ojo con:** quedarse con $A=1$ (da un punto) o con $A=\pm1$, y con los denominadores al dividir por un número negativo.
+
+**Errores comunes**
+- No completar el cuadrado en $x$ y perder el $-1$.
+- Clasificar como "de una hoja" por mirar el signo del 2.º miembro sin dividir.
+- Parametrizar con $\cos$ y $\sin$ (eso es elipse).
+
+</Solucion>
+<Comprobacion>
+
+La parametrización cumple la ecuación de la superficie: $(x-1)^2-2(y-1)^2+(z-3)^2=3\tan^2\theta-2\cdot\tfrac32\sec^2\theta+0=3\tan^2\theta-3\sec^2\theta=-3$ ✓.
+
+Con $A=-1$ en la general original: $x^2-(y-1)^2+(z-3)^2-2x+1=(x-1)^2-(y-1)^2+(z-3)^2=0$ ✓ (cono).
+
+</Comprobacion>
+</Ejercicio>
+

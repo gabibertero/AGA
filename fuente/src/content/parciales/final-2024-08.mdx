@@ -1,0 +1,168 @@
+---
+id: "final-2024-08"
+titulo: "Final 2024-08 (U9–U10)"
+fecha: "agosto 2024"
+tipo: "final"
+fuente: "finales/practicos/FinalesPracticos.pdf"
+paginasEnunciado: "4"
+orden: 202
+unidades: ["U9", "U10"]
+---
+
+import Ejercicio from '../../components/Ejercicio.astro';
+import Enunciado from '../../components/Enunciado.astro';
+import Solucion from '../../components/Solucion.astro';
+import Pista from '../../components/Pista.astro';
+import Paso from '../../components/Paso.astro';
+import Comprobacion from '../../components/Comprobacion.astro';
+
+Del final se incluyen solo los ejercicios de U8–U10; el resto queda fuera del alcance del 2º parcial.
+
+Fuente: foto de la hoja impresa ("Examen Final de Álgebra y Geometría Analítica agosto 2024", sin día), legible. Tiene un "NO APROBADO" manuscrito y nombre y legajo tapados: no se transcriben. El enunciado del ej. 4 dice "Representa gráficamente y y determina…" (la repetición de "y" es del original). Sin resolución ni puntajes.
+
+<Ejercicio id="final-2024-08#2" numero={2} fuente="finales/practicos/FinalesPracticos.pdf" pagina={4} unidad="U9" tema="Recta y plano: paralelismo y perpendicularidad" criterios={{ bien: "Director de r = (1;5;2), a=-3 por v.n=0 comprobando que r no está contenida, y justificación de que no existe a para la perpendicularidad (v no es múltiplo de n para ningún a).", medias: "a=-3 correcto pero sin justificar el inciso b, o sin chequear que r no está contenida.", mal: "Usar las normales de los planos como director de r, o plantear r ∥ π con v×n=0." }}>
+<Enunciado fuente="finales/practicos/FinalesPracticos.pdf" pagina="4">
+Sea $r:\begin{cases}3x-y+z=0\\2x-z+3=0\end{cases}$ y el plano $\pi: ax-y+4z-2=0$.
+
+a- Calcular el valor de $a$ para que la recta $r$ sea paralela al plano.
+
+b- ¿Existe algún valor de $a$ para que $r$ sea perpendicular al plano?
+</Enunciado>
+<Pista>
+
+¿Cómo viene dada $r$ (parámetros, simétrica, intersección de planos)? ¿Qué vector necesitás de ella y cómo se compara con el vector normal del plano para que sean paralelos o perpendiculares?
+
+</Pista>
+<Pista>
+
+$\vec v_r=\vec n_1\times\vec n_2$. Recta paralela al plano ⇔ $\vec v_r\perp\vec n_\pi$ ⇔ $\vec v_r\cdot\vec n_\pi=0$. Recta perpendicular al plano ⇔ $\vec v_r\parallel\vec n_\pi$ (uno múltiplo del otro).
+
+</Pista>
+<Pista>
+
+$\vec n_1=(3;-1;1)$, $\vec n_2=(2;0;-1)$, $\vec n_\pi=(a;-1;4)$. Calculá $\vec v_r$ y planteá $\vec v_r\cdot\vec n_\pi=0$. Para (b) escribí $\vec v_r=\lambda\vec n_\pi$ componente a componente.
+
+</Pista>
+<Paso>
+
+**Qué:** director de $r$. **Por qué:** $r$ está en los dos planos, así que es perpendicular a ambas normales.
+
+$$\vec v_r=\begin{vmatrix}\vec i&\vec j&\vec k\\3&-1&1\\2&0&-1\end{vmatrix}=((-1)(-1)-1\cdot0)\vec i-(3(-1)-1\cdot2)\vec j+(3\cdot0-(-1)\cdot2)\vec k$$
+$$\vec v_r=(1;5;2)$$
+
+</Paso>
+<Paso>
+
+**Qué (a):** paralela ⇔ $\vec v_r\cdot\vec n_\pi=0$.
+
+$$(1;5;2)\cdot(a;-1;4)=a-5+8$$
+$$a+3=0\Rightarrow a=-3$$
+
+**Por qué chequear:** con $a=-3$ la recta podría estar *contenida* en $\pi$. Un punto de $r$: con $x=0$, $z=3$ y $y=3x+z=3$, o sea $(0;3;3)$ (cumple los dos planos). En $\pi$: $-3\cdot0-3+12-2=7\neq0$ ⇒ no está contenida: es paralela y distinta.
+
+</Paso>
+<Paso>
+
+**Qué (b):** perpendicular ⇔ $\vec v_r=\lambda\vec n_\pi$.
+
+$$(1;5;2)=\lambda(a;-1;4)$$
+$$5=-\lambda\Rightarrow\lambda=-5\qquad2=4\lambda\Rightarrow\lambda=\tfrac12$$
+
+Las dos ecuaciones piden valores distintos de $\lambda$ ⇒ **no existe** ningún $a$.
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+a) $a=-3$ (con $a=-3$, $r$ es paralela a $\pi$ y no está contenida).
+
+b) **No existe** ningún valor de $a$ para el que $r$ sea perpendicular a $\pi$: $\vec v_r=(1;5;2)$ nunca es múltiplo de $(a;-1;4)$.
+
+**Ojo con:** el segundo y tercer componente de $\vec n_\pi$ no dependen de $a$ y ya fijan $\lambda$: por eso $a$ no puede arreglar la proporcionalidad.
+
+</Solucion>
+<Comprobacion>
+
+Con $a=-3$ la distancia de cualquier punto de $r$ a $\pi$ es la misma: $(0;3;3)$ da $|-3\cdot0-3+12-2|=7$ y otro punto, $(1;8;5)$ (cumple $3-8+5=0$ y $2-5+3=0$), da $|-3-8+20-2|=7$ ✓. La distancia recta–plano es $\dfrac7{\sqrt{26}}$.
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-2024-08#4" numero={4} fuente="finales/practicos/FinalesPracticos.pdf" pagina={4} unidad="U10" tema="Elipse por ecuación general" criterios={{ bien: "Completar cuadrados, (x-3)²/12+(y+1)²/4=1, elipse horizontal, a=2√3, b=2, c=2√2, e=√6/3, valores notables y gráfico completo (la curva pasa por el origen).", medias: "Canónica correcta pero faltan elementos en el gráfico o está mal la excentricidad.", mal: "Errores al completar cuadrados o confundir a² con b²." }}>
+<Enunciado fuente="finales/practicos/FinalesPracticos.pdf" pagina="4">
+Representa gráficamente y y determina los valores notables de la siguiente cónica.
+
+$$x^2+3y^2-6x+6y=0$$
+</Enunciado>
+<Pista>
+
+¿Qué tipo de cónica es según los signos y los coeficientes de $x^2$ e $y^2$? ¿Qué hay que hacer con los términos lineales para ver el centro?
+
+</Pista>
+<Pista>
+
+Elipse (coeficientes del mismo signo y distintos, sin $xy$). Completá cuadrados en $x$ e $y$, pasá el término independiente al otro lado y dividí para que quede $=1$. El denominador mayor es $a^2$.
+
+</Pista>
+<Pista>
+
+$(x^2-6x)+3(y^2+2y)=0$. Sumá $9$ y $3\cdot1$ a ambos lados: $(x-3)^2+3(y+1)^2=12$. Dividí por $12$.
+
+</Pista>
+<Paso>
+
+**Qué:** completar cuadrados.
+
+$$(x^2-6x)+3(y^2+2y)=0$$
+$$(x^2-6x+9)+3(y^2+2y+1)=9+3$$
+$$(x-3)^2+3(y+1)^2=12$$
+
+</Paso>
+<Paso>
+
+**Qué:** canónica.
+
+$$\frac{(x-3)^2}{12}+\frac{(y+1)^2}{4}=1$$
+
+Elipse de centro $C(3;-1)$. El mayor denominador está bajo $x$: $a^2=12$, $b^2=4$ ⇒ eje focal horizontal ($y=-1$).
+
+</Paso>
+<Paso>
+
+**Qué:** valores notables.
+
+$$a=2\sqrt3,\quad b=2,\quad c=\sqrt{12-4}=2\sqrt2,\quad e=\frac ca=\frac{2\sqrt2}{2\sqrt3}=\frac{\sqrt6}{3}$$
+
+| Elemento | Coordenadas |
+|---|---|
+| Centro $C$ | $(3;-1)$ |
+| Vértices $V,V'$ | $(3+2\sqrt3;-1)$, $(3-2\sqrt3;-1)$ |
+| Extremos del eje menor $A,A'$ | $(3;1)$, $(3;-3)$ |
+| Focos $F,F'$ | $(3+2\sqrt2;-1)$, $(3-2\sqrt2;-1)$ |
+| Lado recto $LL'=2b^2/a$ | $\tfrac{4\sqrt3}{3}$ (a $b^2/a=\tfrac{2\sqrt3}{3}$ de $l$ a cada lado) |
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$\frac{(x-3)^2}{12}+\frac{(y+1)^2}{4}=1$$
+
+Elipse de centro $C(3;-1)$, eje focal horizontal, $a=2\sqrt3$, $b=2$, $c=2\sqrt2$, $e=\tfrac{\sqrt6}{3}$, $V(3\pm2\sqrt3;-1)$, $A(3;1)$, $A'(3;-3)$, $F(3\pm2\sqrt2;-1)$, $LL'=\tfrac{4\sqrt3}{3}$.
+
+<figure>
+<img src={`${import.meta.env.BASE_URL}figuras/final-2024-08/ej4-elipse.svg`} alt="Elipse horizontal de centro (3;-1) que pasa por el origen, con vértices V y V', extremos del eje menor A y A', focos F y F', lados rectos, eje focal l y ejes graduados de a 1." style="max-width:100%;height:auto" />
+<figcaption>Gráfico del ejercicio 4: centro, vértices, extremos del eje menor, focos, lados rectos y eje focal. La curva pasa por el origen.</figcaption>
+</figure>
+
+**Ojo con:** dejar $3(y+1)^2$ sin dividir: al pasar a canónica el $3$ se va al denominador ($12/3=4$).
+
+</Solucion>
+<Comprobacion>
+
+La ecuación original no tiene término independiente: $(0;0)$ la cumple y en la canónica $\dfrac{9}{12}+\dfrac{1}{4}=1$ ✓. $V(3+2\sqrt3;-1)$: $\dfrac{12}{12}+0=1$ ✓. Definición $PF+PF'=2a$ con $P=A(3;1)$: $\sqrt{8+4}+\sqrt{8+4}=2\sqrt3+2\sqrt3=4\sqrt3=2a$ ✓.
+
+</Comprobacion>
+</Ejercicio>

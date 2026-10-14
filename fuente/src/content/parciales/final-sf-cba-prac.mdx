@@ -1,0 +1,156 @@
+---
+id: "final-sf-cba-prac"
+titulo: "Final sin fecha, Córdoba: Examen Práctico (U9–U10)"
+tipo: "final"
+fuente: "finales/practicos/FinalesPracticos.pdf"
+paginasEnunciado: "6"
+orden: 205
+unidades: ["U9", "U10"]
+---
+
+import Ejercicio from '../../components/Ejercicio.astro';
+import Enunciado from '../../components/Enunciado.astro';
+import Solucion from '../../components/Solucion.astro';
+import Pista from '../../components/Pista.astro';
+import Paso from '../../components/Paso.astro';
+import Comprobacion from '../../components/Comprobacion.astro';
+
+Del final se incluyen solo los ejercicios de U8–U10; el resto queda fuera del alcance del 2º parcial.
+
+Fuente: "Examen Práctico" de la Facultad Regional Córdoba. La p. 6 es un recorte con el nombre tapado; la p. 11 es la foto completa rotada 90 grados, donde hay datos manuscritos de alumno y una fecha que no se lee (pendiente de revisión: el examen queda sin fecha). Tiene un "No aprobado" manuscrito. Nombre, legajo y fecha manuscritos no se transcriben. Sin resolución ni puntajes.
+
+<Ejercicio id="final-sf-cba-prac#3" numero={3} fuente="finales/practicos/FinalesPracticos.pdf" pagina={6} unidad="U9" tema="Intersección entre recta y plano" criterios={{ bien: "Paramétricas de r, reemplazo en el plano, t=2 y punto de corte (-1;2;4), con verificación de que r no es paralela a π.", medias: "Planteo correcto pero con error de cuentas en el parámetro.", mal: "Leer mal el director o el punto de la simétrica, o dar un plano en vez de un punto." }}>
+<Enunciado fuente="finales/practicos/FinalesPracticos.pdf" pagina="6">
+Encontrar la intersección entre el plano $\pi: 2x-y+z=0$ y la recta $r: x+3=\dfrac{y+2}{2}=z-2$.
+</Enunciado>
+<Pista>
+
+¿Qué se espera que sea la intersección de una recta con un plano (cuántos puntos puede haber)? ¿Cómo se lee el punto y el director de una recta en forma simétrica?
+
+</Pista>
+<Pista>
+
+Pasá $r$ a paramétricas igualando la simétrica a $t$ y reemplazá $x,y,z$ en la ecuación del plano: queda una ecuación en $t$. Si da un único $t$, hay un punto; si es $0=0$, la recta está contenida; si es absurdo, son paralelas.
+
+</Pista>
+<Pista>
+
+$\dfrac{x+3}{1}=\dfrac{y+2}{2}=\dfrac{z-2}{1}=t$ da $x=-3+t$, $y=-2+2t$, $z=2+t$. Reemplazá en $2x-y+z=0$.
+
+</Pista>
+<Paso>
+
+**Qué:** paramétricas. **Por qué:** punto $(-3;-2;2)$ y director $(1;2;1)$.
+
+$$x=-3+t,\qquad y=-2+2t,\qquad z=2+t$$
+
+</Paso>
+<Paso>
+
+**Qué:** reemplazar en el plano.
+
+$$2(-3+t)-(-2+2t)+(2+t)=0$$
+$$-6+2t+2-2t+2+t=0$$
+$$-2+t=0\Rightarrow t=2$$
+
+$\vec n\cdot\vec d=(2;-1;1)\cdot(1;2;1)=1\neq0$: no es paralela, por eso hay un único punto.
+
+</Paso>
+<Paso>
+
+**Qué:** el punto.
+
+$$P=(-3+2;\,-2+4;\,2+2)=(-1;2;4)$$
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$r\cap\pi=\{(-1;2;4)\}$$
+
+**Ojo con:** el signo del punto en la simétrica: $x+3$ da $x_0=-3$, y $\dfrac{y+2}{2}$ da $y_0=-2$.
+
+</Solucion>
+<Comprobacion>
+
+En $\pi$: $2(-1)-2+4=0$ ✓. En $r$: $x+3=2$, $\dfrac{y+2}{2}=\dfrac{4}{2}=2$, $z-2=2$ ✓ (los tres iguales).
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-sf-cba-prac#4" numero={4} fuente="finales/practicos/FinalesPracticos.pdf" pagina={6} unidad="U10" tema="Elipse por ecuación general" criterios={{ bien: "Completar cuadrados, (x+3/2)²/4+(y-1/2)²/8=1, elipse vertical, a=2√2, b=2, c=2, e=√2/2, todos los elementos y gráfico completo.", medias: "Canónica correcta pero faltan elementos en el gráfico, o fracciones mal operadas.", mal: "Errores al completar cuadrados con coeficientes que no son 1, o confundir los semiejes." }}>
+<Enunciado fuente="finales/practicos/FinalesPracticos.pdf" pagina="6">
+Encontrar los elementos que caracterizan a la cónica cuya ecuación es $8x^2+4y^2+24x-4y-13=0$. Graficar.
+</Enunciado>
+<Pista>
+
+¿Qué cónica es (signos y coeficientes)? ¿Qué hay que hacer antes de completar cuadrados cuando los coeficientes de $x^2$ e $y^2$ no son $1$?
+
+</Pista>
+<Pista>
+
+Elipse. Sacá factor común del coeficiente de $x^2$ y de $y^2$, completá cuadrados dentro de cada paréntesis y compensá en el segundo miembro multiplicando por ese factor. Dividí para que quede $=1$.
+
+</Pista>
+<Pista>
+
+$8(x^2+3x)+4(y^2-y)=13$. Completás con $\tfrac94$ (a $8\cdot\tfrac94=18$) y con $\tfrac14$ (a $4\cdot\tfrac14=1$): $8(x+\tfrac32)^2+4(y-\tfrac12)^2=32$.
+
+</Pista>
+<Paso>
+
+**Qué:** factor común y completar cuadrados. **Por qué:** lo que se suma dentro del paréntesis se multiplica por el coeficiente al compensar.
+
+$$8\left(x^2+3x\right)+4\left(y^2-y\right)=13$$
+$$8\left(x^2+3x+\tfrac94\right)+4\left(y^2-y+\tfrac14\right)=13+18+1$$
+$$8\left(x+\tfrac32\right)^2+4\left(y-\tfrac12\right)^2=32$$
+
+</Paso>
+<Paso>
+
+**Qué:** canónica.
+
+$$\frac{(x+3/2)^2}{4}+\frac{(y-1/2)^2}{8}=1$$
+
+Elipse de centro $C(-\tfrac32;\tfrac12)$. El mayor denominador está bajo $y$: $a^2=8$, $b^2=4$ ⇒ eje focal vertical ($x=-\tfrac32$).
+
+</Paso>
+<Paso>
+
+**Qué:** valores notables.
+
+$$a=2\sqrt2,\quad b=2,\quad c=\sqrt{8-4}=2,\quad e=\frac ca=\frac{2}{2\sqrt2}=\frac{\sqrt2}{2}$$
+
+| Elemento | Coordenadas |
+|---|---|
+| Centro $C$ | $(-\tfrac32;\tfrac12)$ |
+| Vértices $V,V'$ | $(-\tfrac32;\tfrac12\pm2\sqrt2)$ |
+| Extremos del eje menor $A,A'$ | $(\tfrac12;\tfrac12)$, $(-\tfrac72;\tfrac12)$ |
+| Focos $F,F'$ | $(-\tfrac32;\tfrac52)$, $(-\tfrac32;-\tfrac32)$ |
+| Lado recto $LL'=2b^2/a$ | $2\sqrt2$, extremos $L(-\tfrac32+\sqrt2;\tfrac52)$, $L'(-\tfrac32-\sqrt2;\tfrac52)$, y $M$, $M'$ por $F'$ |
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$\frac{(x+3/2)^2}{4}+\frac{(y-1/2)^2}{8}=1$$
+
+Elipse vertical, $C(-\tfrac32;\tfrac12)$, $a=2\sqrt2$, $b=2$, $c=2$, $e=\tfrac{\sqrt2}{2}$, $V(-\tfrac32;\tfrac12\pm2\sqrt2)$, $A(\tfrac12;\tfrac12)$, $A'(-\tfrac72;\tfrac12)$, $F(-\tfrac32;\tfrac52)$, $F'(-\tfrac32;-\tfrac32)$, $LL'=2\sqrt2$.
+
+<figure>
+<img src={`${import.meta.env.BASE_URL}figuras/final-sf-cba-prac/ej4-elipse.svg`} alt="Elipse vertical de centro (-3/2;1/2) con vértices V y V', extremos del eje menor A y A', focos F y F', lados rectos y ejes graduados de a 1." style="max-width:100%;height:auto" />
+<figcaption>Gráfico del ejercicio 4: centro, vértices, extremos del eje menor, focos, lados rectos y eje focal.</figcaption>
+</figure>
+
+**Ojo con:** al completar cuadrados con coeficiente $8$ se suma $8\cdot\tfrac94=18$ (no $\tfrac94$) al segundo miembro.
+
+</Solucion>
+<Comprobacion>
+
+$A(\tfrac12;\tfrac12)$ en la original: $2+1+12-2-13=0$ ✓. Definición $PF+PF'=2a$ con $P=A$: $F(-\tfrac32;\tfrac52)$: $\sqrt{4+4}=2\sqrt2$; $F'(-\tfrac32;-\tfrac32)$: $\sqrt{4+4}=2\sqrt2$; suma $4\sqrt2=2a$ ✓.
+
+</Comprobacion>
+</Ejercicio>

@@ -1,0 +1,163 @@
+---
+titulo: "Producto escalar, vectorial y mixto"
+unidad: "U8"
+orden: 1
+---
+import Pregunta from '../../components/Pregunta.astro';
+import Fig from '../../components/PreguntaFigura.astro';
+
+<Pregunta id="u8-01" unidad="U8" q="Q01" titulo="Productos entre vectores: cuáles hay, qué dan y para qué sirven"
+  enunciado="Vectores en R2 y R3: productos. Propiedades. Usos." literal fq="G:31-33" fr="U8:1-2, 8, 15; Ap:167-174">
+
+| Producto | Operandos | Resultado | Uso principal |
+|---|---|---|---|
+| Escalar por vector $\lambda\bar a$ | número y vector | vector (misma dirección que $\bar a$) | cambiar módulo y sentido |
+| Escalar $\bar a\cdot\bar b$ | 2 vectores | **número** $\,|\bar a||\bar b|\cos\theta$ | ángulo, perpendicularidad, proyección, trabajo |
+| Vectorial $\bar a\times\bar b$ | 2 vectores de $\mathbb R^3$ | **vector** perpendicular a ambos, de módulo $|\bar a||\bar b|\,\mathrm{sen}\,\theta$ | área, paralelismo, normal a un plano, momento |
+| Mixto $(\bar a\times\bar b)\cdot\bar c$ | 3 vectores de $\mathbb R^3$ | **número** (volumen con signo) | volumen, coplanaridad |
+
+Todos se calculan con las componentes: escalar como suma de productos homólogos, vectorial y mixto con determinantes. Detalle de cada uno en las preguntas siguientes.
+</Pregunta>
+
+<Pregunta id="u8-02" unidad="U8" q="Q02" titulo="Producto escalar: definición, gráfica y expresión cartesiana"
+  enunciado="Producto escalar entre dos vectores: gráfica y definición. Expresión cartesiana." fq="G:4-5, 31-33" fr="U8:2-4; Ap:167-168">
+
+**Definición.** El producto escalar (interno o punto) de $\bar a$ y $\bar b$ es el **número** que se obtiene al multiplicar el módulo del primero por el módulo del segundo por el coseno del ángulo que forman:
+$$\bar a\cdot\bar b=|\bar a|\,|\bar b|\cos\theta,\qquad 0^\circ\le\theta\le180^\circ .$$
+
+<Fig src="escalar-proyeccion" alt="Dos vectores a y b con ángulo theta, la proyección ortogonal w1 de a sobre b y la componente w2 perpendicular a b" pie="Ángulo θ entre los vectores; w₁ es la proyección de a sobre b." />
+
+**Expresión cartesiana.** Con $\bar a=a_1\bar i+a_2\bar j+a_3\bar k$ y $\bar b=b_1\bar i+b_2\bar j+b_3\bar k$ se distribuye como un producto de polinomios. Como $\bar i\cdot\bar i=\bar j\cdot\bar j=\bar k\cdot\bar k=1$ (coseno de $0^\circ$) y los productos cruzados entre versores valen $0$ (coseno de $90^\circ$):
+$$\bar a\cdot\bar b=a_1b_1+a_2b_2+a_3b_3 ,$$
+la suma de los productos de las componentes homólogas. Ejemplo: $(2;-3;1)\cdot(-3;2;4)=-6-6+4=-8$.
+</Pregunta>
+
+<Pregunta id="u8-03" unidad="U8" q="Q02" titulo="Propiedades del producto escalar"
+  enunciado="Propiedades del producto escalar (con demostración de $\bar a\cdot\bar a=|\bar a|^2$)." fq="G:4-5" fr="U8:5; Ap:168">
+
+1. Conmutativa: $\bar a\cdot\bar b=\bar b\cdot\bar a$.
+2. Distributiva respecto de la suma: $\bar a\cdot(\bar b+\bar c)=\bar a\cdot\bar b+\bar a\cdot\bar c$.
+3. Asociativa con un escalar: $\lambda(\bar a\cdot\bar b)=(\lambda\bar a)\cdot\bar b=(\lambda\bar b)\cdot\bar a$.
+4. $\bar a\cdot\bar a=|\bar a|^2$, o sea $|\bar a|=\sqrt{\bar a\cdot\bar a}$.
+5. $\bar a\cdot\bar b=0$ con $\bar a,\bar b\neq\bar 0$ $\Leftrightarrow$ $\bar a\perp\bar b$.
+
+**Demostración de 4.** El ángulo entre $\bar a$ y sí mismo es $0^\circ$:
+$$\bar a\cdot\bar a=|\bar a||\bar a|\cos0^\circ=|\bar a|^2\cdot1=|\bar a|^2 .$$
+</Pregunta>
+
+<Pregunta id="u8-04" unidad="U8" q="Q02" titulo="Aplicaciones del producto escalar"
+  enunciado="Aplicaciones del producto escalar: longitud, ángulo, perpendicularidad, trabajo." fq="G:4-5" fr="U8:1-2; Ap:168-169">
+
+- **Longitud:** $|\bar a|=\sqrt{a_1^2+a_2^2+a_3^2}$ (propiedad 4).
+- **Ángulo entre vectores** y **perpendicularidad** (ver pregunta siguiente).
+- **Trabajo de una fuerza:** $W=\bar F\cdot\bar D=|\bar F||\bar D|\cos\theta$ (joules). Si la fuerza es perpendicular al desplazamiento el trabajo es $0$; si tiene la dirección del desplazamiento ($\theta=0^\circ$) es máximo.
+- **Proyección ortogonal** de un vector sobre otro.
+</Pregunta>
+
+<Pregunta id="u8-05" unidad="U8" q="Q05" titulo="Ángulo entre vectores y condición de perpendicularidad"
+  enunciado="Ángulo entre vectores. Condición de perpendicularidad." fq="G:31-33" fr="U8:2, 4; Ap:168-169">
+
+De la definición, despejando el coseno:
+$$\cos\theta=\frac{\bar a\cdot\bar b}{|\bar a||\bar b|}=\frac{a_1b_1+a_2b_2+a_3b_3}{\sqrt{a_1^2+a_2^2+a_3^2}\,\sqrt{b_1^2+b_2^2+b_3^2}}\ \Rightarrow\ \theta=\arccos(\cdots)\in[0^\circ,180^\circ].$$
+
+**Perpendicularidad.** Si $\bar a,\bar b\neq\bar 0$ y $\bar a\cdot\bar b=0$, entonces $\cos\theta=0$, o sea $\theta=90^\circ$. Es condición necesaria y suficiente: $\bar a\perp\bar b\Leftrightarrow\bar a\cdot\bar b=0$ (ortogonales).
+
+Ejemplo: $\bar u=(1;3)$, $\bar v=(-3;2)$: $\cos\theta=\dfrac{3}{\sqrt{10}\sqrt{13}}$, $\theta\approx74{,}7^\circ$ (el Apunte lo redondea a $74^\circ$).
+</Pregunta>
+
+<Pregunta id="u8-06" unidad="U8" q="Q05" titulo="Proyección ortogonal de un vector sobre otro"
+  enunciado="Descomponer $\bar a$ en un vector paralelo y otro perpendicular a $\bar b\neq\bar0$ (proyección ortogonal)." fq="G:31-33" fr="U8:6-7; Ap:169-170">
+
+Se busca $\bar a=\bar w_1+\bar w_2$ con $\bar w_1=\lambda\bar b$ (paralelo a $\bar b$) y $\bar w_2\perp\bar b$.
+
+**Deducción.** Multiplicando escalarmente por $\bar b$:
+$$\bar a\cdot\bar b=(\lambda\bar b+\bar w_2)\cdot\bar b=\lambda|\bar b|^2+\underbrace{\bar w_2\cdot\bar b}_{=0}\ \Rightarrow\ \lambda=\frac{\bar a\cdot\bar b}{|\bar b|^2}.$$
+
+$$\boxed{\bar w_1=\frac{\bar a\cdot\bar b}{|\bar b|^2}\,\bar b}\ \text{(proyección ortogonal de }\bar a\text{ sobre }\bar b),\qquad \boxed{\bar w_2=\bar a-\bar w_1}\ \text{(componente ortogonal a }\bar b).$$
+
+Ejemplo: $\bar a=(2;-1;3)$, $\bar b=(4;-1;2)$: $\bar a\cdot\bar b=15$, $|\bar b|^2=21$, $\bar w_1=\tfrac57(4;-1;2)=\left(\tfrac{20}{7};-\tfrac57;\tfrac{10}7\right)$ y $\bar w_2=\left(-\tfrac67;-\tfrac27;\tfrac{11}7\right)$ (se verifica $\bar w_2\cdot\bar b=0$). ⚠️ El PDF de U8 (p. 7) escribe $\tfrac47$ en la tercera componente: el recálculo da $\tfrac{11}{7}$ ($3-\tfrac{10}7$), pendiente de confirmar con la cátedra.
+</Pregunta>
+
+<Pregunta id="u8-07" unidad="U8" q="Q06" titulo="Vector por componentes con versores y cosenos directores"
+  enunciado="Vector por componentes con versores. Cosenos directores." fq="G:5-6" fr="U9:42; U8:3; Ap:167">
+
+En $\mathbb R^3$ los versores $\bar i=(1;0;0)$, $\bar j=(0;1;0)$, $\bar k=(0;0;1)$ son unitarios, perpendiculares entre sí y siguen los ejes. Todo vector se escribe $\bar a=a_x\bar i+a_y\bar j+a_z\bar k=(a_x;a_y;a_z)$.
+
+**Cosenos directores:** si $\alpha,\beta,\gamma$ son los ángulos que forma $\bar a$ con los ejes $x,y,z$,
+$$\cos\alpha=\frac{a_x}{|\bar a|},\quad\cos\beta=\frac{a_y}{|\bar a|},\quad\cos\gamma=\frac{a_z}{|\bar a|},\qquad \cos^2\alpha+\cos^2\beta+\cos^2\gamma=1 .$$
+(Salen del producto escalar con cada versor.) El versor de $\bar a$ es $\bar a/|\bar a|=(\cos\alpha;\cos\beta;\cos\gamma)$.
+</Pregunta>
+
+<Pregunta id="u8-08" unidad="U8" q="Q03" titulo="Producto vectorial: gráfica y definición, qué se obtiene"
+  enunciado="Producto vectorial de dos vectores. Gráfica y definición (qué se obtiene)." literal parcial="T2" sim="B" fq="F3:Tema 2, preg. 2" fr="U8:8-10; Ap:170-171">
+
+**Definición.** El producto vectorial de $\bar a$ y $\bar b$ es el **vector** $\bar c=\bar a\times\bar b$ tal que:
+- **Dirección:** perpendicular al plano que forman $\bar a$ y $\bar b$.
+- **Módulo:** $|\bar a\times\bar b|=|\bar a||\bar b|\,\mathrm{sen}\,\theta$, con $0^\circ\le\theta\le180^\circ$.
+- **Sentido:** regla de la mano derecha: el índice sigue al primer vector, el mayor al segundo, y el pulgar da $\bar c$ (se gira $\bar a$ hacia $\bar b$ por el menor ángulo).
+
+<Fig src="vectorial" alt="Vectores a y b en el plano xy, el paralelogramo que forman y el vector a por b perpendicular a ese plano" pie="a × b es perpendicular al paralelogramo; su módulo es el área." />
+
+**Qué se obtiene.** Un vector; y su **módulo** es el área del paralelogramo construido sobre $\bar a$ y $\bar b$: $|\bar a\times\bar b|=|\bar a|\,h$ con $h=|\bar b|\,\mathrm{sen}\,\theta$ (base por altura). El área del triángulo es la mitad.
+</Pregunta>
+
+<Pregunta id="u8-09" unidad="U8" q="Q03" titulo="Producto vectorial: propiedades y condición de paralelismo"
+  enunciado="Propiedades del producto vectorial. Condición de paralelismo." literal parcial="T2" fq="F3:Tema 2, preg. 2" fr="U8:10-11; Ap:172-173">
+
+**Propiedades:**
+1. Anticonmutativa: $\bar a\times\bar b=-\,\bar b\times\bar a$.
+2. Distributiva: $\bar a\times(\bar b+\bar c)=\bar a\times\bar b+\bar a\times\bar c$ y $(\bar a+\bar b)\times\bar c=\bar a\times\bar c+\bar b\times\bar c$.
+3. Con escalares: $\lambda(\bar a\times\bar b)=(\lambda\bar a)\times\bar b=\bar a\times(\lambda\bar b)$.
+4. $\bar a\times\bar 0=\bar 0\times\bar a=\bar 0$.
+5. $\bar a\times\bar a=\bar 0$.
+
+No es asociativa: en general $\bar a\times(\bar b\times\bar c)\ne(\bar a\times\bar b)\times\bar c$.
+
+**Condición de paralelismo.** Si $\bar a,\bar b\neq\bar0$: $\;\bar a\times\bar b=\bar 0\Leftrightarrow\bar a\parallel\bar b$.
+*Justificación:* $|\bar a\times\bar b|=|\bar a||\bar b|\,\mathrm{sen}\,\theta=0$ solo si $\mathrm{sen}\,\theta=0$, es decir $\theta=0^\circ$ o $180^\circ$. Equivale a que las componentes homólogas sean proporcionales: $\dfrac{a_x}{b_x}=\dfrac{a_y}{b_y}=\dfrac{a_z}{b_z}$ (la constante es positiva si tienen el mismo sentido y negativa si son opuestos).
+</Pregunta>
+
+<Pregunta id="u8-10" unidad="U8" q="Q03" titulo="Producto vectorial con determinantes"
+  enunciado="Manera de obtención del producto vectorial utilizando determinantes." literal parcial="T2" fq="F3:Tema 2, preg. 2" fr="U8:13-14; Ap:171-172">
+
+Se distribuye el producto usando la tabla de versores: $\bar i\times\bar j=\bar k$, $\bar j\times\bar k=\bar i$, $\bar k\times\bar i=\bar j$ (giro positivo), los inversos cambian de signo y $\bar i\times\bar i=\bar j\times\bar j=\bar k\times\bar k=\bar 0$. Reagrupando:
+$$\bar a\times\bar b=(a_2b_3-a_3b_2)\bar i+(a_3b_1-a_1b_3)\bar j+(a_1b_2-a_2b_1)\bar k=\begin{vmatrix}\bar i&\bar j&\bar k\\a_1&a_2&a_3\\b_1&b_2&b_3\end{vmatrix}.$$
+Primera fila: los versores; segunda: componentes del que **premultiplica**; tercera: del que **posmultiplica**. Se desarrolla por cofactores de la primera fila (signos $+,-,+$).
+
+Ejemplo: $\bar u=(0;1;-4)$, $\bar v=(2;-1;1)$:
+$$\bar u\times\bar v=\bar i\begin{vmatrix}1&-4\\-1&1\end{vmatrix}-\bar j\begin{vmatrix}0&-4\\2&1\end{vmatrix}+\bar k\begin{vmatrix}0&1\\2&-1\end{vmatrix}=-3\bar i-8\bar j-2\bar k .$$
+</Pregunta>
+
+<Pregunta id="u8-11" unidad="U8" q="Q04" titulo="Producto mixto: gráfica y definición"
+  enunciado="Producto mixto de 3 vectores: gráfica y definición." literal parcial="T2" sim="B" fq="F3:Tema 2, preg. 2" fr="U8:15-17; Ap:174">
+
+**Definición.** El producto mixto de $\bar a,\bar b,\bar c$ es el **número** que resulta de multiplicar vectorialmente $\bar a$ por $\bar b$ y el resultado, escalarmente, por $\bar c$: $(\bar a\times\bar b)\cdot\bar c$.
+
+<Fig src="mixto" alt="Paralelepípedo construido sobre los vectores a, b y c, con el vector a por b perpendicular a la base y la altura h" pie="La base es el paralelogramo de a y b; la altura h es la proyección de c sobre a × b." />
+
+**Interpretación geométrica.** $|\bar a\times\bar b|$ es el área de la base (paralelogramo) y $\bar c\cdot\dfrac{\bar a\times\bar b}{|\bar a\times\bar b|}$ es la altura $h$ (proyección de $\bar c$ sobre la normal). Entonces $(\bar a\times\bar b)\cdot\bar c=|\bar a\times\bar b|\,|\bar c|\cos\varphi=$ **volumen del paralelepípedo** construido sobre los tres vectores (con origen común). Es negativo si $\varphi>90^\circ$.
+
+**Expresión cartesiana:**
+$$(\bar a\times\bar b)\cdot\bar c=\begin{vmatrix}a_1&a_2&a_3\\b_1&b_2&b_3\\c_1&c_2&c_3\end{vmatrix}$$
+(filas en el orden del producto). Ejemplo: $\bar a=(1;0;0)$, $\bar b=(0;1;1)$, $\bar c=(0;0;5)$ da $5$ unidades de volumen.
+</Pregunta>
+
+<Pregunta id="u8-12" unidad="U8" q="Q04" titulo="Producto mixto: volumen y coplanaridad"
+  enunciado="Aplicaciones del producto mixto: volumen del paralelepípedo y del tetraedro, condición de coplanaridad." fq="G:33" fr="U8:15-16; Ap:174">
+
+- **Volumen del paralelepípedo:** $V=\big|(\bar a\times\bar b)\cdot\bar c\big|$ (el valor absoluto, porque el volumen no es negativo).
+- **Volumen del tetraedro** de aristas $\bar a,\bar b,\bar c$: $V=\tfrac16\big|(\bar a\times\bar b)\cdot\bar c\big|$ (consecuencia de las fórmulas del paralelepípedo; elaborado, no figura textual en la cátedra).
+- **Coplanaridad:** tres vectores son coplanares $\Leftrightarrow(\bar a\times\bar b)\cdot\bar c=0$. Si $\varphi=90^\circ$, $\bar c$ está en el plano de $\bar a$ y $\bar b$: el "paralelepípedo" es plano y su volumen es nulo. Equivale a que el determinante $3\times3$ sea cero (los vectores son linealmente dependientes).
+</Pregunta>
+
+<Pregunta id="u8-13" unidad="U8" q="Q03 + Q04" titulo="Parcial teórico: producto vectorial y producto mixto (pregunta completa)"
+  enunciado="Producto vectorial de dos vectores. Gráfica y definición (qué se obtiene). Propiedades. Condición de paralelismo. Manera de obtención utilizando determinantes. Producto mixto de 3 vectores: gráfica y definición." literal parcial="T2" sim="B" fq="F3:Tema 2, preg. 2; T" fr="U8:8-17; Ap:170-174">
+
+Esquema de respuesta (cada ítem se desarrolla en las preguntas anteriores):
+
+1. **Producto vectorial** $\bar a\times\bar b$: vector $\perp$ al plano de $\bar a,\bar b$, de módulo $|\bar a||\bar b|\,\mathrm{sen}\,\theta$ y sentido por mano derecha. Su módulo es el **área del paralelogramo**. *Gráfico:* los dos vectores desde un origen, el paralelogramo y $\bar c$ saliendo perpendicular.
+2. **Propiedades:** anticonmutativa, distributiva, asociativa con escalar, $\bar a\times\bar a=\bar 0$.
+3. **Paralelismo:** $\bar a\times\bar b=\bar0\Leftrightarrow\bar a\parallel\bar b$ ($\mathrm{sen}\,\theta=0$).
+4. **Determinantes:** $\bar a\times\bar b=\begin{vmatrix}\bar i&\bar j&\bar k\\a_1&a_2&a_3\\b_1&b_2&b_3\end{vmatrix}$.
+5. **Producto mixto** $(\bar a\times\bar b)\cdot\bar c$: número = **volumen del paralelepípedo** (con signo); $=\begin{vmatrix}a_1&a_2&a_3\\b_1&b_2&b_3\\c_1&c_2&c_3\end{vmatrix}$; nulo si los tres vectores son coplanares. *Gráfico:* paralelepípedo con $\bar a\times\bar b$ y la altura $h$.
+</Pregunta>

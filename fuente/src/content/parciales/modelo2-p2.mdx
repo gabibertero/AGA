@@ -1,0 +1,314 @@
+---
+id: "modelo2-p2"
+titulo: "Modelo 2 - P2"
+tipo: "modelo"
+fuente: "parciales/2do-parcial/Modelo2 - P2.pdf"
+paginasEnunciado: "1"
+orden: 2
+unidades: ["U9", "U10"]
+---
+
+import Ejercicio from '../../components/Ejercicio.astro';
+import Enunciado from '../../components/Enunciado.astro';
+import Solucion from '../../components/Solucion.astro';
+import Pista from '../../components/Pista.astro';
+import Paso from '../../components/Paso.astro';
+import Comprobacion from '../../components/Comprobacion.astro';
+
+Simulacro oficial de la cátedra (2° Parcial Práctico, Modelo 2). Sin fecha, comisión ni resolución oficial.
+
+<div class="capa oficial" data-consigna>
+<p class="rotulo">Tener en cuenta (recuadro del examen)</p>
+
+- Ser claro y ordenado.
+- Plantear las combinaciones lineales necesarias, los sistemas de ecuaciones pertinentes y justificar los cálculos cuando sea necesario. Realizar los esquemas pertinentes.
+- El grafico solo se corrige si tiene todos los elementos necesarios en su construcción.
+- Si el gráfico está mal, no se corrige el ejercicio.
+- Asegurarse de que el grafico y la resolución analítica del ejercicio sean coherentes. Caso contrario, el ejercicio vale cero puntos.
+- **La corrección se realiza en primera instancia por resultados y si estos son correctos se observa el procedimiento que justifica los mismos. Si los resultados de la tabla son incorrectos se evalúa directamente sin tener en cuenta el desarrollo. "Verificar bien antes de entregar".**
+
+</div>
+
+
+<Ejercicio id="modelo2-p2#1" numero={1} fuente="parciales/2do-parcial/Modelo2 - P2.pdf" pagina={1} unidad="U9" tema="Plano" criterios={{ bien: "Plano 3x-2y+7z-23=0 (o múltiplo no nulo) con la normal (-3;2;-7) obtenida como v×u y verificada contra P.", medias: "Normal bien planteada pero error de cuentas en el producto vectorial o en D (el plano resultante no pasa por el punto dado), o plano correcto sin justificar de dónde sale la normal.", mal: "Normal incorrecta (usar v o u directamente, o v·u) o plano que no es paralelo a los dos vectores." }}>
+<Enunciado fuente="parciales/2do-parcial/Modelo2 - P2.pdf" pagina="1">
+Encontrar la ecuación del plano $\pi$ que es paralelo a los vectores $\bar v = 3\hat\imath + \hat\jmath - \hat k$ y $\bar u = \hat\imath - 2\hat\jmath - \hat k$ y contiene al punto $(1;-3;2)$.
+
+</Enunciado>
+<Pista>
+
+¿Qué dato necesitás para escribir la ecuación de un plano? Ya tenés un punto: ¿qué vector te falta? Si el plano es paralelo a dos vectores, ¿cómo es ese vector que falta respecto de ellos?
+
+</Pista>
+<Pista>
+
+El plano es paralelo a $\bar v$ y a $\bar u$, así que su **normal** es perpendicular a los dos: sale del producto vectorial $\bar v\times\bar u$. Con la normal y el punto se plantea $\vec n\cdot(X-P)=0$.
+
+</Pista>
+<Pista>
+
+$\bar v=(3;1;-1)$, $\bar u=(1;-2;-1)$. Calculá $\vec n=\bar v\times\bar u$ con el determinante simbólico y planteá $n_1(x-1)+n_2(y+3)+n_3(z-2)=0$. Desarrollá e igualá a 0.
+
+</Pista>
+<Paso>
+
+**Qué:** anotar las componentes. **Cómo reconocerlo:** los coeficientes de $\hat\imath,\hat\jmath,\hat k$. $\bar v=(3;1;-1)$ y $\bar u=(1;-2;-1)$.
+
+</Paso>
+<Paso>
+
+**Qué:** buscar la normal. **Por qué:** un plano paralelo a $\bar v$ y a $\bar u$ contiene esas direcciones, así que su normal es perpendicular a ambas, y eso es justo $\bar v\times\bar u$ (no nulo porque $\bar v\not\parallel\bar u$: $\tfrac31\neq\tfrac1{-2}$).
+
+$$\vec n=\bar v\times\bar u=\begin{vmatrix}\hat\imath&\hat\jmath&\hat k\\3&1&-1\\1&-2&-1\end{vmatrix}$$
+$$=\big(1\cdot(-1)-(-1)(-2)\big)\hat\imath-\big(3\cdot(-1)-(-1)\cdot1\big)\hat\jmath+\big(3\cdot(-2)-1\cdot1\big)\hat k$$
+$$=(-1-2)\hat\imath-(-3+1)\hat\jmath+(-6-1)\hat k$$
+$$\vec n=(-3;2;-7)$$
+
+</Paso>
+<Paso>
+
+**Qué:** ecuación del plano por $P(1;-3;2)$ con normal $\vec n$: $\vec n\cdot(X-P)=0$.
+
+$$-3(x-1)+2(y+3)-7(z-2)=0$$
+
+</Paso>
+<Paso>
+
+**Qué:** desarrollar y ordenar.
+
+$$-3x+3+2y+6-7z+14=0$$
+$$-3x+2y-7z+23=0$$
+$$3x-2y+7z-23=0$$
+
+Son la misma ecuación (multiplicar por $-1$ no cambia el plano).
+
+**Respuesta:** el plano pedido es $3x-2y+7z-23=0$.
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$3x-2y+7z-23=0$$
+
+(equivalente: $-3x+2y-7z+23=0$), con normal $\vec n=(-3;2;-7)$.
+
+**Ojo con:** el signo del cofactor de $\hat\jmath$ y el término independiente ($+3+6+14$).
+
+**Errores comunes**
+- Usar $\bar v$ o $\bar u$ como normal, o hacer el producto escalar en lugar del vectorial.
+- Error de signo en el cofactor de $\hat\jmath$.
+- Sumar mal $D$ al desarrollar los paréntesis.
+- No verificar que el punto cumple la ecuación.
+
+</Solucion>
+<Comprobacion>
+
+El punto cumple: $3\cdot1-2\cdot(-3)+7\cdot2-23=3+6+14-23=0$ ✓.
+
+$\vec n$ es perpendicular a los dos vectores: $\vec n\cdot\bar v=-9+2+7=0$ ✓ y $\vec n\cdot\bar u=-3-4+7=0$ ✓.
+
+Camino alternativo: un punto $X(x;y;z)$ está en el plano si $\overrightarrow{PX}$, $\bar v$ y $\bar u$ son coplanares, o sea si el determinante de las filas $(x-1;\,y+3;\,z-2)$, $(3;1;-1)$, $(1;-2;-1)$ es 0. Desarrollado da $-3x+2y-7z+23=0$, o sea $3x-2y+7z-23=0$: la misma ecuación.
+
+</Comprobacion>
+</Ejercicio>
+
+<Ejercicio id="modelo2-p2#2" numero={2} fuente="parciales/2do-parcial/Modelo2 - P2.pdf" pagina={1} unidad="U9" tema="Plano (haz de planos)" criterios={{ bien: "Plano 13x-5y-z-24=0 (o múltiplo no nulo), con el parámetro del haz (λ=4) o la normal justificados y P verificado.", medias: "Método correcto (haz o punto + director) pero error de cuentas en λ, en el director o en D; el plano final no contiene a P o a la recta.", mal: "Plano que no contiene a la recta intersección (p. ej. suma π1+π2 sin parámetro) o no pasa por P." }}>
+<Enunciado fuente="parciales/2do-parcial/Modelo2 - P2.pdf" pagina="1">
+Encontrar la ecuación del plano $\pi$ que pasa por el punto $P(2;1;-3)$ y contiene a la recta intersección entre $\pi_1 = x-y-z-8=0$ y $\pi_2 = 3x-y-4=0$.
+
+</Enunciado>
+<Pista>
+
+Un plano que contiene a la recta $\pi_1\cap\pi_2$ comparte con $\pi_1$ y $\pi_2$ todos los puntos de esa recta. ¿Qué familia de planos cumple eso? ¿Qué condición extra te permite elegir uno solo?
+
+</Pista>
+<Pista>
+
+Todos los planos que contienen a la recta intersección forman el **haz de planos** $\pi_1+\lambda\pi_2=0$. Reemplazá $P$ en la ecuación del haz para hallar $\lambda$. (Camino alternativo: punto de la recta + director $\vec n_1\times\vec n_2$ + $P$.)
+
+</Pista>
+<Pista>
+
+Planteo: $(x-y-z-8)+\lambda(3x-y-4)=0$. Evaluá cada paréntesis en $P(2;1;-3)$, despejá $\lambda$ y reemplazalo en el haz. Ordená e igualá a 0.
+
+</Pista>
+<Paso>
+
+**Qué:** escribir el haz. **Por qué:** si un punto cumple $\pi_1=0$ y $\pi_2=0$, cumple cualquier combinación $\pi_1+\lambda\pi_2=0$; entonces cada plano del haz contiene a la recta intersección (los planos no son paralelos: $\vec n_1=(1;-1;-1)$ y $\vec n_2=(3;-1;0)$ no son proporcionales).
+
+$$(x-y-z-8)+\lambda(3x-y-4)=0$$
+
+</Paso>
+<Paso>
+
+**Qué:** imponer que pase por $P(2;1;-3)$. **Por qué:** de todos los planos del haz queremos el que contiene a $P$.
+
+$$\pi_1(P)=2-1+3-8=-4\qquad \pi_2(P)=6-1-4=1$$
+$$-4+\lambda\cdot1=0$$
+$$\lambda=4$$
+
+($\pi_2(P)\neq0$, así que $P$ no está en $\pi_2$ y el haz con $\lambda$ finito alcanza.)
+
+</Paso>
+<Paso>
+
+**Qué:** reemplazar $\lambda=4$ y ordenar.
+
+$$(x-y-z-8)+4(3x-y-4)=0$$
+$$x-y-z-8+12x-4y-16=0$$
+$$13x-5y-z-24=0$$
+
+**Respuesta:** el plano pedido es $13x-5y-z-24=0$.
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$13x-5y-z-24=0$$
+
+(haz $\pi_1+4\pi_2=0$).
+
+**Ojo con:** que el parámetro multiplica a **toda** $\pi_2$, incluido su término independiente ($4\cdot(-4)=-16$).
+
+**Errores comunes**
+- Sumar $\pi_1+\pi_2$ sin parámetro (ese plano no tiene por qué pasar por $P$).
+- Evaluar $P$ mal en alguno de los planos (ojo con $z=-3$).
+- Olvidar multiplicar el $-4$ de $\pi_2$ por $\lambda$.
+- No verificar que $P$ cumple la ecuación final.
+
+</Solucion>
+<Comprobacion>
+
+$P$ cumple: $13\cdot2-5\cdot1-(-3)-24=26-5+3-24=0$ ✓.
+
+Camino alternativo (punto y director de la recta). Director: $\vec d=\vec n_1\times\vec n_2=(1;-1;-1)\times(3;-1;0)=(-1;-3;2)$. Un punto de la recta: con $z=0$ queda $x-y=8$ y $3x-y=4$, de donde $x=-2$, $y=-10$, o sea $Q(-2;-10;0)$. La normal del plano es $\vec d\times\overrightarrow{QP}=(-1;-3;2)\times(4;11;-3)=(-13;5;1)$, y el plano $-13(x-2)+5(y-1)+(z+3)=0$ da $-13x+5y+z+24=0$, o sea $13x-5y-z-24=0$ ✓. Además $(13;-5;-1)\cdot\vec d=-13+15-2=0$: la recta es paralela al plano.
+
+</Comprobacion>
+</Ejercicio>
+
+<Ejercicio id="modelo2-p2#3" numero={3} fuente="parciales/2do-parcial/Modelo2 - P2.pdf" pagina={1} unidad="U10" tema="Parábola" criterios={{ bien: "Ordinaria (y+1)^2=-4(x-5), V(5;-1), F(4;-1), directriz x=6, LL' de longitud 4, P(1;3), radio vector 5 y gráfico con TODOS los elementos, escala graduada y coherente con lo analítico.", medias: "Ordinaria y elementos correctos y radio vector correcto, pero al gráfico le falta solo A, D o alguna cota/rótulo, o hay un error de cuentas menor. Ojo: en el parcial real un gráfico incompleto anula el ejercicio; acá vale A medias solo como estimación de estudio.", mal: "Ordinaria incorrecta (h, k o signo de p mal), rama hacia el lado equivocado, P mal calculado o radio vector incorrecto, o gráfico faltante o incoherente, o sin alguno de los elementos obligatorios (V, F, l, a, extremos de $LL'$, $FP$)." }}>
+<Enunciado fuente="parciales/2do-parcial/Modelo2 - P2.pdf" pagina="1">
+Graficar la parábola cuya ordenada es 3, si $y^2+2y+4x-19=0$ y encontrar la longitud del radio vector del punto.
+
+</Enunciado>
+<Pista>
+
+¿Qué variable aparece al cuadrado? ¿Y la otra, solo a la primera potencia? ¿Qué te dice eso sobre el tipo de cónica y hacia dónde se abre? Leé bien el enunciado: ¿de qué punto se pide el radio vector?
+
+</Pista>
+<Pista>
+
+Es una parábola con eje focal horizontal (solo $y$ al cuadrado). Completá cuadrados en $y$ para llegar a $(y-k)^2=4p(x-h)$. El "punto" es el de la parábola con ordenada $y=3$: reemplazá y despejá $x$. El radio vector (radio focal) es el segmento $FP$ del foco al punto. Notación de cátedra: $V$ vértice, $F$ foco, $l$ directriz, $a$ eje, $A=l\cap a$, $LL'$ lado recto.
+
+</Pista>
+<Pista>
+
+Planteo: $y^2+2y=-4x+19\Rightarrow(y+\square)^2=-4x+19+\square=-4(x-\cdot)$. De ahí $V(h;k)$ y $4p$. Después $F=(h+p;k)$, directriz $x=h-p$, $LL'=|4p|$. Para el punto: $y=3$ en la ecuación original; el radio vector es $|FP|=\sqrt{(x_P-x_F)^2+(y_P-y_F)^2}$.
+
+</Pista>
+<Paso>
+
+**Qué:** reconocer el tipo. **Por qué:** aparece $y^2$ pero no $x^2$ (y el término en $x$ es lineal) ⇒ parábola de eje paralelo al eje $x$.
+
+</Paso>
+<Paso>
+
+**Qué:** completar cuadrados en $y$ y pasar a la ordinaria. **Por qué:** para leer vértice y parámetro $p$.
+
+$$y^2+2y=-4x+19$$
+$$y^2+2y+1=-4x+19+1$$
+$$(y+1)^2=-4x+20$$
+$$(y+1)^2=-4(x-5)$$
+
+</Paso>
+<Paso>
+
+**Qué:** leer el vértice y $p$. **Cómo reconocerlo:** comparar con $(y-k)^2=4p(x-h)$: $h=5$, $k=-1$, $4p=-4\Rightarrow p=-1$. Como $p<0$, la parábola **abre hacia la izquierda**; $p<0$ solo indica el sentido; la distancia del vértice al foco es $|p|=1$ (cátedra: $p$ con signo, $y^2=4px$, U10 p. 55-58).
+
+</Paso>
+<Paso>
+
+**Notación de cátedra (U10, p. 54):** $l$ directriz, $a$ eje de la parábola, $F$ foco, $A=l\cap a$, $V$ vértice (punto medio entre $A$ y $F$), $LL'$ lado recto. $D$ (pie de la perpendicular desde $P$ a $l$) es rótulo propio, no de cátedra.
+
+**Qué:** calcular los elementos, desde el vértice $V(5;-1)$.
+
+| Elemento | Cálculo | Valor |
+|---|---|---|
+| Vértice | $(h;k)$ | $V(5;-1)$ |
+| Foco | $(h+p;k)$ | $F(4;-1)$ |
+| Directriz $l$ | $x=h-p$ | $x=6$ |
+| Eje $a$ | recta por $V$ y $F$ | $y=-1$ |
+| $A=l\cap a$ | | $A(6;-1)$ |
+| Lado recto | $LL'=\lvert4p\rvert$ | $4$ |
+| Extremos del lado recto | $x=4$, $(y+1)^2=4$ | $L(4;1)$, $L'(4;-3)$ |
+
+</Paso>
+<Paso>
+
+**Qué:** hallar el punto de ordenada 3. **Por qué:** el enunciado habla de "el punto" de la parábola cuya ordenada es 3 (así lo plantea también el ejercicio equivalente del apunte de cátedra). Reemplazo $y=3$ en la ecuación original.
+
+$$3^2+2\cdot3+4x-19=0$$
+$$9+6+4x-19=0$$
+$$4x=4$$
+$$x=1\qquad\Rightarrow\qquad P(1;3)$$
+
+</Paso>
+<Paso>
+
+**Qué:** radio vector de $P$ (segmento del foco $F$ al punto $P$).
+
+$$|FP|=\sqrt{(1-4)^2+(3-(-1))^2}$$
+$$=\sqrt{9+16}$$
+$$|FP|=5$$
+
+**Respuesta:** el radio vector de $P(1;3)$ mide $5$.
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$(y+1)^2=-4(x-5)$$
+
+Parábola con eje focal $y=-1$, abre hacia la izquierda ($p=-1$): $V(5;-1)$, $F(4;-1)$, directriz $l:x=6$, $A(6;-1)$, $LL'=4$ con extremos $L(4;1)$ y $L'(4;-3)$. Punto de ordenada 3: $P(1;3)$. Radio vector:
+
+$$|FP|=5$$
+
+<figure>
+<img src={`${import.meta.env.BASE_URL}figuras/modelo2-p2/m2-ej3-parabola.svg`} alt="Parábola (y+1)^2=-4(x-5) con vértice V(5;-1), foco F(4;-1), directriz x=6, eje y=-1, A(6;-1), extremos del lado recto L(4;1) y L'(4;-3), punto P(1;3), su pie D(6;3) y el radio vector FP de longitud 5, ejes graduados de a 1." style="max-width:100%;height:auto" />
+<figcaption>Gráfico del ejercicio 3: vértice, foco, directriz, eje, lado recto con sus extremos, el punto $P$, el radio vector $FP$ y $PD$ (ambos miden 5); ejes graduados de a 1 y misma escala en $x$ e $y$.</figcaption>
+</figure>
+
+**Ojo con:** el signo de $p$ (con $x$ de coeficiente negativo abre a la izquierda y el foco queda a la **izquierda** del vértice) y no confundir el radio vector con la distancia al vértice. Si el parcial pide el gráfico, la lista mínima a marcar es: $V$, $F$, $l$, $a$, $A$, los extremos de $LL'$, el punto $P$ y el radio vector $FP$, con la misma escala en $x$ e $y$.
+
+**Errores comunes**
+- Sumar $4$ en lugar de $1$ al completar el cuadrado de $y$ (se suma $(2/2)^2=1$).
+- Leer $k=1$ en lugar de $k=-1$ (el binomio es $y+1$).
+- Poner el foco en $(6;-1)$ o abrir la parábola hacia la derecha.
+- Calcular la distancia $|VP|$ o $|AP|$ en vez de $|FP|$.
+- Graficar con escala distinta en $x$ e $y$, o sin directriz ni extremos del lado recto.
+
+</Solucion>
+<Comprobacion>
+
+$V(5;-1)$ en la general: $1-2+20-19=0$ ✓. $P(1;3)$: $9+6+4-19=0$ ✓.
+
+Por la definición de parábola, $|FP|=|PD|$ con $D(6;3)$ el pie de $P$ sobre la directriz $x=6$: $|PD|=6-1=5$ ✓, igual a $|FP|=5$.
+
+Lado recto: $L(4;1)$ en la general: $1+2+16-19=0$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
+<details class="capa elaborado" data-respuestas>
+<summary>Tabla de respuestas (solución elaborada — no oficial, verificada con sympy)</summary>
+
+| Ejercicio | Respuesta |
+|---|---|
+| **1** | $3x-2y+7z-23=0$ (equivalente: $-3x+2y-7z+23=0$), normal $(-3;2;-7)$ |
+| **2** | $13x-5y-z-24=0$ (haz $\pi_1+4\pi_2=0$) |
+| **3** | $(y+1)^2=-4(x-5)$; $V(5;-1)$, $F(4;-1)$, directriz $x=6$, eje $y=-1$, $A(6;-1)$, $LL'=4$ con extremos $(4;1)$ y $(4;-3)$; punto $P(1;3)$ y radio vector $|FP|=5$ |
+
+</details>

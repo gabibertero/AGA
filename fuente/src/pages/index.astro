@@ -1,0 +1,113 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HomeHero from '../components/HomeHero.astro';
+import HomeMapa from '../components/HomeMapa.astro';
+import { getCollection } from 'astro:content';
+import { idsDeEjercicios } from '../scripts/ids.js';
+const base = import.meta.env.BASE_URL;
+const pp = `${base}primer-parcial/`;
+const sp = `${base}segundo-parcial/`;
+const parciales = (await getCollection('parciales')).sort((a, b) => a.data.orden - b.data.orden);
+const filas = parciales.map((p) => ({ id: p.id, titulo: p.data.titulo, tipo: p.data.tipo, unidades: p.data.unidades, ids: idsDeEjercicios(p.body) }));
+const totalEj = filas.reduce((s, f) => s + f.ids.length, 0);
+const acc1 = [
+  ['Machete', 'Fórmulas y recetas de U1 a U7', `${pp}index.html`],
+  ['Preguntero', 'Teoría tipo parcial, con respuesta', `${pp}preguntero.html`],
+  ['Prácticos', 'Ejercicios resueltos paso a paso', `${pp}practicos.html`],
+  ['Laboratorio', 'Ejercicios al azar para practicar', `${pp}laboratorio.html`],
+];
+const acc2 = [
+  ['Parciales y modelos', 'Oficiales, ejercicio por ejercicio', sp],
+  ['Preguntero teórico', 'Preguntas de U8–U10 con fuente', `${sp}teoria/`],
+  ['Machetes', 'Vectores, rectas, planos, cónicas y cuádricas', `${sp}machetes/`],
+  ['Laboratorio', 'Ejercicios al azar y cónicas interactivas', `${sp}laboratorio/`],
+];
+---
+<Layout titulo="Inicio">
+  <section class="hero hero-home" aria-labelledby="titulo-home">
+    <div class="hero-txt">
+      <p class="eyebrow">UTN FRC · Ingeniería en Sistemas</p>
+      <h1 id="titulo-home"><span class="hero-sigla">AGA</span> <span class="hero-mat">Álgebra y Geometría Analítica</span></h1>
+      <p class="lead">Todo para rendir la materia: machetes, preguntero, prácticos resueltos y parciales en modo examen. Sin cuentas, sin vueltas.</p>
+      <div class="hero-acc">
+        <a class="btn btn-primario btn-examen" href={`${sp}parciales/modelo1-p2/`}>Modo examen · Modelo 1</a>
+        <a class="btn" href={`${pp}index.html`}>Machete del 1º parcial</a>
+      </div>
+      <p class="hero-seguir" data-seguir hidden></p>
+    </div>
+    <HomeHero />
+  </section>
+
+  <section class="panel-home" aria-label="Tu panel">
+    <div class="tarjeta pan" aria-labelledby="h-cuenta">
+      <h2 id="h-cuenta">Cuenta regresiva</h2>
+      <p class="suave">Cargá las fechas y te decimos cuánto falta. Se guarda en tu navegador.</p>
+      <div class="cuentas" data-cuenta>
+        <div class="cuenta" data-fecha="p2">
+          <label for="f-p2">2º parcial</label>
+          <input type="date" id="f-p2" />
+          <p class="dias" data-dias aria-live="polite">Sin fecha</p>
+        </div>
+        <div class="cuenta" data-fecha="final">
+          <label for="f-final">Final</label>
+          <input type="date" id="f-final" />
+          <p class="dias" data-dias aria-live="polite">Sin fecha</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tarjeta pan" aria-labelledby="h-prog" data-total={totalEj}>
+      <h2 id="h-prog">Tu progreso</h2>
+      <div data-prog-vacio>
+        <p class="suave">Todavía no hay nada acá. Marcá un ejercicio como resuelto o hacé un modo examen y vas a ver el resumen.</p>
+        <a class="btn" href={`${sp}parciales/modelo1-p2/`}>Empezar con el Modelo 1</a>
+      </div>
+      <div data-prog-datos hidden>
+        <p class="prog-num"><b data-p-hechos>0</b> <span>de {totalEj} ejercicios resueltos</span></p>
+        <span class="barra" data-p-barra role="presentation"></span>
+        <p class="prog-prom" data-p-prom></p>
+      </div>
+    </div>
+  </section>
+
+  <h2>Mapa de la materia</h2>
+  <p class="suave sec-intro">Las 11 unidades del programa 2025, agrupadas por instancia de evaluación.</p>
+  <HomeMapa />
+
+  <h2>Por dónde arrancar</h2>
+  <div class="accesos">
+    <section class="tarjeta acc" data-g="p1" aria-labelledby="a1">
+      <h3 id="a1">1º parcial <span class="chip">U1–U7</span></h3>
+      <ul>{acc1.map(([t, d, h]) => <li><a href={h}><strong>{t}</strong><span class="suave">{d}</span></a></li>)}</ul>
+    </section>
+    <section class="tarjeta acc" data-g="p2" aria-labelledby="a2">
+      <h3 id="a2">2º parcial <span class="chip">U8–U10</span></h3>
+      <ul>{acc2.map(([t, d, h]) => <li><a href={h}><strong>{t}</strong><span class="suave">{d}</span></a></li>)}</ul>
+    </section>
+  </div>
+
+  <h2>Parciales del 2º parcial</h2>
+  <ul class="lista-ex lista-home">
+    {filas.map((f) => (
+      <li class="tarjeta" data-ex-fila data-examen={f.id} data-ids={f.ids.join(',')}>
+        <a class="ec-titulo" href={`${sp}parciales/${f.id}/`}>{f.titulo}</a>
+        <span class="suave">{f.tipo} · {f.unidades.join(", ")}</span>
+        <span class="ex-estado suave" data-ex-estado></span>
+      </li>
+    ))}
+  </ul>
+
+  <h2>Dónde se guarda tu progreso</h2>
+  <p>En tu navegador (localStorage), con claves que empiezan con <code>aga:v1:</code>. No hay cuentas ni servidor: no se comparte entre dispositivos y se pierde si borrás los datos del navegador.</p>
+  <button type="button" data-reiniciar>Reiniciar progreso</button>
+  <div class="capa generado" data-confirmar hidden role="group" aria-label="Confirmar reinicio">
+    <p><strong>¿Seguro?</strong> Se borran los estados y las ayudas reveladas de todos los ejercicios. No se puede deshacer.</p>
+    <button type="button" data-si>Sí, borrar todo</button>
+    <button type="button" data-no>Cancelar</button>
+  </div>
+  <p role="status" tabindex="-1" data-resultado></p>
+
+  <script>
+    import '../scripts/home.js';
+  </script>
+</Layout>

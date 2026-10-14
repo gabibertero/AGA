@@ -1,0 +1,239 @@
+---
+id: "final-2019-07-02"
+titulo: "Final 2019-07-02 (U8–U10)"
+fecha: "02/07/2019"
+tipo: "final"
+fuente: "finales/practicos/Finales Practicos .pdf"
+paginasEnunciado: "2"
+orden: 102
+unidades: ["U9", "U10"]
+---
+
+import Ejercicio from '../../components/Ejercicio.astro';
+import Enunciado from '../../components/Enunciado.astro';
+import Solucion from '../../components/Solucion.astro';
+import Pista from '../../components/Pista.astro';
+import Paso from '../../components/Paso.astro';
+import Comprobacion from '../../components/Comprobacion.astro';
+
+Del final se incluyen solo los ejercicios de U8–U10; el resto queda fuera del alcance del 2º parcial.
+
+Fuente: foto de la hoja impresa, legible (con sombra). No trae resolución ni puntajes.
+
+<Ejercicio id="final-2019-07-02#1" numero={1} fuente="finales/practicos/Finales Practicos .pdf" pagina={2} unidad="U9" tema="Rectas que se cortan y plano que las contiene" criterios={{ bien: "Sistema compatible determinado con punto de corte (1/5;-16/5;17/5) y plano x-y-z=0 (o múltiplo) con su ecuación vectorial.", medias: "Punto de corte correcto pero plano con la normal mal calculada o sin la ecuación vectorial.", mal: "Concluir que no se cortan, usar el mismo parámetro en las dos rectas, o plano que no contiene a las dos rectas." }}>
+<Enunciado fuente="finales/practicos/Finales Practicos .pdf" pagina="2">
+Comprobar si las siguientes rectas se cortan en un punto y encontrar las ecuaciones vectorial y general del plano que pasa por ellas.
+
+$$(x;y;z)=(0;-3;3)+\alpha(1;-1;2)\qquad\qquad\frac{x-1}{2}=\frac{y+2}{3}=\frac{z-3}{-1}$$
+</Enunciado>
+<Pista>
+
+¿Cómo se decide si dos rectas del espacio se cortan? ¿Hay que mirar solo si no son paralelas, o algo más? Si se cortan, ¿qué vectores sirven para generar el plano que las contiene?
+
+</Pista>
+<Pista>
+
+Igualá las coordenadas de las dos rectas usando **parámetros distintos** (una en $\alpha$, la otra en $\lambda$) y resolvé el sistema de 3 ecuaciones con 2 incógnitas: solución única ⇒ se cortan. El plano que las contiene tiene como normal el producto vectorial de los dos directores y pasa por cualquiera de los puntos.
+
+</Pista>
+<Pista>
+
+$r_2$: punto $(1;-2;3)$ y director $(2;3;-1)$. Planteo: $\alpha=1+2\lambda$, $-3-\alpha=-2+3\lambda$, $3+2\alpha=3-\lambda$. Después $\vec n=\vec u\times\vec v$ y $\vec n\cdot(X-P)=0$.
+
+</Pista>
+<Paso>
+
+**Qué:** datos de cada recta. **Cómo reconocerlo:** la primera está en forma vectorial (punto y director a la vista); la segunda en simétrica (numeradores = punto, denominadores = director).
+
+$$r_1:\ P(0;-3;3),\ \vec u=(1;-1;2)\qquad r_2:\ Q(1;-2;3),\ \vec v=(2;3;-1)$$
+
+</Paso>
+<Paso>
+
+**Qué:** ¿paralelas? $\vec u$ y $\vec v$ no son proporcionales ($\tfrac12\neq\tfrac{-1}{3}$) ⇒ no son paralelas: o se cortan o son alabeadas.
+
+</Paso>
+<Paso>
+
+**Qué:** igualar las coordenadas, con parámetros distintos. **Por qué:** cada recta se recorre con su propio parámetro.
+
+$$\alpha=1+2\lambda\qquad -3-\alpha=-2+3\lambda\qquad 3+2\alpha=3-\lambda$$
+
+Reemplazo la 1.ª en la 2.ª:
+
+$$-3-1-2\lambda=-2+3\lambda$$
+$$-2=5\lambda$$
+$$\lambda=-\tfrac25\quad\Rightarrow\quad\alpha=1+2\cdot\left(-\tfrac25\right)=\tfrac15$$
+
+Verifico en la 3.ª: $3+2\cdot\tfrac15=\tfrac{17}5$ y $3-\left(-\tfrac25\right)=\tfrac{17}5$ ✓. Sistema compatible determinado ⇒ **se cortan** en un único punto.
+
+$$R\left(\tfrac15;-\tfrac{16}5;\tfrac{17}5\right)$$
+
+(se obtiene con $\alpha=\tfrac15$ en $r_1$: $(\tfrac15;\,-3-\tfrac15;\,3+\tfrac25)$).
+
+</Paso>
+<Paso>
+
+**Qué:** normal del plano. **Por qué:** contiene a los dos directores, así que es perpendicular a ambos.
+
+$$\vec n=\vec u\times\vec v=\begin{vmatrix}\vec i&\vec j&\vec k\\1&-1&2\\2&3&-1\end{vmatrix}=\big((-1)(-1)-2\cdot3\big)\vec i-\big(1\cdot(-1)-2\cdot2\big)\vec j+\big(1\cdot3-(-1)\cdot2\big)\vec k$$
+$$\vec n=(-5;5;5)\ \parallel\ (-1;1;1)$$
+
+</Paso>
+<Paso>
+
+**Qué:** ecuación general. Con $\vec n=(-1;1;1)$ y el punto $P(0;-3;3)$:
+
+$$-1(x-0)+1(y+3)+1(z-3)=0$$
+$$-x+y+z=0$$
+$$x-y-z=0$$
+
+</Paso>
+<Paso>
+
+**Qué:** ecuación vectorial. **Por qué:** el plano es el punto $P$ más combinaciones de dos vectores no paralelos contenidos en él: los dos directores.
+
+$$(x;y;z)=(0;-3;3)+\alpha(1;-1;2)+\beta(2;3;-1),\qquad\alpha,\beta\in\mathbb R$$
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+Las rectas **se cortan** en $R\left(\tfrac15;-\tfrac{16}5;\tfrac{17}5\right)$.
+
+Plano que las contiene:
+
+$$\text{general: }x-y-z=0\qquad\text{vectorial: }(x;y;z)=(0;-3;3)+\alpha(1;-1;2)+\beta(2;3;-1)$$
+
+**Ojo con:** usar el mismo parámetro en las dos rectas al igualar, y no verificar la 3.ª ecuación (eso es lo que distingue "se cortan" de "alabeadas").
+
+**Errores comunes**
+- Tomar $\vec u\times\vec v$ como director del plano en vez de normal.
+- Pasar de $-x+y+z=0$ a $x-y-z=0$ cambiando solo algunos signos.
+
+</Solucion>
+<Comprobacion>
+
+$R$ cumple la ecuación del plano: $\tfrac15-\left(-\tfrac{16}5\right)-\tfrac{17}5=\tfrac{1+16-17}5=0$ ✓.
+
+Los dos puntos y los dos directores también: $P$: $0+3-3=0$ ✓; $Q(1;-2;3)$: $1+2-3=0$ ✓; $\vec u$: $1+1-2=0$ ✓; $\vec v$: $2-3+1=0$ ✓.
+
+Camino alternativo: producto mixto $[\overrightarrow{PQ},\vec u,\vec v]$ con $\overrightarrow{PQ}=(1;1;0)$ vale $0$ ⇒ coplanares (y no paralelas ⇒ secantes).
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-2019-07-02#2" numero={2} fuente="finales/practicos/Finales Practicos .pdf" pagina={2} unidad="U10" tema="Elipse dados focos y lado recto" criterios={{ bien: "Centro, a=4, b^2=12 y c=2 correctos, ordinaria y general correctas, vértices y e=1/2, y gráfico con todos los elementos (incluidos los extremos del LL'), escala graduada y coherente.", medias: "Ecuaciones y elementos analíticos correctos pero el gráfico omite rótulos o cotas menores. Ojo: en el parcial real un gráfico incompleto anula el ejercicio; acá vale A medias solo como estimación de estudio.", mal: "Eje focal horizontal en vez de vertical, a y b intercambiados, mal planteo del lado recto (usar 2a^2/b), o gráfico faltante o incoherente." }}>
+<Enunciado fuente="finales/practicos/Finales Practicos .pdf" pagina="2">
+Los focos de una elipse son los puntos $(-4,-2)$ y $(-4,-6)$ y la longitud de cada lado recto es 6. Hallar las ecuaciones ordinaria y general de la elipse, su excentricidad, las coordenadas de los vértices y realizar el grafico correspondiente indicando sus elementos notables.
+</Enunciado>
+<Pista>
+
+¿Qué tienen en común los dos focos? ¿Qué te dice eso sobre el eje focal y sobre dónde está el centro? Fijate qué datos de la elipse te dan los focos y cuál te da el lado recto.
+
+</Pista>
+<Pista>
+
+Los focos tienen igual abscisa ⇒ eje focal vertical. El centro es el punto medio de los focos y $c$ es la mitad de la distancia focal. El lado recto es $LL'=2b^2/a$ y la relación fundamental es $a^2=b^2+c^2$: dos ecuaciones para $a$ y $b$. Notación de cátedra: $V,V'$ (eje mayor), $A,A'$ (eje menor), $F,F'$, $LL'$.
+
+</Pista>
+<Pista>
+
+$C(-4;-4)$, $c=2$. De $2b^2/a=6$ sale $b^2=3a$; reemplazá en $a^2=b^2+c^2$ y resolvé la cuadrática en $a$ (descartá la raíz negativa). Con eje focal vertical: $\dfrac{(x-h)^2}{b^2}+\dfrac{(y-k)^2}{a^2}=1$.
+
+</Pista>
+<Paso>
+
+**Qué:** centro y eje focal. **Por qué:** $F(-4;-2)$ y $F'(-4;-6)$ tienen igual abscisa ⇒ el eje focal es la recta vertical $x=-4$. El centro es el punto medio de los focos y $c$ la mitad de la distancia entre ellos:
+
+$$C\left(\frac{-4-4}{2};\frac{-2-6}{2}\right)=(-4;-4)\qquad 2c=4\Rightarrow c=2$$
+
+</Paso>
+<Paso>
+
+**Qué:** usar el lado recto. **Por qué:** la longitud del lado recto de una elipse es $2b^2/a$.
+
+$$\frac{2b^2}{a}=6\ \Rightarrow\ b^2=3a$$
+
+</Paso>
+<Paso>
+
+**Qué:** relación fundamental $a^2=b^2+c^2$. Reemplazo $b^2=3a$ y $c=2$:
+
+$$a^2=3a+4$$
+$$a^2-3a-4=0$$
+$$(a-4)(a+1)=0$$
+
+$a>0\Rightarrow a=4$. Entonces $b^2=3\cdot4=12$, $b=2\sqrt3$.
+
+</Paso>
+<Paso>
+
+**Qué:** ecuación ordinaria. **Por qué:** eje focal vertical ⇒ el $a^2$ va debajo de $(y-k)^2$.
+
+$$\frac{(x+4)^2}{12}+\frac{(y+4)^2}{16}=1$$
+
+</Paso>
+<Paso>
+
+**Qué:** ecuación general (multiplico por $a^2b^2=192$ y desarrollo).
+
+$$16(x+4)^2+12(y+4)^2=192$$
+$$4(x+4)^2+3(y+4)^2=48$$
+$$4x^2+32x+64+3y^2+24y+48=48$$
+$$4x^2+3y^2+32x+24y+64=0$$
+
+</Paso>
+<Paso>
+
+**Qué:** elementos, desde el centro $C(-4;-4)$ y sobre el eje vertical.
+
+| Elemento | Cálculo | Valor |
+|---|---|---|
+| Centro | punto medio de los focos | $C(-4;-4)$ |
+| Vértices (extremos del eje mayor) | $(h;k\pm a)$ | $V(-4;0)$, $V'(-4;-8)$ |
+| Extremos del eje menor | $(h\pm b;k)$ | $A(-4+2\sqrt3;-4)$, $A'(-4-2\sqrt3;-4)$ |
+| Focos | $(h;k\pm c)$ | $F(-4;-2)$, $F'(-4;-6)$ |
+| Eje mayor, eje menor, distancia focal | $2a$, $2b$, $2c$ | $8$, $4\sqrt3$, $4$ |
+| Excentricidad | $e=c/a$ | $\dfrac12$ |
+| Lado recto | $LL'=2b^2/a$ | $6$ |
+| Extremos de los lados rectos | $y=k\pm c$, $x=h\pm b^2/a$ | $L(-1;-2)$, $L'(-7;-2)$, $M(-1;-6)$, $M'(-7;-6)$ |
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+Ordinaria y general:
+
+$$\frac{(x+4)^2}{12}+\frac{(y+4)^2}{16}=1\qquad 4x^2+3y^2+32x+24y+64=0$$
+
+$C(-4;-4)$, $a=4$, $b=2\sqrt3$, $c=2$, $e=\tfrac12$, vértices $V(-4;0)$ y $V'(-4;-8)$ (y $A,A'(-4\pm2\sqrt3;-4)$, $F,F'(-4;-2),(-4;-6)$).
+
+<figure>
+<img src={`${import.meta.env.BASE_URL}figuras/final-2019-07-02/ej2-elipse.svg`} alt="Elipse de eje focal vertical con centro (-4;-4), vértices (-4;0) y (-4;-8), extremos del eje menor (-4±2 raíz de 3;-4), focos (-4;-2) y (-4;-6), lados rectos con extremos (-1;-2), (-7;-2), (-1;-6), (-7;-6), ejes de simetría x=-4 e y=-4, cotas 2a=8, 2b=4 raíz de 3, 2c=4; ejes graduados de a 1 y misma escala en x e y." style="max-width:100%;height:auto" />
+<figcaption>Gráfico del ejercicio 2: centro, vértices, extremos del eje menor, focos, lados rectos con sus extremos, ejes y cotas; ejes graduados de a 1 y misma escala en x e y.</figcaption>
+</figure>
+
+**Ojo con:** resolver $a^2-3a-4=0$ y quedarse con $a=-1$ (un semieje no puede ser negativo), y poner $a^2=12$ debajo de $y$ (con eje focal vertical el mayor, 16, va debajo de $(y+4)^2$).
+
+**Errores comunes**
+- Usar $LL'=2a^2/b$ en vez de $2b^2/a$.
+- Eje focal horizontal por costumbre.
+- Dar $e=c/b$ o $e>1$.
+- Gráfico sin los extremos del lado recto o sin los ejes de simetría.
+
+</Solucion>
+<Comprobacion>
+
+$V(-4;0)$ en la general: $4\cdot16+0-128+0+64=0$ ✓.
+
+$L(-1;-2)$ en la general: $4+12-32-48+64=0$ ✓.
+
+Definición: $d(V,F)+d(V,F')=2+6=8=2a$ ✓. Lado recto: $x=-1$ y $x=-7$ distan $6$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+

@@ -1,0 +1,175 @@
+---
+id: "final-sf-quim"
+titulo: "Final sin fecha, Especialidad Química (U9–U10)"
+tipo: "final"
+fuente: "finales/practicos/Finales Practicos .pdf"
+paginasEnunciado: "7"
+orden: 206
+unidades: ["U9", "U10"]
+---
+
+import Ejercicio from '../../components/Ejercicio.astro';
+import Enunciado from '../../components/Enunciado.astro';
+import Solucion from '../../components/Solucion.astro';
+import Pista from '../../components/Pista.astro';
+import Paso from '../../components/Paso.astro';
+import Comprobacion from '../../components/Comprobacion.astro';
+
+Del final se incluyen solo los ejercicios de U8–U10; el resto queda fuera del alcance del 2º parcial.
+
+Fuente: foto de una hoja con el encabezado superior recortado: faltan el título y la fecha (pendiente de revisión); solo se lee "Especialidad: Química" y una "A" suelta. Legible. Sin resolución ni puntajes.
+
+<Ejercicio id="final-sf-quim#2" numero={2} fuente="finales/practicos/Finales Practicos .pdf" pagina={7} unidad="U9" tema="Plano por un punto, que corta un eje y es paralelo a una recta" criterios={{ bien: "Q(0;-5;0), vectores P1-Q=(3;6;4) y P3-P2=(8;-8;1), normal (38;29;-72), plano 38x+29y-72z+145=0 y verificación de que P4 no pertenece (da -473).", medias: "Plano correcto pero sin verificar P4, o con un error de signo en el producto vectorial.", mal: "No usar el punto de corte con el eje y, o tomar P2P3 como normal." }}>
+<Enunciado fuente="finales/practicos/Finales Practicos .pdf" pagina="7">
+Hallar la ecuación general del plano que pasa por el punto $P_1(3,1,4)$, corta al eje "y" en $y=-5$ y es paralelo a la recta definida por los puntos $P_2(-1,5,7)$ y $P_3(7,-3,8)$. Verificar si el $P_4(-3,0,7)$ pertenece al plano.
+</Enunciado>
+<Pista>
+
+Que el plano "corte al eje $y$ en $y=-5$" ¿qué punto del plano te da? ¿Qué dos direcciones del plano conocés y cómo se obtiene un vector perpendicular a ambas?
+
+</Pista>
+<Pista>
+
+El plano pasa por $P_1$ y por $Q(0;-5;0)$ (punto del eje $y$): una dirección es $\overrightarrow{QP_1}$. Ser paralelo a la recta $P_2P_3$ da la otra dirección, $\overrightarrow{P_2P_3}$. La normal es el producto vectorial de las dos.
+
+</Pista>
+<Pista>
+
+$\overrightarrow{QP_1}=(3;6;4)$ y $\overrightarrow{P_2P_3}=(8;-8;1)$. Calculá el producto vectorial, armá $38x+29y-72z+D=0$ (o lo que te dé) y hallá $D$ con $Q$. Para $P_4$ reemplazá en la ecuación.
+
+</Pista>
+<Paso>
+
+**Qué:** punto de corte con el eje $y$. **Por qué:** un punto del eje $y$ tiene $x=z=0$.
+
+$$Q(0;-5;0)$$
+
+**Qué:** dos direcciones del plano.
+
+$$\overrightarrow{QP_1}=(3-0;\,1+5;\,4-0)=(3;6;4)\qquad\overrightarrow{P_2P_3}=(7+1;\,-3-5;\,8-7)=(8;-8;1)$$
+
+</Paso>
+<Paso>
+
+**Qué:** normal.
+
+$$\vec n=\overrightarrow{QP_1}\times\overrightarrow{P_2P_3}=\begin{vmatrix}\vec i&\vec j&\vec k\\3&6&4\\8&-8&1\end{vmatrix}$$
+$$=(6\cdot1-4\cdot(-8))\vec i-(3\cdot1-4\cdot8)\vec j+(3\cdot(-8)-6\cdot8)\vec k$$
+$$\vec n=(38;29;-72)$$
+
+</Paso>
+<Paso>
+
+**Qué:** ecuación general, con $Q$ para hallar $D$.
+
+$$38x+29y-72z+D=0$$
+$$38\cdot0+29\cdot(-5)-72\cdot0+D=0$$
+$$D=145$$
+$$38x+29y-72z+145=0$$
+
+Chequeo con $P_1$: $114+29-288+145=0$ ✓.
+
+</Paso>
+<Paso>
+
+**Qué:** ¿$P_4(-3;0;7)$ pertenece? Se reemplaza.
+
+$$38(-3)+29\cdot0-72\cdot7+145=-114-504+145=-473\neq0$$
+
+No pertenece.
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$38x+29y-72z+145=0$$
+
+$P_4(-3;0;7)$ **no pertenece** al plano (da $-473\neq0$).
+
+**Ojo con:** el signo de la componente $\vec j$ en el determinante (es $-(3\cdot1-4\cdot8)=+29$) y usar $Q$ (no $P_1$ dos veces) para tener dos puntos y una dirección.
+
+</Solucion>
+<Comprobacion>
+
+La normal es perpendicular a las dos direcciones: $\vec n\cdot(3;6;4)=114+174-288=0$ ✓ y $\vec n\cdot(8;-8;1)=304-232-72=0$ ✓. Corte con el eje $y$: de $29y+145=0$ sale $y=-5$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-sf-quim#3" numero={3} fuente="finales/practicos/Finales Practicos .pdf" pagina={7} unidad="U10" tema="Hipérbola por ecuación general" criterios={{ bien: "Completar cuadrados, (x+2)²/(9/4)-(y+1)²/(9/2)=1, eje focal horizontal, a=3/2, b=3√2/2, c=3√3/2, e=√3, valores notables, asíntotas y gráfico completo.", medias: "Canónica correcta pero se confunden a y b, o falta algún elemento en el gráfico.", mal: "Dejar la ecuación sin normalizar (sin el =1) o no reconocer la hipérbola." }}>
+<Enunciado fuente="finales/practicos/Finales Practicos .pdf" pagina="7">
+Dada la siguiente ecuación de una cónica: $4x^2+16x-2y^2-4y+5=0$, hallar todos los valores notables y graficar.
+</Enunciado>
+<Pista>
+
+Los coeficientes de $x^2$ e $y^2$ tienen signos opuestos: ¿qué cónica es? ¿Cómo se decide cuál variable da el eje focal?
+
+</Pista>
+<Pista>
+
+Hipérbola. Completá cuadrados en $x$ y en $y$, llevá el término independiente al otro lado y dividilo para que quede $=1$. El término positivo indica el eje focal: $a^2$ es el denominador del positivo y $c^2=a^2+b^2$.
+
+</Pista>
+<Pista>
+
+$4(x^2+4x)-2(y^2+2y)=-5$. Completás con $4\cdot4=16$ y $-2\cdot1=-2$: $4(x+2)^2-2(y+1)^2=9$. Dividí por $9$.
+
+</Pista>
+<Paso>
+
+**Qué:** completar cuadrados.
+
+$$4(x^2+4x)-2(y^2+2y)=-5$$
+$$4(x^2+4x+4)-2(y^2+2y+1)=-5+16-2$$
+$$4(x+2)^2-2(y+1)^2=9$$
+
+</Paso>
+<Paso>
+
+**Qué:** canónica. **Por qué:** signos opuestos ⇒ hipérbola; el término positivo es el de $x$ ⇒ eje focal horizontal ($y=-1$).
+
+$$\frac{(x+2)^2}{9/4}-\frac{(y+1)^2}{9/2}=1$$
+
+Centro $C(-2;-1)$, $a^2=\tfrac94$, $b^2=\tfrac92$.
+
+</Paso>
+<Paso>
+
+**Qué:** valores notables.
+
+$$a=\frac32,\quad b=\frac{3\sqrt2}{2},\quad c=\sqrt{a^2+b^2}=\sqrt{\tfrac{27}{4}}=\frac{3\sqrt3}{2},\quad e=\frac ca=\sqrt3$$
+
+| Elemento | Coordenadas |
+|---|---|
+| Centro $C$ | $(-2;-1)$ |
+| Vértices $V,V'$ | $(-\tfrac12;-1)$, $(-\tfrac72;-1)$ |
+| Extremos del eje conjugado $A,A'$ | $(-2;-1\pm\tfrac{3\sqrt2}{2})$ (no están en la curva) |
+| Focos $F,F'$ | $(-2\pm\tfrac{3\sqrt3}{2};-1)$ |
+| Lado recto $LL'=2b^2/a$ | $6$ (a $b^2/a=3$ de $l$ a cada lado) |
+| Asíntotas | $y+1=\pm\dfrac ba(x+2)=\pm\sqrt2\,(x+2)$ |
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$\frac{(x+2)^2}{9/4}-\frac{(y+1)^2}{9/2}=1$$
+
+Hipérbola de eje focal horizontal, $C(-2;-1)$, $a=\tfrac32$, $b=\tfrac{3\sqrt2}{2}$, $c=\tfrac{3\sqrt3}{2}$, $e=\sqrt3$, $V(-\tfrac12;-1)$, $V'(-\tfrac72;-1)$, $LL'=6$, asíntotas $y+1=\pm\sqrt2(x+2)$.
+
+<figure>
+<img src={`${import.meta.env.BASE_URL}figuras/final-sf-quim/ej3-hiperbola.svg`} alt="Hipérbola de eje focal horizontal y=-1 con centro (-2;-1), vértices V y V', extremos del eje conjugado A y A', focos F y F', lados rectos, rectángulo auxiliar y asíntotas; ejes graduados de a 1." style="max-width:100%;height:auto" />
+<figcaption>Gráfico del ejercicio 3: centro, vértices, extremos del eje conjugado (fuera de la curva), focos, lados rectos, rectángulo auxiliar y asíntotas.</figcaption>
+</figure>
+
+**Ojo con:** el signo al compensar: $-2(y^2+2y+1)$ resta $2$ del segundo miembro, no lo suma.
+
+</Solucion>
+<Comprobacion>
+
+$V(-\tfrac12;-1)$ en la original: $4\cdot\tfrac14+16\cdot(-\tfrac12)-2\cdot1-4\cdot(-1)+5=1-8-2+4+5=0$ ✓. Extremo del lado recto con $x=-2+\tfrac{3\sqrt3}{2}$ e $y+1=3$: $\dfrac{27/4}{9/4}-\dfrac{9}{9/2}=3-2=1$ ✓.
+
+</Comprobacion>
+</Ejercicio>

@@ -1,0 +1,90 @@
+---
+titulo: "U9 · Recta y plano"
+unidad: "U9"
+orden: 2
+resumen: "Todas las ecuaciones, posiciones relativas, ángulos, distancias y haces."
+---
+import Fuente from '../../components/MacheteFuente.astro';
+import Fig from '../../components/PreguntaFigura.astro';
+
+## Ecuaciones de la recta
+
+$P_1(x_1;y_1;z_1)$ conocido, $\bar a=(a_1;a_2;a_3)$ director, $\lambda\in\mathbb R$.
+
+| Forma | Ecuación | Fuente |
+|---|---|---|
+| Vectorial | $\overrightarrow{OP}=\overrightarrow{OP_1}+\lambda\bar a$ | <Fuente f="U9 p.3-4" /> |
+| Paramétrica | $x=x_1+\lambda a_1;\ y=y_1+\lambda a_2;\ z=z_1+\lambda a_3$ | <Fuente f="U9 p.5" /> |
+| Simétrica | $\frac{x-x_1}{a_1}=\frac{y-y_1}{a_2}=\frac{z-z_1}{a_3}$ | <Fuente f="U9 p.5" /> |
+| Punto-pendiente (R2) | $y-y_1=m(x-x_1)$, $m=\frac{a_2}{a_1}$ | <Fuente f="U9 p.5" /> |
+| Explícita (R2) | $y=mx+b$ | <Fuente f="U9 p.6" /> |
+| General (R2) | $Ax+By+C=0$, $\bar n=(A;B)$ | <Fuente f="U9 p.6" /> |
+| Por 2 puntos (R2) | $y-y_1=\frac{y_2-y_1}{x_2-x_1}(x-x_1)$ | <Fuente f="U9 p.6" /> |
+| Segmentaria (R2) | $\frac xa+\frac yb=1$ | <Fuente f="U9 p.6" /> |
+| Normal (R2) | $x\cos w+y\,\mathrm{sen}\,w-p=0$ | <Fuente f="U9 p.14-15" /> |
+| Por punto y normal (R2) | $A(x-x_1)+B(y-y_1)=0$ | <Fuente f="U9 p.14" /> |
+| En R3 por 2 planos | $\begin{cases}\pi_1\\\pi_2\end{cases}$, director $\bar n_1\times\bar n_2$ | <Fuente f="Ap p.200-201" /> |
+
+## Ecuaciones del plano
+
+| Forma | Ecuación | Fuente |
+|---|---|---|
+| Punto y normal | $\bar n\cdot\overrightarrow{P_1P}=0\Rightarrow A(x-x_1)+B(y-y_1)+C(z-z_1)=0$ | <Fuente f="U9 p.24" /> |
+| General | $Ax+By+Cz+D=0$, $\bar n=(A;B;C)$ | <Fuente f="U9 p.25" /> |
+| Vectorial paramétrica | $\overrightarrow{OP}=\overrightarrow{OP_1}+\alpha\bar v+\beta\bar u$ | <Fuente f="U9 p.27-28" /> |
+| Segmentaria | $\frac xa+\frac yb+\frac zc=1$; $a=-\frac DA$, $b=-\frac DB$, $c=-\frac DC$ | <Fuente f="U9 p.29" /> |
+| Por 3 puntos | $\overrightarrow{P_1P}\cdot(\overrightarrow{P_1P_2}\times\overrightarrow{P_1P_3})=0$ (det $3\times3$ $=0$) | <Fuente f="U9 p.35-36" /> |
+| Normal (Hesse) | $x\cos\alpha+y\cos\beta+z\cos\gamma-p=0$ | <Fuente f="U9 p.41" /> |
+
+## Me dan → me piden → hago
+
+| Me dan | Me piden | Hago |
+|---|---|---|
+| 2 puntos (R3) | recta | $\bar a=\overrightarrow{P_1P_2}$, vectorial por $P_1$ <Fuente f="Ap p.186" /> |
+| 2 planos $\pi_1,\pi_2$ | recta intersección | $\bar a=\bar n_1\times\bar n_2$; un punto: resolver el sistema dando un valor a una variable <Fuente f="Ap p.219-220" /> |
+| punto y recta normal / dos puntos $R,Q$ | plano por $T$ perpendicular a $RQ$ | $\bar n=\overrightarrow{RQ}$ y punto-normal <Fuente f="U9 p.26" /> |
+| 3 puntos | plano | $\bar n=\overrightarrow{P_1P_2}\times\overrightarrow{P_1P_3}$, punto-normal con $P_1$ <Fuente f="U9 p.37-38" /> |
+| punto y 2 directores | plano | $\bar n=\bar u\times\bar v$ <Fuente f="U9 p.27" /> |
+| plano $\pi$ | cortes con los ejes | $y=z=0\Rightarrow x=-\frac DA$, etc. <Fuente f="U9 p.29" /> |
+| dos rectas | ¿paralelas, concurrentes o alabeadas? | ver $\bar a_1\parallel\bar a_2$; si no, resolver $P_1+\lambda\bar a_1=P_2+\rho\bar a_2$; sin solución $\Rightarrow$ alabeadas <Fuente f="U9 p.20; Ap p.200-202" /> |
+| dos rectas concurrentes | punto de intersección | igualar componentes, hallar $\lambda,\rho$ y reemplazar |
+| dos planos | ¿paralelos? ¿perpendiculares? ¿ángulo? | normales: proporcionales / $\bar n_1\cdot\bar n_2=0$ / $\cos\theta=\frac{\lvert\bar n_1\cdot\bar n_2\rvert}{\lvert\bar n_1\rvert\lvert\bar n_2\rvert}$ <Fuente f="U9 p.30" /> |
+| recta y plano | ¿paralela? ¿perpendicular? | $Aa+Bb+Cc=0$ paralela; $\frac Aa=\frac Bb=\frac Cc$ perpendicular <Fuente f="U9 p.46" /> |
+| recta y plano | ángulo | $\mathrm{sen}\,\beta=\frac{\lvert\bar n\cdot\bar r\rvert}{\lvert\bar n\rvert\lvert\bar r\rvert}$ <Fuente f="U9 p.45" /> |
+| dos rectas | ángulo | $\cos\alpha=\frac{\lvert\bar a_1\cdot\bar a_2\rvert}{\lvert\bar a_1\rvert\lvert\bar a_2\rvert}$ (o $\operatorname{tg}\alpha=\left\lvert\frac{m_2-m_1}{1+m_1m_2}\right\rvert$ en R2) <Fuente f="U9 p.8-9" /> |
+
+## Distancias
+
+| Entre | Fórmula | Fuente |
+|---|---|---|
+| Punto y recta en R2 | $d=\dfrac{\lvert Ax_0+By_0+C\rvert}{\sqrt{A^2+B^2}}$ | <Fuente f="U9 p.17-19" /> |
+| Punto y recta en R3 (o rectas paralelas) | $d=\dfrac{\lvert\overrightarrow{P_1P_0}\times\bar a\rvert}{\lvert\bar a\rvert}$ | <Fuente f="U9 p.21" /> |
+| Rectas alabeadas | $d=\dfrac{\lvert\overrightarrow{P_1P_2}\cdot(\bar a_1\times\bar a_2)\rvert}{\lvert\bar a_1\times\bar a_2\rvert}$ | <Fuente f="U9 p.22" /> |
+| Punto y plano | $d=\dfrac{\lvert Ax_0+By_0+Cz_0+D\rvert}{\sqrt{A^2+B^2+C^2}}$ | <Fuente f="U9 p.43" /> |
+| Planos paralelos | tomar un punto de uno y aplicar la fórmula al otro | <Fuente f="U9 p.44" /> |
+
+## Haces
+
+- Rectas paralelas: $y=mx+k$. Concurrentes en $P_1$: $y-y_1=k(x-x_1)$. Por la intersección de $r_1,r_2$: $r_1+k\,r_2=0$ <Fuente f="U9 p.12-13" />.
+- Planos paralelos: $Ax+By+Cz+k=0$. Por un punto: $k_1(x-x_0)+k_2(y-y_0)+k_3(z-z_0)=0$. Por la recta $\pi_1\cap\pi_2$: $\pi_1+k\,\pi_2=0$ <Fuente f="U9 p.39-40" />.
+- Para fijar $k$: imponer una condición extra (pasar por un punto, ser perpendicular a un plano, distancia dada).
+
+## Plano según qué falta en $Ax+By+Cz+D=0$
+
+Falta una variable: paralelo al eje de esa variable. Faltan dos: paralelo al plano coordenado de las que faltan (y perpendicular al eje de la que está). Falta $D$: pasa por el origen; si además falta una variable, contiene a ese eje <Fuente f="U9 p.31-34" />.
+
+## Errores frecuentes
+
+- Usar $\bar a$ como vector director y como normal: en la recta el director es **paralelo**; en el plano la normal es **perpendicular**. En R2, $(A;B)$ de la general es la **normal**.
+- Ángulo recta-plano: va con **seno** (el coseno da el ángulo con la normal).
+- Directores de la recta intersección de dos planos: $\bar n_1\times\bar n_2$ (no la suma).
+- Alabeadas: antes de decir "se cortan" comprobar que existe solución común a las **tres** ecuaciones.
+- Distancia punto-plano: signo de $D$; el valor absoluto va en el numerador.
+- En las ecuaciones simétricas con una componente $0$ no se puede dividir: se escribe $x=x_1$.
+- Paralelismo de planos: **todas** las razones iguales; coincidentes si también $\frac{D_1}{D_2}$.
+
+## Qué exige la cátedra en el gráfico
+
+Ejes coordenados rotulados; el/los **puntos** ($P_1$, $P$ genérico); el **vector director** $\bar a$ (recta) o los directores $\bar u,\bar v$ y/o la **normal** $\bar n$ (plano) saliendo en la dirección correcta; para ángulos, el arco entre los vectores involucrados; para distancias, el segmento perpendicular marcado como $d$.
+
+<Fig src="plano-normal" alt="Plano con punto P1, vector normal n y vector P1P" />

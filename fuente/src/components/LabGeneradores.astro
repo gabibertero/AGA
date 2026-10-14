@@ -1,0 +1,57 @@
+---
+// Generadores de ejercicios al azar (U8, U9, U10). Lógica en scripts/lab/.
+const unidades = [['U8', 'U8 · Vectores', 'U8'], ['U9r', 'U9 · Rectas', 'U9'], ['U9p', 'U9 · Planos', 'U9'], ['U10', 'U10 · Cónicas', 'U10']];
+---
+<section class="lab-gen" aria-labelledby="h-gen" data-lab-gen hidden>
+  <h2 id="h-gen">Generador de ejercicios</h2>
+  <div class="lab-tabs" role="group" aria-label="Unidad">
+    {unidades.map(([id, t, u], i) => <button type="button" data-u={id} data-unidad={u} aria-pressed={String(i === 0)}>{t}</button>)}
+  </div>
+  <div class="lab-campo lab-sel">
+    <label for="lab-tipo">Tipo de ejercicio</label>
+    <select id="lab-tipo" data-tipo></select>
+  </div>
+  <article class="lab-ej" data-ej>
+    <p class="eyebrow" data-titulo></p>
+    <div class="lab-enun" data-enunciado></div>
+    <form data-form novalidate>
+      <div class="lab-preguntas" data-preguntas></div>
+      <div class="lab-acc">
+        <button type="submit" class="btn-primario">Verificar</button>
+        <button type="button" data-ver aria-expanded="false" aria-controls="lab-sol">Ver solución</button>
+        <button type="button" data-otro>Otro</button>
+      </div>
+    </form>
+    <p class="lab-fb" role="status" data-feedback></p>
+    <div class="lab-sol" id="lab-sol" data-solucion hidden></div>
+  </article>
+</section>
+
+<script>
+  import { iniciarGeneradores } from '../scripts/lab/ui.js';
+  iniciarGeneradores(document.querySelector('[data-lab-gen]'));
+</script>
+
+<style>
+  .lab-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+  .lab-tabs button { border-color: var(--borde-fuerte); }
+  .lab-tabs button[aria-pressed='true'] { background: color-mix(in srgb, var(--uc) 14%, var(--sup)); border-color: var(--uc); color: var(--uc); }
+  .lab-gen :global(.lab-campo) { display: flex; flex-direction: column; gap: 4px; }
+  .lab-gen :global(.lab-campo label) { font-weight: 600; font-size: .92rem; }
+  .lab-sel { max-width: 28rem; margin-bottom: 14px; }
+  .lab-gen :global(select), .lab-gen :global(input[type='text']) { font: inherit; padding: 8px 12px; min-height: 44px; border: 1px solid var(--borde-fuerte); border-radius: var(--r-s); background: var(--sup); color: var(--texto); max-width: 100%; }
+  .lab-ej { background: var(--sup); border: 1px solid var(--borde); border-left: 5px solid var(--uc, var(--acento)); border-radius: var(--r); box-shadow: var(--sombra); padding: 18px 20px; }
+  .lab-ej .eyebrow { color: var(--uc, var(--suave)); }
+  .lab-enun { font-size: 1.1rem; margin: 6px 0 14px; overflow-x: auto; }
+  .lab-preguntas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
+  .lab-preguntas :global(.lab-campo) { flex: 1 1 11rem; max-width: 16rem; }
+  .lab-acc { display: flex; flex-wrap: wrap; gap: 8px; }
+  .lab-fb { min-height: 1.6em; margin: 10px 0 0; font-weight: 600; }
+  .lab-fb:global(.ok) { color: var(--elaborado); }
+  .lab-fb:global(.mal) { color: var(--pendiente); }
+  .lab-sol { margin-top: 12px; padding: 14px 18px; background: var(--elaborado-fondo); border: 1px solid var(--borde); border-radius: var(--r-s); overflow-x: auto; }
+  .lab-sol :global(ol) { margin: 0; padding-left: 1.3em; }
+  .lab-sol :global(li) { margin: 0 0 .7em; }
+  .lab-sol :global(.lab-res) { margin: .4em 0 0; padding-top: .6em; border-top: 1px solid var(--borde); }
+  @media (max-width: 720px) { .lab-ej { padding: 14px; } }
+</style>

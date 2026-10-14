@@ -1,0 +1,301 @@
+---
+id: "final-2022-02-16"
+titulo: "Final 2022-02-16 (U8–U10)"
+fecha: "16 de feb. de 2022"
+tipo: "final"
+fuente: "finales/practicos/Finales Practicos .pdf"
+paginasEnunciado: "5"
+orden: 106
+unidades: ["U8", "U9", "U10"]
+---
+
+import Ejercicio from '../../components/Ejercicio.astro';
+import Enunciado from '../../components/Enunciado.astro';
+import Solucion from '../../components/Solucion.astro';
+import Pista from '../../components/Pista.astro';
+import Paso from '../../components/Paso.astro';
+import Comprobacion from '../../components/Comprobacion.astro';
+
+Del final se incluyen solo los ejercicios de U8–U10; el resto queda fuera del alcance del 2º parcial.
+
+Fuente: foto de la hoja impresa con una mano en el borde, legible. No trae resolución ni puntajes. Junto al ej. 2 hay una fórmula manuscrita tenue que no se lee del todo (pendiente de revisión), y debajo hay otra hoja con datos personales: ni la una ni la otra se publican ni se usaron.
+
+<Ejercicio id="final-2022-02-16#1" numero={1} fuente="finales/practicos/Finales Practicos .pdf" pagina={5} unidad="U8" tema="Producto vectorial: despejar un vector" criterios={{ bien: "Condición u perpendicular a w verificada, sistema resuelto con 1 parámetro y solución descripta como recta de dirección u (x=(0;1;1)+s(1;-3;-2) o equivalente).", medias: "Familia de soluciones correcta pero sin verificar la condición u.w=0, o con un parámetro mal despejado.", mal: "Dar una sola solución como respuesta final, resolver como si fuera u.x=w, o concluir que no hay solución." }}>
+<Enunciado fuente="finales/practicos/Finales Practicos .pdf" pagina="5">
+Sean los vectores $\vec u=(-1;3;2)$ y $\vec w=(1;1;-1)$. Hallar todos los vectores "$\vec x$" que satisfagan $\vec u\times\vec x=\vec w$.
+</Enunciado>
+<Pista>
+
+El producto vectorial $\vec u\times\vec x$ ¿a qué vectores es siempre perpendicular? ¿Qué tiene que pasar entonces entre $\vec u$ y $\vec w$ para que el problema tenga solución? Si hay una, ¿cuántas hay?
+
+</Pista>
+<Pista>
+
+$\vec u\times\vec x\perp\vec u$, así que hace falta $\vec u\cdot\vec w=0$. Después escribí $\vec x=(x_1;x_2;x_3)$, desarrollá $\vec u\times\vec x$ con el determinante simbólico, igualá a $\vec w$ componente a componente y resolvé el sistema: si $\vec x_0$ es solución, $\vec x_0+t\vec u$ también (¿por qué?).
+
+</Pista>
+<Pista>
+
+$\vec u\times\vec x=(3x_3-2x_2;\ 2x_1+x_3;\ -x_2-3x_1)$. Igualá a $(1;1;-1)$, despejá $x_3$ y $x_2$ de las dos últimas en función de $x_1$ y fijate qué pasa al reemplazar en la primera.
+
+</Pista>
+<Paso>
+
+**Qué:** condición necesaria. **Por qué:** $\vec u\times\vec x$ es perpendicular a $\vec u$, así que si hay solución $\vec w\perp\vec u$.
+
+$$\vec u\cdot\vec w=(-1)\cdot1+3\cdot1+2\cdot(-1)=0$$
+
+Se cumple ⇒ el problema puede tener solución.
+
+</Paso>
+<Paso>
+
+**Qué:** desarrollar $\vec u\times\vec x$ con $\vec x=(x_1;x_2;x_3)$.
+
+$$\vec u\times\vec x=\begin{vmatrix}\vec i&\vec j&\vec k\\-1&3&2\\x_1&x_2&x_3\end{vmatrix}=(3x_3-2x_2)\vec i-(-x_3-2x_1)\vec j+(-x_2-3x_1)\vec k$$
+$$=(3x_3-2x_2;\ 2x_1+x_3;\ -x_2-3x_1)$$
+
+</Paso>
+<Paso>
+
+**Qué:** igualar a $\vec w=(1;1;-1)$.
+
+$$3x_3-2x_2=1\qquad 2x_1+x_3=1\qquad -x_2-3x_1=-1$$
+
+</Paso>
+<Paso>
+
+**Qué:** resolver el sistema. De la 2.ª: $x_3=1-2x_1$. De la 3.ª: $x_2=1-3x_1$. Reemplazo en la 1.ª:
+
+$$3(1-2x_1)-2(1-3x_1)=1$$
+$$3-6x_1-2+6x_1=1$$
+$$1=1$$
+
+La 1.ª ecuación es consecuencia de las otras dos (dependen entre sí, como era de esperar por $\vec u\cdot\vec w=0$) ⇒ el sistema es compatible **indeterminado** con un parámetro: $x_1=s$.
+
+$$\vec x=(s;\ 1-3s;\ 1-2s)=(0;1;1)+s(1;-3;-2),\qquad s\in\mathbb R$$
+
+</Paso>
+<Paso>
+
+**Qué:** interpretar. **Por qué:** $(1;-3;-2)=-\vec u$, así que las soluciones son una **recta** de dirección $\vec u$: a cualquier solución se le puede sumar un múltiplo de $\vec u$ porque $\vec u\times\vec u=\vec 0$. La solución de menor módulo es la perpendicular a $\vec u$, $\vec x_0=\tfrac1{14}(5;-1;4)$, y queda
+
+$$\vec x=\tfrac1{14}(5;-1;4)+t(-1;3;2),\qquad t\in\mathbb R$$
+
+(con $t=\tfrac5{14}-s$ es la misma familia).
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+Hay infinitas soluciones, una recta de dirección $\vec u$:
+
+$$\vec x=(0;1;1)+s(1;-3;-2)\ \ \Longleftrightarrow\ \ \vec x=\tfrac1{14}(5;-1;4)+t(-1;3;2),\qquad s,t\in\mathbb R$$
+
+**Ojo con:** dar una sola solución (por ejemplo $(0;1;1)$): el enunciado pide **todos** los vectores.
+
+**Errores comunes**
+- Resolver como si fuera $\vec u\cdot\vec x=\vec w$ o "dividir" por $\vec u$.
+- Signo mal en el cofactor de $\vec j$.
+- No ver que una ecuación del sistema sobra y buscar una solución única.
+
+</Solucion>
+<Comprobacion>
+
+$\vec x=(0;1;1)$: $\vec u\times\vec x=(3\cdot1-2\cdot1;\ 2\cdot0+1;\ -1-0)=(1;1;-1)=\vec w$ ✓.
+
+Otro miembro de la familia, $s=2$: $\vec x=(2;-5;-3)$: $\vec u\times\vec x=(3\cdot(-3)-2\cdot(-5);\ 2\cdot2+(-3);\ -(-5)-3\cdot2)=(1;1;-1)$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-2022-02-16#2" numero={2} fuente="finales/practicos/Finales Practicos .pdf" pagina={5} unidad="U9" tema="Plano que contiene dos rectas paralelas" criterios={{ bien: "Reconocer que las rectas son paralelas y distintas, normal por producto de un director con P1P2, plano x-y-z=0 y ecuación vectorial con dos vectores no paralelos.", medias: "Plano correcto pero la ecuación vectorial usa los dos directores (que son paralelos y no generan el plano), o sin verificar que las rectas son distintas.", mal: "Calcular la normal como d1 x d2 (da el vector nulo), o plano que no contiene a las dos rectas." }}>
+<Enunciado fuente="finales/practicos/Finales Practicos .pdf" pagina="5">
+Encontrar la ecuación general y vectorial del plano que contiene a las siguientes rectas:
+
+$$(x;y;z)=(0;-3;3)+\alpha(4;6;-2)\qquad\qquad\frac{x-1}{2}=\frac{y+2}{3}=\frac{z-3}{-1}$$
+</Enunciado>
+<Pista>
+
+Mirá los vectores directores de las dos rectas: ¿qué relación tienen? ¿Qué pasa si hacés el producto vectorial de los dos directores? ¿Qué otro vector del plano podés construir con un punto de cada recta?
+
+</Pista>
+<Pista>
+
+Los directores son proporcionales ⇒ rectas paralelas (o coincidentes: se descarta mirando si un punto de una está en la otra). Si son distintas definen un único plano. Necesitás dos vectores **no** paralelos del plano: un director y el vector que une un punto de una recta con un punto de la otra.
+
+</Pista>
+<Pista>
+
+$P_1(0;-3;3)$, $\vec d_1=(4;6;-2)$; $P_2(1;-2;3)$, $\vec d_2=(2;3;-1)$. Verificá $\vec d_1=2\vec d_2$ y que $\overrightarrow{P_1P_2}=(1;1;0)$ no es paralelo a $\vec d_2$. Normal: $\vec n=\vec d_2\times\overrightarrow{P_1P_2}$.
+
+</Pista>
+<Paso>
+
+**Qué:** datos de cada recta. La primera está en forma vectorial; la segunda en simétrica (numeradores = punto, denominadores = director).
+
+$$r_1:\ P_1(0;-3;3),\ \vec d_1=(4;6;-2)\qquad r_2:\ P_2(1;-2;3),\ \vec d_2=(2;3;-1)$$
+
+</Paso>
+<Paso>
+
+**Qué:** posición relativa. $\vec d_1=2\vec d_2$ ⇒ las rectas son **paralelas** (o coincidentes). Para distinguir: $\overrightarrow{P_1P_2}=(1;1;0)$; si $P_2\in r_1$ sería paralelo a $\vec d_1$, pero $\tfrac12\neq\tfrac13$ ⇒ $P_2\notin r_1$. Son paralelas **distintas** ⇒ están en un único plano.
+
+**Ojo:** $\vec d_1\times\vec d_2=\vec 0$, no sirve como normal.
+
+</Paso>
+<Paso>
+
+**Qué:** normal. **Por qué:** el plano contiene a $\vec d_2$ y a $\overrightarrow{P_1P_2}$, dos vectores no paralelos.
+
+$$\vec n=\vec d_2\times\overrightarrow{P_1P_2}=\begin{vmatrix}\vec i&\vec j&\vec k\\2&3&-1\\1&1&0\end{vmatrix}=(3\cdot0-(-1)\cdot1)\vec i-(2\cdot0-(-1)\cdot1)\vec j+(2\cdot1-3\cdot1)\vec k$$
+$$\vec n=(1;-1;-1)$$
+
+</Paso>
+<Paso>
+
+**Qué:** ecuación general, con $\vec n=(1;-1;-1)$ y $P_1(0;-3;3)$.
+
+$$1(x-0)-1(y+3)-1(z-3)=0$$
+$$x-y-3-z+3=0$$
+$$x-y-z=0$$
+
+</Paso>
+<Paso>
+
+**Qué:** ecuación vectorial. Punto $P_1$ y dos vectores no paralelos del plano ($\vec d_2$ y $\overrightarrow{P_1P_2}$):
+
+$$(x;y;z)=(0;-3;3)+\alpha(2;3;-1)+\beta(1;1;0),\qquad\alpha,\beta\in\mathbb R$$
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$\text{general: }x-y-z=0\qquad\text{vectorial: }(x;y;z)=(0;-3;3)+\alpha(2;3;-1)+\beta(1;1;0)$$
+
+(Es el mismo plano que contiene a las rectas secantes del final del 2019-07-02: sus dos directores $(1;-1;2)$ y $(2;3;-1)$ también son perpendiculares a $(1;-1;-1)$.)
+
+**Ojo con:** usar $\vec d_1\times\vec d_2$ (es nulo) o escribir la vectorial con $\vec d_1$ y $\vec d_2$ (son paralelos y solo generan una recta).
+
+**Errores comunes**
+- No chequear si las rectas coinciden.
+- Usar $\overrightarrow{P_1P_2}$ como normal.
+
+</Solucion>
+<Comprobacion>
+
+Los dos puntos y los dos directores cumplen $x-y-z=0$: $P_1$: $0+3-3=0$ ✓; $P_2$: $1+2-3=0$ ✓; $\vec d_1$: $4-6+2=0$ ✓; $\vec d_2$: $2-3+1=0$ ✓.
+
+$\overrightarrow{P_1P_2}$ también: $1-1-0=0$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-2022-02-16#4" numero={4} fuente="finales/practicos/Finales Practicos .pdf" pagina={5} unidad="U10" tema="Elipse por ecuación general" criterios={{ bien: "Ordinaria (x+4)^2/9+(y-1)^2/4=1 con 36>0 justificado, C, a, b, c, V, V', A, A', F, F', e y LL' con extremos correctos, y gráfico completo con escala graduada.", medias: "Ordinaria y elementos correctos pero el gráfico omite rótulos o cotas menores. Ojo: en el parcial real un gráfico incompleto anula el ejercicio; acá vale A medias solo como estimación de estudio.", mal: "Completar cuadrados sin multiplicar por 4 y 9, eje mayor vertical, c con a^2+b^2, o gráfico faltante o incoherente." }}>
+<Enunciado fuente="finales/practicos/Finales Practicos .pdf" pagina="5">
+Dada la ecuación $4x^2+9y^2+32x-18y+37=0$, determinar de qué cónica se trata, hallar los elementos notables y graficar.
+</Enunciado>
+<Pista>
+
+¿Qué signos y valores tienen los coeficientes de $x^2$ e $y^2$? ¿Hay término en $xy$? ¿Qué falta hacer para poder leer centro y semiejes?
+
+</Pista>
+<Pista>
+
+Coeficientes de igual signo y distintos, sin $xy$ ⇒ elipse (si da algo real) con ejes paralelos a los coordenados. Agrupá por variable, completá cuadrados multiplicando por el coeficiente de afuera lo que sumás, y dividí por el 2.º miembro. Notación de cátedra: $V,V'$, $A,A'$, $F,F'$, $LL'$.
+
+</Pista>
+<Pista>
+
+$4(x^2+8x+\square)+9(y^2-2y+\square)=-37+4\cdot\square+9\cdot\square$. Cada $\square$ es el cuadrado de la mitad del coeficiente lineal. Te queda $4(x+\cdot)^2+9(y-\cdot)^2=\cdot$.
+
+</Pista>
+<Paso>
+
+**Qué:** reconocer el tipo. **Por qué:** coeficientes de $x^2$ y $y^2$ del mismo signo y distintos ($4$ y $9$) y sin término $xy$ ⇒ elipse de ejes paralelos a los coordenados (a confirmar al completar cuadrados).
+
+</Paso>
+<Paso>
+
+**Qué:** agrupar por variable.
+
+$$4(x^2+8x)+9(y^2-2y)=-37$$
+
+</Paso>
+<Paso>
+
+**Qué:** completar cuadrados. **Por qué:** lo que se suma adentro se multiplica por el coeficiente de afuera ($4\cdot16$ y $9\cdot1$) y se suma también al otro miembro.
+
+$$4(x^2+8x+16)+9(y^2-2y+1)=-37+64+9$$
+$$4(x+4)^2+9(y-1)^2=36$$
+
+$36>0$ ⇒ elipse real.
+
+</Paso>
+<Paso>
+
+**Qué:** dividir por 36.
+
+$$\frac{(x+4)^2}{9}+\frac{(y-1)^2}{4}=1$$
+
+</Paso>
+<Paso>
+
+**Qué:** leer parámetros. El mayor denominador (9) está bajo $x$ ⇒ eje mayor **horizontal**.
+
+$$a^2=9\Rightarrow a=3,\qquad b^2=4\Rightarrow b=2,\qquad c^2=a^2-b^2=5\Rightarrow c=\sqrt5$$
+
+</Paso>
+<Paso>
+
+**Qué:** elementos, desde el centro $C(-4;1)$.
+
+| Elemento | Cálculo | Valor |
+|---|---|---|
+| Centro | $(h;k)$ | $C(-4;1)$ |
+| Vértices (extremos del eje mayor) | $(h\pm a;k)$ | $V(-1;1)$, $V'(-7;1)$ |
+| Extremos del eje menor | $(h;k\pm b)$ | $A(-4;3)$, $A'(-4;-1)$ |
+| Focos | $(h\pm c;k)$ | $F(-4+\sqrt5;1)$, $F'(-4-\sqrt5;1)$ |
+| Eje mayor, eje menor, distancia focal | $2a$, $2b$, $2c$ | $6$, $4$, $2\sqrt5$ |
+| Excentricidad | $e=c/a$ | $\dfrac{\sqrt5}{3}\approx0{,}75$ |
+| Lado recto | $LL'=2b^2/a$ | $\dfrac83$ |
+| Extremos de los lados rectos | $x=h\pm c$, $y=k\pm b^2/a$ | $L(-4+\sqrt5;\tfrac73)$, $L'(-4+\sqrt5;-\tfrac13)$, $M(-4-\sqrt5;\tfrac73)$, $M'(-4-\sqrt5;-\tfrac13)$ |
+| Eje focal y eje menor | rectas por $C$ | $y=1$ y $x=-4$ |
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$\frac{(x+4)^2}{9}+\frac{(y-1)^2}{4}=1$$
+
+Elipse horizontal: $C(-4;1)$, $a=3$, $b=2$, $c=\sqrt5$, $V,V'(-1;1),(-7;1)$, $A,A'(-4;3),(-4;-1)$, $F,F'(-4\pm\sqrt5;1)$, $e=\tfrac{\sqrt5}{3}$, $LL'=\tfrac83$ con extremos $L(-4+\sqrt5;\tfrac73)$, $L'(-4+\sqrt5;-\tfrac13)$, $M(-4-\sqrt5;\tfrac73)$, $M'(-4-\sqrt5;-\tfrac13)$.
+
+<figure>
+<img src={`${import.meta.env.BASE_URL}figuras/final-2022-02-16/ej4-elipse.svg`} alt="Elipse con centro (-4;1), vértices (-1;1) y (-7;1), extremos del eje menor (-4;3) y (-4;-1), focos (-4±raíz de 5;1), extremos de los lados rectos (-4±raíz de 5;7/3) y (-4±raíz de 5;-1/3), ejes de simetría y=1 y x=-4, cotas 2a=6, 2b=4, 2c=2 raíz de 5; ejes graduados de a 1 y misma escala en x e y." style="max-width:100%;height:auto" />
+<figcaption>Gráfico del ejercicio 4: centro, vértices, extremos del eje menor, focos, lados rectos con sus extremos, ejes de simetría y cotas; ejes graduados de a 1 y misma escala en x e y.</figcaption>
+</figure>
+
+**Ojo con:** sumar $4$ y $1$ en vez de $4\cdot16$ y $9\cdot1$ al completar cuadrados, y con la escala del gráfico (misma en $x$ e $y$).
+
+**Errores comunes**
+- Dar los focos como $(\pm\sqrt5;0)$ sin trasladar al centro.
+- Calcular $c=\sqrt{a^2+b^2}$ (hipérbola).
+- Gráfico sin ejes cartesianos graduados o sin el lado recto.
+
+</Solucion>
+<Comprobacion>
+
+$V(-1;1)$ en la general: $4+9-32-18+37=0$ ✓. $A(-4;3)$: $64+81-128-54+37=0$ ✓.
+
+Definición: $d(A,F)=\sqrt{(\sqrt5)^2+2^2}=3=a$ y por simetría $d(A,F')=3$, así que $d_1+d_2=6=2a$ ✓.
+
+Lado recto: $L(-4+\sqrt5;\tfrac73)$ en la ordinaria: $\tfrac59+\tfrac{(4/3)^2}{4}=\tfrac59+\tfrac49=1$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+

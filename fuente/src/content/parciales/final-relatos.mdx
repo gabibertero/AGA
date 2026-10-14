@@ -1,0 +1,496 @@
+---
+id: "final-relatos"
+titulo: "Finales: relatos de alumnos (U9–U10)"
+tipo: "final"
+fuente: "finales/practicos/Finales Practicos .pdf"
+paginasEnunciado: "8-10"
+orden: 207
+unidades: ["U9", "U10"]
+---
+
+import Ejercicio from '../../components/Ejercicio.astro';
+import Enunciado from '../../components/Enunciado.astro';
+import Solucion from '../../components/Solucion.astro';
+import Pista from '../../components/Pista.astro';
+import Paso from '../../components/Paso.astro';
+import Comprobacion from '../../components/Comprobacion.astro';
+
+Estos "prácticos" son enunciados **recordados por alumnos** después de rendir (texto sin fecha ni puntajes ni resolución, en las págs. 8 a 10 del PDF y en el .docx de la misma carpeta). Cada ejercicio está rotulado como *enunciado reconstruido por alumnos, no oficial*: no son literales de la cátedra, pueden tener errores de memoria y alguno está incompleto. Los ejercicios de otras unidades (sistemas, transformaciones lineales, bases) quedan fuera del alcance del 2º parcial.
+
+Los relatos R-01 y R-02 comparten el ejercicio del plano por la intersección de dos planos y un vector $(1;3;-1)$ (probablemente es el mismo problema recordado por dos alumnos).
+
+<Ejercicio id="final-relatos#R-01.3" numero={'R-01.3'} fuente="finales/practicos/Finales Practicos .pdf" pagina={8} unidad="U9" tema="Plano por la recta de intersección de dos planos, paralelo a una recta" criterios={{ bien: "Haz de planos π1+λπ2, condición n·v=0 que da λ=2 y plano 5x+y+8z-14=0, con la aclaración de que π2 solo no sirve.", medias: "Planteo del haz correcto pero error de cuentas en λ o en el plano final.", mal: "Tomar el plano π1 o π2, o usar n1×n2 como normal del plano buscado." }}>
+<Enunciado fuente="finales/practicos/Finales Practicos .pdf" pagina="8">
+*(enunciado reconstruido por alumnos, no oficial)*
+
+Ecuacion del plano que pasa por la recta de intersección de los planos $\pi_1: x-y+2z+4=0$ $\pi_2: 2x+y+3z-9=0$ y además es paralelo a la recta con números directores $(1,3,-1)$
+</Enunciado>
+<Pista>
+
+Los planos que contienen a la recta $\pi_1\cap\pi_2$ forman una familia. ¿Cómo se escribe una combinación de $\pi_1$ y $\pi_2$ y cuántos datos más necesitás para elegir uno de la familia?
+
+</Pista>
+<Pista>
+
+Haz de planos: $\pi_1+\lambda\pi_2=0$. El normal de cada plano del haz depende de $\lambda$. Que sea paralelo a la recta de director $\vec v$ pide $\vec n(\lambda)\cdot\vec v=0$: una ecuación para $\lambda$.
+
+</Pista>
+<Pista>
+
+$(1+2\lambda)x+(-1+\lambda)y+(2+3\lambda)z+(4-9\lambda)=0$, con normal $(1+2\lambda;\,-1+\lambda;\,2+3\lambda)$. Multiplicalo escalarmente por $(1;3;-1)$ e igualá a $0$.
+
+</Pista>
+<Paso>
+
+**Qué:** haz de planos que contienen a $\pi_1\cap\pi_2$.
+
+$$(x-y+2z+4)+\lambda(2x+y+3z-9)=0$$
+$$(1+2\lambda)x+(-1+\lambda)y+(2+3\lambda)z+4-9\lambda=0$$
+
+</Paso>
+<Paso>
+
+**Qué:** condición de paralelismo con $\vec v=(1;3;-1)$: $\vec n\cdot\vec v=0$.
+
+$$(1+2\lambda)\cdot1+(-1+\lambda)\cdot3+(2+3\lambda)\cdot(-1)=0$$
+$$1+2\lambda-3+3\lambda-2-3\lambda=0$$
+$$-4+2\lambda=0\Rightarrow\lambda=2$$
+
+</Paso>
+<Paso>
+
+**Qué:** reemplazar $\lambda=2$.
+
+$$(x-y+2z+4)+2(2x+y+3z-9)=0$$
+$$5x+y+8z-14=0$$
+
+El plano $\pi_2$ (que el haz con $\lambda$ finito no incluye) tampoco sirve: $\vec n_2\cdot\vec v=2+3-3=2\neq0$.
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$5x+y+8z-14=0$$
+
+**Ojo con:** el enunciado reconstruido no aclara el punto de la recta de números directores $(1,3,-1)$: como solo importa su dirección, el plano buscado no depende de él.
+
+</Solucion>
+<Comprobacion>
+
+Normal $(5;1;8)$: $(5;1;8)\cdot(1;3;-1)=5+3-8=0$ ✓. Un punto de $\pi_1\cap\pi_2$ (con $y=0$: $x+2z=-4$ y $2x+3z=9$): $(30;0;-17)$; en el plano: $150+0-136-14=0$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-relatos#R-01.4" numero={'R-01.4'} fuente="finales/practicos/Finales Practicos .pdf" pagina={8} unidad="U10" tema="Circunferencia por tres puntos" criterios={{ bien: "Ecuación x²+y²+Dx+Ey+F=0 con el sistema resuelto (D=2, E=-4, F=-12), forma ordinaria (x+1)²+(y-2)²=17, centro (-1;2), radio √17 y gráfico con los tres puntos.", medias: "Planteo correcto pero un error de cuentas en D, E o F.", mal: "Usar una ecuación de elipse o no verificar que los tres puntos cumplen." }}>
+<Enunciado fuente="finales/practicos/Finales Practicos .pdf" pagina="8">
+*(enunciado reconstruido por alumnos, no oficial)*
+
+Hallar la ecuacion de la circunferencia que pasa por los puntos $P_1(0,6)$, $P_2(3,1)$ y $P_3(-2,6)$ Graficar
+</Enunciado>
+<Pista>
+
+¿Cuántos parámetros tiene la ecuación de una circunferencia? ¿Cuántos puntos hacen falta?
+
+</Pista>
+<Pista>
+
+Forma general $x^2+y^2+Dx+Ey+F=0$ (3 incógnitas): cada punto da una ecuación lineal en $D,E,F$. Con el sistema resuelto se completan cuadrados para leer centro y radio.
+
+</Pista>
+<Pista>
+
+Reemplazá $P_1$, $P_2$ y $P_3$. Restando las ecuaciones de $P_1$ y $P_3$ (misma $y$) sale $D$ enseguida.
+
+</Pista>
+<Paso>
+
+**Qué:** una ecuación por punto.
+
+$$P_1:\ 36+6E+F=0\qquad P_2:\ 10+3D+E+F=0\qquad P_3:\ 40-2D+6E+F=0$$
+
+</Paso>
+<Paso>
+
+**Qué:** resolver. **Por qué:** $P_1$ y $P_3$ tienen la misma $y$, y restando se van $E$ y $F$.
+
+$$(36+6E+F)-(40-2D+6E+F)=0$$
+$$-4+2D=0\Rightarrow D=2$$
+
+En $P_2$: $10+6+E+F=0\Rightarrow E+F=-16$. En $P_1$: $6E+F=-36$. Restando:
+
+$$5E=-20\Rightarrow E=-4,\qquad F=-16-E=-12$$
+
+</Paso>
+<Paso>
+
+**Qué:** ecuación y forma ordinaria.
+
+$$x^2+y^2+2x-4y-12=0$$
+$$(x+1)^2+(y-2)^2=12+1+4=17$$
+
+Centro $C(-1;2)$ y radio $r=\sqrt{17}$. Coherente: como $P_1$ y $P_3$ tienen $y=6$, el centro está en la mediatriz $x=\tfrac{0-2}2=-1$.
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$x^2+y^2+2x-4y-12=0\quad\Leftrightarrow\quad(x+1)^2+(y-2)^2=17$$
+
+Circunferencia de centro $C(-1;2)$ y radio $\sqrt{17}\approx4{,}12$.
+
+<figure>
+<img src={`${import.meta.env.BASE_URL}figuras/final-relatos/r01-ej4-circunferencia.svg`} alt="Circunferencia de centro (-1;2) y radio raíz de 17 que pasa por P1(0;6), P2(3;1) y P3(-2;6), con ejes graduados de a 1." style="max-width:100%;height:auto" />
+<figcaption>Gráfico: la circunferencia por los tres puntos, con centro y radio.</figcaption>
+</figure>
+
+**Ojo con:** completar cuadrados con el signo correcto: $+2x$ da $(x+1)^2$ y $-4y$ da $(y-2)^2$.
+
+</Solucion>
+<Comprobacion>
+
+Los tres puntos en $x^2+y^2+2x-4y-12=0$: $P_1$: $36-24-12=0$ ✓; $P_2$: $9+1+6-4-12=0$ ✓; $P_3$: $4+36-4-24-12=0$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-relatos#R-02.1" numero={'R-02.1'} fuente="finales/practicos/Finales Practicos .pdf" pagina={'8-9'} unidad="U10" tema="Haz de cónicas con centro en una recta (posiblemente fuera de programa)" criterios={{ bien: "Plantear la familia Ca+λCb=0, hallar el centro en función de λ, imponer que esté en la recta (λ=4) y reconocer que resulta una circunferencia imaginaria.", medias: "Plantea la familia y llega a λ=4 pero no analiza qué cónica resulta.", mal: "Suponer una cónica real común o ignorar la condición del centro." }}>
+<Enunciado fuente="finales/practicos/Finales Practicos .pdf" pagina="8-9">
+*(enunciado reconstruido por alumnos, no oficial)*
+
+Hallar la ec. general de la cónica que pasa por la interseccion de las cónicas:
+
+a. $(x-2)^2+(y-5)^2=0$
+
+b. $(x+3)^2+y^2=0$
+
+Y tiene el centro en la recta $r: 2x+y+3=0$
+</Enunciado>
+<Pista>
+
+Las dos "cónicas" dadas, ¿qué representan realmente (una circunferencia de radio $0$)? Una cónica "que pasa por la intersección de otras dos" ¿se puede escribir como combinación de ellas?
+
+</Pista>
+<Pista>
+
+Familia (haz) de cónicas por la intersección de $C_a=0$ y $C_b=0$: $C_a+\lambda C_b=0$. Para $\lambda\neq-1$ es una circunferencia: se calcula el centro en función de $\lambda$ y se impone que cumpla $2x+y+3=0$.
+
+</Pista>
+<Pista>
+
+$C_a+\lambda C_b=(1+\lambda)(x^2+y^2)+(-4+6\lambda)x-10y+(29+9\lambda)=0$. El centro es $\left(-\dfrac{-4+6\lambda}{2(1+\lambda)};\ \dfrac{10}{2(1+\lambda)}\right)$.
+
+</Pista>
+<Paso>
+
+**Qué:** la familia. $C_a=(x-2)^2+(y-5)^2$ y $C_b=(x+3)^2+y^2$.
+
+$$(x-2)^2+(y-5)^2+\lambda\left[(x+3)^2+y^2\right]=0$$
+$$(1+\lambda)x^2+(1+\lambda)y^2+(-4+6\lambda)x-10y+(29+9\lambda)=0$$
+
+</Paso>
+<Paso>
+
+**Qué:** centro (de $x^2+y^2+Dx+Ey+F$ es $(-D/2;-E/2)$ tras dividir por $1+\lambda$).
+
+$$x_c=\frac{2-3\lambda}{1+\lambda}\qquad y_c=\frac{5}{1+\lambda}$$
+
+</Paso>
+<Paso>
+
+**Qué:** condición $2x_c+y_c+3=0$.
+
+$$\frac{4-6\lambda}{1+\lambda}+\frac5{1+\lambda}+3=0$$
+$$4-6\lambda+5+3+3\lambda=0$$
+$$12-3\lambda=0\Rightarrow\lambda=4$$
+
+Centro: $(-2;1)$, que cumple $2(-2)+1+3=0$ ✓.
+
+</Paso>
+<Paso>
+
+**Qué:** reemplazar $\lambda=4$.
+
+$$5x^2+5y^2+20x-10y+65=0$$
+$$(x+2)^2+(y-1)^2=-8$$
+
+El segundo miembro es negativo: es una circunferencia **imaginaria** (sin puntos reales).
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+Con la lectura de "haz de cónicas": $5x^2+5y^2+20x-10y+65=0$, es decir $(x+2)^2+(y-1)^2=-8$, de centro $(-2;1)$ sobre $r$, pero sin puntos reales.
+
+**Pendiente de revisión.** (1) El tema de haz de cónicas posiblemente no está en el programa. (2) Las dos cónicas dadas son circunferencias de radio $0$, o sea los puntos $(2;5)$ y $(-3;0)$, que no tienen ningún punto real en común: la "intersección" solo tiene sentido en el haz. (3) Es probable que el alumno haya recordado mal algún dato (por ejemplo el $0$ del segundo miembro).
+
+</Solucion>
+<Comprobacion>
+
+La familia cumple $C_a+\lambda C_b$ con $\lambda=4$: coeficiente de $x^2$ igual a $5$ ✓, de $x$: $-4+24=20$ ✓, de $y$: $-10$ ✓, independiente: $29+36=65$ ✓. Centro: $x_c=\tfrac{2-12}{5}=-2$, $y_c=\tfrac55=1$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-relatos#R-02.2" numero={'R-02.2'} fuente="finales/practicos/Finales Practicos .pdf" pagina={9} unidad="U9" tema="Plano por la intersección de dos planos que contiene una recta (misma consigna que R-01.3)" criterios={{ bien: "Reconocer que sin un punto de r2 solo cabe leer \"paralelo\"; haz de planos, λ=2 y plano 5x+y+8z-14=0.", medias: "Haz bien planteado pero sin discutir la ambigüedad del enunciado.", mal: "Tomar la recta r2 como contenida y exigir que pase por un punto que no se conoce." }}>
+<Enunciado fuente="finales/practicos/Finales Practicos .pdf" pagina="9">
+*(enunciado reconstruido por alumnos, no oficial)*
+
+Hallar la ec general del plano que pasa por la interseccion de los planos $\pi_1: x-y+2z+4=0$ $\pi_2: 2x+y+3z-9=0$ Y también contiene a la recta r2 que tiene el vector $(1;3;-1)$
+</Enunciado>
+<Pista>
+
+De la recta $r_2$ solo se da un vector. ¿Alcanza para que el plano la "contenga"? ¿Qué se puede pedir en cambio?
+
+</Pista>
+<Pista>
+
+Con solo un vector no hay una recta determinada: lo único que se puede exigir es que el plano sea paralelo a esa dirección (como en R-01.3, con los mismos planos y el mismo vector). Entonces: haz $\pi_1+\lambda\pi_2$ y $\vec n(\lambda)\cdot(1;3;-1)=0$.
+
+</Pista>
+<Pista>
+
+$\vec n(\lambda)=(1+2\lambda;\,-1+\lambda;\,2+3\lambda)$. Sale una ecuación lineal en $\lambda$.
+
+</Pista>
+<Paso>
+
+**Qué:** haz y condición. $\vec n(\lambda)\cdot(1;3;-1)=(1+2\lambda)+3(-1+\lambda)-(2+3\lambda)=-4+2\lambda=0\Rightarrow\lambda=2$.
+
+</Paso>
+<Paso>
+
+**Qué:** plano. $(x-y+2z+4)+2(2x+y+3z-9)=5x+y+8z-14=0$.
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$5x+y+8z-14=0$$
+
+**Pendiente de revisión.** El relato dice "contiene a la recta $r_2$ que tiene el vector $(1;3;-1)$", pero sin un punto de $r_2$ no se puede pedir que esté contenida. Se leyó "paralelo" (igual que en R-01.3, que parece ser el mismo ejercicio recordado por otro alumno).
+
+</Solucion>
+<Comprobacion>
+
+Normal $(5;1;8)$ perpendicular a $(1;3;-1)$: $5+3-8=0$ ✓ y el plano contiene a $\pi_1\cap\pi_2$ (punto $(30;0;-17)$: $150-136-14=0$ ✓).
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-relatos#R-03.3" numero={'R-03.3'} fuente="finales/practicos/Finales Practicos .pdf" pagina={'9-10'} unidad="U9" tema="Plano por la intersección de dos planos (enunciado incompleto)" criterios={{ bien: "Reconocer que faltan datos y plantear el método: haz α·π1+β·π2=0 y una condición extra para fijar el plano.", medias: "Plantea el haz y dice qué dato falta.", mal: "Inventar un π1 o dar una ecuación sin justificar." }}>
+<Enunciado fuente="finales/practicos/Finales Practicos .pdf" pagina="9-10">
+*(enunciado reconstruido por alumnos, no oficial)*
+
+Dar la ecuación qué pasa por todos los puntos de la intersección de los planos pi1 (no me acuerdo) y pi2
+</Enunciado>
+<Solucion>
+
+**No se puede resolver:** el alumno no recuerda $\pi_1$ ni la condición adicional. Qué se haría: la ecuación de todos los planos que pasan por los puntos de $\pi_1\cap\pi_2$ es el haz $\alpha\pi_1+\beta\pi_2=0$; para quedarse con uno hace falta una condición extra (pasar por un punto, ser paralelo a una recta o a un plano, etc.), como en R-01.3. Ver ese ejercicio como modelo.
+
+**Pendiente de revisión:** falta $\pi_1$ y, probablemente, el enunciado completo.
+
+</Solucion>
+<Comprobacion>
+
+Sin datos no hay resultado que comprobar. En R-01.3 el mismo método da $5x+y+8z-14=0$, verificado.
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-relatos#R-03.4" numero={'R-03.4'} fuente="finales/practicos/Finales Practicos .pdf" pagina={10} unidad="U10" tema="Parábola: radio vector de un punto" criterios={{ bien: "Parábola y²=9x con 4p=9, p=9/4, foco (9/4;0), punto de ordenada 6 es (4;6), radio vector = distancia al foco = x+p = 25/4 y gráfico con todos los elementos.", medias: "Plantea la parábola y el foco pero se equivoca al evaluar el radio vector.", mal: "Confundir radio vector con la distancia al origen o a la directriz sin usar la definición." }}>
+<Enunciado fuente="finales/practicos/Finales Practicos .pdf" pagina="10">
+*(enunciado reconstruido por alumnos, no oficial)*
+
+dar la longitud del radio vector de la parábola $y^2-9x=0$ con ordenada al origen 6. Graficar
+</Enunciado>
+<Pista>
+
+¿Qué es el "radio vector" de un punto de una parábola? ¿Qué punto de la parábola tiene "ordenada 6"?
+
+</Pista>
+<Pista>
+
+Radio vector de un punto $P$ de la parábola: segmento (o distancia) desde el foco $F$ hasta $P$. Se halla $p$ de $y^2=4px$, el foco $F(p;0)$ y el punto con $y=6$.
+
+</Pista>
+<Pista>
+
+$y^2=9x\Rightarrow4p=9$. Reemplazá $y=6$ para hallar $x$ y calculá $d(P,F)$ (o usá la definición: es igual a la distancia a la directriz).
+
+</Pista>
+<Paso>
+
+**Qué:** parámetros de la parábola. $y^2=9x$ tiene vértice $V(0;0)$, eje focal $y=0$.
+
+$$4p=9\Rightarrow p=\frac94,\quad F\left(\tfrac94;0\right),\quad\text{directriz }x=-\tfrac94,\quad LL'=4p=9$$
+
+</Paso>
+<Paso>
+
+**Qué:** el punto de ordenada $6$.
+
+$$6^2=9x\Rightarrow x=4,\qquad P(4;6)$$
+
+</Paso>
+<Paso>
+
+**Qué:** radio vector $=d(P,F)$.
+
+$$d(P,F)=\sqrt{\left(4-\tfrac94\right)^2+6^2}=\sqrt{\tfrac{49}{16}+36}=\sqrt{\tfrac{625}{16}}=\frac{25}4$$
+
+Con la definición: $d(P,\text{directriz})=4+\tfrac94=\tfrac{25}4$ ✓.
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$\text{radio vector}=\frac{25}{4}=6{,}25$$
+
+<figure>
+<img src={`${import.meta.env.BASE_URL}figuras/final-relatos/r03-ej4-parabola.svg`} alt="Parábola y²=9x con vértice V(0;0), foco F(9/4;0), directriz x=-9/4, eje focal, lado recto LL' de longitud 9, el punto P(4;6) y su radio vector hasta el foco; ejes graduados de a 1." style="max-width:100%;height:auto" />
+<figcaption>Gráfico: vértice, foco, directriz, lado recto, punto $P(4;6)$ y su radio vector.</figcaption>
+</figure>
+
+**Pendiente de revisión.** "Con ordenada al origen 6" no se puede leer literalmente (la parábola $y^2=9x$ corta al eje $y$ solo en $0$). Se interpretó "el punto de la parábola de ordenada $y=6$", que da un resultado limpio ($\tfrac{25}{4}$).
+
+</Solucion>
+<Comprobacion>
+
+$P(4;6)$ está en la parábola: $36=9\cdot4$ ✓. Las dos distancias (al foco y a la directriz $x=-\tfrac94$) dan $\tfrac{25}4$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-relatos#R-04.1" numero={'R-04.1'} fuente="finales/practicos/Finales Practicos .pdf" pagina={10} unidad="U10" tema="Parábola dados el foco y la directriz (los datos no están)" criterios={{ bien: "Con foco y directriz: vértice en el punto medio, p, ecuación, lado recto y gráfico. Se muestra el método con un ejemplo propio.", medias: "Método correcto con el ejemplo propio y gráfico incompleto.", mal: "Confundir p con 2p o poner la ecuación con el eje equivocado." }}>
+<Enunciado fuente="finales/practicos/Finales Practicos .pdf" pagina="10">
+*(enunciado reconstruido por alumnos, no oficial)*
+
+Parábola (te daban el foco y la directriz, tenías que calcular los demás valores, graficar y dar la fórmula)
+</Enunciado>
+<Pista>
+
+¿Cómo se relacionan el vértice, el foco y la directriz de una parábola? ¿Qué dirección tiene el eje?
+
+</Pista>
+<Pista>
+
+El eje es perpendicular a la directriz y pasa por el foco. El vértice es el punto medio entre el foco y la directriz, y $p$ es la distancia del vértice al foco. La ecuación es $(x-h)^2=4p(y-k)$ (eje vertical) o $(y-k)^2=4p(x-h)$ (eje horizontal).
+
+</Pista>
+<Pista>
+
+Ejemplo propio (no del examen): foco $F(1;2)$ y directriz $y=-2$. Eje vertical $x=1$; vértice a mitad de camino.
+
+</Pista>
+<Paso>
+
+**Qué:** vértice y $p$. La directriz $y=-2$ es horizontal ⇒ eje vertical $x=1$; el vértice está entre $F(1;2)$ y el punto $(1;-2)$ de la directriz.
+
+$$V=(1;0),\qquad p=d(V,F)=2$$
+
+</Paso>
+<Paso>
+
+**Qué:** ecuación. Abre hacia arriba (el foco está sobre la directriz).
+
+$$(x-1)^2=4p\,(y-0)=8y$$
+$$x^2-2x-8y+1=0$$
+
+</Paso>
+<Paso>
+
+**Qué:** el resto. $e=1$, lado recto $LL'=4p=8$ con extremos $L(5;2)$ y $L'(-3;2)$ (a la altura del foco, $x=1\pm4$).
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+**Pendiente de revisión:** el relato no da el foco ni la directriz, por eso no hay resultado del examen. Ejemplo propio, con $F(1;2)$ y directriz $y=-2$:
+
+$$(x-1)^2=8y,\qquad V(1;0),\ p=2,\ e=1,\ LL'=8$$
+
+<figure>
+<img src={`${import.meta.env.BASE_URL}figuras/final-relatos/r04-ej1-parabola.svg`} alt="Parábola (x-1)²=8y con vértice V(1;0), foco F(1;2), directriz y=-2, eje focal x=1 y lado recto LL' entre (-3;2) y (5;2); ejes graduados de a 1." style="max-width:100%;height:auto" />
+<figcaption>Ejemplo propio: vértice, foco, directriz, eje focal y lado recto.</figcaption>
+</figure>
+
+**Ojo con:** que $p$ es la distancia del vértice al foco (no del foco a la directriz, que es $2p$).
+
+</Solucion>
+<Comprobacion>
+
+Un punto cualquiera, $(5;2)$: $(5-1)^2=16=8\cdot2$ ✓; su distancia al foco es $\sqrt{16+0}=4$ y a la directriz $2+2=4$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-relatos#R-04.2" numero={'R-04.2'} fuente="finales/practicos/Finales Practicos .pdf" pagina={10} unidad="U9" tema="Plano por tres puntos (los datos no están)" criterios={{ bien: "Plano por tres puntos con n=(Q2-Q1)×(Q3-Q1) y la ecuación general. Se muestra el método con un ejemplo propio.", medias: "Método correcto con el ejemplo propio.", mal: "Usar el producto escalar o no verificar que los tres puntos cumplen." }}>
+<Enunciado fuente="finales/practicos/Finales Practicos .pdf" pagina="10">
+*(enunciado reconstruido por alumnos, no oficial)*
+
+Poner la fórmula general del plano (te daban el punto en donde cortaba el plano en el espacio y las coordenadas de dos puntos que contenía)
+</Enunciado>
+<Pista>
+
+¿Cuántos puntos determinan un plano? Si te dan tres, ¿qué dos vectores del plano podés armar y cómo sacás un vector perpendicular a los dos?
+
+</Pista>
+<Pista>
+
+Con tres puntos no alineados $Q_1,Q_2,Q_3$: $\vec n=\overrightarrow{Q_1Q_2}\times\overrightarrow{Q_1Q_3}$ y el plano es $\vec n\cdot(P-Q_1)=0$. Se pasa a la forma general $Ax+By+Cz+D=0$.
+
+</Pista>
+<Pista>
+
+Ejemplo propio (no del examen): puntos $(1;0;0)$, $(0;2;0)$ y $(0;0;3)$, los cortes con los ejes.
+
+</Pista>
+<Paso>
+
+**Qué:** dos vectores del plano y la normal.
+
+$$\overrightarrow{Q_1Q_2}=(-1;2;0)\qquad\overrightarrow{Q_1Q_3}=(-1;0;3)$$
+$$\vec n=\begin{vmatrix}\vec i&\vec j&\vec k\\-1&2&0\\-1&0&3\end{vmatrix}=(6;3;2)$$
+
+</Paso>
+<Paso>
+
+**Qué:** ecuación, por $Q_1(1;0;0)$.
+
+$$6(x-1)+3y+2z=0$$
+$$6x+3y+2z-6=0$$
+
+(o en forma segmentaria, $\dfrac x1+\dfrac y2+\dfrac z3=1$).
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+**Pendiente de revisión:** el relato no da los datos ("el punto en donde cortaba el plano en el espacio" y dos puntos), así que no hay resultado del examen. Ejemplo propio con $(1;0;0)$, $(0;2;0)$ y $(0;0;3)$:
+
+$$6x+3y+2z-6=0$$
+
+**Ojo con:** que los tres puntos no estén alineados (si $\overrightarrow{Q_1Q_2}\times\overrightarrow{Q_1Q_3}=\vec0$ no hay un plano único).
+
+</Solucion>
+<Comprobacion>
+
+Los tres puntos cumplen la ecuación: $6-6=0$ ✓, $6-6=0$ ✓, $6-6=0$ ✓.
+
+</Comprobacion>
+</Ejercicio>

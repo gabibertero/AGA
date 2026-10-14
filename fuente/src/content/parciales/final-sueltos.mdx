@@ -1,0 +1,596 @@
+---
+id: "final-sueltos"
+titulo: "Finales: ejercicios sueltos (U8–U10)"
+tipo: "final"
+fuente: "finales/practicos/Finales AGA PRACTICOS.pdf"
+paginasEnunciado: "3-31"
+orden: 208
+unidades: ["U9", "U10"]
+---
+
+import Ejercicio from '../../components/Ejercicio.astro';
+import Enunciado from '../../components/Enunciado.astro';
+import Solucion from '../../components/Solucion.astro';
+import Pista from '../../components/Pista.astro';
+import Paso from '../../components/Paso.astro';
+import Comprobacion from '../../components/Comprobacion.astro';
+
+Ocho ejercicios de U9 y U10 que aparecen en el compendio temático "Finales AGA PRACTICOS" sin indicar de qué final salen (no coinciden con ninguno de los exámenes con fecha). Los enunciados son recortes impresos; la mayoría trae al lado una resolución manuscrita sobre hoja cuadriculada, de autor desconocido, que **no se publica** y se usó solo para contrastar. Lo que no se lee con seguridad queda marcado "pendiente de revisión" en cada ejercicio (G-03 y G-07).
+
+El resto del compendio (transformaciones lineales, autovalores y matrices, teóricos) es de otras unidades y queda fuera del alcance del 2º parcial; el ej. 5 del recorte de la p. 31 es de números complejos (U11).
+
+<Ejercicio id="final-sueltos#G-01" numero={'G-01'} fuente="finales/practicos/Finales AGA PRACTICOS.pdf" pagina={3} unidad="U9" tema="Plano ortogonal a otro que contiene una recta; distancia del origen a una recta" criterios={{ bien: "Normal de β = n_α × d_L = (22;0;11) ∝ (2;0;1), β: 2x+z=0; y para (b) distancia origen-recta que lleva a (k+1)²=0 y k=-1.", medias: "Plano β correcto, o k correcto, pero no ambos.", mal: "Usar la normal de α como normal de β, o la fórmula de distancia punto-plano en (b)." }}>
+<Enunciado fuente="finales/practicos/Finales AGA PRACTICOS.pdf" pagina="3">
+a) Sea $\alpha$ el plano de ecuación $-2x+3y+4z=4$ y $\mathbb L:(x,y,z)=\lambda(-3,-1,6)+(1,2,-2)$ con $\lambda\in\mathbb R$. Determinar la ecuación del plano $\beta$ sabiendo que $\beta$ contiene a la recta $\mathbb L$ y $\beta$ es ortogonal a $\alpha$.
+
+b) Determinar el valor real de $k$ para que la distancia del origen a la recta $\mathbb L_1:(x,y,z)=\lambda(k,-1-k,1)+(0,1,0)\ (\lambda\in\mathbb R)$ sea igual a 1.
+</Enunciado>
+<Pista>
+
+(a) Si $\beta$ contiene a $\mathbb L$ y es ortogonal a $\alpha$, ¿a qué dos vectores es perpendicular la normal de $\beta$? (b) ¿Qué fórmula da la distancia de un punto a una recta?
+
+</Pista>
+<Pista>
+
+(a) $\vec n_\beta\perp\vec d_{\mathbb L}$ (contiene a la recta) y $\vec n_\beta\perp\vec n_\alpha$ (planos ortogonales): $\vec n_\beta=\vec n_\alpha\times\vec d_{\mathbb L}$. (b) $d(O,\mathbb L_1)=\dfrac{\|\overrightarrow{OP}\times\vec d\|}{\|\vec d\|}$ con $P$ un punto de $\mathbb L_1$.
+
+</Pista>
+<Pista>
+
+(a) $\vec n_\alpha=(-2;3;4)$, $\vec d=(-3;-1;6)$; el plano pasa por $(1;2;-2)$. (b) $\overrightarrow{OP}=(0;1;0)$, $\vec d=(k;-1-k;1)$: calculá $\|\overrightarrow{OP}\times\vec d\|^2$ y $\|\vec d\|^2$ e igualá a $1$.
+
+</Pista>
+<Paso>
+
+**Qué (a):** normal de $\beta$.
+
+$$\vec n_\beta=\begin{vmatrix}\vec i&\vec j&\vec k\\-2&3&4\\-3&-1&6\end{vmatrix}=(18+4)\vec i-(-12+12)\vec j+(2+9)\vec k=(22;0;11)=11\,(2;0;1)$$
+
+</Paso>
+<Paso>
+
+**Qué (a):** plano por $(1;2;-2)$ con normal $(2;0;1)$.
+
+$$2(x-1)+0\cdot(y-2)+1\cdot(z+2)=0$$
+$$2x+z=0$$
+
+</Paso>
+<Paso>
+
+**Qué (b):** distancia del origen a $\mathbb L_1$ con $P(0;1;0)$.
+
+$$\overrightarrow{OP}\times\vec d=(0;1;0)\times(k;-1-k;1)=(1;0;-k)\Rightarrow\|\cdot\|^2=1+k^2$$
+$$\|\vec d\|^2=k^2+(1+k)^2+1=2k^2+2k+2$$
+
+</Paso>
+<Paso>
+
+**Qué (b):** igualar $d=1$, o sea $\|\overrightarrow{OP}\times\vec d\|^2=\|\vec d\|^2$.
+
+$$1+k^2=2k^2+2k+2$$
+$$k^2+2k+1=0$$
+$$(k+1)^2=0\Rightarrow k=-1$$
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+a) $\beta: 2x+z=0$.
+
+b) $k=-1$ (raíz doble).
+
+**Ojo con:** en (b) el discriminante da $0$: hay una sola solución, no dos.
+
+</Solucion>
+<Comprobacion>
+
+(a) $\vec n_\beta\cdot\vec n_\alpha=-4+0+4=0$ ✓ y $\vec n_\beta\cdot\vec d=-6+0+6=0$ ✓; $(1;2;-2)$: $2-2=0$ ✓. (b) Con $k=-1$, $\mathbb L_1$ es $(-\lambda;1;\lambda)$ y la distancia al cuadrado al origen es $2\lambda^2+1$, mínima $=1$ en $\lambda=0$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-sueltos#G-02" numero={'G-02'} fuente="finales/practicos/Finales AGA PRACTICOS.pdf" pagina={5} unidad="U9" tema="Recta y plano ortogonales; distancia de un punto a un plano" criterios={{ bien: "Normal (1;-2;1), director de r (1;1/k;1) paralelo a la normal ⇒ k=-1/2; plano x-2y+z+1=0 y distancia √6/6.", medias: "k correcto y distancia con un error de cuentas, o viceversa.", mal: "Usar r·n=0 (eso sería paralela) o no armar bien el director de r." }}>
+<Enunciado fuente="finales/practicos/Finales AGA PRACTICOS.pdf" pagina="5">
+1. Consideremos $\pi:(x,y,z)=\alpha(1,1,1)+\beta(0,1,2)+(0,0,-1)$ con $\alpha,\beta\in\mathbb R$ y $r: x=ky=z+1$.
+
+(a) Hallar, si existe, $k\in\mathbb R$ para que $\pi$ y $r$ sean ortogonales.
+
+(b) Calcular la distancia entre $P=(1,1,1)$ y $\pi$.
+</Enunciado>
+<Pista>
+
+¿Qué condición entre el director de la recta y la normal del plano hace que sean ortogonales? ¿Cómo se pasa un plano de forma paramétrica a general?
+
+</Pista>
+<Pista>
+
+Recta ortogonal al plano ⇔ $\vec d_r\parallel\vec n_\pi$. La normal es el producto vectorial de los dos vectores directores del plano. La distancia es $\dfrac{|Ax_0+By_0+Cz_0+D|}{\|\vec n\|}$.
+
+</Pista>
+<Pista>
+
+$\vec n=(1;1;1)\times(0;1;2)$. De $x=ky=z+1$ con $x=s$: $y=\tfrac sk$, $z=s-1$ ⇒ $\vec d_r=(1;\tfrac1k;1)$ (si $k\neq0$).
+
+</Pista>
+<Paso>
+
+**Qué:** normal de $\pi$.
+
+$$\vec n=\begin{vmatrix}\vec i&\vec j&\vec k\\1&1&1\\0&1&2\end{vmatrix}=(2-1)\vec i-(2-0)\vec j+(1-0)\vec k=(1;-2;1)$$
+
+</Paso>
+<Paso>
+
+**Qué (a):** director de $r$ y condición $\vec d_r\parallel\vec n$. Con $x=s$: $y=\dfrac sk$ y $z=s-1$.
+
+$$\vec d_r=\left(1;\tfrac1k;1\right)=\lambda(1;-2;1)\Rightarrow\lambda=1,\ \tfrac1k=-2\Rightarrow k=-\tfrac12$$
+
+Si $k=0$ la recta es $x=0$, $z=-1$ con director $(0;1;0)$, que no es paralelo a $\vec n$: no sirve.
+
+</Paso>
+<Paso>
+
+**Qué (b):** ecuación general de $\pi$ por $(0;0;-1)$ con $\vec n=(1;-2;1)$.
+
+$$1\cdot x-2y+1\cdot(z+1)=0\Rightarrow x-2y+z+1=0$$
+
+**Distancia de $P(1;1;1)$:**
+
+$$d=\frac{|1-2+1+1|}{\sqrt{1+4+1}}=\frac1{\sqrt6}=\frac{\sqrt6}{6}$$
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+a) $k=-\dfrac12$.
+
+b) $d(P,\pi)=\dfrac{\sqrt6}{6}\approx0{,}41$.
+
+**Ojo con:** el director de $r$ sale de pasar $x=ky=z+1$ a una variable común, no leyendo $(1;k;1)$ directamente.
+
+</Solucion>
+<Comprobacion>
+
+Otro camino para (b): un punto de $\pi$ es $(0;0;-1)$; $\overrightarrow{P_0P}=(1;1;2)$ y $\dfrac{|(1;1;2)\cdot(1;-2;1)|}{\sqrt6}=\dfrac{|1-2+2|}{\sqrt6}=\dfrac1{\sqrt6}$ ✓. Para (a): con $k=-\tfrac12$, $x=-\tfrac y2=z+1$ da $\vec d_r=(1;-2;1)=\vec n$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-sueltos#G-03" numero={'G-03'} fuente="finales/practicos/Finales AGA PRACTICOS.pdf" pagina={6} unidad="U9" tema="Plano paralelo a una recta a distancia dada; recta contenida en el plano" criterios={{ bien: "b=-1 (n·d=0), |k|=3; con k=-3 la recta r quedaría contenida en el plano (por eso k=3 para paralelismo estricto); y en (b) una recta de π con director perpendicular a (1;1;1) y no horizontal.", medias: "b=-1 y k=3 correctos pero sin analizar k=-3, o recta del inciso (b) sin verificar que corta z=0 solo en P.", mal: "Tomar b=1, o dar una recta que no está en el plano o que está contenida en z=0." }}>
+<Enunciado fuente="finales/practicos/Finales AGA PRACTICOS.pdf" pagina="6">
+1) Sea el plano $\pi: x+by+z=k$
+
+a) Hallar $b,k\in\Re$, si existen, tales que el plano sea paralelo a la recta $r:(x,y,z)=(-1,4,2)+\gamma(1,2,1)$ y la distancia del plano al origen sea $d=\sqrt3$
+
+b) Para $b=1$ y $k=-2$ graficar el plano $\pi$ y hallar la ecuación de una recta incluida en el plano $\pi$ y tal que su intersección con el plano $z=0$ es el punto $P(-1,-1,0)$
+</Enunciado>
+<Pista>
+
+(a) ¿Qué relación hay entre la normal del plano y el director de la recta si son paralelos? ¿Qué fórmula da la distancia de un plano al origen? (b) Una recta dentro de $\pi$ ¿qué condición cumple su director respecto de la normal? ¿Y para cortar a $z=0$ en un solo punto?
+
+</Pista>
+<Pista>
+
+(a) $\vec n\cdot\vec d=0$ da $b$; $d(\pi,O)=\dfrac{|k|}{\|\vec n\|}=\sqrt3$ da $k$. Después hay que ver si la recta queda *contenida* o es paralela y distinta. (b) Un director $\vec d\perp\vec n$ por $P$, y con componente $z\neq0$ para que no esté contenida en $z=0$.
+
+</Pista>
+<Pista>
+
+(a) $(1;b;1)\cdot(1;2;1)=0$. Con ese $b$, $\|\vec n\|=\sqrt3$ y $|k|=3$. Evaluá $\pi$ en el punto $(-1;4;2)$ de $r$. (b) $\pi: x+y+z=-2$, $\vec n=(1;1;1)$: buscá $\vec d$ con suma de componentes $0$.
+
+</Pista>
+<Paso>
+
+**Qué (a):** paralelismo. $\vec n=(1;b;1)$ y $\vec d=(1;2;1)$.
+
+$$\vec n\cdot\vec d=1+2b+1=0\Rightarrow b=-1$$
+
+</Paso>
+<Paso>
+
+**Qué (a):** distancia al origen. Con $b=-1$: $\pi: x-y+z-k=0$, $\|\vec n\|=\sqrt3$.
+
+$$d(O,\pi)=\frac{|-k|}{\sqrt3}=\sqrt3\Rightarrow|k|=3\Rightarrow k=3\ \text{o}\ k=-3$$
+
+</Paso>
+<Paso>
+
+**Qué (a):** ¿la recta está contenida? Se evalúa el punto $(-1;4;2)$ de $r$ en $x-y+z$: $-1-4+2=-3$.
+
+- $k=3$: $-3\neq3$ ⇒ $r$ es paralela y distinta de $\pi$ (distancia $\tfrac6{\sqrt3}=2\sqrt3$).
+- $k=-3$: $-3=-3$ ⇒ $r$ queda **contenida** en $\pi$.
+
+Si "paralela" se toma en sentido estricto (sin estar contenida), la respuesta es $b=-1$, $k=3$.
+
+</Paso>
+<Paso>
+
+**Qué (b):** con $b=1$, $k=-2$: $\pi: x+y+z=-2$, $\vec n=(1;1;1)$. $P(-1;-1;0)$ cumple $-2=-2$ y está en $z=0$.
+
+Director: $\vec d\perp\vec n$ y $d_z\neq0$. Elijo $\vec d=(1;0;-1)$ ($1+0-1=0$).
+
+$$r:\ (x;y;z)=(-1;-1;0)+\lambda(1;0;-1)$$
+
+Corta a $z=0$ cuando $-\lambda=0\Rightarrow\lambda=0$: solo en $P$ ✓.
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+a) $b=-1$ y $k=3$ (si se admite que $r$ esté contenida en el plano, también $k=-3$).
+
+b) $r:(x;y;z)=(-1;-1;0)+\lambda(1;0;-1)$ (hay infinitas rectas válidas).
+
+<figure>
+<img src={`${import.meta.env.BASE_URL}figuras/final-sueltos/g03b-plano.svg`} alt="Esquema en 3D del plano x+y+z=-2, el plano z=0 y la recta (-1;-1;0)+λ(1;0;-1) incluida en el primero, que corta a z=0 solo en P(-1;-1;0)." style="max-width:100%;height:auto" />
+<figcaption>Esquema del inciso (b): el plano $\pi$, el plano $z=0$ y la recta pedida, que corta a $z=0$ únicamente en $P$.</figcaption>
+</figure>
+
+**Pendiente de revisión.** En la resolución manuscrita del PDF el valor $k=-3$ está tachado y no se lee por qué. Lectura usada: con $k=-3$ la recta $r$ quedaría contenida en el plano (distancia $0$), por eso se dejaría solo $k=3$ si "paralela" excluye "contenida". Cuál es el criterio de la cátedra no se puede confirmar con el material.
+
+</Solucion>
+<Comprobacion>
+
+(a) Con $k=3$ y $b=-1$: distancia al origen $\tfrac3{\sqrt3}=\sqrt3$ ✓ y $\vec n\cdot\vec d=1-2+1=0$ ✓. (b) $P$ y otro punto de $r$, $(0;-1;-1)$, cumplen $x+y+z=-2$ ✓ (ambos puntos coinciden con el que usa la resolución manuscrita).
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-sueltos#G-04" numero={'G-04'} fuente="finales/practicos/Finales AGA PRACTICOS.pdf" pagina={6} unidad="U9" tema="Plano que contiene a una recta y a un eje; distancia entre rectas paralelas" criterios={{ bien: "Plano -4y+3z=0 (contiene al origen, a L y al eje x) y distancia 5 entre L y el eje x, notando que son paralelas.", medias: "Plano correcto pero distancia calculada con la fórmula de alabeadas o sin resultado.", mal: "Dar un plano que no contiene a L, o usar producto mixto para rectas paralelas." }}>
+<Enunciado fuente="finales/practicos/Finales AGA PRACTICOS.pdf" pagina="6">
+1) Dada la recta $L:\begin{cases}y=3\\z=4\end{cases}$
+
+a) Obtenga la ecuación del plano que contiene a la recta $L$ y al eje $x$.
+
+b) Calcule la distancia de la recta $L$ al eje $x$.
+</Enunciado>
+<Pista>
+
+¿Qué dirección tiene $L$ (qué variable queda libre)? ¿Y el eje $x$? ¿Qué posición relativa tienen?
+
+</Pista>
+<Pista>
+
+$L$ tiene director $(1;0;0)$, igual que el eje $x$: son paralelas. El plano que las contiene tiene como direcciones $(1;0;0)$ y el vector que une un punto del eje con uno de $L$. La distancia entre paralelas es la de un punto de una a la otra.
+
+</Pista>
+<Pista>
+
+Punto de $L$: $(0;3;4)$; punto del eje: $(0;0;0)$. Normal $=(1;0;0)\times(0;3;4)$. Distancia: $\dfrac{\|\overrightarrow{OP}\times\vec d\|}{\|\vec d\|}$.
+
+</Pista>
+<Paso>
+
+**Qué (a):** $L$ pasa por $(0;3;4)$ con $\vec d=(1;0;0)$; el eje $x$ pasa por $O$ con la misma dirección. Normal:
+
+$$\vec n=\vec d\times\overrightarrow{OP}=\begin{vmatrix}\vec i&\vec j&\vec k\\1&0&0\\0&3&4\end{vmatrix}=(0;-4;3)$$
+
+</Paso>
+<Paso>
+
+**Qué (a):** plano por $O$ con $\vec n=(0;-4;3)$.
+
+$$-4y+3z=0$$
+
+Chequeo con $P(0;3;4)$: $-12+12=0$ ✓.
+
+</Paso>
+<Paso>
+
+**Qué (b):** son paralelas (mismo director), así que se usa distancia punto–recta, no la de alabeadas. Con $\overrightarrow{OP}=(0;3;4)$:
+
+$$d=\frac{\|(0;3;4)\times(1;0;0)\|}{\|(1;0;0)\|}=\|(0;4;-3)\|=5$$
+
+Es la longitud de $(0;3;4)$, que ya es perpendicular a $(1;0;0)$.
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+a) $-4y+3z=0$.
+
+b) $d(L,\text{eje }x)=5$.
+
+**Ojo con:** el PDF solo trae el inciso (a) resuelto; el (b) es de este banco.
+
+</Solucion>
+<Comprobacion>
+
+(a) El plano contiene al eje $x$: $(5;0;0)$ da $0=0$ ✓. (b) Los puntos de $L$ son $(t;3;4)$ y su distancia al eje es $\sqrt{3^2+4^2}=5$ para todo $t$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-sueltos#G-05" numero={'G-05'} fuente="finales/practicos/Finales AGA PRACTICOS.pdf" pagina={7} unidad="U9" tema="Recta cuya proyección sobre un plano es un punto del eje x" criterios={{ bien: "Normal (3;2;-2), plano 3x+2y-2z-1=0, P(1/3;0;0) como corte con el eje x y recta L con director paralelo a la normal.", medias: "Normal y plano correctos pero la recta no es paralela a la normal.", mal: "Pensar que la proyección es un punto si la recta es paralela al plano." }}>
+<Enunciado fuente="finales/practicos/Finales AGA PRACTICOS.pdf" pagina="7">
+1) Dado el plano $\pi:(x;y;z)=(1;-1;0)+\alpha(0;1;1)+\beta(2;0;3)\ \alpha,\beta\in\mathbb R$. Hallar una recta $L$ cuya proyección sobre el plano $\pi$ sea un punto $P$ perteneciente al eje $x$.
+</Enunciado>
+<Pista>
+
+¿Cuándo la proyección ortogonal de una recta sobre un plano se reduce a un punto? ¿Cómo se halla el punto del eje $x$ que está en el plano?
+
+</Pista>
+<Pista>
+
+La proyección ortogonal de una recta es un punto si y solo si la recta es perpendicular al plano: $\vec d_L\parallel\vec n_\pi$. El punto $P$ es la intersección del eje $x$ con $\pi$ ($y=z=0$) y $L$ pasa por $P$ con director $\vec n_\pi$.
+
+</Pista>
+<Pista>
+
+$\vec n=(0;1;1)\times(2;0;3)$; ecuación del plano por $(1;-1;0)$; reemplazá $y=0$, $z=0$ para hallar $P$.
+
+</Pista>
+<Paso>
+
+**Qué:** normal del plano.
+
+$$\vec n=\begin{vmatrix}\vec i&\vec j&\vec k\\0&1&1\\2&0&3\end{vmatrix}=(3-0)\vec i-(0-2)\vec j+(0-2)\vec k=(3;2;-2)$$
+
+</Paso>
+<Paso>
+
+**Qué:** ecuación general, por $(1;-1;0)$.
+
+$$3(x-1)+2(y+1)-2z=0$$
+$$3x+2y-2z-1=0$$
+
+</Paso>
+<Paso>
+
+**Qué:** punto $P$ del eje $x$ en el plano: $y=0$, $z=0$.
+
+$$3x-1=0\Rightarrow x=\tfrac13\qquad P\left(\tfrac13;0;0\right)$$
+
+</Paso>
+<Paso>
+
+**Qué:** recta. **Por qué:** $L\perp\pi$ por $P$ proyecta todo $L$ en $P$.
+
+$$L:\ (x;y;z)=\left(\tfrac13;0;0\right)+\lambda(3;2;-2)$$
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$L:\ (x;y;z)=\left(\tfrac13;0;0\right)+\lambda(3;2;-2),\ \lambda\in\mathbb R,\qquad P=\left(\tfrac13;0;0\right)$$
+
+(también sirve cualquier recta perpendicular a $\pi$ que pase por $P$: es la única familia).
+
+**Ojo con:** dar una recta paralela al plano: su proyección sería una recta, no un punto.
+
+</Solucion>
+<Comprobacion>
+
+Un punto de $L$: $Q=\left(\tfrac13+3\lambda;\,2\lambda;\,-2\lambda\right)$. Su valor en el plano es $3\left(\tfrac13+3\lambda\right)+4\lambda+4\lambda-1=17\lambda$, y como $\|\vec n\|^2=17$, la proyección es $Q-\lambda\vec n=\left(\tfrac13;0;0\right)=P$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-sueltos#G-06" numero={'G-06'} fuente="finales/practicos/Finales AGA PRACTICOS.pdf" pagina={7} unidad="U9" tema="Haz de planos: distancia de un punto a la recta del haz" criterios={{ bien: "Punto de intersección de r y s (1;1;1), recta del haz con director (-1;1;1) por el origen y distancia √(8/3).", medias: "Punto de corte bien pero error al hallar el director o la distancia.", mal: "No reconocer que el eje del haz es la intersección de los dos planos base, o usar alabeadas." }}>
+<Enunciado fuente="finales/practicos/Finales AGA PRACTICOS.pdf" pagina="7">
+1) Dadas las rectas: $r:(x,y,z)=(4+3t,2+t,-t)$ con $t\in\mathbb R$ y $s: x-1=\dfrac{y-1}{-1}=\dfrac{1-z}{-2}$, y el haz de planos: $\alpha(x+y)+\beta(y-z)=0$ Calcule la distancia entre el punto intersección de las rectas $r$ y $s$ y la recta intersección del haz.
+</Enunciado>
+<Pista>
+
+¿Cómo se halla el punto en común de dos rectas dadas en paramétricas y en simétricas? ¿Qué recta es "la intersección del haz"?
+
+</Pista>
+<Pista>
+
+Se pasa $s$ a paramétricas (cada razón $=u$) e se iguala a $r$. La recta del haz es $x+y=0$, $y-z=0$ (los dos planos base): su director es el producto vectorial de las normales. Después, distancia punto–recta.
+
+</Pista>
+<Pista>
+
+$s$: $x=1+u$, $y=1-u$, $z=1+2u$. Resolvé $4+3t=1+u$, $2+t=1-u$ y verificá con la tercera. La recta del haz pasa por el origen.
+
+</Pista>
+<Paso>
+
+**Qué:** $s$ en paramétricas. Cada razón vale $u$: $x-1=u$, $\dfrac{y-1}{-1}=u$, $\dfrac{1-z}{-2}=u$.
+
+$$s:\ x=1+u,\quad y=1-u,\quad z=1+2u$$
+
+</Paso>
+<Paso>
+
+**Qué:** intersección de $r$ y $s$.
+
+$$4+3t=1+u,\quad2+t=1-u\Rightarrow u=-1-t$$
+$$4+3t=1-1-t\Rightarrow4t=-4\Rightarrow t=-1,\ u=0$$
+$$\text{tercera: }-t=1=1+2u=1\ ✓\qquad P(1;1;1)$$
+
+</Paso>
+<Paso>
+
+**Qué:** recta del haz. Planos base $x+y=0$ y $y-z=0$ con normales $(1;1;0)$ y $(0;1;-1)$.
+
+$$\vec d=\begin{vmatrix}\vec i&\vec j&\vec k\\1&1&0\\0&1&-1\end{vmatrix}=(-1;1;1)$$
+
+Pasa por el origen (que cumple los dos planos).
+
+</Paso>
+<Paso>
+
+**Qué:** distancia de $P(1;1;1)$ a la recta por $O$ con director $\vec d$.
+
+$$d=\frac{\|\overrightarrow{OP}\times\vec d\|}{\|\vec d\|}=\frac{\|(1;1;1)\times(-1;1;1)\|}{\sqrt3}=\frac{\|(0;-2;2)\|}{\sqrt3}=\frac{2\sqrt2}{\sqrt3}=\sqrt{\tfrac83}$$
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$P=(1;1;1)$, recta del haz de director $(-1;1;1)$ por el origen, y
+
+$$d=\sqrt{\tfrac83}=\frac{2\sqrt6}{3}\approx1{,}63$$
+
+El recorte del PDF corta la consigna después de "...recta intersección del haz" (en el original sigue "Justifique sus respuestas", según el relevamiento).
+
+</Solucion>
+<Comprobacion>
+
+Los puntos de la recta son $(-t;t;t)$ y $d^2(t)=(1+t)^2+2(1-t)^2=3t^2-2t+3$, mínimo en $t=\tfrac13$: $\tfrac13-\tfrac23+3=\tfrac83$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-sueltos#G-07" numero={'G-07'} fuente="finales/practicos/Finales AGA PRACTICOS.pdf" pagina={8} unidad="U9" tema="Recta y plano a distancia dada, con dos parámetros" criterios={{ bien: "Normal (-1;-1;k1), director (1;-1;2), paralelismo ⇒ k1=0, plano x+y-3=0, punto (k2;0;0) y |k2-3|=2 ⇒ k2=1 o 5.", medias: "k1=0 correcto y un solo valor de k2.", mal: "Aplicar la distancia punto–plano sin asegurar primero el paralelismo (si no son paralelos, la distancia es 0)." }}>
+<Enunciado fuente="finales/practicos/Finales AGA PRACTICOS.pdf" pagina="8">
+1) Sean el plano $\pi:(x,y,z)=(1,2,3)+\mu(1,-1,0)+\gamma(0,k_1,1)$, con $\mu,\gamma\in\mathbb R$, y la recta $r:\begin{cases}x+y=k_2\\z+2y=0\end{cases}$. Halle, si existen, valores de las constantes $k_1$ y $k_2$ para que la recta $r$ y el plano $\pi$ se encuentren a distancia $\sqrt2$ entre sí.
+</Enunciado>
+<Pista>
+
+¿Qué distancia hay entre una recta y un plano que se cortan? Entonces, ¿qué posición relativa deben tener para que la distancia sea $\sqrt2$?
+
+</Pista>
+<Pista>
+
+Para que la distancia sea distinta de cero, $r$ debe ser paralela a $\pi$: $\vec d_r\cdot\vec n_\pi=0$ (eso fija $k_1$). Entonces la distancia es la de un punto cualquiera de $r$ al plano (eso fija $k_2$).
+
+</Pista>
+<Pista>
+
+$\vec n_\pi=(1;-1;0)\times(0;k_1;1)$ y $\vec d_r=(1;1;0)\times(0;2;1)$. Un punto de $r$: con $y=0$ es $(k_2;0;0)$.
+
+</Pista>
+<Paso>
+
+**Qué:** normal del plano y director de $r$.
+
+$$\vec n_\pi=\begin{vmatrix}\vec i&\vec j&\vec k\\1&-1&0\\0&k_1&1\end{vmatrix}=(-1;-1;k_1)\qquad\vec d_r=\begin{vmatrix}\vec i&\vec j&\vec k\\1&1&0\\0&2&1\end{vmatrix}=(1;-1;2)$$
+
+</Paso>
+<Paso>
+
+**Qué:** paralelismo. **Por qué:** si $r$ cortara a $\pi$ la distancia sería $0$.
+
+$$\vec d_r\cdot\vec n_\pi=-1+1+2k_1=0\Rightarrow k_1=0$$
+
+</Paso>
+<Paso>
+
+**Qué:** plano con $k_1=0$, por $(1;2;3)$ con $\vec n=(-1;-1;0)$.
+
+$$-(x-1)-(y-2)=0\Rightarrow x+y-3=0$$
+
+**Qué:** un punto de $r$: con $y=0$, $x=k_2$ y $z=0$: $(k_2;0;0)$.
+
+</Paso>
+<Paso>
+
+**Qué:** distancia $=\sqrt2$.
+
+$$d=\frac{|k_2+0-3|}{\sqrt2}=\sqrt2\Rightarrow|k_2-3|=2$$
+$$k_2=5\quad\text{o}\quad k_2=1$$
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$k_1=0$ y $k_2=1$ o $k_2=5$.
+
+**Pendiente de revisión.** En la resolución manuscrita del PDF la letra es chica y los dos valores finales de $k_2$ se leen con dificultad; lo que se leyó ("$k_2=1$" y "$k_2=5$") coincide con el recálculo de sympy, que es el que respalda este resultado.
+
+</Solucion>
+<Comprobacion>
+
+Con $k_2=1$: $\dfrac{|1-3|}{\sqrt2}=\sqrt2$ ✓. Con $k_2=5$: $\dfrac{|5-3|}{\sqrt2}=\sqrt2$ ✓. Si $k_1\neq0$, $\vec d_r\cdot\vec n_\pi=2k_1\neq0$ y $r$ corta a $\pi$ (distancia $0$), así que $k_1=0$ es la única posibilidad.
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-sueltos#G-08" numero={'G-08'} fuente="finales/practicos/Finales AGA PRACTICOS.pdf" pagina={31} unidad="U10" tema="Paraboloide de sección circular; cilindro parabólico" criterios={{ bien: "Con y=2 la sección es circular ⇒ A=4; con z=1 la sección es y=(A/B)x²-1 igual a 2t²-1 ⇒ A/B=2 ⇒ B=2; y para A=0, B=1 identificar el cilindro parabólico y=4(z-1)²-1 con gráfico.", medias: "A y B correctos pero (b) sin identificar el tipo de superficie o sin gráfico.", mal: "Confundir paraboloide con cilindro parabólico, o no usar las dos condiciones." }}>
+<Enunciado fuente="finales/practicos/Finales AGA PRACTICOS.pdf" pagina="31">
+4) Sea la superficie de ecuación $Ax^2-By+4(z-1)^2=B$.
+
+a) Halle los valores de $A$ y $B$ - si existen - para que la ecuación corresponda a un paraboloide de sección circular con el plano $y=2$, y cuya sección con el plano $z=1$ sea la curva descripta por $\vec\gamma(t)=(t,2t^2-1,1),\ t\in\mathbb R$.
+
+b) Para $A=0$ y $B=1$, identifique y grafique la superficie resultante.
+</Enunciado>
+<Pista>
+
+(a) ¿Qué forma tiene la ecuación de un corte circular? ¿Qué ecuación queda al cortar con $z=1$ y cómo se compara con la curva dada? (b) ¿Qué desaparece de la ecuación cuando $A=0$?
+
+</Pista>
+<Pista>
+
+(a) Con $y=2$ queda $Ax^2+4(z-1)^2=3B$: es circunferencia si los coeficientes de $x^2$ y $(z-1)^2$ son iguales. Con $z=1$ queda $y=\frac ABx^2-1$: se iguala a $y=2x^2-1$. (b) Sin $x^2$ la superficie no depende de $x$.
+
+</Pista>
+<Pista>
+
+Corte $y=2$: $Ax^2+4(z-1)^2=B+2B=3B$. Corte $z=1$: $Ax^2-By=B\Rightarrow y=\dfrac ABx^2-1$. Imponé $A=4$ y $\dfrac AB=2$.
+
+</Pista>
+<Paso>
+
+**Qué:** corte con $y=2$.
+
+$$Ax^2-2B+4(z-1)^2=B\Rightarrow Ax^2+4(z-1)^2=3B$$
+
+Es circunferencia (con $B>0$) si los coeficientes coinciden: $A=4$.
+
+</Paso>
+<Paso>
+
+**Qué:** corte con $z=1$.
+
+$$Ax^2-By=B\Rightarrow y=\frac ABx^2-1$$
+
+Con $x=t$ debe ser $y=2t^2-1$: $\dfrac AB=2$.
+
+</Paso>
+<Paso>
+
+**Qué:** resolver.
+
+$$A=4,\qquad B=\frac A2=2$$
+
+Con $B=2>0$ el corte $y=2$ es $x^2+(z-1)^2=\tfrac32$ (circunferencia real) y la superficie es $4x^2+4(z-1)^2=2(y+1)$, o sea $x^2+(z-1)^2=\tfrac{y+1}{2}$: **paraboloide circular** de eje paralelo a $y$ y vértice $(0;-1;1)$.
+
+</Paso>
+<Paso>
+
+**Qué (b):** con $A=0$ y $B=1$.
+
+$$-y+4(z-1)^2=1\Rightarrow y=4(z-1)^2-1$$
+
+No aparece $x$ ⇒ las generatrices son rectas paralelas al eje $x$ y la directriz es la parábola $y=4(z-1)^2-1$ del plano $yz$ (vértice $(y;z)=(-1;1)$, abre hacia $y>0$): **cilindro parabólico**.
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+a) $A=4$ y $B=2$.
+
+b) Cilindro parabólico $y=4(z-1)^2-1$ (generatrices paralelas al eje $x$).
+
+<figure>
+<img src={`${import.meta.env.BASE_URL}figuras/final-sueltos/g08b-cilindro.svg`} alt="Esquema en 3D del cilindro parabólico y=4(z-1)²-1 con generatrices paralelas al eje x y la parábola directriz en x=0." style="max-width:100%;height:auto" />
+<figcaption>Esquema del inciso (b): cilindro parabólico de generatrices paralelas al eje $x$.</figcaption>
+</figure>
+
+**Ojo con:** que con $A=0$ la superficie deja de ser un paraboloide: al faltar el término cuadrático en $x$ se vuelve un cilindro. El PDF no trae resolución de este ejercicio: todo lo de arriba es elaborado y verificado con sympy.
+
+</Solucion>
+<Comprobacion>
+
+Corte $z=1$ con $A=4$, $B=2$: $4x^2-2y=2\Rightarrow y=2x^2-1$; con $x=t$ es $(t;2t^2-1;1)$ ✓ (la curva dada). Corte $y=2$: $4x^2+4(z-1)^2=6$ ✓.
+
+</Comprobacion>
+</Ejercicio>

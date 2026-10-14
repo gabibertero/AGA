@@ -1,0 +1,180 @@
+---
+id: "final-2023-07-26"
+titulo: "Final 2023-07-26 (U9–U10)"
+fecha: "26/07/2023"
+tipo: "final"
+fuente: "finales/practicos/Finales Practicos .pdf"
+paginasEnunciado: "6"
+orden: 200
+unidades: ["U9", "U10"]
+---
+
+import Ejercicio from '../../components/Ejercicio.astro';
+import Enunciado from '../../components/Enunciado.astro';
+import Solucion from '../../components/Solucion.astro';
+import Pista from '../../components/Pista.astro';
+import Paso from '../../components/Paso.astro';
+import Comprobacion from '../../components/Comprobacion.astro';
+
+Del final se incluyen solo los ejercicios de U8–U10; el resto queda fuera del alcance del 2º parcial.
+
+Fuente: foto de la hoja impresa, legible; nombre y legajo están tapados y no se transcriben. En la hoja hay una resolución manuscrita parcial del ej. 4 (completa cuadrados y llega a $\frac{(x-1)^2}{9}+\frac{(y+1)^2}{25}=1$ con $c=4$); no se publica y se usó solo para contrastar: coincide con lo de abajo. No trae puntajes.
+
+<Ejercicio id="final-2023-07-26#3" numero={3} fuente="finales/practicos/Finales Practicos .pdf" pagina={6} unidad="U9" tema="Recta por un punto paralela a dos planos" criterios={{ bien: "Director n1 x n2 = (-1;-7;-5) (o su opuesto), T no está en los planos, ecuaciones de la recta (vectorial, paramétricas o simétricas) y esquema.", medias: "Director correcto pero ecuaciones con el punto mal escrito, o sin esquema.", mal: "Usar la suma o una normal como director, o dar un plano en vez de una recta." }}>
+<Enunciado fuente="finales/practicos/Finales Practicos .pdf" pagina="6">
+Hallar las ecuaciones de la recta que pasa por el punto $T=(1,-1,-2)$ y es paralela a cada uno de los planos $\pi_1: x+2y-3z+8=0$ y $\pi_2: 2x-y+z-7=0$. Esquematizar.
+</Enunciado>
+<Pista>
+
+Si una recta es paralela a un plano, ¿qué relación hay entre su director y el vector normal del plano? ¿Y si tiene que ser paralela a los dos planos a la vez?
+
+</Pista>
+<Pista>
+
+El director $\vec v$ debe ser perpendicular a $\vec n_1$ y a $\vec n_2$: sirve el producto vectorial $\vec n_1\times\vec n_2$. Con $T$ y $\vec v$ se escriben las ecuaciones de la recta. Conviene chequear que $T$ no esté en los planos.
+
+</Pista>
+<Pista>
+
+$\vec n_1=(1;2;-3)$ y $\vec n_2=(2;-1;1)$. Calculá $\vec n_1\times\vec n_2$ con el determinante simbólico; si querés, tomá el vector opuesto para evitar signos negativos.
+
+</Pista>
+<Paso>
+
+**Qué:** director. **Por qué:** la recta es paralela a $\pi_1$ y a $\pi_2$, entonces $\vec v\perp\vec n_1$ y $\vec v\perp\vec n_2$.
+
+$$\vec n_1\times\vec n_2=\begin{vmatrix}\vec i&\vec j&\vec k\\1&2&-3\\2&-1&1\end{vmatrix}=(2\cdot1-(-3)(-1))\vec i-(1\cdot1-(-3)\cdot2)\vec j+(1\cdot(-1)-2\cdot2)\vec k$$
+$$\vec n_1\times\vec n_2=(-1;-7;-5)$$
+
+Chequeo: $\vec v\cdot\vec n_1=-1-14+15=0$ ✓ y $\vec v\cdot\vec n_2=-2+7-5=0$ ✓. Uso el opuesto, $\vec v=(1;7;5)$ (misma dirección).
+
+</Paso>
+<Paso>
+
+**Qué:** ver que la recta es paralela y no está contenida. **Por qué:** si $T$ estuviera en un plano, la recta quedaría contenida en él.
+
+$$\pi_1(T)=1-2+6+8=13\neq0\qquad\pi_2(T)=2+1-2-7=-6\neq0$$
+
+</Paso>
+<Paso>
+
+**Qué:** ecuaciones de la recta por $T(1;-1;-2)$ con $\vec v=(1;7;5)$.
+
+$$(x;y;z)=(1;-1;-2)+t(1;7;5)$$
+$$\begin{cases}x=1+t\\y=-1+7t\\z=-2+5t\end{cases}$$
+$$\frac{x-1}{1}=\frac{y+1}{7}=\frac{z+2}{5}$$
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$\frac{x-1}{1}=\frac{y+1}{7}=\frac{z+2}{5}\qquad\text{o}\qquad(x;y;z)=(1;-1;-2)+t(1;7;5),\ t\in\mathbb R$$
+
+<figure>
+<img src={`${import.meta.env.BASE_URL}figuras/final-2023-07-26/ej3-recta.svg`} alt="Esquema en 3D de los planos pi1 y pi2 y de la recta por T de dirección (1;7;5), paralela a ambos." style="max-width:100%;height:auto" />
+<figcaption>Esquema del ejercicio 3: los dos planos y la recta por T paralela a los dos (queda a un lado de ellos, sin cortarlos).</figcaption>
+</figure>
+
+**Ojo con:** usar una de las normales como director (eso da una recta perpendicular al plano, no paralela) y olvidarse de que se piden *ecuaciones* de la recta: conviene dar vectorial, paramétricas y simétricas.
+
+**Errores comunes**
+- Producto vectorial con un signo mal en la componente $\vec j$.
+- Escribir $T$ con el signo invertido en la forma simétrica ($y+1$, $z+2$).
+
+</Solucion>
+<Comprobacion>
+
+Otro camino: la recta es la intersección de los planos paralelos a $\pi_1$ y $\pi_2$ que pasan por $T$.
+
+$$x+2y-3z-5=0\qquad2x-y+z-1=0$$
+
+Con $t=1$ el punto $(2;6;3)$ está en la recta y cumple los dos planos: $2+12-9-5=0$ ✓ y $4-6+3-1=0$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-2023-07-26#4" numero={4} fuente="finales/practicos/Finales Practicos .pdf" pagina={6} unidad="U10" tema="Elipse por ecuación general" criterios={{ bien: "Completar cuadrados, canónica (x-1)²/9+(y+1)²/25=1, elipse vertical, a=5, b=3, c=4, e=4/5, todos los valores notables y gráfico con V, A, F, LL', ejes y graduación.", medias: "Canónica correcta pero eje mayor mal ubicado o faltan focos/lado recto en el gráfico.", mal: "Errores al completar cuadrados, confundir a y b, o no graficar." }}>
+<Enunciado fuente="finales/practicos/Finales Practicos .pdf" pagina="6">
+Dada la siguiente ecuación $25x^2-50x+9y^2+18y-191=0$ determine de qué cónica se trata, calcule todos sus valores notables y luego grafique indicando dichos elementos en el gráfico.
+</Enunciado>
+<Pista>
+
+Los dos términos cuadráticos ¿tienen el mismo signo? ¿Los coeficientes son iguales? ¿Qué te dice eso sobre el tipo de cónica? ¿Hay término $xy$?
+
+</Pista>
+<Pista>
+
+Sin término $xy$ y con $x^2,y^2$ del mismo signo y coeficientes distintos: elipse. Agrupá $x$ con $x$ e $y$ con $y$, sacá factor común y completá cuadrados; dividí por el término independiente para llegar a $\dfrac{(x-h)^2}{\cdot}+\dfrac{(y-k)^2}{\cdot}=1$. El mayor denominador es $a^2$ y marca el eje focal.
+
+</Pista>
+<Pista>
+
+$25(x^2-2x)+9(y^2+2y)=191$. Sumá a los dos miembros lo que aparece al completar cuadrados ($25\cdot1$ y $9\cdot1$) y dividí por $225$. Después $c^2=a^2-b^2$.
+
+</Pista>
+<Paso>
+
+**Qué:** agrupar y completar cuadrados. **Por qué:** para leer el centro y los semiejes.
+
+$$25(x^2-2x)+9(y^2+2y)=191$$
+$$25(x^2-2x+1)+9(y^2+2y+1)=191+25+9$$
+$$25(x-1)^2+9(y+1)^2=225$$
+
+</Paso>
+<Paso>
+
+**Qué:** forma canónica (ordinaria) y clasificación.
+
+$$\frac{(x-1)^2}{9}+\frac{(y+1)^2}{25}=1$$
+
+Mismo signo y coeficientes distintos ⇒ **elipse** de centro $C(1;-1)$. El mayor denominador está bajo $y$: $a^2=25$, $b^2=9$ ⇒ **eje focal vertical** ($x=1$).
+
+</Paso>
+<Paso>
+
+**Qué:** valores notables.
+
+$$a=5,\quad b=3,\quad c=\sqrt{a^2-b^2}=\sqrt{16}=4,\quad e=\frac ca=\frac45$$
+
+| Elemento | Coordenadas |
+|---|---|
+| Centro $C$ | $(1;-1)$ |
+| Vértices $V,V'$ (sobre $l$) | $(1;4)$, $(1;-6)$ |
+| Extremos del eje menor $A,A'$ | $(4;-1)$, $(-2;-1)$ |
+| Focos $F,F'$ | $(1;3)$, $(1;-5)$ |
+| Lado recto $LL'=2b^2/a$ | $\tfrac{18}{5}$ |
+| Extremos del lado recto por $F$ | $L(\tfrac{14}{5};3)$, $L'(-\tfrac45;3)$ |
+| Extremos del lado recto por $F'$ | $M(\tfrac{14}{5};-5)$, $M'(-\tfrac45;-5)$ |
+
+</Paso>
+<Paso>
+
+**Qué:** extremos del lado recto. **Por qué:** pasa por el foco, y a distancia $b^2/a=\tfrac95$ del eje focal a cada lado: $x=1\pm\tfrac95$ con $y=3$ (y con $y=-5$ para $F'$).
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$\frac{(x-1)^2}{9}+\frac{(y+1)^2}{25}=1$$
+
+Elipse de centro $C(1;-1)$, eje focal vertical, $a=5$, $b=3$, $c=4$, $e=\tfrac45$, $V(1;4)$, $V'(1;-6)$, $A(4;-1)$, $A'(-2;-1)$, $F(1;3)$, $F'(1;-5)$, $LL'=\tfrac{18}{5}$.
+
+<figure>
+<img src={`${import.meta.env.BASE_URL}figuras/final-2023-07-26/ej4-elipse.svg`} alt="Elipse vertical de centro (1;-1) con vértices V y V', extremos del eje menor A y A', focos F y F', lados rectos LL' y MM', eje focal l y ejes graduados de a 1." style="max-width:100%;height:auto" />
+<figcaption>Gráfico del ejercicio 4: centro, vértices, extremos del eje menor, focos, lados rectos y eje focal.</figcaption>
+</figure>
+
+**Ojo con:** poner $a=3$ (es el menor denominador, no el mayor) y entonces el eje focal horizontal.
+
+</Solucion>
+<Comprobacion>
+
+$V(1;4)$ en la original: $25-50+144+72-191=0$ ✓. $A(4;-1)$: $400-200+9-18-191=0$ ✓.
+
+Definición $PF+PF'=2a$ con $P=A(4;-1)$: $\sqrt{9+16}+\sqrt{9+16}=5+5=10=2a$ ✓.
+
+</Comprobacion>
+</Ejercicio>

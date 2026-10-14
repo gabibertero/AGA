@@ -1,0 +1,352 @@
+---
+id: "modelo1-p2"
+titulo: "Modelo 1 - P2"
+tipo: "modelo"
+fuente: "parciales/2do-parcial/Modelo1 - P2.pdf"
+paginasEnunciado: "1"
+orden: 1
+unidades: ["U8", "U9", "U10"]
+---
+
+import Ejercicio from '../../components/Ejercicio.astro';
+import Enunciado from '../../components/Enunciado.astro';
+import Solucion from '../../components/Solucion.astro';
+import Pista from '../../components/Pista.astro';
+import Paso from '../../components/Paso.astro';
+import Comprobacion from '../../components/Comprobacion.astro';
+
+Simulacro oficial de la cátedra (2° Parcial Práctico, Modelo 1). Sin fecha, comisión ni resolución oficial.
+
+<div class="capa oficial" data-consigna>
+<p class="rotulo">Tener en cuenta (recuadro del examen)</p>
+
+- Ser claro y ordenado.
+- Plantear las combinaciones lineales necesarias, los sistemas de ecuaciones pertinentes y justificar los cálculos cuando sea necesario. Realizar los esquemas pertinentes.
+- El grafico solo se corrige si tiene todos los elementos necesarios en su construcción.
+- Si el gráfico está mal, no se corrige el ejercicio.
+- Asegurarse de que el grafico y la resolución analítica del ejercicio sean coherentes. Caso contrario, el ejercicio vale cero puntos.
+- **La corrección se realiza en primera instancia por resultados y si estos son correctos se observa el procedimiento que justifica los mismos. Si los resultados de la tabla son incorrectos se evalúa directamente sin tener en cuenta el desarrollo. "Verificar bien antes de entregar".**
+
+</div>
+
+
+<Ejercicio id="modelo1-p2#1" numero={1} puntos={30} fuente="parciales/2do-parcial/Modelo1 - P2.pdf" pagina={1} unidad="U10" tema="Cónica (elipse)" criterios={{ bien: "Ordinaria correcta + C, a, b, c, V, V', A, A', F, F', e y LR (con sus extremos) correctos + gráfico con TODOS esos elementos, escala graduada y coherente con lo analítico.", medias: "Ordinaria y elementos analíticos correctos, pero el gráfico está incompleto (le falta algún elemento, p. ej. los extremos del LR o un foco) o hay un error menor de cuentas que no cambia la forma. Ojo: en el parcial real un gráfico incompleto anula el ejercicio; acá vale A medias solo como estimación de estudio.", mal: "Ordinaria incorrecta (h, k, a o b mal), eje mayor mal orientado, o gráfico faltante o incoherente con la resolución analítica." }}>
+<Enunciado fuente="parciales/2do-parcial/Modelo1 - P2.pdf" pagina="1">
+**(30 Pts.)** Graficar la siguiente cónica, previamente encontrar los elementos característicos de la misma. Escribir su ecuación ordinaria.
+
+$$9x^2+25y^2-54x+100y-44=0$$
+
+</Enunciado>
+<Pista>
+
+¿Qué tienen en común los coeficientes de $x^2$ y de $y^2$? ¿Aparece un término en $xy$? ¿Qué te dice eso sobre el tipo de cónica y sobre la posición de sus ejes? ¿Qué te falta para poder leer el centro y los semiejes?
+
+</Pista>
+<Pista>
+
+Es una elipse con ejes paralelos a los coordenados. Agrupá los términos en $x$ por un lado y los de $y$ por otro, y completá cuadrados en cada variable (sin olvidar multiplicar por el coeficiente de afuera lo que sumás adentro). Después dividí para que el segundo miembro sea 1. Notación de cátedra: $V,V'$ (eje mayor), $A,A'$ (eje menor), $F,F'$ (focos), $LL'$ (lado recto).
+
+</Pista>
+<Pista>
+
+Planteo: $9(x^2-6x+\square)+25(y^2+4y+\square)=44+9\cdot\square+25\cdot\square$. Cada $\square$ interior es el cuadrado de la mitad del coeficiente lineal. Te queda $9(x-\cdot)^2+25(y+\cdot)^2=\cdot$; dividí por ese número y leé $a$, $b$, $c$ desde el centro.
+
+</Pista>
+<Paso>
+
+**Qué:** reconocer el tipo. **Por qué:** los coeficientes de $x^2$ y de $y^2$ tienen igual signo y son distintos (9 y 25), y no hay término $xy$ ⇒ elipse con ejes paralelos a los coordenados (o degenerada; se confirma al completar cuadrados, abajo).
+
+</Paso>
+<Paso>
+
+**Qué:** agrupar por variable. **Por qué:** para completar cuadrados cada una por separado.
+
+$$9(x^2-6x)+25(y^2+4y)=44$$
+
+</Paso>
+<Paso>
+
+**Qué:** completar cuadrados. **Por qué:** lo que se suma adentro del paréntesis se multiplica por el coeficiente de afuera, y hay que sumarlo también al otro miembro: $9\cdot 9$ y $25\cdot 4$.
+
+$$9(x^2-6x+9)+25(y^2+4y+4)=44+81+100$$
+$$9(x-3)^2+25(y+2)^2=225$$
+
+$225>0$ ⇒ elipse real (si fuera $0$ sería un punto; si fuera negativo, vacío).
+
+</Paso>
+<Paso>
+
+**Qué:** dividir por 225. **Por qué:** la forma ordinaria tiene 1 en el segundo miembro.
+
+$$\frac{(x-3)^2}{25}+\frac{(y+2)^2}{9}=1$$
+
+</Paso>
+<Paso>
+
+**Qué:** leer los parámetros. **Cómo reconocerlo:** el denominador mayor (25) está bajo $x$ ⇒ el eje mayor es **horizontal**. Entonces $a^2=25\Rightarrow a=5$; $b^2=9\Rightarrow b=3$; $c^2=a^2-b^2=16\Rightarrow c=4$.
+
+</Paso>
+<Paso>
+
+**Notación de cátedra (U10, p. 15):** $V,V'$ extremos del eje mayor, $A,A'$ extremos del eje menor, $F,F'$ focos, $LL'$ lado recto. El Ej. 3 usa $A$ y $B$ para otros puntos: son contextos distintos.
+
+**Qué:** calcular los elementos, siempre desde el centro $C(3;-2)$. **Por qué:** la elipse está trasladada, nada se mide desde el origen.
+
+| Elemento | Cálculo | Valor |
+|---|---|---|
+| Centro | $(h;k)$ | $C(3;-2)$ |
+| Vértices (extremos del eje mayor) | $(h\pm a;k)$ | $V(8;-2)$, $V'(-2;-2)$ |
+| Extremos del eje menor | $(h;k\pm b)$ | $A(3;1)$, $A'(3;-5)$ |
+| Focos | $(h\pm c;k)$ | $F(7;-2)$, $F'(-1;-2)$ |
+| Eje mayor, eje menor, distancia focal | $2a$, $2b$, $2c$ | $10$, $6$, $8$ |
+| Excentricidad | $e=c/a$ | $4/5$ |
+| Lado recto | $LR=2b^2/a$ | $18/5$ |
+| Extremos del lado recto (por $F$ y por $F'$) | $x=h\pm c$, $y=k\pm b^2/a$ | $L(7;-\tfrac15)$, $L'(7;-\tfrac{19}5)$, $M(-1;-\tfrac15)$, $M'(-1;-\tfrac{19}5)$ |
+| Eje focal (mayor) | recta por $C$ y los focos | $y=-2$ |
+| Eje menor | perpendicular por $C$ | $x=3$ |
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$\frac{(x-3)^2}{25}+\frac{(y+2)^2}{9}=1$$
+
+Elipse horizontal: $C(3;-2)$, $a=5$, $b=3$, $c=4$, $V,V'(8;-2),(-2;-2)$, $A,A'(3;1),(3;-5)$, $F,F'(7;-2),(-1;-2)$, $2a=10$, $2b=6$, $2c=8$, $e=\tfrac45$, lado recto $\tfrac{18}{5}$ con extremos $L(7;-\tfrac15)$, $L'(7;-\tfrac{19}5)$, $M(-1;-\tfrac15)$, $M'(-1;-\tfrac{19}5)$ ($L,L'$ por $F$; $M,M'$ por $F'$).
+
+<figure>
+<img src={`${import.meta.env.BASE_URL}figuras/modelo1-p2/m1-ej1-elipse.svg`} alt="Elipse con centro (3;-2), vértices V(8;-2) y V'(-2;-2), extremos del eje menor A(3;1) y A'(3;-5), focos F(7;-2) y F'(-1;-2), extremos de los lados rectos (7;-1/5), (7;-19/5), (-1;-1/5), (-1;-19/5), ejes de simetría y=-2 y x=3, cotas 2a=10, 2b=6, 2c=8, ejes graduados de a 1." style="max-width:100%;height:auto" />
+<figcaption>Gráfico del ejercicio 1: centro, vértices, extremos del eje menor, focos, lados rectos, ejes de simetría y cotas 2a, 2b, 2c; ejes graduados de a 1 y misma escala en x e y.</figcaption>
+</figure>
+
+**Ojo con:** olvidar multiplicar por 9 y por 25 lo que se suma al completar cuadrados. Si el parcial pide el gráfico, la lista mínima a marcar es: $C$, $V$, $V'$, $A$, $A'$, $F$, $F'$, ambos ejes de simetría, los extremos de los lados rectos y los rótulos $2a$, $2b$, $2c$, con la misma escala en $x$ e $y$.
+
+**Errores comunes**
+- Sumar $9$ y $4$ en vez de $81$ y $100$.
+- Sacar $c$ como $\sqrt{a^2+b^2}$ (eso es hipérbola) o poner $a=3$ por orden de aparición.
+- Colocar el eje mayor vertical, o los focos en $(3;-2\pm4)$.
+- Dar los focos como $(\pm4;0)$ sin trasladar al centro.
+- Graficar con escala distinta en $x$ e $y$, o no marcar el lado recto ni rotular sus extremos.
+- Gráfico sin ejes cartesianos, sin focos o sin escala coherente con $C(3;-2)$ (si el gráfico está mal, el ejercicio no se corrige).
+
+</Solucion>
+<Comprobacion>
+
+$V(8;-2)$ en la general: $9\cdot64+25\cdot4-432-200-44=0$ ✓. $A(3;1)$: $81+25-162+100-44=0$ ✓.
+
+$A(3;1)$ cumple la definición de elipse: $d(A,F)=\sqrt{16+9}=5=a$ y, por simetría, $d(A,F')=5$, así que $d_1+d_2=10=2a$ ✓.
+
+Lado recto: $L(7;-\tfrac15)$ en la general: $9\cdot49+25\cdot\tfrac1{25}-378-20-44=441+1-442=0$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
+<Ejercicio id="modelo1-p2#2" numero={2} puntos={30} fuente="parciales/2do-parcial/Modelo1 - P2.pdf" pagina={1} unidad="U9" tema="Plano" criterios={{ bien: "Plano 5x-9y-8z-30=0 (o múltiplo no nulo) con la normal (-5;9;8) justificada como director de la recta intersección.", medias: "Normal correcta pero error aritmético en D al desarrollar, o plano correcto sin justificar de dónde sale la normal.", mal: "Normal incorrecta (n1 o n2 solos, o producto vectorial mal) o plano que no pasa por P(4;-2;1)." }}>
+<Enunciado fuente="parciales/2do-parcial/Modelo1 - P2.pdf" pagina="1">
+**(30 Pts.)** Encontrar la ecuación del plano que pasa por el punto $P(4;-2;1)$ y es perpendicular a la recta intersección entre los planos $\pi_1 = x-3y+4z-9=0$ y $\pi_2 = 2x+2y-z+11=0$.
+
+</Enunciado>
+<Pista>
+
+Si un plano es perpendicular a una recta, ¿qué relación hay entre el vector director de la recta y el plano? ¿Y a qué vectores es perpendicular la recta intersección de dos planos?
+
+</Pista>
+<Pista>
+
+El director de la recta $\pi_1\cap\pi_2$ es la normal del plano buscado. Como esa recta está en los dos planos, es perpendicular a $\vec n_1$ y a $\vec n_2$: se obtiene con el producto vectorial. Después, plano por un punto con normal conocida.
+
+</Pista>
+<Pista>
+
+$\vec n_1=(1;-3;4)$, $\vec n_2=(2;2;-1)$. Calculá $\vec n=\vec n_1\times\vec n_2$ con el determinante simbólico y planteá $\vec n\cdot(X-P)=0$ con $P(4;-2;1)$. Desarrollá e igualá a 0.
+
+</Pista>
+<Paso>
+
+**Qué:** usar que el plano es perpendicular a la recta. **Por qué:** entonces el vector director de la recta es **normal al plano**. La recta $\pi_1\cap\pi_2$ está contenida en ambos planos, así que es perpendicular a $\vec n_1$ y a $\vec n_2$: su dirección es $\vec n_1\times\vec n_2$ (siempre que sea no nulo, ver abajo).
+
+</Paso>
+<Paso>
+
+**Qué:** anotar las normales de los planos dados. **Cómo reconocerlo:** son los coeficientes de $x$, $y$, $z$.
+
+$$\vec n_1=(1;-3;4)\qquad \vec n_2=(2;2;-1)$$
+
+</Paso>
+<Paso>
+
+**Qué:** producto vectorial (director de la recta = normal buscada).
+
+$$\vec n=\vec n_1\times\vec n_2=\begin{vmatrix}\vec i&\vec j&\vec k\\1&-3&4\\2&2&-1\end{vmatrix}$$
+$$=\big((-3)(-1)-4\cdot2\big)\vec i-\big(1\cdot(-1)-4\cdot2\big)\vec j+\big(1\cdot2-(-3)\cdot2\big)\vec k$$
+$$=(-5;\,9;\,8)$$
+
+$\vec n\neq\vec 0$ ⇒ $\vec n_1\not\parallel\vec n_2$ ⇒ los planos no son paralelos y se cortan en una recta cuyo director es $\vec n$.
+
+</Paso>
+<Paso>
+
+**Qué:** ecuación del plano $\vec n\cdot(X-P)=0$. **Por qué:** el plano pasa por $P$ y tiene normal $\vec n$.
+
+$$-5(x-4)+9(y+2)+8(z-1)=0$$
+
+</Paso>
+<Paso>
+
+**Qué:** desarrollar y ordenar.
+
+$$-5x+20+9y+18+8z-8=0$$
+$$-5x+9y+8z+30=0$$
+$$5x-9y-8z-30=0$$
+
+Son la misma ecuación (multiplicar por $-1$ no cambia el plano): no es un error de signo.
+
+**Respuesta:** el plano pedido es $5x-9y-8z-30=0$.
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$5x-9y-8z-30=0$$
+
+(equivalente: $-5x+9y+8z+30=0$).
+
+**Ojo con:** el término independiente: con $P=(4;-2;1)$ el $-2$ da $+18$.
+
+**Errores comunes**
+- Tomar $\vec n_1$ o $\vec n_2$ directamente como normal, o usar $\vec n_1\times\vec n_2$ como director del plano.
+- Error de signo en el cofactor de $\vec j$.
+- Escribir mal $D$ al desarrollar ($+20+18-8$).
+- Dar solo $-5x+9y+8z+30$ sin igualar a 0, o no verificar que $P$ cumple.
+
+</Solucion>
+<Comprobacion>
+
+$P$ cumple: $20+18-8-30=0$ ✓.
+
+$\vec n$ es perpendicular a las dos normales: $\vec n\cdot\vec n_1=-5-27+32=0$ ✓ y $\vec n\cdot\vec n_2=-10+18-8=0$ ✓.
+
+Camino alternativo: parametrizar la recta resolviendo $\pi_1,\pi_2$ (por ejemplo $z=\lambda$) da un director múltiplo de $(-5;9;8)$.
+
+</Comprobacion>
+</Ejercicio>
+
+<Ejercicio id="modelo1-p2#3" numero={3} puntos={40} fuente="parciales/2do-parcial/Modelo1 - P2.pdf" pagina={1} unidad="U9" tema="Rectas" criterios={{ bien: "Simétrica x/1=(y+1)/1=(z+1)/2 correcta + no paralelas + se cortan justificado (mixto 0 o sistema compatible) + Q(2;1;3) con la 3.ª ecuación verificada.", medias: "Simétrica y posición relativa correctas, pero sin punto de corte, con el punto mal por cuentas, o punto correcto sin justificar la posición.", mal: "Simétrica incorrecta, o posición relativa equivocada (alabeadas o paralelas)." }}>
+<Enunciado fuente="parciales/2do-parcial/Modelo1 - P2.pdf" pagina="1">
+**(40 Pts.)** Dadas las rectas $r_1$ y $r_2$ en el espacio tridimensional $R^3$ y sabiendo que $r_1$ está determinada por los puntos $A(0;-1;-1)$ y $B(1;0;1)$ y $r_2$ está dada por sus ecuaciones paramétricas:
+
+$$r_2 = \begin{cases} x = 3-\lambda \\ y = -1+2\lambda \\ z = 2+\lambda \end{cases}$$
+
+Hallar la ecuación simétrica de la recta $r_1$ y analizar la posición relativa de ambas rectas (determinar si se cortan, son paralelas o son alabeadas). En el caso de que sean concurrentes, decir en qué punto se cortan.
+
+</Enunciado>
+<Pista>
+
+¿Qué necesitás para armar una recta? Si tenés dos puntos, ¿qué vector la determina? Para la posición relativa: ¿las rectas son paralelas? Si no lo son, ¿se cortan o se cruzan?
+
+</Pista>
+<Pista>
+
+El director de $r_1$ es $\overrightarrow{AB}$, y con un punto y el director se escribe la simétrica. Para la posición relativa: primero comparás los directores (¿son proporcionales?); si no lo son, decidís entre secantes y alabeadas con el producto mixto $[\overrightarrow{AC},\vec u,\vec v]$ o con el sistema que resulta de igualar las coordenadas.
+
+</Pista>
+<Pista>
+
+$\vec u=B-A$, $\vec v=(-1;2;1)$, $C(3;-1;2)$, $\overrightarrow{AC}=C-A$. Si el determinante de $\overrightarrow{AC},\vec u,\vec v$ da 0, se cortan: igualá $r_1(t)=r_2(\lambda)$ (parámetros distintos), resolvé con dos ecuaciones y verificá la tercera.
+
+</Pista>
+<Paso>
+
+**Qué:** director de $r_1$. **Por qué:** dos puntos determinan la dirección.
+
+$$\vec u=\overrightarrow{AB}=B-A=(1;1;2)$$
+
+</Paso>
+<Paso>
+
+**Qué:** paramétricas de $r_1$ (punto $A$, director $\vec u$): $x=t,\ y=-1+t,\ z=-1+2t$. Se usan después en el sistema de intersección.
+
+**Después:** ecuación simétrica (se despeja $t$ de cada paramétrica) con el punto $A(0;-1;-1)$ y el director $\vec u$ (ninguna componente es 0, no hay problema de divisiones).
+
+$$\frac{x}{1}=\frac{y+1}{1}=\frac{z+1}{2}$$
+
+Chequeo: $B(1;0;1)$ da $1=1=1$ ✓.
+
+</Paso>
+<Paso>
+
+**Qué:** datos de $r_2$ (coeficientes de $\lambda$ y términos independientes). Punto $C(3;-1;2)$ y director $\vec v=(-1;2;1)$.
+
+</Paso>
+<Paso>
+
+**Qué:** ¿paralelas? **Por qué:** es lo primero que se descarta. $\vec u=(1;1;2)$ y $\vec v=(-1;2;1)$ no son proporcionales ($\tfrac{1}{-1}\neq\tfrac{1}{2}$) ⇒ **no** son paralelas ni coincidentes.
+
+</Paso>
+<Paso>
+
+**Qué:** ¿coplanares? Producto mixto con $\overrightarrow{AC}=C-A=(3;0;3)$.
+
+$$\begin{vmatrix}3&0&3\\1&1&2\\-1&2&1\end{vmatrix}=3(1-4)-0+3(2+1)$$
+$$=-9+9=0$$
+
+Producto mixto $0$ ⇒ coplanares; como no son paralelas, **se cortan** (concurrentes).
+
+</Paso>
+<Paso>
+
+**Qué:** punto de corte. Igualo las coordenadas de $r_1:(t;\,-1+t;\,-1+2t)$ y $r_2:(3-\lambda;\,-1+2\lambda;\,2+\lambda)$ con parámetros distintos.
+
+$$t=3-\lambda\qquad -1+t=-1+2\lambda\qquad -1+2t=2+\lambda$$
+
+De la 2.ª: $t=2\lambda$. En la 1.ª: $2\lambda=3-\lambda$, o sea $\lambda=1$ y $t=2$. Verifico en la 3.ª: $-1+4=3=2+1$ ✓ (sistema compatible determinado).
+
+**Respuesta:** $r_1$ y $r_2$ son concurrentes (secantes) en $Q(2;1;3)$.
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+Simétrica de $r_1$:
+
+$$\frac{x}{1}=\frac{y+1}{1}=\frac{z+1}{2}$$
+
+Posición relativa: **concurrentes (secantes)**, en el punto
+
+$$Q(2;1;3)$$
+
+<figure>
+<img src={`${import.meta.env.BASE_URL}figuras/modelo1-p2/m1-ej3-rectas.svg`} alt="Las rectas r1 (por A y B) y r2 en el espacio, cortándose en Q(2;1;3)." style="max-width:100%;height:auto" />
+<figcaption>Gráfico del ejercicio 3: r1, r2 y el punto de corte Q. El ejercicio 3 no exige gráfico; si lo hacés, alcanza un esquema con dos rectas secantes y Q rotulado.</figcaption>
+</figure>
+
+**Ojo con:** que $\vec u\not\parallel\vec v$ **no** implica que se corten: falta chequear la coplanaridad (o la 3.ª ecuación).
+
+**Errores comunes**
+- Usar $A$ y $B$ como director en vez de $\overrightarrow{AB}$; escribir mal el $z+1$ en la simétrica.
+- Usar el mismo parámetro en ambas rectas al igualar.
+- Despejar con las 2 primeras ecuaciones y no verificar la 3.ª (justo lo que distingue alabeadas de secantes).
+- Concluir "alabeadas" por un error aritmético en el determinante.
+
+</Solucion>
+<Comprobacion>
+
+Camino alternativo: plantear directamente el sistema de 3 ecuaciones con 2 incógnitas $(t,\lambda)$: sin solución ⇒ alabeadas; solución única ⇒ secantes; infinitas ⇒ coincidentes. Acá da $t=2$, $\lambda=1$, y $Q$ pertenece a las dos rectas:
+
+$r_1(2)=(2;\,1;\,3)$ y $r_2(1)=(2;\,1;\,3)$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
+<details class="capa elaborado" data-respuestas>
+<summary>Tabla de respuestas (solución elaborada — no oficial, verificada con sympy)</summary>
+
+| Ejercicio | Respuesta |
+|---|---|
+| **1** (30 pts) | Elipse horizontal: $\dfrac{(x-3)^2}{25}+\dfrac{(y+2)^2}{9}=1$. $C(3;-2)$, $a=5$, $b=3$, $c=4$, $V,V'(8;-2),(-2;-2)$, $A,A'(3;1),(3;-5)$, $F,F'(7;-2),(-1;-2)$, $e=\tfrac45$, lado recto $\tfrac{18}{5}$ con extremos $(7;-\tfrac15)$, $(7;-\tfrac{19}5)$, $(-1;-\tfrac15)$, $(-1;-\tfrac{19}5)$ |
+| **2** (30 pts) | $5x-9y-8z-30=0$ (equivalente: $-5x+9y+8z+30=0$) |
+| **3** (40 pts) | Simétrica de $r_1$: $\dfrac{x}{1}=\dfrac{y+1}{1}=\dfrac{z+1}{2}$. Posición relativa: concurrentes (secantes) en $Q(2;1;3)$ |
+
+</details>

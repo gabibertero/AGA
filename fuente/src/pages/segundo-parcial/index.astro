@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { idsDeEjercicios } from '../../scripts/ids.js';
+const base = import.meta.env.BASE_URL;
+const todos = (await getCollection('parciales')).sort((a, b) => a.data.orden - b.data.orden);
+const grupos = [
+  { titulo: 'Modelos oficiales de la profe', tipos: ['modelo'] },
+  { titulo: 'Parciales tomados', tipos: ['práctico', 'teórico'] },
+  { titulo: 'Banco extra: finales (solo U8–U10)', tipos: ['final'] },
+].map((g) => ({ ...g, items: todos.filter((p) => g.tipos.includes(p.data.tipo)) }));
+const secciones = [
+  { href: 'teoria/', titulo: 'Preguntero teórico', desc: 'Preguntas tipo parcial teórico de U8–U10, con respuesta y fuente.' },
+  { href: 'machetes/', titulo: 'Machetes', desc: 'Fórmulas y recetas de vectores, rectas, planos, cónicas y cuádricas.' },
+  { href: 'laboratorio/', titulo: 'Laboratorio', desc: 'Ejercicios generados al azar y cónicas interactivas.' },
+];
+---
+<Layout titulo="2º parcial">
+  <section class="hero">
+    <p class="eyebrow">AGA · U8 a U10</p>
+    <h1>2º parcial</h1>
+    <p class="lead">Producto escalar, vectorial y mixto; rectas y planos; cónicas y cuádricas.</p>
+  </section>
+
+  {grupos.filter((g) => g.items.length).map((g) => (
+    <>
+      <h2>{g.titulo}</h2>
+      <ul class="lista-ex">
+        {g.items.map((p) => (
+          <li class="tarjeta">
+            <a class="ec-titulo" href={`${base}segundo-parcial/parciales/${p.id}/`}>{p.data.titulo}</a>
+            <span class="suave"> · {p.data.unidades.join(', ')}</span>
+            <span class="suave" data-progreso data-ids={idsDeEjercicios(p.body).join(',')}></span>
+          </li>
+        ))}
+      </ul>
+    </>
+  ))}
+
+  <h2>Estudiar</h2>
+  <ul class="lista-ex">
+    {secciones.map((s) => (
+      <li class="tarjeta">
+        <a class="ec-titulo" href={`${base}segundo-parcial/${s.href}`}>{s.titulo}</a>
+        <span class="suave"> · {s.desc}</span>
+      </li>
+    ))}
+  </ul>
+</Layout>

@@ -1,0 +1,209 @@
+---
+id: "final-2021-02-09"
+titulo: "Final 2021-02-09 (U8–U10)"
+fecha: "09/02/2021"
+tipo: "final"
+fuente: "finales/practicos/09-02-2021.pdf"
+paginasEnunciado: "1, 7"
+orden: 104
+unidades: ["U9", "U10"]
+---
+
+import Ejercicio from '../../components/Ejercicio.astro';
+import Enunciado from '../../components/Enunciado.astro';
+import Solucion from '../../components/Solucion.astro';
+import Pista from '../../components/Pista.astro';
+import Paso from '../../components/Paso.astro';
+import Comprobacion from '../../components/Comprobacion.astro';
+
+Del final se incluyen solo los ejercicios de U8–U10; el resto queda fuera del alcance del 2º parcial.
+
+Fuente: el PDF es una resolución tipeada de los 5 ejercicios (sin numerar); el enunciado de cada uno se tomó de ahí (el ej. 1 en la pág. 1, el ej. 5 en la pág. 7). La numeración de acá sigue el orden del documento. Se usó la resolución solo para contrastar: coincide con los resultados de abajo. No trae puntajes.
+
+<Ejercicio id="final-2021-02-09#1" numero={1} fuente="finales/practicos/09-02-2021.pdf" pagina={1} unidad="U9" tema="Rectas coplanares con parámetro" criterios={{ bien: "Director de S como n1 x n2 = (-2;1;3), punto de S, determinante en h igual a 7+2h y h=-7/2, con la aclaración de que para ese h las rectas se cortan.", medias: "h correcto pero sin justificar la condición de coplanaridad, o error en el punto de S que se arrastra a un h distinto.", mal: "Director de S mal, plantear paralelismo en vez de coplanaridad, o usar el mismo punto para R y S." }}>
+<Enunciado fuente="finales/practicos/09-02-2021.pdf" pagina="1">
+Hallar el valor real de $h$ para que las rectas $R$ y $S$ sean coplanares, siendo
+
+$$R:(0,2,1)+\lambda(3,-1,h),\ \lambda\in\mathbb R;\qquad S:\begin{cases}x-y+z=-2\\2x+y+z=0\end{cases}$$
+</Enunciado>
+<Pista>
+
+¿Qué condición tienen que cumplir dos rectas para ser coplanares? ¿Cuántos vectores hacen falta para expresarla y de dónde sacás cada uno, sabiendo que $S$ viene como intersección de dos planos?
+
+</Pista>
+<Pista>
+
+Dos rectas son coplanares si el producto mixto $\big(\vec v_R\times\vec v_S\big)\cdot\overrightarrow{P_RP_S}=0$ (si fueran paralelas también lo cumplen). El director de $S$ es el producto vectorial de las normales de los planos que la definen, y un punto de $S$ se saca dándole un valor a una variable.
+
+</Pista>
+<Pista>
+
+$\vec v_R=(3;-1;h)$, $P_R(0;2;1)$. $\vec v_S=(1;-1;1)\times(2;1;1)$; para $P_S$ probá $x=0$. Planteá $\begin{vmatrix}\overrightarrow{P_RP_S}\\\vec v_R\\\vec v_S\end{vmatrix}=0$ y despejá $h$.
+
+</Pista>
+<Paso>
+
+**Qué:** condición de coplanaridad. **Por qué:** coplanares ⇔ el vector que une un punto de cada recta es combinación de los dos directores ⇔ el producto mixto es 0.
+
+$$\begin{vmatrix}\overrightarrow{P_RP_S}\\\vec v_R\\\vec v_S\end{vmatrix}=0$$
+
+</Paso>
+<Paso>
+
+**Qué:** datos de $R$ (forma vectorial: punto y director a la vista).
+
+$$P_R(0;2;1)\qquad\vec v_R=(3;-1;h)$$
+
+</Paso>
+<Paso>
+
+**Qué:** director de $S$. **Por qué:** $S$ está en los dos planos, así que es perpendicular a ambas normales.
+
+$$\vec v_S=(1;-1;1)\times(2;1;1)=\begin{vmatrix}\vec i&\vec j&\vec k\\1&-1&1\\2&1&1\end{vmatrix}$$
+$$=\big((-1)\cdot1-1\cdot1\big)\vec i-\big(1\cdot1-1\cdot2\big)\vec j+\big(1\cdot1-(-1)\cdot2\big)\vec k$$
+$$=(-2;1;3)$$
+
+</Paso>
+<Paso>
+
+**Qué:** un punto de $S$. Con $x=0$ el sistema queda $-y+z=-2$ e $y+z=0$.
+
+Sumo las dos ecuaciones: $2z=-2$, o sea $z=-1$. Entonces $y=1$.
+
+$$P_S(0;1;-1)\qquad\overrightarrow{P_RP_S}=P_S-P_R=(0;-1;-2)$$
+
+Chequeo: $0-1-1=-2$ ✓ y $0+1-1=0$ ✓.
+
+</Paso>
+<Paso>
+
+**Qué:** el determinante, desarrollado por la 1.ª fila.
+
+$$\begin{vmatrix}0&-1&-2\\3&-1&h\\-2&1&3\end{vmatrix}=-(-1)\big(3\cdot3-h\cdot(-2)\big)+(-2)\big(3\cdot1-(-1)\cdot(-2)\big)$$
+$$=(9+2h)-2\cdot(3-2)$$
+$$=7+2h$$
+
+$$7+2h=0\ \Rightarrow\ h=-\tfrac72$$
+
+</Paso>
+<Paso>
+
+**Qué:** ver qué pasa con las rectas. Con $h=-\tfrac72$, $\vec v_R=(3;-1;-\tfrac72)$ y $\vec v_S=(-2;1;3)$ no son proporcionales ($\tfrac3{-2}\neq\tfrac{-1}1$): no son paralelas, así que coplanares significa que se cortan.
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$h=-\tfrac72$$
+
+Para ese valor $R$ y $S$ son coplanares y, como no son paralelas, se cortan.
+
+**Ojo con:** no confundir "coplanares" con "se cortan" cuando hay paralelismo, y con los signos de los cofactores al desarrollar (se puede evitar con la propiedad $(\vec v_R\times\vec v_S)\cdot\overrightarrow{P_RP_S}=(\vec v_S\times\overrightarrow{P_RP_S})\cdot\vec v_R$).
+
+**Errores comunes**
+- Tomar una de las normales como director de $S$.
+- Elegir un punto que no cumple las dos ecuaciones de $S$.
+- Armar $\overrightarrow{P_RP_S}$ al revés (cambia el signo, no el valor de $h$).
+
+</Solucion>
+<Comprobacion>
+
+Con $h=-\tfrac72$, $R(\lambda)=(3\lambda;\,2-\lambda;\,1-\tfrac72\lambda)$ en las ecuaciones de $S$:
+
+$x-y+z=3\lambda-2+\lambda+1-\tfrac72\lambda=\tfrac12\lambda-1=-2\Rightarrow\lambda=-2$.
+
+$2x+y+z=6\lambda+2-\lambda+1-\tfrac72\lambda=\tfrac32\lambda+3=0\Rightarrow\lambda=-2$.
+
+Los dos valores coinciden ⇒ $R$ corta a $S$ en $R(-2)=(-6;4;8)$ ✓ (cumple $-6-4+8=-2$ y $-12+4+8=0$).
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-2021-02-09#5" numero={5} fuente="finales/practicos/09-02-2021.pdf" pagina={7} unidad="U10" tema="Cuádrica: constantes a partir de trazas" criterios={{ bien: "p=-4 (traza xy circunferencia de radio 2) y q=-16 (traza xz hipérbola de semiejes 2 y 1) con la justificación de cada condición.", medias: "p correcto y q con una condición mal interpretada (por ejemplo tomar |q|=4), o resultados sin justificar el signo de q.", mal: "Igualar mal los coeficientes (p=4), q positivo (daría elipse) o confundir diámetro con radio." }}>
+<Enunciado fuente="finales/practicos/09-02-2021.pdf" pagina="7">
+Dada la superficie de ecuación
+
+$$-px^2+4y^2+qz^2=16,$$
+
+obtener los valores reales de $p$ y $q$ tales que la traza con el plano $xz$ es una hipérbola cuyos semiejes tienen longitud 1 y 2, y la traza con el plano $xy$ es una circunferencia de diámetro 4.
+</Enunciado>
+<Pista>
+
+¿Qué es la traza de una superficie con un plano coordenado y cómo se obtiene la ecuación? ¿Qué tienen que cumplir los coeficientes de $x^2$ e $y^2$ en una circunferencia? ¿Y los signos de los coeficientes en una hipérbola?
+
+</Pista>
+<Pista>
+
+Traza con $xy$: $z=0$; traza con $xz$: $y=0$. Una circunferencia tiene los coeficientes cuadráticos iguales; en una hipérbola tienen signos opuestos. Dividí cada traza por el 2.º miembro para leer los semiejes. Empezá por la circunferencia: te da $p$.
+
+</Pista>
+<Pista>
+
+$z=0$: $-px^2+4y^2=16$; pedí que sea $x^2+y^2=r^2$ con $r=2$. Con ese $p$, $y=0$: $4x^2+qz^2=16\Rightarrow\dfrac{x^2}{4}+\dfrac{z^2}{16/q}=1$. Con un semieje ya conocido ($2$ en $x$) te queda el otro.
+
+</Pista>
+<Paso>
+
+**Qué:** traza con el plano $xy$ ($z=0$).
+
+$$-px^2+4y^2=16$$
+
+</Paso>
+<Paso>
+
+**Qué:** imponer que sea una circunferencia de diámetro 4. **Por qué:** en una circunferencia los coeficientes de $x^2$ e $y^2$ son iguales:
+
+$$-p=4\ \Rightarrow\ p=-4$$
+
+Entonces $4x^2+4y^2=16$, o sea $x^2+y^2=4$: circunferencia de radio $2$, es decir de diámetro $4$ ✓.
+
+</Paso>
+<Paso>
+
+**Qué:** traza con el plano $xz$ ($y=0$), con $p=-4$.
+
+$$4x^2+qz^2=16$$
+$$\frac{x^2}{4}+\frac{z^2}{16/q}=1$$
+
+</Paso>
+<Paso>
+
+**Qué:** imponer que sea una hipérbola. **Por qué:** para que los dos términos tengan signo opuesto hace falta $\dfrac{16}{q}<0$, o sea $q<0$:
+
+$$\frac{x^2}{4}-\frac{z^2}{16/|q|}=1$$
+
+</Paso>
+<Paso>
+
+**Qué:** semiejes 1 y 2. **Por qué:** el semieje en $x$ ya vale $\sqrt4=2$; entonces el otro tiene que valer $1$:
+
+$$\sqrt{\frac{16}{|q|}}=1\ \Rightarrow\ |q|=16\ \Rightarrow\ q=-16\quad(\text{porque }q<0)$$
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$p=-4,\qquad q=-16$$
+
+La superficie es $4x^2+4y^2-16z^2=16$, o sea $\dfrac{x^2}{4}+\dfrac{y^2}{4}-z^2=1$: hiperboloide de una hoja de eje $z$.
+
+**Ojo con:** el signo de $q$: positivo daría una elipse en $xz$. Y con diámetro 4 el radio es 2, no 4.
+
+**Errores comunes**
+- Escribir $p=4$ al igualar $-p=4$.
+- Tomar $16/|q|=4$ (confundiendo semieje con su cuadrado).
+- Olvidar que "hipérbola" exige coeficientes de signo opuesto.
+
+</Solucion>
+<Comprobacion>
+
+Traza $z=0$: $4x^2+4y^2=16\Rightarrow x^2+y^2=4$ ✓ (diámetro 4).
+
+Traza $y=0$: $4x^2-16z^2=16\Rightarrow\dfrac{x^2}{4}-\dfrac{z^2}{1}=1$ ✓ (semiejes $2$ y $1$).
+
+</Comprobacion>
+</Ejercicio>
+

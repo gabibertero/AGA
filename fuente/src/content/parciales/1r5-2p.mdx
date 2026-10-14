@@ -1,0 +1,339 @@
+---
+id: "1r5-2p"
+titulo: "2º Parcial curso 1R5"
+tipo: "práctico"
+fuente: "parciales/2do-parcial/Parcial 2 curso 1R5.JPEG"
+paginasEnunciado: "1"
+orden: 3
+unidades: ["U9", "U10"]
+---
+
+import Ejercicio from '../../components/Ejercicio.astro';
+import Enunciado from '../../components/Enunciado.astro';
+import Solucion from '../../components/Solucion.astro';
+import Pista from '../../components/Pista.astro';
+import Paso from '../../components/Paso.astro';
+import Comprobacion from '../../components/Comprobacion.astro';
+
+Segundo parcial del curso 1R5 (cátedra Álgebra y Geometría Analítica, UTN FRC). Sin fecha ni resolución oficial; foto del enunciado impreso, con el nombre y el legajo en blanco.
+
+> **Nota sobre las fuentes.** El archivo `Resoluciones.html` de la carpeta de la materia (resolución de terceros, no oficial) trae, para un parcial de 35 + 35 + 30 puntos, un ejercicio 1 de autovalores y autovectores (U7). Ese ejercicio **no figura en esta foto**: es otro examen. Acá el ejercicio 1 es la cónica de la foto; los resultados de los ejercicios 2 y 3 coinciden con los de ese archivo.
+
+<div class="capa oficial" data-consigna>
+<p class="rotulo">Consigna de corrección (tabla del examen)</p>
+
+| Puntaje | 0–30 | 31–45 | 46–55 | 56–65 | 66–75 | 76–83 | 84–92 | 93–98 | 99–100 |
+|---|---|---|---|---|---|---|---|---|---|
+| Nota | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+
+</div>
+
+<Ejercicio id="1r5-2p#1" numero={1} puntos={35} fuente="parciales/2do-parcial/Parcial 2 curso 1R5.JPEG" pagina={1} unidad="U10" tema="Cónica (elipse)" criterios={{ bien: "Elipse, ordinaria correcta + C, a, b, c, V, V', A, A', F, F', e y LR (con sus extremos) correctos + gráfico con TODOS esos elementos, escala graduada y coherente con lo analítico.", medias: "Ordinaria y elementos analíticos correctos, pero el gráfico está incompleto (le falta algún elemento, p. ej. los extremos del LR) o hay un error menor de cuentas que no cambia la forma. Ojo: en el parcial real un gráfico incompleto anula el ejercicio; acá vale A medias solo como estimación de estudio.", mal: "Ordinaria incorrecta (h, k, a o b mal), eje mayor mal orientado (horizontal en vez de vertical), o gráfico faltante o incoherente con la resolución analítica." }}>
+<Enunciado fuente="parciales/2do-parcial/Parcial 2 curso 1R5.JPEG" pagina="1">
+**(35p)** Dada la siguiente curva $9x^2+4y^2-54x+16y+61=0$, identifique de qué cónica se trata. Encuentre su ecuación ordinaria. Halle todos sus datos notables y grafique la cónica correspondiente.
+
+<p><a href={`${import.meta.env.BASE_URL}escaneos/1r5-2p.jpg`} target="_blank" rel="noopener">Ver el original</a></p>
+
+</Enunciado>
+<Pista>
+
+¿Qué tienen en común los coeficientes de $x^2$ y de $y^2$? ¿Son iguales? ¿Hay término en $xy$? ¿Qué te dice eso sobre el tipo de cónica? ¿Qué te falta para leer el centro y los semiejes?
+
+</Pista>
+<Pista>
+
+Es una elipse con ejes paralelos a los coordenados. Agrupá $x$ por un lado e $y$ por otro, completá cuadrados en cada variable (multiplicando por el coeficiente de afuera lo que sumás adentro) y dividí para que el segundo miembro sea 1. Ojo: el eje mayor está del lado del denominador **mayor**. Notación de cátedra: $V,V'$ (eje mayor), $A,A'$ (eje menor), $F,F'$ (focos), $LL'$ (lado recto).
+
+</Pista>
+<Pista>
+
+Planteo: $9(x^2-6x+\square)+4(y^2+4y+\square)=-61+9\cdot\square+4\cdot\square$. Cada $\square$ interior es el cuadrado de la mitad del coeficiente lineal. Dividí por el número que te quede y leé $a$, $b$ y $c=\sqrt{a^2-b^2}$.
+
+</Pista>
+<Paso>
+
+**Qué:** reconocer el tipo. **Por qué:** $x^2$ e $y^2$ tienen igual signo y coeficientes distintos (9 y 4), y no hay término $xy$ ⇒ elipse con ejes paralelos a los coordenados (o degenerada; se confirma al completar cuadrados).
+
+</Paso>
+<Paso>
+
+**Qué:** agrupar por variable. **Por qué:** para completar cuadrados cada una por separado.
+
+$$9(x^2-6x)+4(y^2+4y)=-61$$
+
+</Paso>
+<Paso>
+
+**Qué:** completar cuadrados. **Por qué:** lo que se suma adentro se multiplica por el coeficiente de afuera y se suma también al otro miembro: $9\cdot9$ y $4\cdot4$.
+
+$$9(x^2-6x+9)+4(y^2+4y+4)=-61+81+16$$
+$$9(x-3)^2+4(y+2)^2=36$$
+
+$36>0$ ⇒ elipse real (si fuera $0$ sería un punto; si fuera negativo, vacío).
+
+</Paso>
+<Paso>
+
+**Qué:** dividir por 36. **Por qué:** la forma ordinaria tiene 1 en el segundo miembro.
+
+$$\dfrac{(x-3)^2}{4}+\dfrac{(y+2)^2}{9}=1$$
+
+</Paso>
+<Paso>
+
+**Qué:** leer los parámetros. **Cómo reconocerlo:** el denominador mayor (9) está bajo $y$ ⇒ el eje mayor es **vertical** (paralelo al eje $y$). Entonces $a^2=9\Rightarrow a=3$; $b^2=4\Rightarrow b=2$; $c^2=a^2-b^2=5\Rightarrow c=\sqrt5$.
+
+</Paso>
+<Paso>
+
+**Notación de cátedra (U10, p. 15):** $V,V'$ extremos del eje mayor, $A,A'$ extremos del eje menor, $F,F'$ focos, $LL'$ lado recto. $M,M'$ son un rótulo propio para los extremos del segundo lado recto.
+
+**Qué:** calcular los elementos, siempre desde el centro $C(3;-2)$ (la elipse está trasladada).
+
+| Elemento | Cálculo | Valor |
+|---|---|---|
+| Centro | $(h;k)$ | $C(3;-2)$ |
+| Vértices (extremos del eje mayor) | $(h;k\pm a)$ | $V(3;1)$, $V'(3;-5)$ |
+| Extremos del eje menor | $(h\pm b;k)$ | $A(5;-2)$, $A'(1;-2)$ |
+| Focos | $(h;k\pm c)$ | $F(3;-2+\sqrt5)$, $F'(3;-2-\sqrt5)$ |
+| Eje mayor, eje menor, distancia focal | $2a$, $2b$, $2c$ | $6$, $4$, $2\sqrt5$ |
+| Excentricidad | $e=c/a$ | $\tfrac{\sqrt5}{3}\approx0{,}75$ |
+| Lado recto | $LR=2b^2/a$ | $\tfrac83$ |
+| Extremos del lado recto (por $F$ y por $F'$) | $y=k\pm c$, $x=h\pm b^2/a$ | $L(\tfrac{13}3;-2+\sqrt5)$, $L'(\tfrac53;-2+\sqrt5)$, $M(\tfrac{13}3;-2-\sqrt5)$, $M'(\tfrac53;-2-\sqrt5)$ |
+| Eje mayor (focal) | recta por $C$, $F$, $F'$ | $x=3$ |
+| Eje menor | perpendicular por $C$ | $y=-2$ |
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$\dfrac{(x-3)^2}{4}+\dfrac{(y+2)^2}{9}=1$$
+
+Elipse vertical: $C(3;-2)$, $a=3$, $b=2$, $c=\sqrt5$, $V,V'(3;1),(3;-5)$, $A,A'(5;-2),(1;-2)$, $F,F'(3;-2+\sqrt5),(3;-2-\sqrt5)$, $2a=6$, $2b=4$, $2c=2\sqrt5$, $e=\tfrac{\sqrt5}{3}$, lado recto $\tfrac83$ con extremos $L(\tfrac{13}3;-2+\sqrt5)$, $L'(\tfrac53;-2+\sqrt5)$ por $F$ y $M(\tfrac{13}3;-2-\sqrt5)$, $M'(\tfrac53;-2-\sqrt5)$ por $F'$.
+
+<figure>
+<img src={`${import.meta.env.BASE_URL}figuras/1r5-2p/1r5-ej1-elipse.svg`} alt="Elipse vertical con centro (3;-2), vértices V(3;1) y V'(3;-5), extremos del eje menor A(5;-2) y A'(1;-2), focos F(3;-2+raíz de 5) y F'(3;-2-raíz de 5), extremos de los lados rectos, ejes de simetría x=3 e y=-2, cotas 2a=6, 2b=4, 2c=2 raíz de 5, ejes graduados de a 1." style="max-width:100%;height:auto" />
+<figcaption>Gráfico del ejercicio 1: centro, vértices, extremos del eje menor, focos, lados rectos, ejes de simetría y cotas 2a, 2b, 2c; ejes graduados de a 1 y misma escala en x e y. Los focos caen en $-2\pm2{,}24$, o sea $\approx0{,}24$ y $\approx-4{,}24$.</figcaption>
+</figure>
+
+**Ojo con:** el eje mayor es el del denominador **mayor** (9, bajo $y$): es vertical, no horizontal. Si el parcial pide el gráfico, la lista mínima a marcar es: $C$, $V$, $V'$, $A$, $A'$, $F$, $F'$, ambos ejes de simetría, los extremos de los lados rectos y los rótulos $2a$, $2b$, $2c$, con la misma escala en $x$ e $y$.
+
+**Errores comunes**
+- Sumar $9$ y $4$ en vez de $81$ y $16$ (olvidar multiplicar por el coeficiente de afuera).
+- Poner el eje mayor horizontal (focos en $(3\pm\sqrt5;-2)$) por leer primero el $x$.
+- Sacar $c$ como $\sqrt{a^2+b^2}$ (eso es hipérbola).
+- Dar los focos como $(0;\pm\sqrt5)$ sin trasladar al centro.
+- Graficar con escala distinta en $x$ e $y$, o no marcar el lado recto ni rotular sus extremos.
+
+</Solucion>
+<Comprobacion>
+
+$V(3;1)$ en la general: $81+4-162+16+61=0$ ✓. $A(5;-2)$: $225+16-270-32+61=0$ ✓.
+
+$A(5;-2)$ cumple la definición de elipse: $d(A,F)=\sqrt{4+5}=3=a$ y, por simetría, $d(A,F')=3$, así que $d_1+d_2=6=2a$ ✓.
+
+Lado recto: $L(\tfrac{13}3;-2+\sqrt5)$ en la ordinaria: $\tfrac{(4/3)^2}{4}+\tfrac{5}{9}=\tfrac49+\tfrac59=1$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
+<Ejercicio id="1r5-2p#2" numero={2} puntos={35} fuente="parciales/2do-parcial/Parcial 2 curso 1R5.JPEG" pagina={1} unidad="U9" tema="Rectas (posición relativa y distancia)" criterios={{ bien: "Se cruzan (alabeadas), justificado con mixto ≠ 0 o sistema incompatible, y distancia 13/√14 = 13√14/14 ≈ 3,47 con el vector AB y el producto vectorial bien planteados.", medias: "Posición relativa correcta pero error de cuentas en la distancia (o la distancia sin simplificar mal), o distancia correcta sin justificar que se cruzan.", mal: "Concluir que se cortan o son paralelas, o usar un director mal leído de r1, o fórmula de distancia incorrecta (punto-recta en vez de recta-recta)." }}>
+<Enunciado fuente="parciales/2do-parcial/Parcial 2 curso 1R5.JPEG" pagina="1">
+Sean las rectas:
+
+r1: *(ilegible en la impresión; **pendiente de revisión: lectura tomada de una anotación manuscrita**)* $\dfrac{x}{1}=\dfrac{y-1}{1}=\dfrac{z-2}{-1}$
+
+r2: $(x,y,z)=(3,-1,1)+s(1,0,2)$
+
+a) **(20p)** Determine si las recta r1 y r2 se cortan o se cruzan. En caso de que se corten encuentre el punto de intersección.
+
+b) **(15p)** Calcule la distancia entre ambas rectas.
+
+</Enunciado>
+<Pista>
+
+¿Qué dato te da cada recta (un punto y un vector)? Para decidir si se cortan o se cruzan: ¿son paralelas? Si no lo son, ¿qué te dice que estén o no en un mismo plano? ¿Qué mide la distancia entre dos rectas que se cruzan?
+
+</Pista>
+<Pista>
+
+Pasá a paramétricas, mirá si los directores son proporcionales y decidí entre secantes y alabeadas con el producto mixto $[\overrightarrow{AB},\vec u,\vec v]$ (o con el sistema de igualar coordenadas con parámetros distintos). La distancia entre alabeadas es el valor absoluto del producto mixto dividido por $|\vec u\times\vec v|$.
+
+</Pista>
+<Pista>
+
+$A(0;1;2)$ y $\vec u=(1;1;-1)$ en r1; $B(3;-1;1)$ y $\vec v=(1;0;2)$ en r2. Calculá $\vec n=\vec u\times\vec v$ y $\overrightarrow{AB}=B-A$. Si $\overrightarrow{AB}\cdot\vec n\neq0$ las rectas se cruzan, y $d=\dfrac{|\overrightarrow{AB}\cdot\vec n|}{|\vec n|}$.
+
+</Pista>
+<Paso>
+
+**Qué:** datos de cada recta. **Cómo reconocerlo:** r1 en simétrica tiene punto $A(0;1;2)$ (lo que resta en cada numerador) y director $\vec u=(1;1;-1)$ (los denominadores). r2 viene en vectorial: punto $B(3;-1;1)$ y director $\vec v=(1;0;2)$.
+
+Paramétricas (parámetros distintos, $t$ y $s$): r1: $x=t,\ y=1+t,\ z=2-t$; r2: $x=3+s,\ y=-1,\ z=1+2s$.
+
+</Paso>
+<Paso>
+
+**Qué:** ¿paralelas? **Por qué:** es lo primero que se descarta. $\vec u=(1;1;-1)$ y $\vec v=(1;0;2)$ no son proporcionales (la 2.ª componente de $\vec v$ es 0 y la de $\vec u$ no) ⇒ **no** son paralelas.
+
+</Paso>
+<Paso>
+
+**Qué:** producto vectorial y vector entre puntos.
+
+$$\vec n=\vec u\times\vec v=\begin{vmatrix}\vec i&\vec j&\vec k\\1&1&-1\\1&0&2\end{vmatrix}$$
+$$=\big(1\cdot2-(-1)\cdot0\big)\vec i-\big(1\cdot2-(-1)\cdot1\big)\vec j+\big(1\cdot0-1\cdot1\big)\vec k$$
+$$\vec n=(2;-3;-1)$$
+$$\overrightarrow{AB}=B-A=(3;-2;-1)$$
+
+</Paso>
+<Paso>
+
+**Qué:** producto mixto. **Por qué:** si fuera $0$ las rectas serían coplanares (y no paralelas ⇒ se cortan); si es distinto de $0$ no están en un mismo plano ⇒ se cruzan.
+
+$$\overrightarrow{AB}\cdot\vec n=3\cdot2+(-2)(-3)+(-1)(-1)$$
+$$=6+6+1=13\neq0$$
+
+**Respuesta a):** r1 y r2 **se cruzan** (alabeadas); no hay punto de intersección.
+
+</Paso>
+<Paso>
+
+**Qué:** confirmar con el sistema (camino alternativo). Igualo coordenadas: $t=3+s$, $1+t=-1$, $2-t=1+2s$. De la 2.ª: $t=-2$. En la 1.ª: $s=-5$. En la 3.ª: $2-(-2)=4$ pero $1+2(-5)=-9$ y $4\neq-9$ ⇒ sistema incompatible ⇒ no se cortan.
+
+</Paso>
+<Paso>
+
+**Qué:** distancia entre rectas alabeadas. **Por qué:** es la altura del paralelepípedo que forman $\overrightarrow{AB}$, $\vec u$ y $\vec v$: volumen ($|\overrightarrow{AB}\cdot\vec n|$) sobre área de la base ($|\vec n|$).
+
+$$|\vec n|=\sqrt{4+9+1}=\sqrt{14}$$
+$$d=\dfrac{|\overrightarrow{AB}\cdot\vec n|}{|\vec n|}=\dfrac{13}{\sqrt{14}}$$
+$$d=\dfrac{13\sqrt{14}}{14}\approx3{,}47$$
+
+**Respuesta b):** la distancia entre r1 y r2 es $\dfrac{13}{\sqrt{14}}\approx3{,}47$.
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.** (Con la lectura de r1 marcada como pendiente de revisión.)
+
+a) r1 y r2 **se cruzan** (alabeadas): producto mixto $13\neq0$, sistema incompatible.
+
+b) 
+
+$$d=\dfrac{13}{\sqrt{14}}=\dfrac{13\sqrt{14}}{14}\approx3{,}47$$
+
+**Ojo con:** que r1 está leída de una anotación manuscrita: si el director o el punto de r1 fueran otros, cambian el mixto y la distancia. Y que la distancia usa el valor absoluto del mixto.
+
+**Errores comunes**
+- Igualar con el mismo parámetro en ambas rectas.
+- Concluir "se cortan" por haber resuelto solo dos ecuaciones sin chequear la 3.ª.
+- Usar la fórmula de distancia punto-recta en vez de recta-recta, o dividir por $|\vec u|$ o $|\vec v|$ en lugar de $|\vec u\times\vec v|$.
+- Error de signo en el cofactor de $\vec j$.
+- No racionalizar (si el parcial lo pide) o no dar el valor aproximado.
+
+</Solucion>
+<Comprobacion>
+
+Camino independiente: minimizar $|r_1(t)-r_2(s)|^2$. Derivando respecto de $t$ y de $s$ y resolviendo se obtienen los pies de la perpendicular común, $t=\tfrac{11}{14}$ y $s=-\tfrac5{14}$, o sea $\big(\tfrac{11}{14};\tfrac{25}{14};\tfrac{17}{14}\big)$ en r1 y $\big(\tfrac{37}{14};-1;\tfrac27\big)$ en r2. El vector entre ellos, $\big(-\tfrac{13}7;\tfrac{39}{14};\tfrac{13}{14}\big)=-\tfrac{13}{14}(2;-3;-1)$, es paralelo a $\vec n$ ✓ y su longitud es $\tfrac{13}{14}\sqrt{14}=\tfrac{13}{\sqrt{14}}$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
+<Ejercicio id="1r5-2p#3" numero={3} puntos={30} fuente="parciales/2do-parcial/Parcial 2 curso 1R5.JPEG" pagina={1} unidad="U9" tema="Plano (cortes con los ejes y distancia)" criterios={{ bien: "Cortes (13;0;0), (0;13/4;0) y (0;0;-39/4) y distancia 8, con la fórmula de distancia punto-plano bien planteada.", medias: "Una de las dos partes correcta, o los tres cortes con un error de signo/cuenta en uno solo, o distancia con error en el valor absoluto o en el módulo de la normal.", mal: "Cortes que no cumplen la ecuación del plano o distancia calculada con otra fórmula (punto-recta) o con el signo del numerador mal y sin valor absoluto." }}>
+<Enunciado fuente="parciales/2do-parcial/Parcial 2 curso 1R5.JPEG" pagina="1">
+Dada la ecuación de un plano $\pi: 3x+12y-4z-39=0$:
+
+a- **(15p)** Hallar las coordenadas de corte del plano con sus ejes cartesianos.
+
+b- **(15p)** Hallar la distancia de ese mismo plano al punto $P(-3,-4,2)$.
+
+</Enunciado>
+<Pista>
+
+¿Qué valen dos de las tres coordenadas de un punto que está sobre el eje $x$? ¿Y sobre los otros ejes? Para la distancia: ¿qué fórmula usa los coeficientes del plano y las coordenadas del punto?
+
+</Pista>
+<Pista>
+
+Cada corte con un eje se halla anulando las otras dos coordenadas y despejando la que queda. La distancia punto-plano es $d=\dfrac{|Ax_0+By_0+Cz_0+D|}{\sqrt{A^2+B^2+C^2}}$.
+
+</Pista>
+<Pista>
+
+Eje $x$: $y=z=0$, queda $3x-39=0$. Eje $y$: $x=z=0$. Eje $z$: $x=y=0$. Para $d$: normal $(3;12;-4)$, módulo $\sqrt{9+144+16}$, y reemplazá $P$ en el numerador (con valor absoluto).
+
+</Pista>
+<Paso>
+
+**Qué:** corte con el eje $x$. **Por qué:** los puntos del eje $x$ tienen $y=0$ y $z=0$.
+
+$$3x-39=0\Rightarrow x=13\qquad\Rightarrow\ (13;0;0)$$
+
+</Paso>
+<Paso>
+
+**Qué:** corte con el eje $y$ ($x=0$, $z=0$).
+
+$$12y-39=0\Rightarrow y=\tfrac{39}{12}=\tfrac{13}{4}\qquad\Rightarrow\ \big(0;\tfrac{13}{4};0\big)$$
+
+</Paso>
+<Paso>
+
+**Qué:** corte con el eje $z$ ($x=0$, $y=0$).
+
+$$-4z-39=0\Rightarrow z=-\tfrac{39}{4}\qquad\Rightarrow\ \big(0;0;-\tfrac{39}{4}\big)$$
+
+**Respuesta a):** el plano corta a los ejes en $(13;0;0)$, $(0;\tfrac{13}4;0)$ y $(0;0;-\tfrac{39}4)$.
+
+</Paso>
+<Paso>
+
+**Qué:** distancia del punto al plano. **Por qué:** fórmula $d=\dfrac{|Ax_0+By_0+Cz_0+D|}{\sqrt{A^2+B^2+C^2}}$ con $(A;B;C)=(3;12;-4)$, $D=-39$.
+
+$$\text{numerador: }|3(-3)+12(-4)-4\cdot2-39|=|-9-48-8-39|=|-104|=104$$
+$$\text{denominador: }\sqrt{9+144+16}=\sqrt{169}=13$$
+$$d=\dfrac{104}{13}=8$$
+
+**Respuesta b):** $d(P,\pi)=8$.
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+a) Cortes con los ejes: $(13;0;0)$, $\big(0;\tfrac{13}{4};0\big)$ y $\big(0;0;-\tfrac{39}{4}\big)$.
+
+b) 
+
+$$d(P,\pi)=8$$
+
+**Ojo con:** el valor absoluto del numerador (da $-104$) y el signo del corte con el eje $z$ (negativo, porque el coeficiente de $z$ es $-4$).
+
+**Errores comunes**
+- Dejar el signo negativo en la distancia (falta el valor absoluto).
+- Olvidar el término independiente $-39$ en el numerador.
+- Despejar mal $z$: $-4z=39$ da $z=-\tfrac{39}{4}$, no $\tfrac{39}{4}$.
+- Confundir "corte con los ejes" con "corte con los planos coordenados" (trazas).
+
+</Solucion>
+<Comprobacion>
+
+Los tres puntos cumplen la ecuación: $3\cdot13-39=0$ ✓; $12\cdot\tfrac{13}4-39=0$ ✓; $-4\cdot(-\tfrac{39}4)-39=0$ ✓.
+
+Camino alternativo para la distancia: la recta por $P$ con director la normal, $P+\lambda(3;12;-4)$, corta al plano en $\lambda=\tfrac{8}{13}$ (se obtiene reemplazando en $\pi$); la distancia es $|\lambda|\cdot|\vec n|=\tfrac8{13}\cdot13=8$ ✓, con $|\lambda|=\tfrac{8}{13}$ porque $\pi(P)=-104$ y $|\vec n|^2=169$.
+
+</Comprobacion>
+</Ejercicio>
+
+<details class="capa elaborado" data-respuestas>
+<summary>Tabla de respuestas (solución elaborada — no oficial, verificada con sympy)</summary>
+
+| Ejercicio | Respuesta |
+|---|---|
+| **1** (35 pts) | Elipse vertical: $\dfrac{(x-3)^2}{4}+\dfrac{(y+2)^2}{9}=1$. $C(3;-2)$, $a=3$, $b=2$, $c=\sqrt5$, $V,V'(3;1),(3;-5)$, $A,A'(5;-2),(1;-2)$, $F,F'(3;-2\pm\sqrt5)$, $e=\tfrac{\sqrt5}3$, lado recto $\tfrac83$ con extremos $(\tfrac{13}3;-2\pm\sqrt5)$ y $(\tfrac53;-2\pm\sqrt5)$ |
+| **2** (35 pts) | a) se cruzan (alabeadas). b) $d=\dfrac{13}{\sqrt{14}}=\dfrac{13\sqrt{14}}{14}\approx3{,}47$ (con r1 leída de la anotación manuscrita: pendiente de revisión) |
+| **3** (30 pts) | a) $(13;0;0)$, $(0;\tfrac{13}4;0)$, $(0;0;-\tfrac{39}4)$. b) $d=8$ |
+
+</details>

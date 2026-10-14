@@ -1,0 +1,8 @@
+---
+// Cita inline de fuente: <MacheteFuente f="U9 p.5" />. Códigos: U8, U9, U10 (PDFs de cátedra) y Ap (Apunte 2025); ver leyenda de la página.
+const { f } = Astro.props;
+---
+<span class="fte-m">[{f}]</span>
+<style is:global>
+  .fte-m { font-size: .75rem; font-weight: 600; color: var(--suave); white-space: nowrap; vertical-align: .1em; padding: 0 3px; }
+</style>

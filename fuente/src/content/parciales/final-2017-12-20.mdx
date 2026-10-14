@@ -1,0 +1,224 @@
+---
+id: "final-2017-12-20"
+titulo: "Final 2017-12-20 (U8–U10)"
+fecha: "20/12/2017"
+tipo: "final"
+fuente: "finales/practicos/Finales Practicos .pdf"
+paginasEnunciado: "4"
+orden: 100
+unidades: ["U9", "U10"]
+---
+
+import Ejercicio from '../../components/Ejercicio.astro';
+import Enunciado from '../../components/Enunciado.astro';
+import Solucion from '../../components/Solucion.astro';
+import Pista from '../../components/Pista.astro';
+import Paso from '../../components/Paso.astro';
+import Comprobacion from '../../components/Comprobacion.astro';
+
+Del final se incluyen solo los ejercicios de U8–U10; el resto queda fuera del alcance del 2º parcial.
+
+Fuente: foto oblicua de la hoja impresa, legible; nombre y legajo en blanco. No trae resolución ni puntajes. La anotación manuscrita "$B=ACA^{-1}$" junto al ej. 4 es de un ejercicio fuera de alcance.
+
+<Ejercicio id="final-2017-12-20#1" numero={1} fuente="finales/practicos/Finales Practicos .pdf" pagina={4} unidad="U9" tema="Plano perpendicular a dos planos" criterios={{ bien: "Normal (-1;12;7) obtenida como n1 x n2, plano x-12y-7z-2=0 (o múltiplo no nulo) y conclusión correcta sobre (4;-5;-1): no pertenece.", medias: "Normal correcta pero error aritmético en el término independiente, o plano correcto sin verificar el punto pedido.", mal: "Normal incorrecta (n1 o n2 solos, o producto vectorial mal), plano que no pasa por P1, o afirmar que contiene al punto (4;-5;-1)." }}>
+<Enunciado fuente="finales/practicos/Finales Practicos .pdf" pagina="4">
+Hallar la ecuación del plano que pasa por el punto $P_1(5;2;-3)$ y es perpendicular a cada uno de los planos $\pi_1: 2x-y+2z-9=0$ y $\pi_2: x+3y-5z+3=0$. Verificar si el plano encontrado contiene al punto $(4;-5;-1)$.
+</Enunciado>
+<Pista>
+
+Dos planos son perpendiculares cuando lo son sus normales. Si el plano que buscás tiene que ser perpendicular a $\pi_1$ y a $\pi_2$ a la vez, ¿qué le pasa a su vector normal respecto de $\vec n_1$ y $\vec n_2$?
+
+</Pista>
+<Pista>
+
+Su normal tiene que ser perpendicular a $\vec n_1$ y a $\vec n_2$: sale del producto vectorial $\vec n_1\times\vec n_2$. Después, plano por un punto con normal conocida, $\vec n\cdot(X-P_1)=0$. Para la verificación, reemplazá el punto en la ecuación.
+
+</Pista>
+<Pista>
+
+$\vec n_1=(2;-1;2)$, $\vec n_2=(1;3;-5)$. Calculá el determinante simbólico, planteá $\vec n\cdot\big((x;y;z)-(5;2;-3)\big)=0$, desarrollá e igualá a 0. Al final reemplazá $(4;-5;-1)$.
+
+</Pista>
+<Paso>
+
+**Qué:** traducir "perpendicular a cada uno de los planos". **Por qué:** dos planos son perpendiculares si sus normales lo son. Entonces la normal $\vec n$ del plano buscado cumple $\vec n\perp\vec n_1$ y $\vec n\perp\vec n_2$, o sea $\vec n\parallel\vec n_1\times\vec n_2$.
+
+</Paso>
+<Paso>
+
+**Qué:** leer las normales de los planos dados. **Cómo reconocerlo:** son los coeficientes de $x$, $y$, $z$.
+
+$$\vec n_1=(2;-1;2)\qquad \vec n_2=(1;3;-5)$$
+
+</Paso>
+<Paso>
+
+**Qué:** producto vectorial.
+
+$$\vec n=\vec n_1\times\vec n_2=\begin{vmatrix}\vec i&\vec j&\vec k\\2&-1&2\\1&3&-5\end{vmatrix}$$
+$$=\big((-1)(-5)-2\cdot3\big)\vec i-\big(2\cdot(-5)-2\cdot1\big)\vec j+\big(2\cdot3-(-1)\cdot1\big)\vec k$$
+$$=(-1;\,12;\,7)$$
+
+$\vec n\neq\vec 0$ ⇒ $\vec n_1\not\parallel\vec n_2$ ⇒ los planos dados no son paralelos y el producto vectorial sirve como normal.
+
+</Paso>
+<Paso>
+
+**Qué:** ecuación $\vec n\cdot(X-P_1)=0$. **Por qué:** el plano pasa por $P_1(5;2;-3)$ y tiene normal $\vec n$.
+
+$$-1(x-5)+12(y-2)+7(z+3)=0$$
+
+</Paso>
+<Paso>
+
+**Qué:** desarrollar y ordenar.
+
+$$-x+5+12y-24+7z+21=0$$
+$$-x+12y+7z+2=0$$
+$$x-12y-7z-2=0$$
+
+Son la misma ecuación (multiplicar por $-1$ no cambia el plano).
+
+</Paso>
+<Paso>
+
+**Qué:** verificar si el plano contiene a $(4;-5;-1)$. **Por qué:** un punto pertenece al plano si sus coordenadas cumplen la ecuación.
+
+$$4-12\cdot(-5)-7\cdot(-1)-2=4+60+7-2=69$$
+
+$69\neq0$ ⇒ el punto **no** pertenece al plano.
+
+**Respuesta:** el plano pedido es $x-12y-7z-2=0$ y no contiene al punto $(4;-5;-1)$.
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$x-12y-7z-2=0$$
+
+(equivalente: $-x+12y+7z+2=0$). El plano no contiene al punto $(4;-5;-1)$: al reemplazar da $69\neq0$.
+
+**Ojo con:** tomar $\vec n_1$ o $\vec n_2$ como normal (eso da un plano paralelo a uno de los dados, no perpendicular a ambos) y con el signo del cofactor de $\vec j$.
+
+**Errores comunes**
+- Usar $\vec n_1\times\vec n_2$ como director del plano en vez de normal.
+- Desarrollar mal el término independiente ($+5-24+21=2$).
+- Verificar el punto en $\pi_1$ o $\pi_2$ en lugar de en el plano encontrado.
+
+</Solucion>
+<Comprobacion>
+
+$P_1$ cumple: $5-12\cdot2-7\cdot(-3)-2=5-24+21-2=0$ ✓.
+
+La normal es perpendicular a las dos normales dadas: $\vec n\cdot\vec n_1=-2-12+14=0$ ✓ y $\vec n\cdot\vec n_2=-1+36-35=0$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
+<Ejercicio id="final-2017-12-20#2" numero={2} fuente="finales/practicos/Finales Practicos .pdf" pagina={4} unidad="U10" tema="Hipérbola dados vértices y eje conjugado" criterios={{ bien: "Ordinaria y^2/4-(x+3)^2/9=1 correcta + C, a, b, c, V, V', A, A', F, F', e, LL' (con extremos) y asíntotas correctos + gráfico con todos esos elementos, escala graduada y coherente con lo analítico.", medias: "Ecuación y elementos analíticos correctos, pero el gráfico omite rótulos o cotas menores (p. ej. extremos del LL' o 2a, 2b, 2c). Ojo: en el parcial real un gráfico incompleto anula el ejercicio; acá vale A medias solo como estimación de estudio.", mal: "Eje transverso mal orientado (horizontal), c calculado como raíz de a^2-b^2, ecuación con signos cambiados, o gráfico faltante o incoherente con lo analítico." }}>
+<Enunciado fuente="finales/practicos/Finales Practicos .pdf" pagina="4">
+Los vértices de una hipérbola son los puntos $(-3;2)$ y $(-3;-2)$ y la longitud de su eje conjugado es 6. Hallar la ecuación de la hipérbola y todos sus restantes valores notables. Graficar.
+</Enunciado>
+<Pista>
+
+¿Qué tienen en común las abscisas de los dos vértices? ¿Qué te dice eso sobre la posición del eje que los contiene? ¿Dónde queda el centro respecto de los vértices?
+
+</Pista>
+<Pista>
+
+Los vértices están sobre una vertical, así que el eje transverso (el que une $V$ y $V'$) es vertical. El centro es el punto medio de los vértices, $a$ es la mitad de la distancia entre ellos y $b$ la mitad del eje conjugado. En la hipérbola $c^2=a^2+b^2$. Notación de cátedra (U10, p. 29): $V,V'$, $A,A'$ (extremos del eje conjugado), $F,F'$, $LL'$.
+
+</Pista>
+<Pista>
+
+$C=\big(-3;\tfrac{2+(-2)}{2}\big)$, $a=\tfrac{|2-(-2)|}{2}$, $2b=6$. Con eje transverso vertical la ecuación es $\dfrac{(y-k)^2}{a^2}-\dfrac{(x-h)^2}{b^2}=1$ (el término positivo es el de la variable del eje transverso).
+
+</Pista>
+<Paso>
+
+**Qué:** ubicar el centro y el eje. **Por qué:** los vértices $V(-3;2)$ y $V'(-3;-2)$ tienen igual abscisa ⇒ están sobre la recta $x=-3$ ⇒ el eje transverso (focal) es **vertical**. El centro es el punto medio:
+
+$$C=\left(\frac{-3+(-3)}{2};\frac{2+(-2)}{2}\right)=(-3;0)$$
+
+</Paso>
+<Paso>
+
+**Qué:** hallar $a$, $b$ y $c$.
+
+$$2a=d(V,V')=|2-(-2)|=4\ \Rightarrow\ a=2$$
+$$2b=6\ \Rightarrow\ b=3$$
+$$c^2=a^2+b^2=4+9=13\ \Rightarrow\ c=\sqrt{13}$$
+
+**Ojo:** en la hipérbola es $c^2=a^2+b^2$ (en la elipse sería $a^2-b^2$). Además $c>a$, o sea $e>1$.
+
+</Paso>
+<Paso>
+
+**Qué:** ecuación ordinaria. **Por qué:** con eje transverso vertical y centro $(h;k)=(-3;0)$ el término positivo es el de $y$.
+
+$$\frac{y^2}{4}-\frac{(x+3)^2}{9}=1$$
+
+</Paso>
+<Paso>
+
+**Qué:** ecuación general (se pasa de la ordinaria multiplicando por $a^2b^2=36$).
+
+$$9y^2-4(x+3)^2=36$$
+$$9y^2-4x^2-24x-36=36$$
+$$-4x^2+9y^2-24x-72=0$$
+$$4x^2-9y^2+24x+72=0$$
+
+</Paso>
+<Paso>
+
+**Qué:** calcular los elementos, siempre desde el centro $C(-3;0)$ y sobre el eje vertical.
+
+| Elemento | Cálculo | Valor |
+|---|---|---|
+| Centro | punto medio de $V$ y $V'$ | $C(-3;0)$ |
+| Vértices (extremos del eje transverso) | $(h;k\pm a)$ | $V(-3;2)$, $V'(-3;-2)$ |
+| Extremos del eje conjugado | $(h\pm b;k)$ | $A(0;0)$, $A'(-6;0)$ |
+| Focos | $(h;k\pm c)$ | $F(-3;\sqrt{13})$, $F'(-3;-\sqrt{13})$ |
+| Eje transverso, eje conjugado, distancia focal | $2a$, $2b$, $2c$ | $4$, $6$, $2\sqrt{13}$ |
+| Excentricidad | $e=c/a$ | $\dfrac{\sqrt{13}}{2}\approx1{,}80$ |
+| Lado recto | $LL'=2b^2/a$ | $9$ |
+| Extremos de los lados rectos (por $F$ y por $F'$) | $y=k\pm c$, $x=h\pm b^2/a$ | $L(\tfrac32;\sqrt{13})$, $M(-\tfrac{15}2;\sqrt{13})$, $L'(\tfrac32;-\sqrt{13})$, $M'(-\tfrac{15}2;-\sqrt{13})$ |
+| Asíntotas | $y-k=\pm\dfrac ab(x-h)$ | $y=\pm\dfrac23(x+3)$, o sea $2x-3y+6=0$ y $2x+3y+6=0$ |
+| Eje focal $l$ y eje conjugado | rectas por $C$ | $x=-3$ e $y=0$ |
+
+$A$ y $A'$ son solo extremos del eje conjugado: **no** pertenecen a la hipérbola (con $y=0$ no hay solución).
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$\frac{y^2}{4}-\frac{(x+3)^2}{9}=1\qquad(\text{general: }4x^2-9y^2+24x+72=0)$$
+
+Hipérbola de eje transverso vertical: $C(-3;0)$, $a=2$, $b=3$, $c=\sqrt{13}$, $V(-3;2)$, $V'(-3;-2)$, $A(0;0)$, $A'(-6;0)$, $F(-3;\sqrt{13})$, $F'(-3;-\sqrt{13})$, $e=\tfrac{\sqrt{13}}{2}$, $LL'=9$ con extremos $L(\tfrac32;\sqrt{13})$, $M(-\tfrac{15}2;\sqrt{13})$, $L'(\tfrac32;-\sqrt{13})$, $M'(-\tfrac{15}2;-\sqrt{13})$, asíntotas $y=\pm\tfrac23(x+3)$.
+
+<figure>
+<img src={`${import.meta.env.BASE_URL}figuras/final-2017-12-20/ej2-hiperbola.svg`} alt="Hipérbola de eje transverso vertical con centro (-3;0), vértices (-3;2) y (-3;-2), extremos del eje conjugado (0;0) y (-6;0), focos (-3;raíz de 13) y (-3;-raíz de 13), lados rectos, asíntotas y=±(2/3)(x+3), rectángulo auxiliar y cotas 2a=4, 2b=6, 2c=2 raíz de 13; ejes graduados de a 1 y misma escala en x e y." style="max-width:100%;height:auto" />
+<figcaption>Gráfico del ejercicio 2: centro, vértices, extremos del eje conjugado, focos, lados rectos, asíntotas, rectángulo auxiliar y cotas; ejes graduados de a 1 y misma escala en x e y.</figcaption>
+</figure>
+
+**Ojo con:** poner el eje transverso horizontal (cuando las abscisas de los vértices coinciden es vertical), usar $c^2=a^2-b^2$, y olvidar las asíntotas y el rectángulo auxiliar $2b\times2a$ en el gráfico.
+
+**Errores comunes**
+- Escribir $\dfrac{(x+3)^2}{4}-\dfrac{y^2}{9}=1$ (cambia la orientación: eso daría vértices en $(-3\pm2;0)$).
+- Pendiente de las asíntotas $b/a$ en vez de $a/b$ cuando el eje es vertical.
+- Dibujar $A$ y $A'$ sobre la curva.
+- Escala distinta en $x$ e $y$, o gráfico sin focos, sin asíntotas o sin graduar.
+
+</Solucion>
+<Comprobacion>
+
+$V(-3;2)$ en la ordinaria: $\tfrac44-0=1$ ✓. $V'(-3;-2)$: $\tfrac44-0=1$ ✓.
+
+Lado recto: $L(\tfrac32;\sqrt{13})$ en la ordinaria: $\tfrac{13}{4}-\tfrac{(9/2)^2}{9}=\tfrac{13}{4}-\tfrac94=1$ ✓.
+
+Definición: $\big|d(V,F')-d(V,F)\big|=\big|(2+\sqrt{13})-(\sqrt{13}-2)\big|=4=2a$ ✓.
+
+</Comprobacion>
+</Ejercicio>

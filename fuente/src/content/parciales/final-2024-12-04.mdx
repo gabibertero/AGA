@@ -1,0 +1,171 @@
+---
+id: "final-2024-12-04"
+titulo: "Final 2024-12-04 (U9–U10)"
+fecha: "04/12/2024"
+tipo: "final"
+fuente: "finales/practicos/FinalesPracticos.pdf"
+paginasEnunciado: "7"
+orden: 203
+unidades: ["U9", "U10"]
+---
+
+import Ejercicio from '../../components/Ejercicio.astro';
+import Enunciado from '../../components/Enunciado.astro';
+import Solucion from '../../components/Solucion.astro';
+import Pista from '../../components/Pista.astro';
+import Paso from '../../components/Paso.astro';
+import Comprobacion from '../../components/Comprobacion.astro';
+
+Del final se incluyen solo los ejercicios de U8–U10; el resto queda fuera del alcance del 2º parcial.
+
+Fuente: foto de la hoja impresa (y recorte de los enunciados en la p. 10), legible; tiene marcas rojas de corrección sobre "w un vector libre", "$\pi_2$" y "$(9,0)$" y anotaciones manuscritas arriba a la derecha que no se leen del todo (pendiente de revisión: no afectan los enunciados). Nombre y legajo no se transcriben. Sin resolución ni puntajes.
+
+<Ejercicio id="final-2024-12-04#2" numero={2} fuente="finales/practicos/FinalesPracticos.pdf" pagina={7} unidad="U9" tema="Plano que contiene una recta y es paralelo a otra" criterios={{ bien: "Director de r1 = (2;-2;1) y punto (-1;0;0), normal v1×v2 = (-1;2;6), plano general x-2y-6z+1=0 y segmentaria con los tres cortes (-1; 1/2; 1/6).", medias: "Plano correcto pero sin la forma segmentaria, o segmentaria con un corte mal.", mal: "Usar n1×n2 como normal del plano, o no pasar por un punto de r1." }}>
+<Enunciado fuente="finales/practicos/FinalesPracticos.pdf" pagina="7">
+Hallar la ecuación general y segmentaria del plano que contiene a la recta $r_1$ definida entre los planos $\pi_1: x-y-4z+1=0$ y $\pi_2: x-2z+1=0$ y es paralelo a la recta $r_2$ cuyos números directores son $(2,1,0)$.
+</Enunciado>
+<Pista>
+
+¿Qué dos direcciones tiene que "contener" el plano? ¿Cómo se obtiene un vector perpendicular a dos direcciones?
+
+</Pista>
+<Pista>
+
+El director de $r_1$ es $\vec n_1\times\vec n_2$. El plano contiene a $r_1$ (dirección $\vec v_1$ y un punto de $r_1$) y es paralelo a $r_2$ (dirección $\vec v_2$): su normal es $\vec v_1\times\vec v_2$. La forma segmentaria es $\dfrac xp+\dfrac yq+\dfrac zr=1$.
+
+</Pista>
+<Pista>
+
+$\vec n_1=(1;-1;-4)$, $\vec n_2=(1;0;-2)$. Un punto de $r_1$: probá $z=0$. Con $\vec v_1$ y $\vec v_2=(2;1;0)$ calculá el producto vectorial, planteá $\vec n\cdot(P-P_0)=0$ y, para la segmentaria, pasá el término independiente al segundo miembro y dividí.
+
+</Pista>
+<Paso>
+
+**Qué:** director de $r_1$.
+
+$$\vec v_1=\vec n_1\times\vec n_2=\begin{vmatrix}\vec i&\vec j&\vec k\\1&-1&-4\\1&0&-2\end{vmatrix}=(2-0)\vec i-(-2+4)\vec j+(0+1)\vec k=(2;-2;1)$$
+
+**Un punto de $r_1$:** con $z=0$, de $\pi_2$: $x+1=0\Rightarrow x=-1$; de $\pi_1$: $-1-y+1=0\Rightarrow y=0$. Es $P_0(-1;0;0)$ (cumple ambos planos).
+
+</Paso>
+<Paso>
+
+**Qué:** normal del plano. **Por qué:** debe ser perpendicular a $\vec v_1$ (contiene a $r_1$) y a $\vec v_2=(2;1;0)$ (paralelo a $r_2$). Como $\vec v_1\not\parallel\vec v_2$, el plano es único.
+
+$$\vec n=\vec v_1\times\vec v_2=\begin{vmatrix}\vec i&\vec j&\vec k\\2&-2&1\\2&1&0\end{vmatrix}=(0-1)\vec i-(0-2)\vec j+(2+4)\vec k=(-1;2;6)$$
+
+</Paso>
+<Paso>
+
+**Qué:** ecuación general, por $P_0(-1;0;0)$.
+
+$$-1\,(x+1)+2\,y+6\,z=0$$
+$$-x+2y+6z-1=0$$
+$$x-2y-6z+1=0$$
+
+</Paso>
+<Paso>
+
+**Qué:** forma segmentaria. **Por qué:** pasa por los ejes en $x=p$, $y=q$, $z=r$; se obtiene pasando el término independiente al segundo miembro y dividiendo.
+
+$$-x+2y+6z=1$$
+$$\frac{x}{-1}+\frac{y}{1/2}+\frac{z}{1/6}=1$$
+
+Cortes con los ejes: $(-1;0;0)$, $(0;\tfrac12;0)$ y $(0;0;\tfrac16)$.
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+General: $x-2y-6z+1=0$ (equivale a $-x+2y+6z-1=0$).
+
+Segmentaria: $\dfrac{x}{-1}+\dfrac{y}{1/2}+\dfrac{z}{1/6}=1$.
+
+**Ojo con:** tomar $\vec n_1\times\vec n_2$ como normal (eso es el director de $r_1$) y olvidar que la forma segmentaria exige que el plano no pase por el origen ni sea paralelo a un eje (acá no ocurre).
+
+</Solucion>
+<Comprobacion>
+
+Otro punto de $r_1$: con $z=1$, $x=1$ y $y=-2$ ($\pi_1$: $1+2-4+1=0$ ✓; $\pi_2$: $1-2+1=0$ ✓). En el plano: $-1-4+6-1=0$ ✓. Además $\vec n\cdot\vec v_2=-2+2+0=0$ ✓ y $\vec n\cdot\vec v_1=-2-4+6=0$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-2024-12-04#4" numero={4} fuente="finales/practicos/FinalesPracticos.pdf" pagina={7} unidad="U10" tema="Hipérbola dados el centro, un vértice y la distancia focal" criterios={{ bien: "Eje focal x (vértice (9;0)), a=9, 2c=30 ⇒ c=15, b²=144, x²/81-y²/144=1, e=5/3, A(0;±12), F(±15;0), LL'=32, asíntotas y=±4x/3 y gráfico completo.", medias: "Ecuación correcta pero sin el resto de los elementos o con un gráfico incompleto.", mal: "Tomar c=30 (la distancia focal es 2c) o usar b²=a²+c²." }}>
+<Enunciado fuente="finales/practicos/FinalesPracticos.pdf" pagina="7">
+Hallar la ecuación de la hipérbola que tiene su centro en el origen del sistema de coordenadas; uno de sus vértices tiene como coordenadas $(9,0)$ y la distancia focal es igual a 30. Calcular el resto de sus elementos notables y graficar.
+</Enunciado>
+<Pista>
+
+¿Sobre qué eje está el vértice? Eso ¿dónde pone el eje focal? ¿Qué mide la "distancia focal": $c$ o $2c$?
+
+</Pista>
+<Pista>
+
+Centro en el origen y vértice sobre el eje $x$ ⇒ forma $\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=1$ con $a=9$. La distancia focal es la distancia entre los focos, $2c$. En la hipérbola $c^2=a^2+b^2$.
+
+</Pista>
+<Pista>
+
+$2c=30\Rightarrow c=15$. $b^2=c^2-a^2=225-81$. Escribí la ecuación, la excentricidad $e=c/a$, los focos $(\pm c;0)$, las asíntotas $y=\pm\frac bax$ y el lado recto $2b^2/a$.
+
+</Pista>
+<Paso>
+
+**Qué:** datos. **Por qué:** el vértice $(9;0)$ está sobre $x$ ⇒ eje focal horizontal, $a=9$. "Distancia focal" es la separación entre los focos: $2c=30$.
+
+$$a=9,\qquad c=15$$
+
+</Paso>
+<Paso>
+
+**Qué:** $b$.
+
+$$b^2=c^2-a^2=225-81=144\Rightarrow b=12$$
+
+</Paso>
+<Paso>
+
+**Qué:** ecuación y excentricidad.
+
+$$\frac{x^2}{81}-\frac{y^2}{144}=1\qquad e=\frac ca=\frac{15}{9}=\frac53$$
+
+</Paso>
+<Paso>
+
+**Qué:** elementos notables.
+
+| Elemento | Coordenadas |
+|---|---|
+| Centro $C$ | $(0;0)$ |
+| Vértices $V,V'$ | $(9;0)$, $(-9;0)$ |
+| Extremos del eje conjugado $A,A'$ | $(0;12)$, $(0;-12)$ (no están en la curva) |
+| Focos $F,F'$ | $(15;0)$, $(-15;0)$ |
+| Lado recto $LL'=2b^2/a$ | $32$, con extremos $L(15;16)$, $L'(15;-16)$, $M(-15;16)$, $M'(-15;-16)$ |
+| Asíntotas | $y=\pm\dfrac ba x=\pm\dfrac43x$ |
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+$$\frac{x^2}{81}-\frac{y^2}{144}=1$$
+
+Hipérbola de eje focal $x$, $a=9$, $b=12$, $c=15$, $e=\tfrac53$, $V(\pm9;0)$, $F(\pm15;0)$, $A(0;\pm12)$, $LL'=32$, asíntotas $y=\pm\tfrac43x$.
+
+<figure>
+<img src={`${import.meta.env.BASE_URL}figuras/final-2024-12-04/ej4-hiperbola.svg`} alt="Hipérbola de eje focal x con centro en el origen, vértices V y V' en (±9;0), extremos del eje conjugado A y A' en (0;±12), focos F y F' en (±15;0), lados rectos LL' y MM', rectángulo auxiliar y asíntotas y=±4x/3; ejes graduados de a 2." style="max-width:100%;height:auto" />
+<figcaption>Gráfico del ejercicio 4: vértices, focos, extremos del eje conjugado (fuera de la curva), lados rectos de longitud 32, rectángulo auxiliar y asíntotas.</figcaption>
+</figure>
+
+**Ojo con:** si se leyera "distancia focal" como $c=30$ saldría otra hipérbola; en la cátedra la distancia focal es $2c$ (distancia entre los focos), que es la lectura usada acá.
+
+</Solucion>
+<Comprobacion>
+
+$V(9;0)$: $\dfrac{81}{81}=1$ ✓. Extremo del lado recto $L(15;16)$: $\dfrac{225}{81}-\dfrac{256}{144}=\dfrac{25}{9}-\dfrac{16}{9}=1$ ✓. Definición $|PF-PF'|=2a$ con $P=V$: $|9-15|=6$ y $|9+15|=24$, diferencia $18=2a$ ✓.
+
+</Comprobacion>
+</Ejercicio>

@@ -1,0 +1,212 @@
+---
+id: "final-2022-03-02"
+titulo: "Final 2022-03-02 (U8–U10)"
+fecha: "02-03-2022"
+tipo: "final"
+fuente: "finales/practicos/02-03-2022.pdf"
+paginasEnunciado: "1, 3"
+orden: 108
+unidades: ["U9", "U10"]
+---
+
+import Ejercicio from '../../components/Ejercicio.astro';
+import Enunciado from '../../components/Enunciado.astro';
+import Solucion from '../../components/Solucion.astro';
+import Pista from '../../components/Pista.astro';
+import Paso from '../../components/Paso.astro';
+import Comprobacion from '../../components/Comprobacion.astro';
+
+Del final se incluyen solo los ejercicios de U8–U10; el resto queda fuera del alcance del 2º parcial.
+
+Fuente: PDF titulado "Resolución Final de AGA 02-03-22" (tipeado, 5 ejercicios); el enunciado de cada uno se tomó de ahí (ej. 1 en la pág. 1, ej. 3 en la pág. 3). Se usó la resolución solo para contrastar: coincide con los resultados de abajo. No trae puntajes.
+
+<Ejercicio id="final-2022-03-02#1" numero={1} fuente="finales/practicos/02-03-2022.pdf" pagina={1} unidad="U9" tema="Rectas coplanares y perpendiculares; distancia entre alabeadas" criterios={{ bien: "a=1 y b=3 con las dos condiciones planteadas por separado (producto mixto nulo y producto escalar nulo), y distancia raíz de 2 sobre 2 con la verificación de que son alabeadas.", medias: "Un solo parámetro correcto, o distancia correcta sin comprobar que las rectas no son paralelas ni coplanares.", mal: "Confundir perpendiculares con ortogonales de directores solamente sin pedir coplanaridad, o usar la fórmula de alabeadas en el inciso (a)." }}>
+<Enunciado fuente="finales/practicos/02-03-2022.pdf" pagina="1">
+Dadas las rectas
+
+$$r_1:\begin{cases}x+y=a\\2y+z=-1\end{cases}\qquad\text{y}\qquad r_2:\ \frac{x-1}{b}=y=\frac{z+1}{-1}$$
+
+**a)** Calcule, si existen, los valores de las constantes $a$ y $b$ tal que las rectas sean coplanares y perpendiculares.
+
+**b)** Para $a=0$ y $b=-1$ calcule la distancia entre las rectas.
+</Enunciado>
+<Pista>
+
+¿Qué quiere decir que dos rectas sean perpendiculares *y* coplanares (se cortan en ángulo recto)? ¿Qué condición sobre los directores expresa cada cosa? ¿Cuántas incógnitas hay y cuántas ecuaciones te dan esas condiciones?
+
+</Pista>
+<Pista>
+
+Perpendiculares: $\vec u_1\cdot\vec u_2=0$. Coplanares: $(\vec u_1\times\vec u_2)\cdot\overrightarrow{AB}=0$, con $A\in r_1$ y $B\in r_2$. Cada una te da una ecuación en una incógnita. Para (b) las rectas no se cortan (no son coplanares): fórmula de alabeadas.
+
+</Pista>
+<Pista>
+
+Parametrizá $r_1$ con $y=t$: $x=a-t$, $z=-1-2t$, o sea $A(a;0;-1)$, $\vec u_1=(-1;1;-2)$. $r_2$: $B(1;0;-1)$, $\vec u_2=(b;1;-1)$. Planteá $\overrightarrow{AB}\cdot(\vec u_1\times\vec u_2)=0$ y $\vec u_1\cdot\vec u_2=0$.
+
+</Pista>
+<Paso>
+
+**Qué:** forma paramétrica de $r_1$ (con $y=t$). **Por qué:** de $2y+z=-1$ sale $z=-1-2t$ y de $x+y=a$ sale $x=a-t$.
+
+$$r_1:\ (a-t;\ t;\ -1-2t)\quad A(a;0;-1),\ \vec u_1=(-1;1;-2)$$
+
+$r_2$ (simétrica: numeradores = punto, denominadores = director): $\dfrac{x-1}{b}=\dfrac{y}{1}=\dfrac{z+1}{-1}$.
+
+$$B(1;0;-1),\ \vec u_2=(b;1;-1)$$
+
+</Paso>
+<Paso>
+
+**Qué:** condición de perpendicularidad. **Por qué:** los directores deben ser ortogonales.
+
+$$\vec u_1\cdot\vec u_2=-b+1+2=3-b=0\ \Rightarrow\ b=3$$
+
+</Paso>
+<Paso>
+
+**Qué:** condición de coplanaridad con $\overrightarrow{AB}=B-A=(1-a;0;0)$.
+
+$$\vec u_1\times\vec u_2=\begin{vmatrix}\vec i&\vec j&\vec k\\-1&1&-2\\b&1&-1\end{vmatrix}=(-1+2)\vec i-(1+2b)\vec j+(-1-b)\vec k=(1;\,-2b-1;\,-b-1)$$
+$$\overrightarrow{AB}\cdot(\vec u_1\times\vec u_2)=(1-a)\cdot1=1-a=0\ \Rightarrow\ a=1$$
+
+</Paso>
+<Paso>
+
+**Qué (b):** con $a=0$ y $b=-1$.
+
+$$A(0;0;-1),\ \vec u_1=(-1;1;-2)\qquad B(1;0;-1),\ \vec u_2=(-1;1;-1)$$
+
+No son paralelas ($\vec u_1\not\parallel\vec u_2$). $\vec u_1\times\vec u_2=(1;\,1;\,0)$ y $\overrightarrow{AB}=(1;0;0)$, $\overrightarrow{AB}\cdot(\vec u_1\times\vec u_2)=1\neq0$ ⇒ **alabeadas**.
+
+</Paso>
+<Paso>
+
+**Qué:** distancia entre alabeadas.
+
+$$d=\frac{|\overrightarrow{AB}\cdot(\vec u_1\times\vec u_2)|}{\|\vec u_1\times\vec u_2\|}=\frac{1}{\sqrt{1+1+0}}=\frac1{\sqrt2}=\frac{\sqrt2}{2}$$
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+(a) $a=1$ y $b=3$.
+
+(b) Para $a=0$, $b=-1$ las rectas son alabeadas y $d(r_1,r_2)=\tfrac{\sqrt2}{2}$.
+
+**Ojo con:** pedir solo la ortogonalidad de los directores: "perpendiculares" entre rectas incluye que se corten (coplanares).
+
+**Errores comunes**
+- Escribir mal el punto de $r_2$ (el numerador de $y$ es $y-0$) o el director ($-1$ en $z$).
+- Olvidar el valor absoluto en la distancia.
+
+</Solucion>
+<Comprobacion>
+
+Con $a=1$ y $b=3$: $r_1$ pasa por $A(1;0;-1)$ y $r_2$ por $B(1;0;-1)$: el **mismo** punto ⇒ se cortan ahí, y $\vec u_1\cdot\vec u_2=-3+1+2=0$ ✓ (perpendiculares).
+
+(b) Distancia por otro camino: minimizando $\|A+t\vec u_1-B-\lambda\vec u_2\|^2$ en $t$ y $\lambda$ el mínimo da $\tfrac12$, es decir $d=\tfrac{\sqrt2}{2}$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
+
+<Ejercicio id="final-2022-03-02#3" numero={3} fuente="finales/practicos/02-03-2022.pdf" pagina={3} unidad="U10" tema="Cuádrica: cilindro elíptico e intersección con un plano" criterios={{ bien: "(a) A=B=2 con justificación (cilindro de eje x: A-2=0; semieje menor 1); (b) hiperboloide con x=y da z=±1: dos rectas paralelas con parametrización.", medias: "A=2 correcto pero B mal (por ejemplo B=1/2 por confundir semieje con su cuadrado), o parametrización sin identificar la curva.", mal: "Cilindro con otro eje, elegir que el eje menor es el de y, o dar una sola recta en (b)." }}>
+<Enunciado fuente="finales/practicos/02-03-2022.pdf" pagina="3">
+Dada la ecuación $(A-2)x^2+y^2+Bz^2=A$ en $\mathbb R^3$.
+
+**a)** Encuentre los valores de las constantes $A$ y $B$ tal que corresponda a un cilindro elíptico de eje $x$ y longitud del eje menor (diámetro menor) igual a 2.
+
+**b)** Para $A=B=1$ obtenga una forma paramétrica de la intersección de la superficie con el plano $x=y$ e identifique.
+</Enunciado>
+<Pista>
+
+¿Qué pasa con la ecuación de un cilindro respecto de la variable de su eje? ¿Qué forma tienen las secciones perpendiculares al eje si es elíptico, y cuáles son sus semiejes?
+
+</Pista>
+<Pista>
+
+En un cilindro de eje $x$ la variable $x$ no aparece: $A-2=0$. Queda $y^2+Bz^2=A$; dividí para tener segundo miembro 1 y leé los semiejes. El "eje menor" es el más chico de los dos: su longitud es el doble del semieje menor. (b): reemplazá $y=x$ en la ecuación con $A=B=1$.
+
+</Pista>
+<Pista>
+
+(a) $A=2$: $y^2+Bz^2=2\Rightarrow\dfrac{y^2}2+\dfrac{z^2}{2/B}=1$, semiejes $\sqrt2$ y $\sqrt{2/B}$. Pedí que el menor valga $1$. (b) $-x^2+y^2+z^2=1$ con $y=x$.
+
+</Pista>
+<Paso>
+
+**Qué (a):** eje del cilindro. **Por qué:** un cilindro de eje $x$ no depende de $x$, así que el coeficiente de $x^2$ se anula.
+
+$$A-2=0\ \Rightarrow\ A=2$$
+
+La ecuación queda $y^2+Bz^2=2$.
+
+</Paso>
+<Paso>
+
+**Qué:** forma de las secciones $x=\text{cte}$ y semiejes. **Por qué:** para que sea elíptico necesito $B>0$.
+
+$$\frac{y^2}{2}+\frac{z^2}{2/B}=1$$
+
+Semiejes: $\sqrt2$ (en $y$) y $\sqrt{2/B}$ (en $z$).
+
+</Paso>
+<Paso>
+
+**Qué:** imponer que el eje menor mide 2, o sea que el semieje menor vale $1$. **Por qué:** el semieje en $y$ vale $\sqrt2\neq1$, así que el menor no puede ser ese; entonces es el de $z$:
+
+$$\sqrt{\frac2B}=1\ \Rightarrow\ \frac2B=1\ \Rightarrow\ B=2$$
+
+Con $B=2$ el semieje de $z$ vale $1<\sqrt2$ ✓ (es efectivamente el menor).
+
+$$A=B=2:\qquad\frac{y^2}{2}+z^2=1$$
+
+</Paso>
+<Paso>
+
+**Qué (b):** con $A=B=1$ la ecuación es $(1-2)x^2+y^2+z^2=1$, o sea
+
+$$-x^2+y^2+z^2=1$$
+
+(hiperboloide de una hoja). Intersección con $x=y$:
+
+$$-x^2+x^2+z^2=1$$
+$$z^2=1$$
+$$z=1\quad\text{o}\quad z=-1$$
+
+</Paso>
+<Paso>
+
+**Qué:** parametrizar e identificar. **Por qué:** la condición es $x=y$ y $z=\pm1$ (cada una es una recta) con $x$ libre:
+
+$$l_1:\ \begin{cases}x=t\\y=t\\z=1\end{cases}\qquad l_2:\ \begin{cases}x=t\\y=t\\z=-1\end{cases}\qquad t\in\mathbb R$$
+
+Las dos tienen director $(1;1;0)$: son **dos rectas paralelas** (a distancia $2$).
+
+</Paso>
+<Solucion>
+
+**Solución elaborada — no oficial, verificada con sympy.**
+
+(a) $A=B=2$, con secciones $\dfrac{y^2}{2}+z^2=1$.
+
+(b) Dos rectas paralelas: $(x;y;z)=(t;t;1)$ y $(x;y;z)=(t;t;-1)$.
+
+**Ojo con:** que "diámetro menor igual a 2" es el semieje menor $=1$ (no $2$). Y con que la intersección de un hiperboloide con un plano puede ser un par de rectas.
+
+**Errores comunes**
+- Tomar $\sqrt2=1$ o $B=1/2$ por confundir semieje con su cuadrado.
+- Dejar en (b) solo la recta $z=1$.
+
+</Solucion>
+<Comprobacion>
+
+(a) Con $A=B=2$ la ecuación original es $0\cdot x^2+y^2+2z^2=2$ ✓ (no depende de $x$). El punto $(0;0;1)$ está en la sección: $0+0+2=2$ ✓ y $(0;\sqrt2;0)$: $2+0=2$ ✓.
+
+(b) Los puntos de $l_1$ y $l_2$ cumplen $-x^2+y^2+z^2=1$: $-t^2+t^2+(\pm1)^2=1$ ✓.
+
+</Comprobacion>
+</Ejercicio>
+
