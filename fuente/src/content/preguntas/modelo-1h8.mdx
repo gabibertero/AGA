@@ -1,0 +1,364 @@
+---
+titulo: "Modelo 1H8 – 1H22: práctica"
+unidad: "Modelo"
+orden: 5
+---
+import Pregunta from '../../components/Pregunta.astro';
+import Fig from '../../components/PreguntaFigura.astro';
+
+<Pregunta id="m1h8-01" unidad="U9" titulo="Modelo 1H8 – 1H22, preg. 1: ecuaciones de la recta en R2 por punto y vector director"
+  enunciado="Ecuaciones de la recta en $\mathbb R^2$, según un punto y un vector de dirección paralelo a la misma. Gráficos y notación genérica." literal sim="A" fq="Parcial modelo 1H8 – 1H22 (2° parcial teórico), preg. 1; G:34-36" fr="U9:1, 3-6; Ap:180-187">
+
+**Datos (notación genérica).** Punto conocido $P_1(x_1;y_1)$, vector director $\bar a=(a_1;a_2)\neq\bar 0$ paralelo a la recta, y punto genérico $P(x;y)$ de la recta.
+
+<Fig src="recta-r2" alt="Recta en el plano con el punto P1, el vector director a, el punto genérico P y el vector lambda por a" pie="P₁P = λa con λ real: la ecuación vectorial de la recta." />
+
+**Origen.** $P$ pertenece a la recta si y solo si $\overrightarrow{P_1P}\parallel\bar a$, o sea existe $\lambda\in\mathbb R$ (parámetro) con $\overrightarrow{P_1P}=\lambda\bar a$. Como $\overrightarrow{OP}=\overrightarrow{OP_1}+\overrightarrow{P_1P}$:
+
+1. **Vectorial paramétrica:** $(x;y)=(x_1;y_1)+\lambda\,(a_1;a_2)$, $\lambda\in\mathbb R$.
+2. **Cartesiana paramétrica** (igualando componentes): $x=x_1+\lambda a_1,\quad y=y_1+\lambda a_2$.
+3. **Simétrica** (despejando $\lambda$ en ambas, si $a_1a_2\neq0$): $\dfrac{x-x_1}{a_1}=\dfrac{y-y_1}{a_2}$.
+4. **Punto-pendiente** (si $a_1\neq0$): $y-y_1=m\,(x-x_1)$ con $m=\dfrac{a_2}{a_1}=\operatorname{tg}\alpha$, siendo $\alpha$ el ángulo que forma la recta con el semieje positivo de las $x$.
+5. **Explícita:** $y=mx+b$, con $b=y_1-mx_1$ (ordenada al origen).
+6. **General o implícita:** $Ax+By+C=0$; el vector $\bar n=(A;B)$ es **normal** a la recta, y un director es $\bar a=(-B;A)$.
+
+**Por qué funciona.** Todas son la misma condición de paralelismo $\overrightarrow{P_1P}\parallel\bar a$ escrita de distinta manera: con un parámetro (1 y 2), con proporcionalidad de componentes (3), o con la pendiente (4 y 5). Pasando todo a un miembro se llega a la general (6).
+
+Ejemplo: $P_1(2;-1)$, $\bar a=(3;4)$: paramétrica $x=2+3\lambda,\ y=-1+4\lambda$; simétrica $\dfrac{x-2}{3}=\dfrac{y+1}{4}$; $m=\tfrac43$; general $4x-3y-11=0$.
+</Pregunta>
+
+<Pregunta id="m1h8-02" unidad="U8" titulo="Modelo 1H8 – 1H22, preg. 2: ¿el producto de vectores determina perpendicularidad? (V o F)"
+  enunciado="El producto de vectores puede determinar perpendicularidad de los mismos. V F. Justifique y amplíe." literal sim="B" fq="Parcial modelo 1H8 – 1H22 (2° parcial teórico), preg. 2; G:4-5, 31-33" fr="U8:2-5, 8-11; Ap:167-173">
+
+**Veredicto: VERDADERO** (con el producto **escalar**).
+
+**Justificación.** El producto escalar es $\bar a\cdot\bar b=|\bar a|\,|\bar b|\cos\theta$. Si $\bar a,\bar b\neq\bar 0$ los módulos no se anulan, de modo que el producto vale $0$ solo si $\cos\theta=0$, es decir $\theta=90^\circ$. Entonces
+$$\bar a\perp\bar b\ \Longleftrightarrow\ \bar a\cdot\bar b=0 ,$$
+condición necesaria y suficiente. En componentes: $a_1b_1+a_2b_2+a_3b_3=0$.
+
+**Amplío.**
+- El producto **vectorial** NO determina perpendicularidad entre $\bar a$ y $\bar b$: $\bar a\times\bar b=\bar 0$ caracteriza el **paralelismo** ($\mathrm{sen}\,\theta=0$). Lo que sí es perpendicular es el *resultado*: $\bar a\times\bar b\perp\bar a$ y $\bar a\times\bar b\perp\bar b$. Su módulo $|\bar a||\bar b|\,\mathrm{sen}\,\theta$ es máximo cuando $\theta=90^\circ$ (área del rectángulo).
+- Si uno de los vectores es $\bar 0$ el producto escalar es $0$ pero no tiene sentido hablar de ángulo; por eso se exige $\bar a,\bar b\neq\bar 0$. El vector nulo es "ortogonal a todo" por convención.
+- Ejemplo: $(2;-3;1)\cdot(3;2;0)=6-6+0=0\Rightarrow$ perpendiculares. En cambio $(2;-3;1)\cdot(-3;2;4)=-8\neq0$: forman un ángulo con $\cos\theta=\dfrac{-8}{\sqrt{14}\sqrt{29}}<0$ (obtuso).
+- Aplicaciones: rectas perpendiculares ($\bar a_1\cdot\bar a_2=0$), recta perpendicular a un plano ($\bar a\parallel\bar n$), trabajo nulo de una fuerza perpendicular al desplazamiento.
+</Pregunta>
+
+<Pregunta id="m1h8-03" unidad="U10" titulo="Modelo 1H8 – 1H22, preg. 3: circunferencia (cono/plano, ecuaciones, elementos, ecuación general)"
+  enunciado="Circunferencia: Concepto como intersección CONO/PLANO (gráfico). Diferentes Ecuaciones (gráficos). Elementos. Ecuación General de las cónicas para determinar que una ecuación se trata de una circunferencia." literal sim="C" fq="Parcial modelo 1H8 – 1H22 (2° parcial teórico), preg. 3; G:47-52" fr="U10:3-12; Ap:239-243">
+
+**1. Concepto como intersección cono/plano.** La superficie cónica la genera una recta **generatriz** que pasa siempre por un punto fijo (**vértice**) y gira apoyada en una curva fija (**directriz**); el eje pasa por el vértice. Si se corta la superficie con un plano **perpendicular al eje** y que **no pasa por el vértice**, la curva que resulta es la **circunferencia**. (Si el plano se inclina aparecen elipse, parábola o hipérbola; si pasa por el vértice, los casos degenerados.)
+
+<Fig src="secciones-conicas" alt="Las cuatro cónicas: circunferencia, elipse, parábola e hipérbola con sus dos ramas" pie="El corte perpendicular al eje da la circunferencia." />
+
+**2. Definición (lugar geométrico).** Conjunto de puntos $P(x;y)$ del plano que equidistan de un punto fijo $C$ (centro): $\overline{CP}=r$ (radio, $r>0$).
+
+<Fig src="circunferencia" alt="Circunferencia con centro C(h;k), radio r y un punto genérico P(x;y)" pie="Centro C(h;k), radio r, punto genérico P(x;y)." />
+
+**3. Diferentes ecuaciones.** Con $C(h;k)$: $\sqrt{(x-h)^2+(y-k)^2}=r$, y elevando al cuadrado:
+- **Canónica** (centro en el origen): $x^2+y^2=r^2$.
+- **Ordinaria** (centro $(h;k)$): $(x-h)^2+(y-k)^2=r^2$.
+- **General:** desarrollando, $x^2+y^2+Dx+Ey+F=0$, con $D=-2h$, $E=-2k$, $F=h^2+k^2-r^2$.
+- **Paramétricas:** $x=h+r\cos t,\ y=k+r\,\mathrm{sen}\,t$, $t\in[0;2\pi)$ (a mano: $t$ es el ángulo del radio $CP$ con la horizontal).
+- **Por los extremos de un diámetro** $P_1(x_1;y_1)$, $P_2(x_2;y_2)$: $(x-x_1)(x-x_2)+(y-y_1)(y-y_2)=0$ (porque $\overrightarrow{P_1P}\perp\overrightarrow{P_2P}$ para todo $P$ de la circunferencia).
+
+**4. Elementos.** Centro $C$; radio $r$; diámetro ($2r$, cuerda que pasa por $C$); cuerda; recta tangente (toca en un punto y es perpendicular al radio en ese punto); recta secante (la corta en dos puntos). Como cónica: excentricidad $e=0$ (los dos focos coinciden con el centro, $c=0$).
+
+**5. Reconocerla en la ecuación general de las cónicas.** De $Ax^2+Bxy+Cy^2+Dx+Ey+F=0$, la ecuación representa una circunferencia cuando:
+- **$B=0$** (no hay término rectangular: ejes paralelos a los coordenados) y
+- **$A=C\neq0$** (los coeficientes de $x^2$ e $y^2$ son iguales y no nulos).
+
+Se divide por $A$ y se **completa cuadrados**:
+$$\left(x+\tfrac{D}{2A}\right)^2+\left(y+\tfrac{E}{2A}\right)^2=\frac{D^2+E^2-4AF}{4A^2}=r^2 .$$
+Centro $\left(-\tfrac{D}{2A};-\tfrac{E}{2A}\right)$. Hay que mirar el segundo miembro:
+- $r^2>0$: circunferencia **real**;
+- $r^2=0$: un **punto** (circunferencia degenerada, radio nulo);
+- $r^2<0$: ningún punto real (circunferencia **imaginaria**, conjunto vacío).
+
+Ejemplo: $x^2+y^2-4x+2y-5=0\Rightarrow(x-2)^2+(y+1)^2=10$: $C(2;-1)$, $r=\sqrt{10}$. Contraejemplos: $x^2+y^2-4x+2y+5=0\Rightarrow(x-2)^2+(y+1)^2=0$ (punto $(2;-1)$); $2x^2+y^2-4x+2y-5=0$ no es circunferencia ($A\neq C$: es una elipse).
+</Pregunta>
+
+<Pregunta id="m1h8-04" unidad="U9" sim="A" titulo="Recta en R2 por dos puntos: ecuaciones y pasaje entre formas"
+  enunciado="Recta en $\mathbb R^2$ determinada por dos puntos $P_1(x_1;y_1)$ y $P_2(x_2;y_2)$. Ecuaciones que se obtienen. Gráfico y notación genérica." fq="G:34-36" fr="U9:3, 5-6; Ap:180-187">
+
+**Idea.** Dos puntos distintos determinan una única recta. El vector $\bar a=\overrightarrow{P_1P_2}=(x_2-x_1;\,y_2-y_1)$ es paralelo a ella, así que se reduce al caso "punto y vector director".
+
+Gráfico a mano: ejes $x,y$; los puntos $P_1$ y $P_2$; la recta que los une; el vector $\overrightarrow{P_1P_2}$ sobre ella y el punto genérico $P(x;y)$.
+
+- **Vectorial:** $(x;y)=(x_1;y_1)+\lambda\,(x_2-x_1;\,y_2-y_1)$.
+- **Paramétricas:** $x=x_1+\lambda(x_2-x_1),\ y=y_1+\lambda(y_2-y_1)$. Con $\lambda=0$ se obtiene $P_1$ y con $\lambda=1$, $P_2$.
+- **Simétrica / por dos puntos:** $\dfrac{x-x_1}{x_2-x_1}=\dfrac{y-y_1}{y_2-y_1}$, o con la pendiente $m=\dfrac{y_2-y_1}{x_2-x_1}$: $\;y-y_1=m\,(x-x_1)$ (si $x_2=x_1$ la recta es vertical, $x=x_1$, y no tiene pendiente).
+- **Determinante:** $\begin{vmatrix}x&y&1\\x_1&y_1&1\\x_2&y_2&1\end{vmatrix}=0$ (tres puntos alineados).
+
+Ejemplo: $P_1(1;2)$, $P_2(4;-2)$: $\bar a=(3;-4)$, $m=-\tfrac43$. Punto-pendiente $y-2=-\tfrac43(x-1)$; general $4x+3y-10=0$; segmentaria $\dfrac{x}{5/2}+\dfrac{y}{10/3}=1$; normal de Hesse (dividiendo por $5$) $\tfrac45x+\tfrac35y-2=0$, es decir $p=2$ es la distancia del origen a la recta.
+</Pregunta>
+
+<Pregunta id="m1h8-05" unidad="U9" sim="A" titulo="Recta en R2: forma segmentaria y forma normal (Hesse)"
+  enunciado="Ecuación segmentaria y ecuación normal (de Hesse) de la recta en $\mathbb R^2$. Deducción, gráfico y notación genérica." fq="G:34-36" fr="U9:14-19; Ap:197-199">
+
+**Segmentaria.** Si la recta corta a los ejes en $(a;0)$ y $(0;b)$ (con $a,b\neq0$), la ecuación por dos puntos da
+$$\frac{x}{a}+\frac{y}{b}=1 ,$$
+donde $a$ es la abscisa y $b$ la ordenada al origen. Desde la general $Ax+By+C=0$ (con $C\neq0$): dividiendo por $-C$, $a=-\tfrac CA$, $b=-\tfrac CB$. No sirve para rectas por el origen ni paralelas a un eje.
+
+**Normal (Hesse).** Gráfico a mano: la recta, la perpendicular a ella por el origen, el pie $H$ de esa perpendicular a distancia $p\geq0$ del origen y el ángulo $w$ que forma $\overrightarrow{OH}$ con el semieje $x$ positivo.
+
+Sea $\bar n_0=(\cos w;\,\mathrm{sen}\,w)$ el versor normal. Un punto $P(x;y)$ está en la recta si y solo si la proyección de $\overrightarrow{OP}$ sobre $\bar n_0$ es $p$:
+$$\overrightarrow{OP}\cdot\bar n_0=p\ \Rightarrow\ x\cos w+y\,\mathrm{sen}\,w-p=0 .$$
+**Pasaje desde la general:** se divide por $\pm\sqrt{A^2+B^2}=\pm|\bar n|$, eligiendo el signo para que el término independiente quede negativo ($-p$); así $\cos w=\tfrac{A}{\pm|\bar n|}$ y $\mathrm{sen}\,w=\tfrac{B}{\pm|\bar n|}$.
+
+Ejemplo: $3x-4y+10=0$. Se divide por $-5$: $-\tfrac35x+\tfrac45y-2=0$, entonces $\cos w=-\tfrac35$, $\mathrm{sen}\,w=\tfrac45$ ($w$ en el 2.º cuadrante) y $p=2$. Segmentaria: $\dfrac{x}{-10/3}+\dfrac{y}{5/2}=1$.
+
+Uso: la distancia de $P_0(x_0;y_0)$ a la recta es el valor absoluto de la Hesse evaluada en $P_0$: $d=|x_0\cos w+y_0\,\mathrm{sen}\,w-p|=\dfrac{|Ax_0+By_0+C|}{\sqrt{A^2+B^2}}$.
+</Pregunta>
+
+<Pregunta id="m1h8-06" unidad="U9" sim="A" titulo="Recta en R3: vectorial, paramétricas y simétricas"
+  enunciado="Ecuaciones de la recta en $\mathbb R^3$ según un punto y un vector director, y por dos puntos. Gráfico y notación genérica." fq="G:37-39" fr="U9:4-5; Ap:181, 186-187, 200-201">
+
+**Datos.** $P_1(x_1;y_1;z_1)$, $\bar a=(a_1;a_2;a_3)\neq\bar0$ director, $P(x;y;z)$ genérico. Gráfico a mano: ejes $x,y,z$ en perspectiva, la recta, $P_1$ sobre ella, $\bar a$ paralelo, $P$ y el vector $\overrightarrow{P_1P}=\lambda\bar a$.
+
+Como $\overrightarrow{P_1P}\parallel\bar a$, existe $\lambda\in\mathbb R$ con $\overrightarrow{P_1P}=\lambda\bar a$ y entonces:
+- **Vectorial:** $(x;y;z)=(x_1;y_1;z_1)+\lambda(a_1;a_2;a_3)$.
+- **Paramétricas:** $x=x_1+\lambda a_1,\ y=y_1+\lambda a_2,\ z=z_1+\lambda a_3$.
+- **Simétricas** (despejando $\lambda$, si $a_1a_2a_3\neq0$): $\dfrac{x-x_1}{a_1}=\dfrac{y-y_1}{a_2}=\dfrac{z-z_1}{a_3}$.
+
+**Si una componente es nula**, p. ej. $a_3=0$: $\dfrac{x-x_1}{a_1}=\dfrac{y-y_1}{a_2},\ z=z_1$ (la recta está en el plano $z=z_1$). No se divide por cero.
+
+**Por dos puntos** $P_1,P_2$: $\bar a=\overrightarrow{P_1P_2}$. Ejemplo: $P_1(1;-3;2)$, $P_2(3;-2;1)$: $\bar a=(2;1;-1)$ y $\dfrac{x-1}{2}=\dfrac{y+3}{1}=\dfrac{z-2}{-1}$.
+
+**Como intersección de dos planos** (no paralelos): $\begin{cases}A_1x+B_1y+C_1z+D_1=0\\A_2x+B_2y+C_2z+D_2=0\end{cases}$ con director $\bar a=\bar n_1\times\bar n_2$. En $\mathbb R^3$ **una sola** ecuación lineal es un plano, no una recta; tampoco hay una pendiente única: la forma explícita necesita dos ecuaciones ($y=f(x)$, $z=g(x)$).
+</Pregunta>
+
+<Pregunta id="m1h8-07" unidad="U9" sim="A" titulo="Posiciones relativas de dos rectas (R2 y R3)"
+  enunciado="Posiciones relativas de dos rectas en $\mathbb R^2$ y en $\mathbb R^3$. Condiciones con los vectores directores. Gráficos." fq="G:36-37, 43-44" fr="U9:8-11, 20; Ap:190-192, 200-202">
+
+**En $\mathbb R^2$:** paralelas, coincidentes o concurrentes (se cortan en un punto).
+
+| Posición | Condición |
+|---|---|
+| Paralelas | $\bar a_1\parallel\bar a_2$ ($m_1=m_2$; normales proporcionales $\tfrac{A_1}{A_2}=\tfrac{B_1}{B_2}$) y distintas |
+| Coincidentes | además $\tfrac{A_1}{A_2}=\tfrac{B_1}{B_2}=\tfrac{C_1}{C_2}$ |
+| Concurrentes | $\bar a_1\not\parallel\bar a_2$; el punto de corte resuelve el sistema. Perpendiculares si $\bar a_1\cdot\bar a_2=0$ ($m_1m_2=-1$) |
+
+**En $\mathbb R^3$** se agrega la posición **alabeadas** (no son paralelas y no se cortan; no existe plano que las contenga). Con $r_i$ por $P_i$ y director $\bar a_i$:
+- Paralelas: $\bar a_1\parallel\bar a_2$ (coincidentes si además $P_2\in r_1$).
+- Concurrentes: $\bar a_1\not\parallel\bar a_2$ y $(\bar a_1\times\bar a_2)\cdot\overrightarrow{P_1P_2}=0$ (los tres vectores son coplanares).
+- Alabeadas: $\bar a_1\not\parallel\bar a_2$ y $(\bar a_1\times\bar a_2)\cdot\overrightarrow{P_1P_2}\neq0$.
+
+Receta: ver si son paralelas; si no, buscar punto en común igualando componentes; si tampoco hay, son alabeadas.
+
+Ejemplo: $r_1:(x;y;z)=(1;0;2)+\lambda(1;2;-1)$ y $r_2:(x;y;z)=(0;1;3)+\rho(2;-1;1)$. $\bar a_1\times\bar a_2=(1;-3;-5)$, $\overrightarrow{P_1P_2}=(-1;1;1)$, producto mixto $-1-3-5=-9\neq0$: **alabeadas**. En cambio $r_3$ por $(2;2;1)$ con director $(2;-1;1)$ da $\overrightarrow{P_1P_3}=(1;2;-1)$ y mixto $1-6+5=0$: **concurrentes** en $(2;2;1)$ (para $\lambda=1,\ \rho=0$).
+</Pregunta>
+
+<Pregunta id="m1h8-08" unidad="U9" sim="A" titulo="Ángulo entre dos rectas (R2 y R3)"
+  enunciado="Ángulo entre dos rectas, considerando los vectores dirección. Expresión en $\mathbb R^3$ y en $\mathbb R^2$ con pendientes. Gráfico." fq="G:36-37" fr="U9:8-9; Ap:188-190">
+
+**Definición.** El ángulo entre dos rectas es el que forman sus vectores directores $\bar a_1$ y $\bar a_2$. Dos rectas que se cortan determinan dos ángulos suplementarios ($\alpha$ y $180^\circ-\alpha$); se toma el **agudo**, por eso el valor absoluto:
+$$\cos\alpha=\frac{|\bar a_1\cdot\bar a_2|}{|\bar a_1|\,|\bar a_2|},\qquad 0^\circ\le\alpha\le90^\circ .$$
+Gráfico a mano: dos rectas que se cortan, sus directores sobre cada una y los dos ángulos suplementarios.
+
+**En $\mathbb R^2$ con pendientes** ($m_i=\operatorname{tg}\beta_i$, $\alpha=\beta_2-\beta_1$): $\operatorname{tg}\alpha=\left|\dfrac{m_2-m_1}{1+m_1m_2}\right|$. Si $1+m_1m_2=0$ las rectas son perpendiculares.
+
+**Casos:** $\cos\alpha=0\Leftrightarrow\bar a_1\cdot\bar a_2=0\Leftrightarrow r_1\perp r_2$; $\cos\alpha=1\Leftrightarrow\bar a_1\parallel\bar a_2$.
+
+Ejemplos. $\mathbb R^2$: $y=2x+1$ y $y=-\tfrac13x+4$: $\operatorname{tg}\alpha=\left|\dfrac{-\frac13-2}{1-\frac23}\right|=7\Rightarrow\alpha\approx81{,}9^\circ$. $\mathbb R^3$: $\bar a_1=(1;2;-1)$, $\bar a_2=(2;-1;1)$: $\bar a_1\cdot\bar a_2=-1$, $|\bar a_1|=|\bar a_2|=\sqrt6$, $\cos\alpha=\tfrac16\Rightarrow\alpha\approx80{,}4^\circ$.
+</Pregunta>
+
+<Pregunta id="m1h8-09" unidad="U8" sim="B" titulo="V o F: el producto vectorial es conmutativo"
+  enunciado="El producto vectorial es conmutativo. V F. Justifique y amplíe." fq="G:31-33" fr="U8:8-11; Ap:170-173">
+
+**Veredicto: FALSO.** El producto vectorial es **anticonmutativo**:
+$$\bar a\times\bar b=-\,\bar b\times\bar a .$$
+
+**Justificación.** El módulo $|\bar a||\bar b|\,\mathrm{sen}\,\theta$ y la dirección (perpendicular al plano de ambos) no dependen del orden, pero el **sentido** sí: por la regla de la mano derecha, girar $\bar a$ hacia $\bar b$ da el sentido opuesto a girar $\bar b$ hacia $\bar a$. Con determinantes, intercambiar dos filas cambia el signo del determinante.
+
+**Contraejemplo.** $\bar i\times\bar j=\bar k$ pero $\bar j\times\bar i=-\bar k$. Con números: $(1;2;0)\times(0;1;3)=(6;-3;1)$ y $(0;1;3)\times(1;2;0)=(-6;3;-1)$.
+
+**Amplío.**
+- Solo vale $\bar a\times\bar b=\bar b\times\bar a$ cuando $2(\bar a\times\bar b)=\bar 0$, o sea cuando $\bar a\parallel\bar b$ (resultado $\bar 0$).
+- Tampoco es asociativo: en general $\bar a\times(\bar b\times\bar c)\neq(\bar a\times\bar b)\times\bar c$. Por ejemplo $\bar i\times(\bar i\times\bar j)=\bar i\times\bar k=-\bar j$ y $(\bar i\times\bar i)\times\bar j=\bar 0$.
+- Sí es distributivo respecto de la suma y $\lambda(\bar a\times\bar b)=(\lambda\bar a)\times\bar b$.
+- El producto **escalar** sí es conmutativo; no confundir.
+- Consecuencia práctica: $|\bar a\times\bar b|$ (área del paralelogramo) no cambia con el orden, pero la normal que se obtiene sí cambia de sentido.
+</Pregunta>
+
+<Pregunta id="m1h8-10" unidad="U8" sim="B" titulo="V o F: si el producto mixto es cero, los vectores son coplanares"
+  enunciado="Si el producto mixto de tres vectores es cero, los vectores son coplanares. V F. Justifique y amplíe." fq="G:33" fr="U8:15-17; Ap:174">
+
+**Veredicto: VERDADERO.**
+
+**Justificación.** El producto mixto $(\bar a\times\bar b)\cdot\bar c$ es, en valor absoluto, el **volumen del paralelepípedo** construido sobre los tres vectores con origen común: área de la base $|\bar a\times\bar b|$ por la altura $h$ (proyección de $\bar c$ sobre la normal $\bar a\times\bar b$). Si el producto es $0$, o bien $\bar a\times\bar b=\bar0$ (hay dos vectores paralelos) o bien $\bar c\perp(\bar a\times\bar b)$, es decir $\bar c$ está en el plano de $\bar a$ y $\bar b$ (altura $h=0$). En ambos casos los tres vectores son coplanares. La recíproca también vale:
+$$\bar a,\bar b,\bar c\ \text{coplanares}\ \Longleftrightarrow\ (\bar a\times\bar b)\cdot\bar c=\begin{vmatrix}a_1&a_2&a_3\\b_1&b_2&b_3\\c_1&c_2&c_3\end{vmatrix}=0 .$$
+
+**Amplío.**
+- Gráfico a mano: paralelepípedo "aplastado" sobre un plano, volumen nulo.
+- Equivale a que los vectores sean linealmente dependientes (uno es combinación lineal de los otros dos).
+- Ejemplo: $\bar a=(1;0;0)$, $\bar b=(0;1;0)$, $\bar c=(2;3;0)$ están en el plano $xy$ y el determinante vale $0$. En cambio con $\bar c=(0;0;5)$ el mixto es $5$ (volumen $5$).
+- Aplicaciones: cuatro puntos $A,B,C,D$ son coplanares si $(\overrightarrow{AB}\times\overrightarrow{AC})\cdot\overrightarrow{AD}=0$; dos rectas son concurrentes o paralelas (no alabeadas) si $(\bar a_1\times\bar a_2)\cdot\overrightarrow{P_1P_2}=0$.
+- Volumen del tetraedro: $\tfrac16|(\bar a\times\bar b)\cdot\bar c|$. El mixto con signo negativo indica que $\bar a,\bar b,\bar c$ no forman terna derecha.
+</Pregunta>
+
+<Pregunta id="m1h8-11" unidad="U8" sim="B" titulo="V o F: el producto escalar de dos vectores es un vector"
+  enunciado="El producto escalar de dos vectores es un vector. V F. Justifique y amplíe." fq="G:4-5, 31-33" fr="U8:1-5; Ap:167-168">
+
+**Veredicto: FALSO.** El producto escalar da un **número real** (un escalar), de ahí su nombre:
+$$\bar a\cdot\bar b=|\bar a|\,|\bar b|\cos\theta=a_1b_1+a_2b_2+a_3b_3\in\mathbb R .$$
+
+**Justificación.** Es el producto de tres números (dos módulos y un coseno); en componentes, una suma de productos de números. Ejemplo: $(2;-3;1)\cdot(-3;2;4)=-6-6+4=-8$, sin componentes ni dirección. El que da un **vector** es el producto vectorial $\bar a\times\bar b$ (o el producto de un escalar por un vector, $\lambda\bar a$).
+
+**Amplío.**
+
+| Producto | Resultado |
+|---|---|
+| $\lambda\bar a$ | vector |
+| $\bar a\cdot\bar b$ | número |
+| $\bar a\times\bar b$ | vector |
+| $(\bar a\times\bar b)\cdot\bar c$ | número |
+
+- Por eso expresiones como $(\bar a\cdot\bar b)\cdot\bar c$ **no tienen sentido** (número "punto" vector), y $\bar a\cdot\bar b\cdot\bar c$ tampoco.
+- El signo informa el ángulo: $>0$ agudo, $=0$ perpendiculares, $<0$ obtuso.
+- Si $\bar a\cdot\bar b=0$ no se concluye $\bar a=\bar0$ o $\bar b=\bar0$: pueden ser perpendiculares. Y $\bar a\cdot\bar b=\bar a\cdot\bar c$ no implica $\bar b=\bar c$ (solo que $\bar a\perp(\bar b-\bar c)$).
+- Casos útiles: $\bar a\cdot\bar a=|\bar a|^2$; proyección ortogonal $\bar w_1=\dfrac{\bar a\cdot\bar b}{|\bar b|^2}\bar b$; trabajo $W=\bar F\cdot\bar D$.
+</Pregunta>
+
+<Pregunta id="m1h8-12" unidad="U9" sim="B" titulo="V o F: dos planos son paralelos si sus normales son perpendiculares"
+  enunciado="Dos planos son paralelos si sus vectores normales son perpendiculares. V F. Justifique y amplíe." fq="G:44-47" fr="U9:24-26, 30; Ap:213-215, 217-218">
+
+**Veredicto: FALSO.** Si las normales son perpendiculares, los **planos son perpendiculares**. Los planos son paralelos si sus normales son **paralelas**.
+
+**Justificación.** El vector $\bar n=(A;B;C)$ de $Ax+By+Cz+D=0$ es perpendicular al plano, así que la dirección de un plano queda dada por su normal. El ángulo entre dos planos es el ángulo entre sus normales:
+- $\pi_1\parallel\pi_2\Longleftrightarrow\bar n_1\parallel\bar n_2\Longleftrightarrow\bar n_1\times\bar n_2=\bar 0\Longleftrightarrow\dfrac{A_1}{A_2}=\dfrac{B_1}{B_2}=\dfrac{C_1}{C_2}$.
+- $\pi_1\perp\pi_2\Longleftrightarrow\bar n_1\cdot\bar n_2=0\Longleftrightarrow A_1A_2+B_1B_2+C_1C_2=0$.
+
+**Contraejemplo.** $\pi_1:x+y+z=1$ ($\bar n_1=(1;1;1)$) y $\pi_2:x-y=0$ ($\bar n_2=(1;-1;0)$): $\bar n_1\cdot\bar n_2=0$, las normales son perpendiculares y los planos **se cortan** formando $90^\circ$ (no son paralelos).
+
+**Amplío.**
+- Si además $\dfrac{A_1}{A_2}=\dfrac{B_1}{B_2}=\dfrac{C_1}{C_2}=\dfrac{D_1}{D_2}$ los planos son **coincidentes**. Ej.: $x+y+z=1$ y $2x+2y+2z=5$ son paralelos distintos; con $2x+2y+2z=2$ serían coincidentes.
+- Si no son paralelos se cortan en una recta de director $\bar n_1\times\bar n_2$.
+- Ángulo: $\cos\varphi=\dfrac{|\bar n_1\cdot\bar n_2|}{|\bar n_1||\bar n_2|}$.
+- Gráfico a mano: dos planos paralelos con sus normales alineadas, y dos planos que se cortan con las normales formando el mismo ángulo que ellos.
+</Pregunta>
+
+<Pregunta id="m1h8-13" unidad="U8" sim="B" titulo="V o F: dos vectores no nulos son paralelos si y solo si su producto vectorial es nulo"
+  enunciado="Dos vectores no nulos son paralelos si y solo si su producto vectorial es el vector nulo. V F. Justifique y amplíe." fq="G:31-33" fr="U8:8-11; Ap:171-173">
+
+**Veredicto: VERDADERO.**
+
+**Justificación.** $|\bar a\times\bar b|=|\bar a||\bar b|\,\mathrm{sen}\,\theta$. Con $\bar a,\bar b\neq\bar0$ los módulos son positivos, así que $\bar a\times\bar b=\bar0$ exige $\mathrm{sen}\,\theta=0$, o sea $\theta=0^\circ$ (mismo sentido) o $\theta=180^\circ$ (sentidos opuestos): son paralelos. Recíprocamente, si son paralelos $\theta\in\{0^\circ;180^\circ\}$, el seno es $0$ y el producto es $\bar0$.
+
+**Amplío.**
+- En componentes equivale a la proporcionalidad: $\dfrac{a_1}{b_1}=\dfrac{a_2}{b_2}=\dfrac{a_3}{b_3}$ (constante positiva: mismo sentido; negativa: opuestos). Ej.: $(1;-2;3)\times(-2;4;-6)=\bar0$ (razón $-2$).
+- Geométricamente: el paralelogramo de lados $\bar a,\bar b$ queda "chato" y su área $|\bar a\times\bar b|$ vale $0$.
+- Contraste: el **escalar** nulo caracteriza la **perpendicularidad** ($\bar a\cdot\bar b=0$); el **vectorial** nulo caracteriza el **paralelismo**.
+- Aclaración: con $\bar 0$ el producto siempre es $\bar 0$, por eso se piden vectores no nulos (el vector nulo se considera paralelo a todos).
+- Aplicación: dos rectas son paralelas si $\bar a_1\times\bar a_2=\bar0$; un vector es paralelo a un plano si es perpendicular a su normal (eso sí es con el escalar).
+</Pregunta>
+
+<Pregunta id="m1h8-14" unidad="U10" sim="C" titulo="Cónicas como secciones del cono: las cuatro curvas y los casos degenerados"
+  enunciado="Cónicas: concepto como intersección del plano con la superficie cónica (gráfico). Figuras que se generan y casos degenerados. Ecuación general de las cónicas." fq="G:47-49" fr="U10:3-7; Ap:239-240">
+
+<Fig src="secciones-conicas" alt="Las cuatro cónicas: circunferencia, elipse, parábola e hipérbola con sus dos ramas" pie="Las cuatro curvas según la inclinación del plano de corte." />
+
+**Superficie cónica:** la genera una **generatriz** que pasa por el **vértice** y gira apoyada sobre una **directriz**; tiene dos hojas. Se corta con un plano **que no pasa por el vértice**; según su posición respecto del eje y de la generatriz:
+
+| Posición del plano | Curva |
+|---|---|
+| Perpendicular al eje | circunferencia |
+| Oblicuo al eje, no paralelo a ninguna generatriz; corta una hoja | elipse |
+| Paralelo a **una** generatriz; corta una hoja | parábola |
+| Corta las dos hojas (p. ej. paralelo al eje) | hipérbola |
+
+**Degeneradas** (el plano pasa por el vértice): un **punto** (plano que solo toca el vértice), **una recta** (plano que contiene una generatriz y es tangente al cono) o **dos rectas que se cortan** (plano que contiene al eje).
+
+**Ecuación general** (segundo grado en $x$, $y$): $Ax^2+Bxy+Cy^2+Dx+Ey+F=0$. Con $B\neq0$ la cónica está rotada; en estas preguntas se trabaja con $B=0$ (ejes de la cónica paralelos a los coordenados).
+
+| Con $B=0$ | Cónica |
+|---|---|
+| $A=C\neq0$ | circunferencia |
+| $A\cdot C>0$, $A\neq C$ | elipse |
+| $A\cdot C<0$ | hipérbola |
+| $A=0$ o $C=0$ (no ambos) | parábola |
+
+Es una condición **necesaria**: hay que completar cuadrados para confirmar y descartar degeneradas (ver pregunta de reconocimiento).
+</Pregunta>
+
+<Pregunta id="m1h8-15" unidad="U10" sim="C" titulo="Elipse: cono/plano, ecuaciones, elementos y ecuación general"
+  enunciado="Elipse: concepto como intersección cono/plano (gráfico). Diferentes ecuaciones (gráficos). Elementos. Ecuación general de las cónicas para determinar que una ecuación se trata de una elipse." fq="G:49-50, 54-56" fr="U10:3-5, 14-25; Ap:260-270">
+
+**1. Cono/plano.** Un plano oblicuo al eje, que no pasa por el vértice, no es paralelo a ninguna generatriz y corta **una sola hoja** del cono en una curva cerrada: la elipse. (Si fuera perpendicular al eje sería la circunferencia, caso particular.)
+
+**2. Definición.** Lugar geométrico de los puntos $P$ cuya **suma de distancias a dos puntos fijos** (focos $F,F'$) es constante, $PF+PF'=2a$, con $2a>2c=FF'$.
+
+<Fig src="elipse" alt="Elipse con centro en el origen: vértices V y V', extremos del eje menor A y A', focos F y F', lado recto LL' y un punto P" pie="Elementos con la notación de la cátedra." />
+
+**3. Elementos.** Eje focal; focos $F,F'$; vértices $V,V'$ ($VV'=2a$, eje mayor); $A,A'$ ($AA'=2b$, eje menor); centro $C$; distancia focal $2c$; lado recto $LL'=\dfrac{2b^2}{a}$; excentricidad $e=\dfrac ca<1$. Relación fundamental: $a^2=b^2+c^2$ ($a$ es siempre el semieje mayor).
+
+**4. Ecuaciones.**
+- Centro en el origen, eje focal $x$: $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$; eje focal $y$: $\dfrac{x^2}{b^2}+\dfrac{y^2}{a^2}=1$ (el denominador mayor va con la variable del eje focal).
+- Centro $(h;k)$: $\dfrac{(x-h)^2}{a^2}+\dfrac{(y-k)^2}{b^2}=1$ (eje focal paralelo a $x$) o $\dfrac{(x-h)^2}{b^2}+\dfrac{(y-k)^2}{a^2}=1$ (paralelo a $y$).
+- Vértices y focos a distancia $a$ y $c$ del centro sobre el eje focal; $A,A'$ a distancia $b$.
+
+**5. Ecuación general.** $Ax^2+Cy^2+Dx+Ey+F=0$ con **$B=0$ y $A,C$ del mismo signo y distintos**. Se agrupa por variable, se saca factor común, se completa cuadrados y se divide para que el segundo miembro sea $1$. Si el segundo miembro es $>0$ (con $A,C>0$) es elipse real; si es $0$, un punto; si es $<0$, vacío (elipse imaginaria).
+
+Ejemplo: $16x^2+25y^2-400=0\Rightarrow\dfrac{x^2}{25}+\dfrac{y^2}{16}=1$: $a=5$, $b=4$, $c=3$, $F(\pm3;0)$, $e=\tfrac35$, $LL'=\tfrac{32}{5}$. Otro: $9x^2+25y^2-54x+100y-44=0\Rightarrow\dfrac{(x-3)^2}{25}+\dfrac{(y+2)^2}{9}=1$, $C(3;-2)$.
+</Pregunta>
+
+<Pregunta id="m1h8-16" unidad="U10" sim="C" titulo="Parábola: cono/plano, ecuaciones, elementos y ecuación general"
+  enunciado="Parábola: concepto como intersección cono/plano (gráfico). Diferentes ecuaciones (gráficos). Elementos. Ecuación general de las cónicas para determinar que una ecuación se trata de una parábola." fq="G:49-50, 52-54" fr="U10:3-5, 53-64; Ap:251-259">
+
+**1. Cono/plano.** El plano **paralelo a una generatriz** (y que no pasa por el vértice) corta una sola hoja en una curva abierta que se extiende indefinidamente: la parábola.
+
+**2. Definición.** Lugar geométrico de los puntos $P$ que equidistan de un punto fijo $F$ (foco) y de una recta fija $\ell$ (directriz), $F\notin\ell$: $PF=DP$.
+
+<Fig src="parabola" alt="Parábola con vértice V, foco F, directriz l, eje a, lado recto LL' y un punto P con su distancia a la directriz" />
+
+**3. Elementos.** Directriz $\ell$; foco $F$; eje $a$ (perpendicular a $\ell$ por $F$); $A=\ell\cap a$; vértice $V$ (punto medio de $AF$); $p$ = distancia $VF$ = distancia de $V$ a $\ell$; lado recto $LL'=4p$ (cuerda por $F$ perpendicular al eje); excentricidad $e=1$.
+
+**4. Ecuaciones** (de $PF=DP$ con vértice en el origen):
+- Eje $x$: $y^2=4px$ (abre a la derecha si $p>0$, a la izquierda si $p<0$); directriz $x=-p$, $F(p;0)$.
+- Eje $y$: $x^2=4py$ (hacia arriba si $p>0$); directriz $y=-p$, $F(0;p)$.
+- Vértice $(h;k)$: $(y-k)^2=4p(x-h)$ [$F(h+p;k)$, directriz $x=h-p$] y $(x-h)^2=4p(y-k)$ [$F(h;k+p)$, directriz $y=k-p$].
+
+**5. Ecuación general.** $Ax^2+Cy^2+Dx+Ey+F=0$ con **$B=0$ y exactamente una de las variables al cuadrado** ($A=0$ o $C=0$, no ambos) y el término lineal de la otra variable no nulo. Se completa cuadrados en la variable cuadrática. Si falta ese término lineal degenera: $y^2+Ey+F=0$ da dos rectas paralelas, una recta doble o ningún punto real.
+
+Ejemplo: $y^2=8x$: $4p=8\Rightarrow p=2$, $V(0;0)$, $F(2;0)$, directriz $x=-2$, $LL'=8$. Otro: $y^2-4x+6y+17=0\Rightarrow(y+3)^2=4(x-2)$: $V(2;-3)$, $p=1$, abre a la derecha.
+</Pregunta>
+
+<Pregunta id="m1h8-17" unidad="U10" sim="C" titulo="Hipérbola: cono/plano, ecuaciones, elementos y ecuación general"
+  enunciado="Hipérbola: concepto como intersección cono/plano (gráfico). Diferentes ecuaciones (gráficos). Elementos. Ecuación general de las cónicas para determinar que una ecuación se trata de una hipérbola." fq="G:49-50, 56-58" fr="U10:3-5, 28-41; Ap:271-282">
+
+**1. Cono/plano.** Un plano que no pasa por el vértice y **corta las dos hojas** (por ejemplo, paralelo al eje) genera la hipérbola: dos ramas, una en cada hoja.
+
+**2. Definición.** Lugar geométrico de los puntos $P$ tales que el **valor absoluto de la diferencia de distancias** a dos puntos fijos (focos) es constante: $|PF-PF'|=2a$, con $2a<2c=FF'$.
+
+<Fig src="hiperbola" alt="Hipérbola con centro en el origen: ramas, vértices V y V', focos F y F', extremos del eje conjugado A y A', lado recto LL' y asíntotas" />
+
+**3. Elementos.** Eje focal; focos $F,F'$ ($2c$); vértices $V,V'$ ($VV'=2a$, eje transverso); $AA'=2b$ (eje conjugado); centro $C$; lado recto $LL'=\dfrac{2b^2}{a}$; asíntotas; $e=\dfrac ca>1$. Relación fundamental: $c^2=a^2+b^2$ (distinta de la elipse).
+
+**4. Ecuaciones.**
+- Eje focal $x$, centro en el origen: $\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=1$, asíntotas $y=\pm\dfrac bax$. Eje focal $y$: $\dfrac{y^2}{a^2}-\dfrac{x^2}{b^2}=1$, asíntotas $y=\pm\dfrac abx$. El eje transverso corresponde a la variable con coeficiente **positivo**.
+- Centro $(h;k)$: $\dfrac{(x-h)^2}{a^2}-\dfrac{(y-k)^2}{b^2}=1$ o $\dfrac{(y-k)^2}{a^2}-\dfrac{(x-h)^2}{b^2}=1$; asíntotas por el centro.
+- Equilátera: $a=b$ (asíntotas perpendiculares, $e=\sqrt2$). Conjugada: intercambia los ejes transverso y conjugado.
+
+**5. Ecuación general.** $Ax^2+Cy^2+Dx+Ey+F=0$ con **$B=0$ y $A$, $C$ de signo contrario**. Se completa cuadrados y se divide para que el segundo miembro sea $1$; si el segundo miembro resulta $0$ es degenerada: **dos rectas que se cortan** (las asíntotas).
+
+Ejemplo: $16x^2-9y^2=144\Rightarrow\dfrac{x^2}{9}-\dfrac{y^2}{16}=1$: $a=3$, $b=4$, $c=5$, $F(\pm5;0)$, $V(\pm3;0)$, asíntotas $y=\pm\tfrac43x$, $e=\tfrac53$, $LL'=\tfrac{32}{3}$.
+</Pregunta>
+
+<Pregunta id="m1h8-18" unidad="U10" sim="C" titulo="Reconocer la cónica desde la ecuación general (completar cuadrados y degeneradas)"
+  enunciado="Dada una ecuación $Ax^2+Cy^2+Dx+Ey+F=0$, determinar qué cónica representa (o si es degenerada), según los coeficientes y completando cuadrados." fq="G:49-50" fr="U10:7, 45, 66; Ap:240">
+
+**Paso 1 (coeficientes, con $B=0$).** $A=C\neq0$: circunferencia. $AC>0$, $A\neq C$: elipse. $AC<0$: hipérbola. $A=0$ o $C=0$ (no ambos): parábola. **Paso 2:** completar cuadrados y mirar el segundo miembro.
+
+| Ecuación | Forma ordinaria | Resultado |
+|---|---|---|
+| $x^2+y^2-6x+4y-12=0$ | $(x-3)^2+(y+2)^2=25$ | circunferencia, $C(3;-2)$, $r=5$ |
+| $x^2+y^2-6x+4y+13=0$ | $(x-3)^2+(y+2)^2=0$ | **punto** $(3;-2)$ |
+| $x^2+y^2+2x+6y+20=0$ | $(x+1)^2+(y+3)^2=-10$ | **vacío** (circunferencia imaginaria) |
+| $4x^2+9y^2-16x+18y-11=0$ | $\dfrac{(x-2)^2}{9}+\dfrac{(y+1)^2}{4}=1$ | elipse, $C(2;-1)$, $a=3$, $b=2$ |
+| $y^2-4x+6y+17=0$ | $(y+3)^2=4(x-2)$ | parábola, $V(2;-3)$, $p=1$ |
+| $x^2-4y^2-2x-16y-19=0$ | $\dfrac{(x-1)^2}{4}-(y+2)^2=1$ | hipérbola, $C(1;-2)$, $a=2$, $b=1$ |
+| $x^2-4y^2-2x-16y-15=0$ | $(x-1)^2-4(y+2)^2=0$ | **dos rectas** $x-1=\pm2(y+2)$ |
+
+**Cómo completar cuadrados** (ej. elipse): $4(x^2-4x)+9(y^2+2y)=11\Rightarrow4(x-2)^2-16+9(y+1)^2-9=11\Rightarrow4(x-2)^2+9(y+1)^2=36$, y se divide por $36$.
+
+**Resumen de degeneradas:** circunferencia o elipse con segundo miembro $0$: un punto; con segundo miembro de signo contrario al de $A,C$: conjunto vacío; hipérbola con segundo miembro $0$: dos rectas secantes; parábola sin término lineal ($y^2+F=0$): dos rectas paralelas ($F<0$), una recta doble ($F=0$) o vacío ($F>0$). Con $B\neq0$ hay que rotar los ejes (no se trabaja en estas preguntas).
+</Pregunta>
