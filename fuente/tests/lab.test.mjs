@@ -9,7 +9,7 @@ import { conica, parabolaPunto } from '../src/scripts/lab/conicas.js';
 import { general, evalGeneral, elementos, ordinariaTex } from '../src/scripts/lab/conica.js';
 import { svgConica } from '../src/scripts/lab/plot-conica.js';
 import { CATALOGO } from '../src/scripts/lab/index.js';
-import { armarParcial } from '../src/scripts/lab/parcial.js';
+import { armarParcial, conicaParcial, tipoConica } from '../src/scripts/lab/parcial.js';
 
 const N = 300;
 const seeds = Array.from({ length: N }, (_, i) => i + 1);
@@ -197,17 +197,16 @@ test('elementos de cátedra: 1r5 (elipse) y modelo2-p2 (parábola, p con signo)'
   assert.equal(p.ps, -1); assert.equal(p.dir.x, 6); assert.equal(p.lr, 4);
 });
 
-test('parcial aleatorio: formato de la cátedra', () => {
-  for (const s of seeds.slice(0, 50)) {
-    const p1 = armarParcial('modelo1', mulberry32(s));
-    assert.deepEqual(p1.ejercicios.map((e) => e.puntos), [30, 30, 40]);
-    assert.deepEqual(p1.ejercicios.map((e) => e.unidad), ['U10', 'U9', 'U9']);
-    const p2 = armarParcial('modelo2', mulberry32(s));
-    assert.equal(p2.ejercicios.length, 3);
-    assert.equal(p2.ejercicios.reduce((a, e) => a + e.puntos, 0), 100);
-    p2.ejercicios.forEach((e) => assert.ok(e.enunciado && e.pasos.length && e.resultado));
+test('parcial aleatorio: mezcla de modelos, 1 cónica + 2 de rectas/planos, 100 pts', () => {
+  const cuenta = {};
+  for (const s of seeds) {
+    const p = armarParcial(mulberry32(s));
+    assert.deepEqual(p.ejercicios.map((e) => e.puntos), [30, 30, 40]);
+    assert.equal(p.ejercicios.filter((e) => e.unidad === 'U10').length, 1);
+    p.ejercicios.forEach((e) => assert.ok(e.enunciado && e.pasos.length && e.resultado));
   }
-  assert.throws(() => armarParcial('x'));
+  for (let s = 1; s <= 2000; s++) { const t = tipoConica(mulberry32(s)); cuenta[t] = (cuenta[t] || 0) + 1; }
+  assert.ok(cuenta.elipse > cuenta.parabola && cuenta.hiperbola > cuenta.parabola && cuenta.parabola > cuenta.circunferencia, JSON.stringify(cuenta));
 });
 
 test('planoPuntoVectores: P en el plano y normal ⟂ a v y u', () => {
@@ -244,11 +243,6 @@ test('parabolaPunto: el punto está en la parábola y radio vector = distancia a
   }
 });
 
-test('modelo2: tres ejercicios exactos', () => {
-  const p = armarParcial('modelo2', mulberry32(7));
-  assert.deepEqual(p.ejercicios.map((e) => e.titulo.split(':')[0].slice(0, 5)), ['Plano', 'Plano', 'Paráb']);
-});
-
 test('planos: se acepta cualquier múltiplo no nulo (signo opuesto, ×2) y se rechaza lo demás', () => {
   const tx = (n, d) => `${n[0]}x${n[1] < 0 ? '' : '+'}${n[1]}y${n[2] < 0 ? '' : '+'}${n[2]}z${d < 0 ? '' : '+'}${d}=0`;
   assert.deepEqual(parsePlano('3x-2y+7z-23=0'), [3, -2, 7, -23]);
@@ -265,13 +259,10 @@ test('planos: se acepta cualquier múltiplo no nulo (signo opuesto, ×2) y se re
   }
 });
 
-test('parcial Modelo 1: elipse con números del tamaño del modelo', async () => {
-  const { elipseModelo } = await import('../src/scripts/lab/parcial.js');
-  const { mulberry32 } = await import('../src/scripts/lab/util.js');
-  for (let i = 1; i <= 200; i++) {
-    const e = elipseModelo(mulberry32(i));
-    const F = Number(e.enunciado.match(/([+-]\d+)=0\$\$$/)[1]);
-    assert.ok(Math.abs(F) <= 150, e.enunciado);
-    assert.match(e.enunciado, /^Graficar la siguiente cónica/);
+test('conicaParcial: números del tamaño de los modelos', () => {
+  for (const tipo of ['elipse', 'hiperbola', 'parabola', 'circunferencia']) for (let i = 1; i <= 150; i++) {
+    const e = conicaParcial(mulberry32(i), tipo);
+    const m = e.enunciado.match(/([+-]\d+)=0\$\$$/);
+    if (m) { assert.ok(Math.abs(Number(m[1])) <= 150, e.enunciado); assert.match(e.enunciado, /^Graficar la siguiente cónica/); }
   }
 });

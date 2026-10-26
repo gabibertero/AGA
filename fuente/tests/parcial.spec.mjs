@@ -10,8 +10,7 @@ for (const vp of [{ width: 1280, height: 800 }, { width: 390, height: 800 }]) {
     await expect(hoja.locator('.hoja-escaneo')).toHaveCount(1);
     await expect(hoja.getByText('Pista')).toHaveCount(0);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    await hoja.getByRole('link', { name: /Parcial aleatorio/ }).click();
-    await expect(page.locator('[data-p-modelo]')).toHaveValue('modelo1');
+    await hoja.getByRole('link', { name: /Generar otros parciales/ }).click();
     await expect(page.locator('[data-p-hoja] .par-ej')).toHaveCount(3);
     await expect(page.locator('[data-p-hoja] .eyebrow').nth(2)).toContainText('40 pts');
     await page.locator('[data-p-ver]').click();

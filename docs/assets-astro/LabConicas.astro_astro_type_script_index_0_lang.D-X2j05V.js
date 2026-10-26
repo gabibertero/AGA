@@ -1,0 +1,1 @@
+import{t as e}from"./ui.BfeRjyDB.js";e(document.querySelector(`[data-lab-con]`));

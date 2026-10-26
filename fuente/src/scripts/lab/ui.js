@@ -78,7 +78,6 @@ export function iniciarGeneradores(root) {
     sol.hidden = !abrir; q('[data-ver]').setAttribute('aria-expanded', String(abrir));
   };
   q('[data-otro]').onclick = nuevo;
-  sel.onchange = nuevo;
   tabs.forEach((b) => (b.onclick = () => {
     unidad = b.dataset.u;
     tabs.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
@@ -131,16 +130,13 @@ export function iniciarConicas(root) {
   new ResizeObserver(() => { if (Math.abs(graf.clientWidth - w) > 8) { w = graf.clientWidth; pintar(); } }).observe(graf);
 }
 
-// ---- Parcial aleatorio (formato de la profe) ----
-import { armarParcial, FORMATOS } from './parcial.js';
+// ---- Parcial aleatorio (mezcla de los modelos de la profe) ----
+import { armarParcial } from './parcial.js';
 export function iniciarParcial(root) {
   root.hidden = false;
-  const q = (s) => root.querySelector(s), sel = q('[data-p-modelo]'), hoja = q('[data-p-hoja]'), ver = q('[data-p-ver]');
-  for (const [id, f] of Object.entries(FORMATOS)) sel.append(new Option(f.nombre, id));
-  const pedido = new URLSearchParams(location.search).get('modelo');
-  sel.value = pedido in FORMATOS ? pedido : 'modelo1';
+  const q = (s) => root.querySelector(s), hoja = q('[data-p-hoja]'), ver = q('[data-p-ver]');
   function nuevo() {
-    const p = armarParcial(sel.value);
+    const p = armarParcial();
     hoja.textContent = '';
     p.ejercicios.forEach((e) => {
       const art = document.createElement('article'), h = document.createElement('p'), en = document.createElement('div'), so = document.createElement('div');
@@ -161,6 +157,5 @@ export function iniciarParcial(root) {
     ver.setAttribute('aria-pressed', String(abrir)); ver.textContent = abrir ? 'Ocultar soluciones' : 'Ver soluciones';
   };
   q('[data-p-otro]').onclick = nuevo;
-  sel.onchange = nuevo;
   nuevo();
 }

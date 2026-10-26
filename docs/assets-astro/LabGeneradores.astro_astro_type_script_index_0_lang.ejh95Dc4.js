@@ -1,1 +1,0 @@
-import{n as e}from"./ui.R5ly37ik.js";e(document.querySelector(`[data-lab-gen]`));
