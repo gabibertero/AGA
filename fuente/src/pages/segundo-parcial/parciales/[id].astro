@@ -23,7 +23,6 @@ const d = entry.data;
     <h2 id="hoja-t">El parcial tal cual</h2>
     <p class="meta">Solo los enunciados, para hacerlo en papel. Abajo está la resolución paso a paso.</p>
     <div data-hoja-cont></div>
-    <p><a class="btn-lab" href={`${base}segundo-parcial/laboratorio/`}>Generar otros parciales con este formato → Laboratorio</a></p>
   </section>
   <details class="otros"><summary>Otros exámenes</summary>
   <ul class="tabs" aria-label="Exámenes">
@@ -55,6 +54,11 @@ const d = entry.data;
     <nav class="indice" aria-label="Ejercicios del examen" data-indice><p class="indice-t">Ejercicios</p><ol></ol></nav>
     <div class="examen-cont"><Content /></div>
   </div>
+  <section class="tarjeta fin-lab" aria-labelledby="lab-t">
+    <h2 id="lab-t">¿Terminaste este parcial?</h2>
+    <p class="meta">En el laboratorio se arman parciales nuevos al azar con el formato de los modelos de la profe, cada uno con su resolución.</p>
+    <p><a class="btn-lab" href={`${base}segundo-parcial/laboratorio/`}>Ir al Laboratorio → parciales aleatorios</a></p>
+  </section>
 </Layout>
 
 <script>
@@ -96,6 +100,7 @@ const d = entry.data;
   .hoja .hoja-escaneo { margin-top: .8rem; }
   .hoja .hoja-escaneo summary { cursor: pointer; font-weight: 600; color: var(--link); min-height: 36px; display: inline-flex; align-items: center; }
   .hoja .hoja-escaneo img { max-width: 100%; height: auto; background: #fff; border: 1px solid var(--borde-fuerte); border-radius: var(--r-s); }
+  .fin-lab { margin-top: 2rem; }
   .btn-lab { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 16px; border-radius: 999px; background: var(--acento); color: var(--sobre-acento); font-weight: 600; text-decoration: none; }
   .btn-lab:focus-visible { outline: 3px solid var(--acento); outline-offset: 2px; }
 </style>
