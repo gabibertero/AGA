@@ -13,8 +13,8 @@ export function planoTresPuntos(r) {
   const g = gcdN(n), np = primitivo(n), d = -dot(np, A) + 0;
   return {
     unidad: 'U9', titulo: 'Plano por tres puntos',
-    enunciado: `Hallar la ecuación general del plano que pasa por $${pt('A', A)}$, $${pt('B', B)}$ y $${pt('C', C)}$. (Tomá $\\vec n=\\vec{AB}\\times\\vec{AC}$ dividido por el mcd de sus componentes.)`,
-    preguntas: [{ etq: 'término independiente d', valor: d, tol: 0.001 }],
+    enunciado: `Hallar la ecuación general del plano que pasa por $${pt('A', A)}$, $${pt('B', B)}$ y $${pt('C', C)}$.`,
+    preguntas: [{ etq: 'ecuación del plano (cualquier múltiplo no nulo sirve)', valor: d, plano: [...np, d], tol: 0.001 }],
     pasos: [
       `**Dos vectores del plano:** $\\vec{AB}=${vt(sub(B, A))}$, $\\vec{AC}=${vt(sub(C, A))}$ (no paralelos, los puntos no están alineados).`,
       `**Normal:** $\\vec n=\\vec{AB}\\times\\vec{AC}=${det(sub(B, A), sub(C, A))}=${vt(n)}$${g > 1 ? `; dividiendo por ${g}: $\\vec n=${vt(np)}$` : ''}.`,
@@ -27,6 +27,55 @@ export function planoTresPuntos(r) {
   };
 }
 
+const ijk = (v) => poly([[v[0], '\\hat\\imath'], [v[1], '\\hat\\jmath'], [v[2], '\\hat k']]);
+const evalPl = (n, d, P) => dot(n, P) + d;
+
+// Modelo 2, Ej1: plano paralelo a dos vectores y que contiene un punto. n = v×u.
+export function planoPuntoVectores(r) {
+  let v, u, c;
+  do { v = rv(r, 3); u = rv(r, 3); c = cross(v, u); } while (!norm2(c));
+  const P = rv(r, 3), g = gcdN(c), n = primitivo(c), d = -dot(n, P) + 0;
+  return {
+    unidad: 'U9', titulo: 'Plano por un punto, paralelo a dos vectores',
+    enunciado: `Encontrar la ecuación del plano $\\pi$ que es paralelo a los vectores $\\bar v = ${ijk(v)}$ y $\\bar u = ${ijk(u)}$ y contiene al punto $(${P.map(nt).join(';')})$.`,
+    preguntas: [{ etq: 'ecuación del plano (cualquier múltiplo no nulo sirve)', valor: d, plano: [...n, d], tol: 0.001 }],
+    pasos: [
+      `**Idea:** si $\\pi$ es paralelo a $\\bar v$ y $\\bar u$ (no paralelos entre sí), su normal es perpendicular a ambos: $\\vec n=\\bar v\\times\\bar u$.`,
+      `**Normal:** $\\vec n=${det(v, u)}=${vt(c)}$${g > 1 ? `; dividiendo por ${g}: $${vt(n)}$` : ''}.`,
+      `**Ecuación:** $${poly([[n[0], 'x'], [n[1], 'y'], [n[2], 'z']], 0)}+d=0$ y pasa por $(${P.map(nt).join(';')})$ ⇒ $d=-\\vec n\\cdot P=${d}$.`,
+      `**Plano:** $${eq(n, d)}$.`,
+      `**Control:** $\\vec n\\cdot\\bar v=${dot(n, v)}$ y $\\vec n\\cdot\\bar u=${dot(n, u)}$ (ambos 0).`,
+    ],
+    resultado: `$${eq(n, d)}$`,
+    datos: { v, u, P, n, d },
+  };
+}
+
+// Modelo 2, Ej2: plano por un punto que contiene la recta intersección de dos planos (haz de planos).
+export function planoPuntoRecta(r) {
+  let n1, n2, d1, d2, P, a, b;
+  do {
+    n1 = rv(r, 2); n2 = rv(r, 2); d1 = ri(r, -8, 8); d2 = ri(r, -8, 8); P = rv(r, 3);
+    a = evalPl(n1, d1, P); b = evalPl(n2, d2, P);
+  } while (!norm2(cross(n1, n2)) || !a || !b); // planos no paralelos y P fuera de la recta (ni sobre ningún plano)
+  const N = [0, 1, 2].map((i) => b * n1[i] - a * n2[i]), D = b * d1 - a * d2;
+  const g = gcdN([...N, D]) * (N.find((x) => x) < 0 ? -1 : 1); // sin factor común y con el primer coeficiente no nulo positivo
+  const n = N.map((x) => x / g + 0), d = D / g + 0;
+  return {
+    unidad: 'U9', titulo: 'Plano por un punto que contiene a la recta intersección de dos planos',
+    enunciado: `Encontrar la ecuación del plano $\\pi$ que pasa por el punto $${pt('P', P)}$ y contiene a la recta intersección entre $\\pi_1 = ${eq(n1, d1)}$ y $\\pi_2 = ${eq(n2, d2)}$.`,
+    preguntas: [{ etq: 'ecuación del plano (cualquier múltiplo no nulo sirve)', valor: d, plano: [...n, d], tol: 0.001 }],
+    pasos: [
+      `**Haz de planos** que contienen a la recta: $\\pi_1+\\lambda\\pi_2=0$, es decir $(${eq(n1, d1).slice(0, -2)})+\\lambda(${eq(n2, d2).slice(0, -2)})=0$.`,
+      `**Imponer $P$:** $\\pi_1(P)=${a}$ y $\\pi_2(P)=${b}$ ⇒ $${a}+${pr(b)}\\lambda=0$ ⇒ $\\lambda=${nt(-a / b)}$.`,
+      `**Reemplazar:** $${b}\\,\\pi_1${a < 0 ? '+' : '-'}${Math.abs(a)}\\,\\pi_2=0$ (multiplicando por ${b}) ⇒ $${eq(N, D)}$${Math.abs(g) > 1 || g < 0 ? `; dividiendo por ${g}: $${eq(n, d)}$` : ''}.`,
+      `**Control:** $P$ cumple la ecuación y la normal es combinación de $\\vec n_1=${vt(n1)}$ y $\\vec n_2=${vt(n2)}$.`,
+    ],
+    resultado: `$${eq(n, d)}$`,
+    datos: { n1, d1, n2, d2, P, n, d },
+  };
+}
+
 export function planoPerpInterseccion(r) {
   let n1, n2, c;
   do { n1 = rv(r, 2); n2 = rv(r, 2); c = cross(n1, n2); } while (!norm2(n1) || !norm2(n2) || !norm2(c));
@@ -34,8 +83,8 @@ export function planoPerpInterseccion(r) {
   const g = gcdN(c), n = primitivo(c), d = -dot(n, P) + 0;
   return {
     unidad: 'U9', titulo: 'Plano por un punto ⟂ a la recta intersección de dos planos',
-    enunciado: `Sean $\\pi_1:\\ ${eq(n1, d1)}$ y $\\pi_2:\\ ${eq(n2, d2)}$, y sea $r=\\pi_1\\cap\\pi_2$. Hallar el plano que pasa por $${pt('P', P)}$ y es perpendicular a $r$. (Usá el director de $r$ dividido por el mcd de sus componentes.)`,
-    preguntas: [{ etq: 'término independiente d', valor: d, tol: 0.001 }],
+    enunciado: `Sean $\\pi_1:\\ ${eq(n1, d1)}$ y $\\pi_2:\\ ${eq(n2, d2)}$, y sea $r=\\pi_1\\cap\\pi_2$. Hallar el plano que pasa por $${pt('P', P)}$ y es perpendicular a $r$.`,
+    preguntas: [{ etq: 'ecuación del plano (cualquier múltiplo no nulo sirve)', valor: d, plano: [...n, d], tol: 0.001 }],
     pasos: [
       `**Director de $r$:** es perpendicular a $\\vec n_1=${vt(n1)}$ y a $\\vec n_2=${vt(n2)}$ ⇒ $\\vec d_r=\\vec n_1\\times\\vec n_2=${det(n1, n2)}=${vt(c)}$${g > 1 ? `; dividiendo por ${g}: $${vt(n)}$` : ''}.`,
       `**Normal del plano buscado:** el plano es ⟂ a $r$ ⇒ $\\vec n=\\vec d_r=${vt(n)}$.`,

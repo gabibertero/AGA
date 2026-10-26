@@ -98,8 +98,37 @@ export function parseNum(txt) {
   };
   try { const v = expr(); return i === s.length && Number.isFinite(v) ? v : NaN; } catch { return NaN; }
 }
+// Ecuación de plano "3x-2y+7z-23=0" -> [a,b,c,d] (sin eval); null si no se entiende.
+export function parsePlano(txt) {
+  const [izq, der = '0', ...resto] = String(txt ?? '').replace(/−/g, '-').replace(/\s+/g, '').toLowerCase().split('=');
+  if (resto.length) return null;
+  const co = [0, 0, 0, 0];
+  const sumar = (t, k) => {
+    if (!t) return true;
+    const ms = t.match(/[+-]?[^+-]+/g);
+    if (!ms || ms.join('') !== t) return false;
+    for (const m of ms) {
+      const mm = /^([+-]?)([\d.,/]*)([xyz]?)$/.exec(m);
+      if (!mm) return false;
+      const n = mm[2] === '' ? (mm[3] ? 1 : NaN) : parseNum(mm[2]);
+      if (Number.isNaN(n)) return false;
+      co[mm[3] ? 'xyz'.indexOf(mm[3]) : 3] += k * (mm[1] === '-' ? -n : n);
+    }
+    return true;
+  };
+  return sumar(izq, 1) && sumar(der, -1) ? co : null;
+}
+// Proporcionales y no nulos.
+export const proporcionales = (u, v, e = 1e-9) => {
+  const nu = u.some((x) => Math.abs(x) > e), nv = v.some((x) => Math.abs(x) > e);
+  if (!nu || !nv) return false;
+  for (let i = 0; i < 4; i++) for (let j = i + 1; j < 4; j++) if (Math.abs(u[i] * v[j] - u[j] * v[i]) > e) return false;
+  return true;
+};
+
 export function verificar(preg, txt) {
   if (!String(txt ?? '').trim()) return 'vacio';
+  if (preg.plano) { const c = parsePlano(txt); return !c ? 'invalido' : proporcionales(c, preg.plano) ? 'bien' : 'mal'; }
   const v = parseNum(txt);
   if (Number.isNaN(v)) return 'invalido';
   return Math.abs(v - preg.valor) <= (preg.tol ?? 0.01) ? 'bien' : 'mal';

@@ -1,14 +1,15 @@
 // Propiedades matemáticas de los generadores del laboratorio (sin dependencias): node --test
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mulberry32, dot, cross, sub, add, mul, norm, norm2, triple, parseNum, verificar, nt } from '../src/scripts/lab/util.js';
+import { mulberry32, dot, cross, sub, add, mul, norm, norm2, triple, parseNum, parsePlano, verificar, nt } from '../src/scripts/lab/util.js';
 import { angulo, proyeccion, area, mixto } from '../src/scripts/lab/vectores.js';
 import { rectaDosPuntos, posicionRelativa } from '../src/scripts/lab/rectas.js';
-import { planoTresPuntos, planoPerpInterseccion, distPuntoPlano, anguloPlanos } from '../src/scripts/lab/planos.js';
-import { conica } from '../src/scripts/lab/conicas.js';
+import { planoPuntoVectores, planoPuntoRecta, planoTresPuntos, planoPerpInterseccion, distPuntoPlano, anguloPlanos } from '../src/scripts/lab/planos.js';
+import { conica, parabolaPunto } from '../src/scripts/lab/conicas.js';
 import { general, evalGeneral, elementos, ordinariaTex } from '../src/scripts/lab/conica.js';
 import { svgConica } from '../src/scripts/lab/plot-conica.js';
 import { CATALOGO } from '../src/scripts/lab/index.js';
+import { armarParcial } from '../src/scripts/lab/parcial.js';
 
 const N = 300;
 const seeds = Array.from({ length: N }, (_, i) => i + 1);
@@ -194,4 +195,72 @@ test('elementos de cátedra: 1r5 (elipse) y modelo2-p2 (parábola, p con signo)'
   near(pt(p, 'V'), 5, -1); near(pt(p, 'F'), 4, -1); near(pt(p, 'A'), 6, -1);
   near(pt(p, 'L'), 4, 1); near(pt(p, "L'"), 4, -3);
   assert.equal(p.ps, -1); assert.equal(p.dir.x, 6); assert.equal(p.lr, 4);
+});
+
+test('parcial aleatorio: formato de la cátedra', () => {
+  for (const s of seeds.slice(0, 50)) {
+    const p1 = armarParcial('modelo1', mulberry32(s));
+    assert.deepEqual(p1.ejercicios.map((e) => e.puntos), [30, 30, 40]);
+    assert.deepEqual(p1.ejercicios.map((e) => e.unidad), ['U10', 'U9', 'U9']);
+    const p2 = armarParcial('modelo2', mulberry32(s));
+    assert.equal(p2.ejercicios.length, 3);
+    assert.equal(p2.ejercicios.reduce((a, e) => a + e.puntos, 0), 100);
+    p2.ejercicios.forEach((e) => assert.ok(e.enunciado && e.pasos.length && e.resultado));
+  }
+  assert.throws(() => armarParcial('x'));
+});
+
+test('planoPuntoVectores: P en el plano y normal ⟂ a v y u', () => {
+  for (const s of seeds) {
+    const { datos: { v, u, P, n, d } } = planoPuntoVectores(mulberry32(s));
+    assert.ok(norm2(cross(v, u)) > 0 && norm2(n) > 0);
+    assert.equal(dot(n, v), 0); assert.equal(dot(n, u), 0); assert.equal(dot(n, P) + d, 0);
+  }
+});
+
+test('planoPuntoRecta: P en el plano y la recta intersección está contenida', () => {
+  for (const s of seeds) {
+    const { datos: { n1, d1, n2, d2, P, n, d } } = planoPuntoRecta(mulberry32(s));
+    assert.ok(norm2(cross(n1, n2)) > 0);
+    assert.equal(dot(n, P) + d, 0);
+    assert.ok(dot(n1, P) + d1 !== 0 || dot(n2, P) + d2 !== 0); // P fuera de la recta
+    // n y d son combinación lineal de (n1,d1) y (n2,d2): el director de la recta es ⟂ n
+    assert.ok(dot(n, cross(n1, n2)) === 0);
+    // un punto de la recta (resolviendo con z libre) cumple el plano: A = (d2*n1 - d1*n2)... verificamos por rango
+    const M = [[...n1, d1], [...n2, d2], [...n, d]];
+    const det3 = (a) => a[0][0] * (a[1][1] * a[2][2] - a[1][2] * a[2][1]) - a[0][1] * (a[1][0] * a[2][2] - a[1][2] * a[2][0]) + a[0][2] * (a[1][0] * a[2][1] - a[1][1] * a[2][0]);
+    for (const cols of [[0, 1, 3], [0, 2, 3], [1, 2, 3]]) assert.ok(det3(M.map((f) => cols.map((c) => f[c]))) === 0);
+  }
+});
+
+test('parabolaPunto: el punto está en la parábola y radio vector = distancia a la directriz', () => {
+  for (const s of seeds) {
+    const e = parabolaPunto(mulberry32(s)), { g, el, P, radio, dist } = e.datos;
+    assert.ok(Number.isInteger(P[0]) && Number.isInteger(P[1]));
+    cerca(evalGeneral(g, P[0], P[1]), 0, 'P en la parábola');
+    cerca(radio, dist, 'radio vector');
+    cerca(e.preguntas.at(-1).valor, radio);
+    assert.equal(el.tipo, 'parabola');
+  }
+});
+
+test('modelo2: tres ejercicios exactos', () => {
+  const p = armarParcial('modelo2', mulberry32(7));
+  assert.deepEqual(p.ejercicios.map((e) => e.titulo.split(':')[0].slice(0, 5)), ['Plano', 'Plano', 'Paráb']);
+});
+
+test('planos: se acepta cualquier múltiplo no nulo (signo opuesto, ×2) y se rechaza lo demás', () => {
+  const tx = (n, d) => `${n[0]}x${n[1] < 0 ? '' : '+'}${n[1]}y${n[2] < 0 ? '' : '+'}${n[2]}z${d < 0 ? '' : '+'}${d}=0`;
+  assert.deepEqual(parsePlano('3x-2y+7z-23=0'), [3, -2, 7, -23]);
+  assert.deepEqual(parsePlano('-x + z = 4'), [-1, 0, 1, -4]);
+  assert.equal(parsePlano('3x+*y'), null); assert.equal(parsePlano('x=y=0'), null);
+  for (const gen of [planoTresPuntos, planoPuntoVectores, planoPuntoRecta, planoPerpInterseccion]) for (const s of seeds.slice(0, 100)) {
+    const { datos: { n, d }, preguntas: [q] } = gen(mulberry32(s));
+    assert.equal(verificar(q, tx(n, d)), 'bien');
+    assert.equal(verificar(q, tx(n.map((x) => -x), -d)), 'bien', 'signo opuesto');
+    assert.equal(verificar(q, tx(n.map((x) => 2 * x), 2 * d)), 'bien', '×2');
+    assert.equal(verificar(q, tx(n, d + 1)), 'mal');
+    assert.equal(verificar(q, '0x+0y+0z+0=0'), 'mal');
+    assert.equal(verificar(q, 'hola'), 'invalido');
+  }
 });

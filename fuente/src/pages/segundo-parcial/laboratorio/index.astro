@@ -2,12 +2,14 @@
 import Layout from '../../../layouts/Layout.astro';
 import LabGeneradores from '../../../components/LabGeneradores.astro';
 import LabConicas from '../../../components/LabConicas.astro';
+import LabParcial from '../../../components/LabParcial.astro';
 ---
 <Layout titulo="Laboratorio · 2º parcial">
   <p class="eyebrow">2º parcial · U8, U9 y U10</p>
   <h1>Laboratorio</h1>
   <p class="lead">Ejercicios al azar con números lindos para practicar vectores, rectas, planos y cónicas, y un graficador de cónicas para ver qué hace cada parámetro. Las soluciones son elaboradas, no oficiales.</p>
   <noscript><p class="lead">El laboratorio necesita JavaScript.</p></noscript>
+  <LabParcial />
   <LabGeneradores />
   <LabConicas />
 </Layout>

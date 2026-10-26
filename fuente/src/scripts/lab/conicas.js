@@ -14,7 +14,7 @@ export function specAzar(r, tipo) {
 }
 
 export function conica(r, o = {}) {
-  const s = specAzar(r, o.tipo ?? pick(r, TIPOS));
+  const s = o.spec ?? specAzar(r, o.tipo ?? pick(r, TIPOS));
   const g = general(s), el = elementos(s), { tipo, h, k } = s;
   const { A, C, D, E, F } = g;
   const gtex = generalTex(g), otex = ordinariaTex(s);
@@ -56,5 +56,28 @@ export function conica(r, o = {}) {
     pasos,
     resultado: `$${otex}$`,
     datos: { spec: s, g, el },
+  };
+}
+
+// Modelo 2, Ej3: parábola dada por la ecuación general, un punto con una coordenada dada y su radio vector.
+export function parabolaPunto(r) {
+  const s = specAzar(r, 'parabola'), q = 4 * s.p, hor = s.ori === 'der' || s.ori === 'izq', sg = s.ori === 'der' || s.ori === 'arr' ? 1 : -1;
+  const ts = [-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6].filter((t) => (t * t) % q === 0);
+  const t = pick(r, ts), w = t * t / q * sg; // (v-c)^2 = ±4p (u-c')
+  const base = conica(r, { spec: s }), el = base.datos.el, F = el.pts.find((x) => x.n === 'F');
+  const P = hor ? [s.h + w, s.k + t] : [s.h + t, s.k + w];
+  const rv_ = Math.hypot(P[0] - F.x, P[1] - F.y), dirv = hor ? el.dir.x : el.dir.y;
+  const dist = Math.abs((hor ? P[0] : P[1]) - dirv);
+  const pq = (etq, valor) => ({ etq, valor, tol: 0.001 });
+  return {
+    ...base, titulo: 'Parábola: gráfico y radio vector de un punto',
+    enunciado: `Graficar la parábola cuya ${hor ? 'ordenada' : 'abscisa'} es ${hor ? P[1] : P[0]}, si $${generalTex(base.datos.g)}$ y encontrar la longitud del radio vector del punto.`,
+    preguntas: [...base.preguntas, pq('radio vector', rv_)],
+    pasos: [...base.pasos,
+      `**El punto:** reemplazo ${hor ? `$y=${P[1]}$` : `$x=${P[0]}$`} en la ecuación y despejo ${hor ? '$x$' : '$y$'}: $P(${P.map(nt).join(';')})$.`,
+      `**Radio vector** $=|FP|=\\sqrt{(${nt(P[0])}-${nt(F.x).replace(/^-(.*)$/, '(-$1)')})^2+(${nt(P[1])}-${nt(F.y).replace(/^-(.*)$/, '(-$1)')})^2}=${nt(rv_)}$. Control: es igual a la distancia de $P$ a la directriz, $${nt(dist)}$.`,
+    ],
+    resultado: `${base.resultado} y $|FP|=${nt(rv_)}$`,
+    datos: { ...base.datos, P, radio: rv_, dist },
   };
 }

@@ -10,9 +10,9 @@ test('carga, "Otro" cambia el ejercicio y "Ver solución" muestra pasos', async 
   const enun = page.locator('[data-enunciado]');
   await expect(enun.locator('.katex').first()).toBeVisible();
   const antes = await enun.innerText();
-  await page.getByRole('button', { name: 'Otro' }).click();
+  await page.getByRole('button', { name: 'Otro', exact: true }).click();
   await expect(enun).not.toHaveText(antes);
-  await page.getByRole('button', { name: 'Ver solución' }).click();
+  await page.getByRole('button', { name: 'Ver solución', exact: true }).click();
   expect(await page.locator('[data-solucion] li').count()).toBeGreaterThan(1);
   await expect(page.locator('.katex-error')).toHaveCount(0);
   expect(err).toEqual([]);
@@ -26,7 +26,7 @@ test('verificación numérica: la respuesta correcta da ✓, una incorrecta no',
   await inp.fill('999');
   await page.getByRole('button', { name: 'Verificar' }).click();
   await expect(page.locator('[data-feedback]')).toContainText('Todavía no');
-  await page.getByRole('button', { name: 'Ver solución' }).click();
+  await page.getByRole('button', { name: 'Ver solución', exact: true }).click();
   const ang = (await page.locator('.lab-res .katex-html').innerText()).match(/(\d+)/)[1];
   await inp.fill(ang);
   await page.getByRole('button', { name: 'Verificar' }).click();

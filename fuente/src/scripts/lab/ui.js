@@ -130,3 +130,37 @@ export function iniciarConicas(root) {
   let w = graf.clientWidth;
   new ResizeObserver(() => { if (Math.abs(graf.clientWidth - w) > 8) { w = graf.clientWidth; pintar(); } }).observe(graf);
 }
+
+// ---- Parcial aleatorio (formato de la profe) ----
+import { armarParcial, FORMATOS } from './parcial.js';
+export function iniciarParcial(root) {
+  root.hidden = false;
+  const q = (s) => root.querySelector(s), sel = q('[data-p-modelo]'), hoja = q('[data-p-hoja]'), ver = q('[data-p-ver]');
+  for (const [id, f] of Object.entries(FORMATOS)) sel.append(new Option(f.nombre, id));
+  const pedido = new URLSearchParams(location.search).get('modelo');
+  sel.value = pedido in FORMATOS ? pedido : 'modelo1';
+  function nuevo() {
+    const p = armarParcial(sel.value);
+    hoja.textContent = '';
+    p.ejercicios.forEach((e) => {
+      const art = document.createElement('article'), h = document.createElement('p'), en = document.createElement('div'), so = document.createElement('div');
+      art.className = 'par-ej'; art.dataset.unidad = e.unidad;
+      h.className = 'eyebrow'; h.textContent = `Ejercicio ${e.numero} · ${e.puntos} pts.`;
+      en.className = 'par-enun'; rich(en, e.enunciado);
+      so.className = 'par-sol'; so.hidden = true; so.dataset.pSol = '';
+      const ol = document.createElement('ol');
+      e.pasos.forEach((t) => { const li = document.createElement('li'); rich(li, t); ol.append(li); });
+      const res = document.createElement('p'); res.className = 'par-res'; rich(res, '**Resultado:** ' + e.resultado);
+      so.append(ol, res); art.append(h, en, so); hoja.append(art);
+    });
+    ver.setAttribute('aria-pressed', 'false'); ver.textContent = 'Ver soluciones';
+  }
+  ver.onclick = () => {
+    const abrir = ver.getAttribute('aria-pressed') !== 'true';
+    hoja.querySelectorAll('[data-p-sol]').forEach((s) => (s.hidden = !abrir));
+    ver.setAttribute('aria-pressed', String(abrir)); ver.textContent = abrir ? 'Ocultar soluciones' : 'Ver soluciones';
+  };
+  q('[data-p-otro]').onclick = nuevo;
+  sel.onchange = nuevo;
+  nuevo();
+}
