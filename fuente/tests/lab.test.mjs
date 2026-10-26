@@ -264,3 +264,14 @@ test('planos: se acepta cualquier múltiplo no nulo (signo opuesto, ×2) y se re
     assert.equal(verificar(q, 'hola'), 'invalido');
   }
 });
+
+test('parcial Modelo 1: elipse con números del tamaño del modelo', async () => {
+  const { elipseModelo } = await import('../src/scripts/lab/parcial.js');
+  const { mulberry32 } = await import('../src/scripts/lab/util.js');
+  for (let i = 1; i <= 200; i++) {
+    const e = elipseModelo(mulberry32(i));
+    const F = Number(e.enunciado.match(/([+-]\d+)=0\$\$$/)[1]);
+    assert.ok(Math.abs(F) <= 150, e.enunciado);
+    assert.match(e.enunciado, /^Graficar la siguiente cónica/);
+  }
+});
