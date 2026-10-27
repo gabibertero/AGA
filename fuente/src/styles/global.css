@@ -140,6 +140,7 @@ button[data-accion='ocultar'] { border-color: transparent; background: transpare
 .tarjeta-link strong { font-family: var(--f-ed); font-size: 1.25rem; }
 .ec-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px; }
 .ec-titulo { font-family: var(--f-ed); font-weight: 700; font-size: 1.15rem; line-height: 1.3; color: var(--texto); text-decoration: none; }
+.lista-ex .tarjeta { position: relative; } /* contiene el ::after del link */
 .ec-titulo::after { content: ''; position: absolute; inset: 0; border-radius: var(--r); } /* tarjeta entera clickeable */
 .ec-titulo:hover { text-decoration: underline; }
 .examen-card .meta, .examen-card .chips { margin: 0; }
