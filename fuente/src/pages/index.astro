@@ -31,14 +31,20 @@ const acc2 = [
       <p class="lead">Todo para rendir la materia: machetes, preguntero, prácticos resueltos y parciales en modo examen. Sin cuentas, sin vueltas.</p>
       <div class="hero-acc">
         <a class="btn btn-primario btn-examen" href={`${sp}parciales/modelo1-p2/`}>Modo examen · Modelo 1</a>
-        <a class="btn" href={`${pp}index.html`}>Machete del 1º parcial</a>
+        <a class="btn" href={`${sp}machetes/`}>Machetes del 2º parcial</a>
       </div>
       <p class="hero-seguir" data-seguir hidden></p>
     </div>
     <HomeHero />
   </section>
 
-  <section class="panel-home" aria-label="Tu panel">
+  <section class="home-sec" aria-labelledby="h-mapa">
+    <h2 id="h-mapa">Mapa de la materia</h2>
+    <p class="suave sec-intro">Las 11 unidades del programa 2025, agrupadas por instancia de evaluación, con acceso directo a cada herramienta.</p>
+    <HomeMapa acc1={acc1} acc2={acc2} />
+  </section>
+
+  <section class="panel-home home-sec" aria-label="Tu panel">
     <div class="tarjeta pan" aria-labelledby="h-cuenta">
       <h2 id="h-cuenta">Cuenta regresiva</h2>
       <p class="suave">Cargá las fechas y te decimos cuánto falta. Se guarda en tu navegador.</p>
@@ -70,23 +76,8 @@ const acc2 = [
     </div>
   </section>
 
-  <h2>Mapa de la materia</h2>
-  <p class="suave sec-intro">Las 11 unidades del programa 2025, agrupadas por instancia de evaluación.</p>
-  <HomeMapa />
-
-  <h2>Por dónde arrancar</h2>
-  <div class="accesos">
-    <section class="tarjeta acc" data-g="p1" aria-labelledby="a1">
-      <h3 id="a1">1º parcial <span class="chip">U1–U7</span></h3>
-      <ul>{acc1.map(([t, d, h]) => <li><a href={h}><strong>{t}</strong><span class="suave">{d}</span></a></li>)}</ul>
-    </section>
-    <section class="tarjeta acc" data-g="p2" aria-labelledby="a2">
-      <h3 id="a2">2º parcial <span class="chip">U8–U10</span></h3>
-      <ul>{acc2.map(([t, d, h]) => <li><a href={h}><strong>{t}</strong><span class="suave">{d}</span></a></li>)}</ul>
-    </section>
-  </div>
-
-  <h2>Parciales del 2º parcial</h2>
+  <section class="home-sec" aria-labelledby="h-parc">
+    <h2 id="h-parc">Parciales del 2º parcial</h2>
   <ul class="lista-ex lista-home">
     {filas.map((f) => (
       <li class="tarjeta" data-ex-fila data-examen={f.id} data-ids={f.ids.join(',')}>
@@ -96,6 +87,7 @@ const acc2 = [
       </li>
     ))}
   </ul>
+  </section>
 
   <h2>Dónde se guarda tu progreso</h2>
   <p>En tu navegador (localStorage), con claves que empiezan con <code>aga:v1:</code>. No hay cuentas ni servidor: no se comparte entre dispositivos y se pierde si borrás los datos del navegador.</p>

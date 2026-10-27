@@ -32,20 +32,7 @@ test('seguir donde dejaste aparece tras visitar un parcial', async ({ page }) =>
   await expect(page.locator('[data-seguir] a')).toHaveAttribute('href', /modelo1-p2/);
 });
 
-test('el tema se alterna y persiste', async ({ page }) => {
-  await page.emulateMedia({ colorScheme: 'light' });
-  await page.goto('');
-  const btn = page.getByRole('button', { name: 'Modo oscuro' });
-  await expect(btn).toHaveAttribute('aria-pressed', 'false');
-  await btn.click();
-  await expect(page.locator('html')).toHaveAttribute('data-tema', 'dark');
-  await page.reload();
-  await expect(page.locator('html')).toHaveAttribute('data-tema', 'dark');
-  await expect(btn).toHaveAttribute('aria-pressed', 'true');
-  expect(await page.evaluate(() => localStorage.getItem('aga:v1:tema'))).toBe('dark');
-});
-
-for (const tema of ['light', 'dark']) {
+for (const tema of ['light']) {
   test(`sin scroll horizontal a 390px (${tema})`, async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.emulateMedia({ colorScheme: tema });

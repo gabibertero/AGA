@@ -1,11 +1,12 @@
 ---
 // Mapa de la materia: unidades del programa 2025 (UTN FRC) agrupadas por instancia.
 const base = import.meta.env.BASE_URL;
+const { acc1 = [], acc2 = [] } = Astro.props;
 const grupos = [
-  { id: 'p1', titulo: '1º parcial', rango: 'U1–U7', estado: 'Listo', href: `${base}primer-parcial/index.html`, unidades: [
+  { id: 'p1', titulo: '1º parcial', rango: 'U1–U7', estado: 'Listo', acc: acc1, href: `${base}primer-parcial/index.html`, unidades: [
     ['U1', 'Sistemas de coordenadas. Vectores libres en ℝ², ℝ³ y ℝⁿ'], ['U2', 'Matrices'], ['U3', 'Determinantes'],
     ['U4', 'Sistema de ecuaciones lineales'], ['U5', 'Espacios vectoriales'], ['U6', 'Aplicaciones o transformaciones lineales'], ['U7', 'Valores y vectores propios'] ] },
-  { id: 'p2', titulo: '2º parcial', rango: 'U8–U10', estado: 'En construcción', href: `${base}segundo-parcial/`, unidades: [
+  { id: 'p2', titulo: '2º parcial', rango: 'U8–U10', estado: 'En construcción', acc: acc2, href: `${base}segundo-parcial/`, unidades: [
     ['U8', 'Operaciones con vectores libres en ℝ², ℝ³ y ℝⁿ'], ['U9', 'Rectas y planos'], ['U10', 'Cónicas y cuádricas'] ] },
   { id: 'fin', titulo: 'Final', rango: 'U11', estado: 'Próximamente', unidades: [['U11', 'Números complejos']] },
 ];
@@ -14,8 +15,10 @@ const grupos = [
   {grupos.map((g) => (
     <section class="mapa-g" data-g={g.id} aria-labelledby={`mg-${g.id}`}>
       <header>
-        <h3 id={`mg-${g.id}`}>{g.href ? <a href={g.href}>{g.titulo}</a> : g.titulo}</h3>
-        <span class="mapa-rango">{g.rango}</span>
+        <div>
+          <h3 id={`mg-${g.id}`}>{g.href ? <a href={g.href}>{g.titulo}</a> : g.titulo}</h3>
+          <span class="mapa-rango">{g.rango}</span>
+        </div>
         <span class="mapa-estado">{g.estado}</span>
       </header>
       <ol>
@@ -23,6 +26,11 @@ const grupos = [
           <li data-unidad={u}><b>{u}</b><span>{n}</span></li>
         ))}
       </ol>
+      {g.acc && (
+        <ul class="mapa-ir" aria-label={`Ir directo, ${g.titulo}`}>
+          {g.acc.map(([t, d, h]) => <li><a href={h}><strong>{t}</strong><span>{d}</span></a></li>)}
+        </ul>
+      )}
     </section>
   ))}
 </div>
