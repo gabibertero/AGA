@@ -75,7 +75,7 @@ document.querySelector('[data-armar]').onclick = () => {
     c.querySelector('.preg-acc')?.remove();
     c.querySelector('[data-estado-txt]')?.remove();
     c.querySelector('details')?.removeAttribute('open');
-    c.querySelector('.preg-tit').textContent = `Pregunta ${i + 1}. ` + c.querySelector('.preg-tit').textContent;
+    c.querySelector('.preg-tit').prepend(`Pregunta ${i + 1}. `);
     lista.append(c);
   });
   if (document.querySelector('[data-crono]').checked) {

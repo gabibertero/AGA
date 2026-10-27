@@ -1,5 +1,6 @@
 ---
 // Una pregunta del preguntero. El slot es la respuesta (MDX con KaTeX).
+import { conTex } from "../scripts/tex.js";
 // fr / fq = fuentes con formato "U8:2-3; Ap:167" (código:páginas). parcial = "T1, T2" si cayó en un parcial.
 const { id, unidad, titulo, enunciado, literal = false, parcial = '', q = '', sim = '', fq = '', fr = '' } = Astro.props;
 const ARCH = {
@@ -24,8 +25,8 @@ const fuentes = (s) => s.split(';').map((x) => x.trim()).filter(Boolean).map((x)
     <span class="chip" data-literal={literal ? 'si' : 'no'}>{literal ? 'enunciado literal' : 'pregunta de práctica'}</span>
     <span class="preg-estado" data-estado-txt aria-live="polite"></span>
   </header>
-  <h3 class="preg-tit">{titulo}</h3>
-  <blockquote class="preg-enun">{enunciado}</blockquote>
+  <h3 class="preg-tit" set:html={conTex(titulo)} />
+  <blockquote class="preg-enun" set:html={conTex(enunciado)} />
   {fq && <p class="preg-fte">Pregunta: {fuentes(fq).map((f, i) => <>{i > 0 && ' · '}<em>{f.archivo}</em>{f.p && <>, {/^\d/.test(f.p) ? 'p. ' : ''}{f.p}</>}</>)}</p>}
   <details class="preg-resp" data-resp>
     <summary><span class="s-ver">Mostrar respuesta</span><span class="s-ocultar">Ocultar respuesta</span></summary>
