@@ -40,7 +40,7 @@ test('aprendizaje sin JS: se ve el banco completo con respuestas', async ({ brow
   const ctx = await browser.newContext({ javaScriptEnabled: false, baseURL: 'http://localhost:4321/AGA/' });
   const page = await ctx.newPage();
   await page.goto(APR);
-  expect(await page.locator('[data-q]').count()).toBeGreaterThanOrEqual(30);
+  expect(await page.locator('[data-q]').count()).toBeGreaterThanOrEqual(70);
   await expect(page.locator('[data-config]')).toBeHidden();
   await page.locator('.q-sinjs summary').first().click();
   await expect(page.locator('.q-resp').first()).toBeVisible();
@@ -88,7 +88,7 @@ test('aprendizaje: mezcla con gráficos, KaTeX y localStorage roto', async ({ pa
   await page.locator('[data-empezar]').click();
   const unidades = new Set();
   let figuras = 0;
-  for (let n = 0; n < 40; n++) {
+  for (let n = 0; n < 100; n++) {
     unidades.add(await page.locator('[data-stage] .chip-u').textContent());
     figuras += await page.locator('[data-stage] .q-fig svg').count();
     await expect(page.locator('.katex-error')).toHaveCount(0);
@@ -107,9 +107,51 @@ test('aprendizaje en 390px: opciones y figura sin desborde', async ({ page }) =>
   await page.locator('[data-unidad-btn="U10"]').click();
   await page.locator('[data-n]').selectOption('0');
   await page.locator('[data-empezar]').click();
-  for (let n = 0; n < 12; n++) {
+  for (let n = 0; n < 40; n++) {
     expect(await sinScrollH(page)).toBe(true);
     if (await page.locator('[data-sig]').textContent() === 'Ver resumen') break;
     await page.locator('[data-sig]').click();
   }
+});
+
+test('repasar: sin falladas avisa; con falladas arma la sesión solo con ellas y las lista al final', async ({ page }) => {
+  await page.goto(APR);
+  await page.locator('[data-unidad-btn="repasar"]').click();
+  await expect(page.locator('[data-n-repasar]')).toHaveText('0');
+  await page.locator('[data-empezar]').click();
+  await expect(page.locator('[data-cfg-aviso]')).toContainText('No tenés preguntas falladas');
+  await expect(page.locator('[data-sesion]')).toBeHidden();
+  // Se marcan 2 como falladas y 1 como "a medias" (mismo formato que guarda la UI).
+  await page.evaluate(() => {
+    localStorage.setItem('aga:v1:apr:u8-mc-01', 'mal');
+    localStorage.setItem('aga:v1:apr:u9-dev-01', 'mal');
+    localStorage.setItem('aga:v1:apr:u10-mc-01', 'medias');
+    localStorage.setItem('aga:v1:apr:u8-mc-02', 'bien');
+  });
+  await page.reload();
+  await page.locator('[data-unidad-btn="repasar"]').click();
+  await expect(page.locator('[data-n-repasar]')).toHaveText('2');
+  await page.locator('[data-incluir-medias]').check();
+  await expect(page.locator('[data-n-repasar]')).toHaveText('3');
+  await page.locator('[data-incluir-medias]').uncheck();
+  await page.locator('[data-n]').selectOption('0');
+  await page.locator('[data-empezar]').click();
+  await expect(page.locator('[data-cont]')).toHaveText('Pregunta 1 de 2');
+  for (let n = 0; n < 2; n++) {
+    const mc = page.locator('[data-stage] .ap-opc');
+    if (await mc.count()) {
+      // Fuerza el error: clickea una opción que no sea la correcta (la correcta ya viene marcada tras responder).
+      await mc.first().click();
+      if (await page.locator('[data-stage] .ap-opc[data-v="mal"]').count() === 0) {
+        await page.evaluate(() => localStorage.setItem('aga:v1:apr:u8-mc-01', 'mal'));
+      }
+    } else {
+      await page.locator('[data-ver]').click();
+      await page.locator('[data-r="mal"]').click();
+    }
+    await page.locator('[data-sig]').click();
+  }
+  await expect(page.locator('[data-fin]')).toBeVisible();
+  await expect(page.locator('[data-repasar-lista]')).toContainText('u9-dev-01');
+  await expect(page.locator('[data-repasar-lista] .katex')).toHaveCount(0);
 });

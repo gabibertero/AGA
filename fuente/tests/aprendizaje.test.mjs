@@ -1,7 +1,7 @@
 // node --test tests/aprendizaje.test.mjs : lógica pura de Aprendizaje + integridad del banco.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { armarSesion, barajar, esCorrecta, resumen, mulberry32, UNIDADES } from '../src/scripts/aprendizaje-logica.js';
+import { armarSesion, barajar, esCorrecta, resumen, aRepasar, mulberry32, UNIDADES } from '../src/scripts/aprendizaje-logica.js';
 import { BANCO } from '../src/data/aprendizaje-banco.js';
 
 const meta = BANCO.map((q) => ({ id: q.id, unidad: q.unidad, tipo: q.tipo, nOpc: (q.tipo === 'graf' ? q.forma : q.tipo) === 'mc' ? q.opc.length : 0 }));
@@ -21,7 +21,7 @@ test('banco: ids únicos, campos completos, mínimo por unidad y por tipo', () =
   }
   for (const u of UNIDADES) {
     const qs = BANCO.filter((q) => q.unidad === u);
-    assert.ok(qs.length >= 8, u);
+    assert.ok(qs.length >= 20, u);
     for (const t of ['mc', 'dev', 'graf']) assert.ok(qs.some((q) => q.tipo === t), `${u} sin ${t}`);
   }
 });
@@ -84,4 +84,29 @@ test('la correcta cae en posiciones distintas y esCorrecta sigue a la opción or
 
 test('resumen cuenta y descarta valores inválidos', () => {
   assert.deepEqual(resumen(['a', 'b', 'c', 'd'], { a: 'bien', b: 'mal', c: 'basura' }), { bien: 1, medias: 0, mal: 1, sin: 2 });
+});
+
+test('aRepasar: solo mal (y medias si se pide); ignora bien, sin dato y basura', () => {
+  const r = { a: 'mal', b: 'medias', c: 'bien', e: 'basura' };
+  assert.deepEqual(aRepasar(['a', 'b', 'c', 'd', 'e'], r), ['a']);
+  assert.deepEqual(aRepasar(['a', 'b', 'c', 'd', 'e'], r, { medias: true }), ['a', 'b']);
+  assert.deepEqual(aRepasar([], r), []);
+});
+
+test('armarSesion con solo: únicamente esos ids, con cualquier unidad y semilla', () => {
+  const solo = ['u8-mc-01', 'u9-dev-01', 'u10-mc-01'];
+  for (const s of semillas) {
+    const ses = armarSesion(meta, { unidad: 'mezcla', n: 0, semilla: s, solo });
+    assert.deepEqual(ses.map((x) => x.id).sort(), [...solo].sort());
+    assert.equal(armarSesion(meta, { unidad: 'mezcla', n: 2, semilla: s, solo }).length, 2);
+    assert.deepEqual(armarSesion(meta, { unidad: 'U8', semilla: s, solo }).map((x) => x.id), ['u8-mc-01']);
+  }
+  assert.deepEqual(armarSesion(meta, { unidad: 'mezcla', solo: [] }), []);
+});
+
+test('banco: la correcta se verifica numéricamente en preguntas con cuentas (muestra)', () => {
+  const q = (id) => BANCO.find((b) => b.id === id);
+  assert.match(q('u8-mc-05').opc[q('u8-mc-05').correcta], /^\$1\$$/);
+  assert.match(q('u9-mc-07').opc[q('u9-mc-07').correcta], /^\$5\$$/);
+  assert.match(q('u9-mc-15').opc[q('u9-mc-15').correcta], /5\}\{3|5\}3|\\dfrac53/);
 });

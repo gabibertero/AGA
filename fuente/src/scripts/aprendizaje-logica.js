@@ -17,11 +17,13 @@ export function barajar(r, xs) {
 
 // preguntas: [{id, unidad, tipo, nOpc}] (nOpc > 0 solo si es de opción múltiple).
 // unidad: 'U8' | 'U9' | 'U10' | 'mezcla'. n <= 0 o mayor al pool = todas.
+// solo: lista de ids para restringir el pool (modo repasar); null = sin restricción.
 // Mezcla: reparte parejo entre unidades (round-robin sobre pools barajados) y baraja el resultado.
 // Devuelve [{id, orden}] con orden = permutación de las opciones (null si no tiene).
-export function armarSesion(preguntas, { unidad = 'mezcla', n = 0, semilla = 1 } = {}) {
+export function armarSesion(preguntas, { unidad = 'mezcla', n = 0, semilla = 1, solo = null } = {}) {
   const r = mulberry32(semilla >>> 0);
-  const pool = preguntas.filter((q) => unidad === 'mezcla' || q.unidad === unidad);
+  const permitidas = solo ? new Set(solo) : null;
+  const pool = preguntas.filter((q) => (unidad === 'mezcla' || q.unidad === unidad) && (!permitidas || permitidas.has(q.id)));
   const max = n > 0 ? Math.min(n, pool.length) : pool.length;
   let elegidas;
   if (unidad === 'mezcla') {
@@ -46,3 +48,7 @@ export function resumen(ids, resultados) {
   for (const id of ids) c[RESULTADOS.includes(resultados[id]) ? resultados[id] : 'sin']++;
   return c;
 }
+
+// Ids a repasar: las que quedaron 'mal' (y, si medias, también las 'a medias'). resultados: {id: estado}.
+export const aRepasar = (ids, resultados, { medias = false } = {}) =>
+  ids.filter((id) => resultados[id] === 'mal' || (medias && resultados[id] === 'medias'));

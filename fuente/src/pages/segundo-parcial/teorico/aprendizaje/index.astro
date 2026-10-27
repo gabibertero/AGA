@@ -27,12 +27,17 @@ BANCO.forEach((q) => { if (ids.has(q.id)) throw new Error(`aprendizaje: id repet
     <div class="ap-grupo" role="group" aria-label="Unidad a practicar" data-unidades>
       {unidades.map((u) => <button type="button" class="ap-u" data-unidad-btn={u} data-unidad={u} aria-pressed="false">{u} <small>({porUnidad[u]})</small></button>)}
       <button type="button" class="ap-u" data-unidad-btn="mezcla" aria-pressed="false">Las tres, al azar <small>({BANCO.length})</small></button>
+      <button type="button" class="ap-u" data-unidad-btn="repasar" aria-pressed="false">Repasar las que fallé <small>(<span data-n-repasar>0</span>)</small></button>
     </div>
+    <p class="ap-fila" data-medias-fila hidden>
+      <label><input type="checkbox" data-incluir-medias /> Incluir también las que marqué «a medias»</label>
+    </p>
     <p class="ap-fila">
       <label for="ap-n">Cantidad de preguntas</label>
       <select id="ap-n" data-n><option value="5">5</option><option value="10" selected>10</option><option value="15">15</option><option value="0">Todas</option></select>
     </p>
     <p class="ap-fila"><button type="button" class="btn btn-primario" data-empezar>Empezar</button></p>
+    <p class="ap-aviso" role="status" data-cfg-aviso></p>
     <p class="suave ap-prog" data-prog></p>
   </section>
 
@@ -58,6 +63,7 @@ BANCO.forEach((q) => { if (ids.has(q.id)) throw new Error(`aprendizaje: id repet
   <section class="ap-fin tarjeta" data-fin hidden aria-labelledby="ap-fin-t">
     <h2 id="ap-fin-t" tabindex="-1">Sesión terminada</h2>
     <p data-resumen></p>
+    <div data-repasar-lista></div>
     <p><button type="button" class="btn btn-primario" data-nueva>Nueva sesión</button></p>
   </section>
 

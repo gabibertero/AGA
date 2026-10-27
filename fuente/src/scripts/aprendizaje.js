@@ -1,7 +1,7 @@
 // Aprendizaje (teórico): UI de práctica. La lógica pura está en aprendizaje-logica.js.
 // Las preguntas ya vienen renderizadas (KaTeX en build) dentro de [data-banco]; acá solo se mueven nodos.
 import { leer, guardar } from './progreso.js';
-import { armarSesion, esCorrecta, resumen, RESULTADOS, UNIDADES } from './aprendizaje-logica.js';
+import { armarSesion, esCorrecta, resumen, aRepasar, RESULTADOS, UNIDADES } from './aprendizaje-logica.js';
 
 const $ = (s) => document.querySelector(s);
 const banco = $('[data-banco]');
@@ -30,30 +30,55 @@ document.querySelectorAll('[data-js]').forEach((e) => (e.hidden = false));
 const resultado = (id) => { const v = leer('apr:' + id); return RESULTADOS.includes(v) ? v : undefined; };
 
 let unidad = leer('apr:unidad');
-if (![...UNIDADES, 'mezcla'].includes(unidad)) unidad = 'mezcla';
+if (![...UNIDADES, 'mezcla', 'repasar'].includes(unidad)) unidad = 'mezcla';
 let sesion = [];
 let i = 0;
 let sess = {};
 let respondida = false;
 let actual = null;
 
+const mediasChk = $('[data-incluir-medias]');
+const cfgAviso = $('[data-cfg-aviso]');
+const guardados = () => Object.fromEntries(meta.map((q) => [q.id, resultado(q.id)]));
+const idsRepasar = () => aRepasar(meta.map((q) => q.id), guardados(), { medias: mediasChk.checked });
+
 function pintarConfig() {
+  $('[data-n-repasar]').textContent = idsRepasar().length;
+  mediasChk.closest('[data-medias-fila]').hidden = unidad !== 'repasar';
+  cfgAviso.textContent = '';
   document.querySelectorAll('[data-unidad-btn]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.unidadBtn === unidad)));
   $('[data-prog]').textContent = 'Tu avance (última vez «Bien»): ' + UNIDADES.map((u) => {
     const qs = meta.filter((q) => q.unidad === u);
     return `${u} ${qs.filter((q) => resultado(q.id) === 'bien').length}/${qs.length}`;
   }).join(' · ');
 }
+mediasChk.onchange = pintarConfig;
 document.querySelectorAll('[data-unidad-btn]').forEach((b) => (b.onclick = () => { unidad = b.dataset.unidadBtn; guardar('apr:unidad', unidad); pintarConfig(); }));
 
 $('[data-empezar]').onclick = () => {
   const semilla = (crypto.getRandomValues(new Uint32Array(1))[0]) >>> 0;
-  sesion = armarSesion(meta, { unidad, n: Number($('[data-n]').value), semilla });
+  const repasar = unidad === 'repasar';
+  const solo = repasar ? idsRepasar() : null;
+  if (repasar && !solo.length) {
+    cfgAviso.textContent = mediasChk.checked
+      ? 'No tenés preguntas falladas ni a medias todavía. Practicá una unidad y volvé.'
+      : 'No tenés preguntas falladas todavía. Practicá una unidad y volvé (podés incluir también las «a medias»).';
+    return;
+  }
+  sesion = armarSesion(meta, { unidad: repasar ? 'mezcla' : unidad, n: Number($('[data-n]').value), semilla, solo });
   i = 0; sess = {};
   cfg.hidden = true; fin.hidden = true; ses.hidden = false;
   mostrar();
 };
 $('[data-nueva]').onclick = () => { fin.hidden = true; cfg.hidden = false; pintarConfig(); $('#ap-cfg-t').scrollIntoView({ block: 'start' }); };
+
+// Enunciado en texto plano (sin el MathML oculto de KaTeX), recortado.
+function enunCorto(id) {
+  const e = originales.get(id).querySelector('.q-enun').cloneNode(true);
+  e.querySelectorAll('.katex-mathml').forEach((m) => m.remove());
+  const t = e.textContent.replace(/\s+/g, ' ').trim();
+  return t.length > 110 ? t.slice(0, 107) + '…' : t;
+}
 
 function marcarEval(r) {
   grupoEval.querySelectorAll('[data-r]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.r === r)));
@@ -141,6 +166,17 @@ btnSig.onclick = () => {
   if (i < sesion.length - 1) { i++; mostrar(); return; }
   const c = resumen(sesion.map((s) => s.id), sess);
   $('[data-resumen]').textContent = `${sesion.length} preguntas: ${c.bien} bien, ${c.medias} a medias, ${c.mal} mal, ${c.sin} sin responder.`;
+  const lista = $('[data-repasar-lista]');
+  lista.replaceChildren();
+  for (const [estado, rotulo] of [['mal', 'Para repasar (mal)'], ['medias', 'A medias']]) {
+    const ids = sesion.map((s) => s.id).filter((id) => sess[id] === estado);
+    if (!ids.length) continue;
+    const h = document.createElement('h3');
+    h.textContent = rotulo;
+    const ul = document.createElement('ul');
+    ids.forEach((id) => { const li = document.createElement('li'); li.textContent = `${id}: ${enunCorto(id)}`; ul.append(li); });
+    lista.append(h, ul);
+  }
   stage.replaceChildren();
   ses.hidden = true; fin.hidden = false;
   $('#ap-fin-t').focus();
