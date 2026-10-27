@@ -1,7 +1,7 @@
 // node --test tests/aprendizaje.test.mjs : lógica pura de Aprendizaje + integridad del banco.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { armarSesion, barajar, esCorrecta, resumen, aRepasar, mulberry32, UNIDADES } from '../src/scripts/aprendizaje-logica.js';
+import { nuevaDemo, elegirDemo, resultadoDemo, ordenHueco, armarSesion, barajar, esCorrecta, resumen, aRepasar, mulberry32, UNIDADES } from '../src/scripts/aprendizaje-logica.js';
 import { BANCO } from '../src/data/aprendizaje-banco.js';
 
 const meta = BANCO.map((q) => ({ id: q.id, unidad: q.unidad, tipo: q.tipo, nOpc: (q.tipo === 'graf' ? q.forma : q.tipo) === 'mc' ? q.opc.length : 0 }));
@@ -10,6 +10,7 @@ const semillas = Array.from({ length: 300 }, (_, i) => i * 7919 + 1);
 test('banco: ids únicos, campos completos, mínimo por unidad y por tipo', () => {
   assert.equal(new Set(BANCO.map((q) => q.id)).size, BANCO.length);
   for (const q of BANCO) {
+    if (q.tipo === 'demo') { assert.ok(UNIDADES.includes(q.unidad) && q.id.startsWith('demo-') && q.pasos?.length, q.id); continue; }
     assert.ok(UNIDADES.includes(q.unidad) && q.id.startsWith(q.unidad.toLowerCase() + '-'), q.id);
     assert.ok(['mc', 'dev', 'graf'].includes(q.tipo) && q.enun, q.id);
     const forma = q.tipo === 'graf' ? q.forma : q.tipo;
@@ -56,7 +57,7 @@ test('armarSesion mezcla: respeta n, parejo entre unidades y sin repetidos', () 
     const ses = armarSesion(meta, { unidad: 'mezcla', n: 9, semilla: s });
     assert.equal(ses.length, 9);
     assert.equal(new Set(ses.map((x) => x.id)).size, 9);
-    for (const u of UNIDADES) assert.equal(ses.filter((x) => x.id.startsWith(u.toLowerCase() + '-')).length, 3);
+    for (const u of UNIDADES) assert.equal(ses.filter((x) => meta.find((m) => m.id === x.id).unidad === u).length, 3);
   }
   assert.equal(armarSesion(meta, { unidad: 'mezcla', n: 0, semilla: 3 }).length, meta.length);
   assert.equal(armarSesion(meta, { unidad: 'mezcla', n: 999, semilla: 3 }).length, meta.length);
@@ -109,4 +110,44 @@ test('banco: la correcta se verifica numéricamente en preguntas con cuentas (mu
   assert.match(q('u8-mc-05').opc[q('u8-mc-05').correcta], /^\$1\$$/);
   assert.match(q('u9-mc-07').opc[q('u9-mc-07').correcta], /^\$5\$$/);
   assert.match(q('u9-mc-15').opc[q('u9-mc-15').correcta], /5\}\{3|5\}3|\\dfrac53/);
+});
+
+test('banco: las demostraciones entran con id, unidad U10 y tipo demo', () => {
+  const demos = BANCO.filter((q) => q.tipo === 'demo');
+  assert.ok(demos.length >= 2);
+  for (const d of demos) assert.equal(d.unidad, 'U10');
+  assert.ok(demos.some((d) => d.id === 'demo-circunferencia'));
+});
+
+test('demo: huecos en orden, reintento y resultado único', () => {
+  // Todo bien al primer intento.
+  let e = nuevaDemo(3);
+  assert.equal(resultadoDemo(e), undefined);
+  for (let k = 0; k < 3; k++) { assert.equal(e.paso, k); e = elegirDemo(e, true); }
+  assert.equal(resultadoDemo(e), 'bien');
+  assert.equal(elegirDemo(e, false), e, 'terminada: no cambia');
+  // Un fallo en cualquier paso -> mal, aunque después acierte (y no avanza al fallar).
+  for (let malEn = 0; malEn < 3; malEn++) {
+    let f = nuevaDemo(3);
+    for (let k = 0; k < 3; k++) {
+      if (k === malEn) { f = elegirDemo(f, false); assert.equal(f.paso, k); assert.equal(resultadoDemo(f), undefined); }
+      f = elegirDemo(f, true);
+    }
+    assert.equal(resultadoDemo(f), 'mal');
+  }
+});
+
+test('demo: ordenHueco es permutación determinista; sesiones con demos incluidas', () => {
+  for (const s of semillas) {
+    assert.deepEqual([...ordenHueco(mulberry32(s), 4)].sort(), [0, 1, 2, 3]);
+    assert.deepEqual(ordenHueco(mulberry32(s), 4), ordenHueco(mulberry32(s), 4));
+  }
+  const demos = meta.filter((q) => q.tipo === 'demo');
+  assert.ok(demos.every((q) => q.nOpc === 0));
+  for (const s of semillas.slice(0, 50)) {
+    const ses = armarSesion(meta, { unidad: 'U10', semilla: s });
+    assert.deepEqual(demos.map((d) => d.id).filter((id) => !ses.some((x) => x.id === id)), []);
+    assert.ok(ses.filter((x) => demos.some((d) => d.id === x.id)).every((x) => x.orden === null));
+    assert.deepEqual(armarSesion(meta, { unidad: 'mezcla', semilla: s, solo: demos.map((d) => d.id) }).map((x) => x.id).sort(), demos.map((d) => d.id).sort());
+  }
 });

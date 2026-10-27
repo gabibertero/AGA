@@ -52,3 +52,34 @@ export function resumen(ids, resultados) {
 // Ids a repasar: las que quedaron 'mal' (y, si medias, también las 'a medias'). resultados: {id: estado}.
 export const aRepasar = (ids, resultados, { medias = false } = {}) =>
   ids.filter((id) => resultados[id] === 'mal' || (medias && resultados[id] === 'medias'));
+
+// Prompt para pedirle a una IA que corrija una respuesta "a desarrollar" y le ponga nota 1–10.
+// enun = consigna (texto o TeX crudo); respuesta = lo que escribió la persona.
+export function promptCorreccion(enun, respuesta) {
+  return [
+    'Corregí esta respuesta de un examen de Álgebra y Geometría Analítica (AGA, UTN FRC) y ponele una nota del 1 al 10.',
+    '',
+    'Consigna:',
+    (enun || '').trim(),
+    '',
+    'Mi respuesta:',
+    (respuesta || '').trim() || '(en blanco)',
+    '',
+    'Devolveme: la nota (1 a 10), qué está bien, qué está mal o falta, y cómo mejorarla.',
+  ].join('\n');
+}
+
+// ---- Demostraciones guiadas (forma 'demo'): n huecos que se completan EN ORDEN ----
+// Estado inmutable: {paso, n, fallos}. paso = hueco actual; fallos = elecciones incorrectas en total.
+export const nuevaDemo = (n) => ({ paso: 0, n, fallos: 0 });
+export const demoTerminada = (e) => e.paso >= e.n;
+// Elegir una opción del hueco actual: si es la correcta avanza; si no, suma un fallo y se queda (reintento).
+// Una vez terminada no cambia nada.
+export function elegirDemo(e, esOk) {
+  if (demoTerminada(e)) return e;
+  return esOk ? { ...e, paso: e.paso + 1 } : { ...e, fallos: e.fallos + 1 };
+}
+// Resultado único: 'bien' solo si no hubo ningún fallo (todo al primer intento); 'mal' si hubo; undefined si falta completar.
+export const resultadoDemo = (e) => (demoTerminada(e) ? (e.fallos === 0 ? 'bien' : 'mal') : undefined);
+// Orden mostrado de las opciones de un hueco (permutación; la correcta no queda siempre primera).
+export const ordenHueco = (r, nOpc) => barajar(r, [...Array(nOpc).keys()]);

@@ -155,3 +155,40 @@ test('repasar: sin falladas avisa; con falladas arma la sesión solo con ellas y
   await expect(page.locator('[data-repasar-lista]')).toContainText('u9-dev-01');
   await expect(page.locator('[data-repasar-lista] .katex')).toHaveCount(0);
 });
+
+test('demo guiada: huecos en orden, resultado único guardado, sin desborde', async ({ page }) => {
+  await page.goto(APR);
+  await page.locator('[data-unidad-btn="U10"]').click();
+  await page.locator('[data-n]').selectOption('0');
+  await page.locator('[data-empezar]').click();
+  // Avanzar hasta la demo de la circunferencia.
+  for (let n = 0; n < 60 && !(await page.locator('[data-stage] .q-demo').count()); n++) await page.locator('[data-sig]').click();
+  const id = await page.locator('[data-stage] [data-q]').getAttribute('data-id');
+  const pasos = page.locator('[data-stage] [data-paso]');
+  const total = await pasos.count();
+  await expect(page.locator('[data-stage] [data-paso]:not([hidden])')).toHaveCount(1);
+  for (let k = 0; k < total; k++) { // probar opciones en orden mostrado hasta dar con la ok (el orden es al azar)
+    const caja = pasos.nth(k).locator('.ap-opc');
+    for (let o = 0; o < (await caja.count()); o++) {
+      if (await pasos.nth(k).locator('.ap-opc[data-v="ok"]').count()) break;
+      await caja.nth(o).click();
+    }
+    await expect(pasos.nth(k).locator('[data-porque]')).toBeVisible();
+  }
+  const huboMal = (await page.locator('[data-stage] .ap-opc[data-v="mal"]').count()) > 0;
+  await expect(page.locator('[data-stage] .q-resp')).toBeVisible();
+  await expect(page.locator('.katex-error')).toHaveCount(0);
+  expect(await sinScrollH(page)).toBe(true);
+  expect(await page.evaluate((i) => localStorage.getItem('aga:v1:apr:' + i), id)).toBe(huboMal ? 'mal' : 'bien');
+});
+
+test('demo guiada sin JS: el details muestra la derivación', async ({ browser }) => {
+  const ctx = await browser.newContext({ javaScriptEnabled: false, baseURL: 'http://localhost:4321/AGA/' });
+  const page = await ctx.newPage();
+  await page.goto(APR);
+  const art = page.locator('[data-id="demo-circunferencia"]');
+  await expect(art.locator('.q-demo')).toBeHidden();
+  await art.locator('.q-sinjs summary').click();
+  await expect(art.locator('.dm-deriv li')).toHaveCount(6);
+  await ctx.close();
+});

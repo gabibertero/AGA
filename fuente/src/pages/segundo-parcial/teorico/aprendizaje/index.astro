@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../../layouts/Layout.astro';
 import { BANCO } from '../../../../data/aprendizaje-banco.js';
-import { conTex, bloques } from '../../../../scripts/tex.js';
+import { conTex, bloques, texPuro } from '../../../../scripts/tex.js';
 const base = import.meta.env.BASE_URL;
 const sp = `${base}segundo-parcial/`;
 const svgs = import.meta.glob('../../../../figuras-teoria/*.svg', { query: '?raw', import: 'default', eager: true });
@@ -10,7 +10,21 @@ const figura = (n) => {
   if (!s) throw new Error(`aprendizaje: no existe la figura "${n}"`);
   return s;
 };
-const TIPO = { mc: 'Opción múltiple', dev: 'A desarrollar', graf: 'Interpretación de gráfico' };
+const TIPO = { mc: 'Opción múltiple', dev: 'A desarrollar', graf: 'Interpretación de gráfico', demo: 'Demostración guiada' };
+// Demostraciones guiadas: un hueco por paso (lo exige el motor). \( \) en `porque` = fórmula.
+const porqueHtml = (s) => conTex(s.replace(/\\\((.*?)\\\)/gs, (_, m) => '$' + m + '$'));
+const enunDemo = (q) => `<p>Partí de la ecuación ordinaria de la ${q.titulo.toLowerCase()} y llegá a la general, completando cada paso.</p><div class="q-disp">${texPuro(q.ordinaria)}</div><p>Tiene que quedar:</p><div class="q-disp">${texPuro(q.general)}</div>`;
+const huecoDe = (q, p) => {
+  if (!q.pasos.length) throw new Error(`aprendizaje: ${q.id} sin pasos`);
+  const hs = p.linea.filter((g) => g.b);
+  if (hs.length !== 1) throw new Error(`aprendizaje: ${q.id} "${p.que}" debe tener exactamente 1 hueco`);
+  const b = hs[0].b;
+  if (!(Number.isInteger(b.ok) && b.ok >= 0 && b.ok < b.op.length) || b.op.length < 2) throw new Error(`aprendizaje: ${q.id} "${p.que}" tiene hueco con ok fuera de rango o menos de 2 opciones`);
+  return b;
+};
+// Línea del paso con la opción correcta en cada hueco (derivación sin JS).
+const lineaOk = (p) => p.linea.map((g) => `<span class="dm-t">${texPuro(g.t ?? g.b.op[g.b.ok])}</span>`).join(' ');
+const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const unidades = ['U8', 'U9', 'U10'];
 const porUnidad = Object.fromEntries(unidades.map((u) => [u, BANCO.filter((q) => q.unidad === u).length]));
 const ids = new Set();
@@ -74,13 +88,27 @@ BANCO.forEach((q) => { if (ids.has(q.id)) throw new Error(`aprendizaje: id repet
     {BANCO.map((q) => {
       const forma = q.tipo === 'graf' ? q.forma : q.tipo;
       return (
-        <article class="ap-q" data-q data-id={q.id} data-unidad={q.unidad} data-tipo={q.tipo} data-forma={forma} data-nopc={forma === 'mc' ? q.opc.length : 0} data-correcta={forma === 'mc' ? q.correcta : undefined}>
+        <article class="ap-q" data-q data-id={q.id} data-unidad={q.unidad} data-tipo={q.tipo} data-forma={forma} data-nopc={forma === 'mc' ? q.opc.length : 0} data-correcta={forma === 'mc' ? q.correcta : undefined} data-enun-raw={forma === 'dev' ? q.enun : undefined}>
           <header class="ap-q-cab">
             <span class="chip chip-u" data-unidad={q.unidad}>{q.unidad}</span>
             <span class="chip">{TIPO[q.tipo]}</span>
             {q.tipo === 'graf' && <span class="chip">{forma === 'mc' ? 'opción múltiple' : 'a desarrollar'}</span>}
           </header>
-          <div class="q-enun" set:html={conTex(q.enun)} />
+          <div class="q-enun" set:html={q.tipo === 'demo' ? enunDemo(q) : conTex(q.enun)} />
+          {q.tipo === 'demo' && (
+            <div class="q-demo" hidden>
+              <ol class="dm-pasos">
+                {q.pasos.map((p) => { const h = huecoDe(q, p); return (
+                  <li class="dm-paso" data-paso>
+                    <p class="dm-que" set:html={conTex(p.que)} />
+                    <div class="dm-linea">{p.linea.map((g) => g.b ? <span class="dm-slot" data-slot>▢</span> : <span class="dm-t" set:html={texPuro(g.t)} />)}</div>
+                    <div data-hueco data-ok={h.ok} data-pista={h.pista}>{h.op.map((o) => <span set:html={texPuro(o)} />)}</div>
+                    <p class="dm-porque" data-porque hidden set:html={porqueHtml(p.porque)} />
+                  </li>
+                ); })}
+              </ol>
+            </div>
+          )}
           {q.fig && <figure class="q-fig" set:html={figura(q.fig)} />}
           {forma === 'mc' && <ol class="q-opts" type="A">{q.opc.map((o, i) => <li data-i={i} set:html={conTex(o)} />)}</ol>}
           <details class="q-sinjs">
@@ -88,7 +116,9 @@ BANCO.forEach((q) => { if (ids.has(q.id)) throw new Error(`aprendizaje: id repet
             <div class="q-resp" set:html={
               forma === 'mc'
                 ? `<p><strong>Correcta:</strong> ${conTex(q.opc[q.correcta])}</p><div class="q-expl">${conTex(q.expl)}</div>`
-                : bloques(q.modelo)
+                : forma === 'demo'
+                  ? `<p><strong>Derivación completa:</strong></p><ol class="dm-deriv">${q.pasos.map((p) => `<li><strong>${conTex(p.que)}.</strong> <span class="dm-linea">${lineaOk(p)}</span><br>${porqueHtml(p.porque)}</li>`).join('')}</ol>`
+                  : bloques(q.modelo)
             } />
           </details>
         </article>
@@ -104,7 +134,7 @@ BANCO.forEach((q) => { if (ids.has(q.id)) throw new Error(`aprendizaje: id repet
 <style is:global>
   .ap-config h2, .ap-banco-t { margin-top: .2rem; }
   .ap-grupo { display: flex; flex-wrap: wrap; gap: 8px; margin: .6rem 0; }
-  .ap-u small { font-weight: 500; margin-left: 4px; color: var(--suave); }
+  .ap-u small { font-size: var(--t-xs); font-weight: 500; margin-left: 4px; color: var(--suave); }
   .ap-u[aria-pressed='true'] { background: var(--acento); color: var(--sobre-acento); border-color: var(--acento); }
   .ap-u[aria-pressed='true'] small { color: inherit; }
   .ap-fila { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: .6rem 0; }
@@ -125,20 +155,45 @@ BANCO.forEach((q) => { if (ids.has(q.id)) throw new Error(`aprendizaje: id repet
   .ap-opc[aria-pressed='true'] { border-color: var(--acento); box-shadow: inset 0 0 0 2px var(--acento); }
   .ap-opc[data-v='ok'] { background: var(--e-ok-bg); color: var(--e-ok); border-color: var(--e-ok); box-shadow: inset 0 0 0 2px var(--e-ok); }
   .ap-opc[data-v='ok'] .ap-letra::after { content: ' ✓'; }
-  .ap-opc[data-v='mal'] { background: var(--generado-fondo); color: var(--generado); border-color: var(--generado); box-shadow: inset 0 0 0 2px var(--generado); }
+  .ap-opc[data-v='mal'] { background: var(--e-mal-bg); color: var(--e-mal); border-color: var(--e-mal); box-shadow: inset 0 0 0 2px var(--e-mal); }
   .ap-opc[data-v='mal'] .ap-letra::after { content: ' ✗'; }
   .ap-opc:disabled { opacity: 1; cursor: default; }
   .q-resp { margin-top: .75rem; padding: 4px 16px 10px; border: 1px solid var(--borde); border-left: 4px solid var(--elaborado); background: var(--elaborado-fondo); border-radius: var(--r-s); overflow-x: auto; max-width: 100%; position: relative; }
-  .q-resp::before { content: 'Respuesta elaborada para el sitio, no oficial'; display: block; margin: 6px 0 4px; font-size: .76rem; font-weight: 700; color: var(--elaborado); text-transform: uppercase; letter-spacing: .03em; }
+  .q-resp::before { content: 'Respuesta elaborada para el sitio, no oficial'; display: block; margin: 6px 0 4px; font-size: var(--t-xs); font-weight: 700; color: var(--elaborado); text-transform: uppercase; letter-spacing: .03em; }
   .q-resp .katex-display, .q-disp { overflow-x: auto; overflow-y: hidden; position: relative; padding: 2px 0; }
+  .q-enun .q-disp { text-align: center; margin: 8px 0; padding: 12px 8px; background: var(--sup2); border: 1px solid var(--borde); border-radius: var(--r-s); }
+  .q-enun .q-disp .katex-display { margin: 0; padding: 0; }
+  .dm-pasos { list-style: none; padding: 0; margin: 16px 0; display: grid; gap: 16px; counter-reset: dm; }
+  /* anula la línea de tiempo global de [data-paso] (ejercicios): acá cada paso es una tarjeta */
+  .dm-paso[data-paso] { counter-increment: dm; margin: 0 !important; padding: 16px; background: var(--sup2); border: 1px solid var(--borde); border-radius: var(--r-s); }
+  .dm-paso[data-paso]::before, .dm-paso[data-paso]::after { content: none; display: none; }
+  .dm-que { margin: 0 0 8px; font-weight: 700; line-height: 1.4; }
+  .dm-que::before { content: counter(dm); display: inline-grid; place-items: center; width: 28px; height: 28px; margin-right: 8px; border-radius: 50%; background: var(--acento); color: var(--sobre-acento); font-size: .85rem; vertical-align: 1px; }
+  .dm-linea { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; overflow-x: auto; position: relative; max-width: 100%; padding: 4px 0; font-size: 1.05rem; }
+  .dm-slot { display: inline-flex; align-items: center; justify-content: center; min-width: 3rem; min-height: 44px; padding: 4px 12px; border: 2px dashed var(--borde-fuerte); border-radius: var(--r-s); color: var(--suave); background: var(--sup); }
+  .dm-slot[data-ok] { border-style: solid; border-color: var(--e-ok); color: var(--e-ok); background: var(--e-ok-bg); }
+  .dm-paso .ap-opcs { margin: 12px 0 0; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); }
+  .dm-paso .ap-opc { background: var(--sup); }
+  .dm-paso .ap-opc:hover:not(:disabled) { border-color: var(--acento); }
+  .dm-paso .ap-opc:disabled:not([data-v]) { opacity: .55; }
+  .dm-porque { margin: 12px 0 0; padding: 8px 12px; border-left: 4px solid var(--e-ok); background: var(--e-ok-bg); border-radius: var(--r-s); font-size: .95rem; line-height: 1.5; }
+  .dm-deriv { list-style: none; padding: 0; margin: 12px 0; display: grid; gap: 12px; counter-reset: dd; }
+  .dm-deriv li { counter-increment: dd; padding: 12px; background: var(--sup); border: 1px solid var(--borde); border-radius: var(--r-s); line-height: 1.5; }
+  .dm-deriv li > strong::before { content: counter(dd) '. '; }
+  .dm-deriv .dm-linea { display: flex; margin: 4px 0; }
   .q-sinjs { margin-top: .6rem; }
-  .q-sinjs summary { cursor: pointer; font-weight: 700; color: var(--acento); min-height: 40px; display: flex; align-items: center; }
+  .q-sinjs summary { cursor: pointer; font-weight: 700; color: var(--acento); min-height: 44px; display: flex; align-items: center; }
   .ap-ctl { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: .8rem 0 0; }
   .ap-ctl [data-sig] { margin-left: auto; }
   .ap-eval { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
   .ap-eval button[aria-pressed='true'][data-r='bien'] { background: var(--e-ok-bg); color: var(--e-ok); border-color: var(--e-ok); }
   .ap-eval button[aria-pressed='true'][data-r='medias'] { background: var(--e-curso-bg); color: var(--e-curso); border-color: var(--e-curso); }
-  .ap-eval button[aria-pressed='true'][data-r='mal'] { background: var(--generado-fondo); color: var(--generado); border-color: var(--generado); }
+  .ap-eval button[aria-pressed='true'][data-r='mal'] { background: var(--e-mal-bg); color: var(--e-mal); border-color: var(--e-mal); }
   .ap-aviso { min-height: 1.6em; margin: .5rem 0 0; font-weight: 600; }
-  @media (max-width: 520px) { .ap-q { padding: 12px 14px 14px; } .ap-ctl [data-sig] { margin-left: 0; } }
+  .ap-dev { margin: .9rem 0 .2rem; }
+  .ap-dev-lab { display: block; font-weight: 600; margin: 0 0 4px; }
+  .ap-dev-ta { width: 100%; min-height: 7rem; font: inherit; padding: 10px 12px; border: 1px solid var(--borde-fuerte); border-radius: var(--r-s); background: var(--sup2); color: var(--texto); resize: vertical; }
+  .ap-dev-acc { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: .5rem 0 0; }
+  .ap-dev-ok { min-height: 1.4em; }
+  @media (max-width: 520px) { .ap-q { padding: 12px 16px 16px; } .dm-paso[data-paso] { padding: 12px; } .ap-ctl [data-sig] { margin-left: 0; } }
 </style>

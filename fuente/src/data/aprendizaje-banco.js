@@ -9,6 +9,7 @@
 // Texto: $...$ = fórmula KaTeX, **negrita**. En modelo: línea que empieza con "- " = viñeta,
 // con "1. " = lista numerada, línea toda entre $$...$$ = fórmula centrada.
 // Las opciones se barajan al practicar: no dependas del orden ni escribas "la anterior", "ambas", etc.
+import { DEMOSTRACIONES } from './demostraciones.js';
 const T = String.raw;
 
 export const BANCO = [
@@ -665,4 +666,6 @@ export const BANCO = [
     correcta: 2,
     expl: T`La distancia de $P$ a $C$ es constante e igual a $r$: $\sqrt{(x-h)^2+(y-k)^2}=r$, y al elevar al cuadrado queda $(x-h)^2+(y-k)^2=r^2$. El signo es $-h$ y $-k$ (el centro es $(h;k)$) y el segundo miembro es $r^2$, no $r$.`,
   },
+  // ---------------- Demostraciones guiadas (tipo 'demo', ver demostraciones.js) ----------------
+  ...DEMOSTRACIONES,
 ];

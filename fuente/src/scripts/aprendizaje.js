@@ -1,7 +1,7 @@
 // Aprendizaje (teórico): UI de práctica. La lógica pura está en aprendizaje-logica.js.
 // Las preguntas ya vienen renderizadas (KaTeX en build) dentro de [data-banco]; acá solo se mueven nodos.
 import { leer, guardar } from './progreso.js';
-import { armarSesion, esCorrecta, resumen, aRepasar, RESULTADOS, UNIDADES } from './aprendizaje-logica.js';
+import { armarSesion, esCorrecta, resumen, aRepasar, promptCorreccion, nuevaDemo, elegirDemo, resultadoDemo, ordenHueco, mulberry32, RESULTADOS, UNIDADES } from './aprendizaje-logica.js';
 
 const $ = (s) => document.querySelector(s);
 const banco = $('[data-banco]');
@@ -80,6 +80,112 @@ function enunCorto(id) {
   return t.length > 110 ? t.slice(0, 107) + '…' : t;
 }
 
+async function copiar(texto) {
+  try { await navigator.clipboard.writeText(texto); return true; } catch (e) {}
+  try {
+    const t = document.createElement('textarea');
+    t.value = texto; t.style.position = 'fixed'; t.style.opacity = '0';
+    document.body.append(t); t.select();
+    const ok = document.execCommand('copy'); t.remove(); return ok;
+  } catch (e) { return false; }
+}
+
+// Preguntas "a desarrollar": campo para escribir la respuesta + botón que copia el prompt de corrección.
+// El borrador se guarda por pregunta (apr-resp:<id>) para no perderlo al navegar.
+function montarDev(art, id) {
+  const enun = art.dataset.enunRaw || '';
+  const caja = document.createElement('div');
+  caja.className = 'ap-dev';
+  const lab = document.createElement('label');
+  lab.className = 'ap-dev-lab'; lab.htmlFor = 'ap-dev-ta';
+  lab.textContent = 'Tu respuesta';
+  const ta = document.createElement('textarea');
+  ta.id = 'ap-dev-ta'; ta.className = 'ap-dev-ta'; ta.rows = 6;
+  ta.placeholder = 'Escribí tu desarrollo acá…';
+  try { ta.value = leer('apr-resp:' + id) || ''; } catch (e) {}
+  ta.oninput = () => { try { guardar('apr-resp:' + id, ta.value); } catch (e) {} };
+  const acc = document.createElement('div');
+  acc.className = 'ap-dev-acc';
+  const btn = document.createElement('button');
+  btn.type = 'button'; btn.className = 'btn';
+  btn.textContent = 'Copiar para corregir con IA (1–10)';
+  const estado = document.createElement('span');
+  estado.className = 'ap-dev-ok suave'; estado.setAttribute('role', 'status');
+  btn.onclick = async () => {
+    const ok = await copiar(promptCorreccion(enun, ta.value));
+    estado.textContent = ok ? 'Copiado. Pegalo en Claude, ChatGPT o Gemini.' : 'No se pudo copiar; seleccioná el texto y copialo a mano.';
+  };
+  acc.append(btn, estado);
+  caja.append(lab, ta, acc);
+  art.append(caja);
+}
+
+// Demostración guiada: huecos en orden (uno por paso), ✓/✗ con .ap-opc, revela el porqué.
+// Resultado único apr:<id>: 'bien' si no hubo ningún fallo, 'mal' si lo hubo (lógica en aprendizaje-logica.js).
+function montarDemo(art) {
+  const demo = art.querySelector('.q-demo');
+  demo.hidden = false;
+  const pasos = [...demo.querySelectorAll('[data-paso]')];
+  let est = nuevaDemo(pasos.length);
+  const r = mulberry32(crypto.getRandomValues(new Uint32Array(1))[0] >>> 0);
+  pasos.forEach((li, k) => {
+    li.hidden = k > 0;
+    const h = li.querySelector('[data-hueco]');
+    const okIdx = Number(h.dataset.ok);
+    const pista = h.dataset.pista;
+    const ops = [...h.children];
+    const slot = li.querySelector('[data-slot]');
+    const caja = document.createElement('div');
+    caja.className = 'ap-opcs';
+    caja.setAttribute('role', 'group');
+    caja.setAttribute('aria-label', 'Opciones del paso ' + (k + 1));
+    const botones = ordenHueco(r, ops.length).map((orig, pos) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'ap-opc';
+      const letra = document.createElement('span');
+      letra.className = 'ap-letra'; letra.textContent = String.fromCharCode(65 + pos) + ')';
+      const txt = document.createElement('span');
+      txt.className = 'ap-txt';
+      txt.append(...[...ops[orig].childNodes].map((n) => n.cloneNode(true)));
+      b.append(letra, txt);
+      b.onclick = () => {
+        if (k !== est.paso) return;
+        const ok = orig === okIdx;
+        est = elegirDemo(est, ok);
+        b.disabled = true;
+        b.dataset.v = ok ? 'ok' : 'mal';
+        if (!ok) {
+          const t = document.createElement('span');
+          t.className = 'sr-only'; t.textContent = ' (incorrecta)';
+          b.append(t);
+          aviso.textContent = 'La opción ' + letra.textContent.replace(')', '') + ' no es.' + (pista ? ' Pista: ' + pista + '.' : ' Probá con otra.');
+          const sig = caja.querySelector('button:not(:disabled)');
+          if (sig) sig.focus();
+          return;
+        }
+        caja.querySelectorAll('button').forEach((x) => (x.disabled = true));
+        slot.replaceChildren(...[...ops[okIdx].childNodes].map((n) => n.cloneNode(true)));
+        slot.dataset.ok = '';
+        slot.setAttribute('role', 'img'); slot.setAttribute('aria-label', 'Hueco completado: ' + slot.textContent);
+        li.querySelector('[data-porque]').hidden = false;
+        if (k + 1 < pasos.length) {
+          pasos[k + 1].hidden = false; aviso.textContent = 'Correcto. Siguiente paso.';
+          pasos[k + 1].tabIndex = -1; pasos[k + 1].focus();
+          return;
+        }
+        const res = resultadoDemo(est);
+        guardarResultado(actual.id, res);
+        actual.resp.hidden = false;
+        aviso.textContent = res === 'bien' ? 'Demostración completa, sin errores.' : 'Demostración completa, pero con errores: queda para repasar.';
+        btnSig.focus();
+      };
+      return b;
+    });
+    caja.append(...botones);
+    h.replaceWith(caja);
+  });
+}
+
 function marcarEval(r) {
   grupoEval.querySelectorAll('[data-r]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.r === r)));
 }
@@ -117,6 +223,8 @@ function mostrar() {
     });
     art.querySelector('.q-opts').replaceWith(caja);
   }
+  if (actual.forma === 'dev') montarDev(art, id);
+  if (actual.forma === 'demo') montarDemo(art);
   art.append(resp);
   stage.replaceChildren(art);
   btnVer.hidden = actual.forma !== 'dev';
