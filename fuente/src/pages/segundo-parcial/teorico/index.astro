@@ -1,0 +1,32 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+const sp = `${base}segundo-parcial/`;
+const tarjetas = [
+  { t: 'Teoría', emo: '📖', d: 'Vectores, recta, plano y cónicas explicados paso a paso, con todas las formas de ecuación, controles y gráficos.', href: `${sp}teorico/teoria/`, g: 'U8' },
+  { t: 'Machete', emo: '∑', d: 'Todas las fórmulas de U8, U9 y U10 en una sola hoja, para repasar de un vistazo.', href: `${sp}teorico/machete/`, g: 'U9' },
+  { t: 'Aprendizaje', emo: '🎯', d: 'Preguntas para practicar por unidad o mezcladas al azar: opción múltiple, a desarrollar e interpretación de gráficos.', href: `${sp}teorico/aprendizaje/`, g: 'U10' },
+];
+---
+<Layout titulo="Teórico · 2º parcial">
+  <p class="eyebrow"><a href={sp}>2º parcial</a> · Teórico</p>
+  <h1>Teórico</h1>
+  <p class="lead">U8 (productos entre vectores), U9 (recta y plano) y U10 (cónicas). Primero leé la teoría, tené a mano el machete y después probá las preguntas.</p>
+  <ul class="grilla lista-tarjetas">
+    {tarjetas.map((c) => (
+      <li class="tarjeta tarjeta-u" data-unidad={c.g}>
+        <a class="ec-titulo" href={c.href}><span aria-hidden="true">{c.emo}</span> {c.t}</a>
+        <p class="meta">{c.d}</p>
+      </li>
+    ))}
+  </ul>
+  <h2>También en el teórico</h2>
+  <ul class="otros">
+    <li><a href={`${sp}teoria/`}>Preguntero teórico</a> <span class="suave">· preguntas tipo parcial, con respuesta y fuente</span></li>
+    <li><a href={`${sp}machetes/`}>Machetes por unidad</a> <span class="suave">· «me dan → me piden → hago», con errores comunes</span></li>
+  </ul>
+</Layout>
+<style>
+  .otros { padding-left: 1.2rem; }
+  .otros li { margin: .3rem 0; }
+</style>

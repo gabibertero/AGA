@@ -1,65 +1,36 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
-import { idsDeEjercicios } from '../../scripts/ids.js';
 const base = import.meta.env.BASE_URL;
-const todos = (await getCollection('parciales')).sort((a, b) => a.data.orden - b.data.orden);
-const grupos = [
-  { titulo: 'Modelos oficiales de la profe', tipos: ['modelo'] },
-  { titulo: 'Parciales tomados', tipos: ['práctico', 'teórico'] },
-  { titulo: 'Banco extra: finales (solo U8–U10)', tipos: ['final'] },
-].map((g) => ({ ...g, items: todos.filter((p) => g.tipos.includes(p.data.tipo)) }));
 const sp = `${base}segundo-parcial/`;
-const modelos = grupos[0].items;
-const bloques = [
-  { titulo: 'Práctico', chip: 'Parciales', g: 'p2', links: [
-    ...modelos.map((m) => [m.data.titulo, 'Tal cual la profe, con el paso a paso', `${sp}parciales/${m.id}/`]),
-    ['Parciales tomados', 'Exámenes reales del curso', '#parciales'],
-    ['Finales (U8–U10)', 'Banco extra para practicar', '#finales'],
-  ] },
-  { titulo: 'Teórico', chip: 'U8–U10', g: 'p1', links: [['Preguntero teórico', 'Preguntas tipo parcial, con respuesta y fuente', `${sp}teoria/`]] },
-  { titulo: 'Machetes', chip: 'Fórmulas', g: 'fin', links: [['Machetes', 'Vectores, rectas, planos, cónicas y cuádricas', `${sp}machetes/`]] },
-  { titulo: 'Laboratorio', chip: 'Al azar', g: 'p2', links: [['Parciales aleatorios', 'Con el formato de los modelos y su resolución', `${sp}laboratorio/`], ['Cónicas interactivas', 'Generadores por tema', `${sp}laboratorio/`]] },
+const ramas = [
+  { t: 'Teórico', chip: 'U8–U10', g: 'p1', href: `${sp}teorico/`, d: 'Teoría de vectores, recta, plano y cónicas, machete de fórmulas y preguntas para aprender.', l: ['Teoría', 'Machete', 'Aprendizaje', 'Preguntero', 'Machetes por unidad'] },
+  { t: 'Práctico', chip: 'Ejercicios', g: 'p2', href: `${sp}practico/`, d: 'Modelos oficiales, parciales tomados, finales de práctica y laboratorio al azar.', l: ['Modelos', 'Parciales tomados', 'Finales U8–U10', 'Laboratorio'] },
 ];
 ---
 <Layout titulo="2º parcial">
   <section class="hero">
     <p class="eyebrow">AGA · U8 a U10</p>
     <h1>2º parcial</h1>
-    <p class="lead">Producto escalar, vectorial y mixto; rectas y planos; cónicas y cuádricas.</p>
+    <p class="lead">Producto escalar, vectorial y mixto; rectas y planos; cónicas y cuádricas. Elegí qué querés hacer.</p>
   </section>
-
-  <div class="accesos">
-    {bloques.map((b) => (
-      <section class="tarjeta acc" data-g={b.g} aria-labelledby={`b-${b.titulo}`}>
-        <h2 id={`b-${b.titulo}`} class="acc-t">{b.titulo} <span class="chip">{b.chip}</span></h2>
-        <ul>{b.links.map(([tt, d, h]) => <li><a href={h}><strong>{tt}</strong><span class="suave">{d}</span></a></li>)}</ul>
+  <div class="ramas">
+    {ramas.map((r) => (
+      <section class="tarjeta rama" data-g={r.g} aria-labelledby={`r-${r.t}`}>
+        <h2 id={`r-${r.t}`} class="rama-t"><a href={r.href}>{r.t}</a> <span class="chip">{r.chip}</span></h2>
+        <p>{r.d}</p>
+        <ul class="rama-l">{r.l.map((x) => <li class="chip">{x}</li>)}</ul>
+        <a class="btn btn-primario" href={r.href}>Entrar a {r.t}</a>
       </section>
     ))}
   </div>
-
-  {grupos.filter((g) => g.items.length).map((g, i) => {
-    const lista = (
-      <ul class="lista-ex">
-        {g.items.map((p) => (
-          <li class="tarjeta">
-            <a class="ec-titulo" href={`${base}segundo-parcial/parciales/${p.id}/`}>{p.data.titulo}</a>
-            <span class="suave"> · {p.data.unidades.join(', ')}</span>
-            <span class="suave" data-progreso data-ids={idsDeEjercicios(p.body).join(',')}></span>
-          </li>
-        ))}
-      </ul>
-    );
-    const id = ['modelos', 'parciales', 'finales'][i];
-    return g.tipos.includes('final')
-      ? <details class="grupo-fin" id={id}><summary><h2>{g.titulo} ({g.items.length})</h2></summary>{lista}</details>
-      : <><h2 id={id}>{g.titulo}</h2>{lista}</>;
-  })}
 </Layout>
-
 <style>
-  .acc-t { margin: 0 0 .6rem; font-size: 1.3rem; }
-  .accesos { margin: 1.5rem 0 2rem; }
-  .grupo-fin summary { cursor: pointer; }
-  .grupo-fin summary h2 { display: inline; }
+  .ramas { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); margin: 1.5rem 0 2rem; }
+  .rama { --gc: var(--acento); border-top: 5px solid var(--gc); display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .rama[data-g='p2'] { --gc: var(--u8); }
+  .rama-t { margin: 0 0 .2rem; font-size: 1.7rem; }
+  .rama-t a { color: var(--texto); text-decoration: none; }
+  .rama p { margin: 0 0 .4rem; color: var(--suave); }
+  .rama-l { list-style: none; padding: 0; margin: 0 0 .8rem; display: flex; flex-wrap: wrap; }
+  .rama .btn { align-self: flex-start; margin-top: auto; }
 </style>

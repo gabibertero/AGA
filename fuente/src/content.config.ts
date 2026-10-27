@@ -29,4 +29,10 @@ const machetes = defineCollection({
   schema: z.object({ titulo: z.string(), unidad: z.string(), orden: z.number(), resumen: z.string() }),
 });
 
-export const collections = { parciales, preguntas, machetes };
+// Teoría del 2º parcial (U8–U10) portada de los apuntes: un MDX por tema (U9 junta recta y plano).
+const teorias = defineCollection({
+  loader: glob({ pattern: '*.mdx', base: './src/content/teorias' }),
+  schema: z.object({ titulo: z.string(), unidad: z.string(), orden: z.number(), resumen: z.string() }),
+});
+
+export const collections = { parciales, preguntas, machetes, teorias };

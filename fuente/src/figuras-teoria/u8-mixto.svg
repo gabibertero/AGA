@@ -1,0 +1,22 @@
+<svg viewBox="0 0 340 210" role="img" aria-label="Paralelepípedo formado por tres vectores a, b y c desde un vértice común; su volumen es el módulo del producto mixto">
+<defs>
+<marker id="u8c1" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" refX="8.5" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 Z" fill="#0f766e"/></marker>
+<marker id="u8c2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" refX="8.5" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 Z" fill="#1e5fa8"/></marker>
+<marker id="u8c3" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" refX="8.5" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 Z" fill="#b4531f"/></marker>
+</defs>
+<polygon points="90,150 210,150 260,110 140,110" fill="#0f766e" opacity="0.10"/>
+<polygon points="90,150 140,110 140,55 90,95" fill="#1e5fa8" opacity="0.10"/>
+<polygon points="90,95 140,55 260,55 210,95" fill="#b4531f" opacity="0.10"/>
+<g stroke="#6b6558" stroke-width="1.4" fill="none">
+<polygon points="90,150 210,150 260,110 140,110"/>
+<polygon points="90,95 210,95 260,55 140,55"/>
+<line x1="90" y1="150" x2="90" y2="95"/><line x1="210" y1="150" x2="210" y2="95"/>
+<line x1="260" y1="110" x2="260" y2="55"/><line x1="140" y1="110" x2="140" y2="55"/>
+</g>
+<line x1="90" y1="150" x2="198" y2="150" stroke="#0f766e" stroke-width="2.6" marker-end="url(#u8c1)"/>
+<text x="150" y="168" font-family="Newsreader, serif" font-size="16" fill="#0f766e">a</text>
+<line x1="90" y1="150" x2="134" y2="117" stroke="#1e5fa8" stroke-width="2.6" marker-end="url(#u8c2)"/>
+<text x="150" y="128" font-family="Newsreader, serif" font-size="16" fill="#1e5fa8">b</text>
+<line x1="90" y1="150" x2="90" y2="102" stroke="#b4531f" stroke-width="2.6" marker-end="url(#u8c3)"/>
+<text x="66" y="126" font-family="Newsreader, serif" font-size="16" fill="#b4531f">c</text>
+</svg>

@@ -1,0 +1,199 @@
+---
+titulo: "U10 · Cónicas"
+unidad: "U10"
+orden: 3
+resumen: "Cortes cono–plano, ecuación general, circunferencia, elipse, hipérbola y parábola: ecuaciones, pasos y cómo graficar."
+---
+import Fig from '../../components/TeoFig.astro';
+import Nota from '../../components/TeoNota.astro';
+
+**Superficie cónica:** es la superficie que genera una recta (la **generatriz**) al girar alrededor de un **eje**, pasando siempre por un punto fijo (el **vértice**). Queda formada por dos hojas unidas en el vértice.
+
+**Cónica:** es el **lugar geométrico** de las curvas que resultan de la intersección de un plano con esa superficie cónica. El tipo de curva depende de la inclinación del plano respecto del eje y de la generatriz.
+
+## 1. Origen: cortes cono–plano
+
+- **Plano $\perp$ al eje** → **circunferencia**.
+- **Plano inclinado**, sin ser paralelo a la generatriz ni al eje → **elipse**.
+- **Plano $\parallel$ a la generatriz** → **parábola**.
+- **Plano $\parallel$ al eje** (corta las dos hojas) → **hipérbola**.
+
+<div class="teo-minis">
+  <Fig mini name="cono-circunferencia" titulo="Circunferencia" pie="Plano perpendicular al eje" />
+  <Fig mini name="cono-elipse" titulo="Elipse" pie="Plano inclinado, sin ser paralelo a la generatriz" />
+  <Fig mini name="cono-parabola" titulo="Parábola" pie="Plano paralelo a la generatriz" />
+  <Fig mini name="cono-hiperbola" titulo="Hipérbola" pie="Plano paralelo al eje (corta las dos hojas)" />
+</div>
+
+**Casos degenerados** (el plano pasa por el vértice):
+
+- Solo toca el vértice → **un punto**.
+- Tangente a una generatriz → **una recta**.
+- Corta las dos hojas pasando por el vértice → **dos rectas que se cortan**.
+
+<div class="teo-minis">
+  <Fig mini name="deg-punto" titulo="Punto" pie="El plano toca solo el vértice" />
+  <Fig mini name="deg-recta" titulo="Una recta" pie="Tangente a una generatriz" />
+  <Fig mini name="deg-dos-rectas" titulo="Dos rectas" pie="Por el vértice, corta las dos hojas" />
+</div>
+
+## 2. Ecuación general de las cónicas
+
+$$Ax^2+Bxy+Cy^2+Dx+Ey+F=0$$
+
+Es de segundo grado con dos variables. $xy$ es el término rectangular (solo aparece si la cónica está rotada); en cátedra $B=0$.
+
+<Nota tipo="tip">
+
+**Reconocer la cónica (con $B=0$)** mirando los cuadráticos $x^2$, $y^2$:
+
+- Falta uno (solo $x^2$ o solo $y^2$) → **parábola**.
+- Los dos, mismo coeficiente → **circunferencia**.
+- Los dos, mismo signo y distinto coeficiente → **elipse**.
+- Los dos, signos opuestos → **hipérbola**.
+
+</Nota>
+
+## 3. Circunferencia
+
+**Definición:** lugar geométrico de los puntos que están a una **distancia constante $r$** (radio) de un punto fijo $C$ (centro).
+
+<Fig name="u10-circunferencia" pie="Todos los puntos P están a la misma distancia r del centro C." />
+
+**Ecuaciones:**
+
+- Ordinaria, centro en el origen: $x^2+y^2=r^2$.
+- Ordinaria, centro $(h;k)$: $(x-h)^2+(y-k)^2=r^2$.
+- General: $x^2+y^2+Dx+Ey+F=0$.
+
+**De ordinaria a general (paso a paso):**
+
+1. Desarrollá los cuadrados: $(x-h)^2=x^2-2hx+h^2$, $\ (y-k)^2=y^2-2ky+k^2$.
+2. Pasá $r^2$ al otro miembro, igualando a $0$.
+3. Ordená: $x^2+y^2-2h\,x-2k\,y+(h^2+k^2-r^2)=0$.
+4. Renombrá $D=-2h$, $E=-2k$, $F=h^2+k^2-r^2$.
+
+**De general a ordinaria:** completá cuadrados. Centro $(h;k)=\left(-\dfrac D2;-\dfrac E2\right)$, radio $r^2=\left(\dfrac D2\right)^2+\left(\dfrac E2\right)^2-F$.
+
+**Cómo graficarla:** ubicá el centro; medí $r$ arriba, abajo, izquierda y derecha (4 puntos); uní con la curva.
+
+## 4. Elipse
+
+**Definición:** lugar geométrico de los puntos tales que la **suma** de distancias a dos focos es constante e igual a $2a$.
+
+<Fig name="u10-elipse" pie="Para todo punto P de la elipse, PF + PF′ = 2a. El semieje mayor es a; el menor, b." />
+
+**Elementos:** $a$ = semieje mayor, $b$ = semieje menor, $c$ = centro a cada foco. Relación: $\boxed{a^2=b^2+c^2}$ ($a$ es el mayor).
+
+**Ecuaciones (todas las formas):**
+
+- Origen, eje focal en $x$: $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$.
+- Origen, eje focal en $y$: $\dfrac{x^2}{b^2}+\dfrac{y^2}{a^2}=1$ ($a^2$ siempre bajo el eje focal).
+- Centro $(h;k)$, eje $\parallel x$: $\dfrac{(x-h)^2}{a^2}+\dfrac{(y-k)^2}{b^2}=1$.
+- Centro $(h;k)$, eje $\parallel y$: $\dfrac{(x-h)^2}{b^2}+\dfrac{(y-k)^2}{a^2}=1$.
+- General: $Ax^2+Cy^2+Dx+Ey+F=0$ ($A$ y $C$ mismo signo, distintos).
+
+**Excentricidad:** $e=\dfrac ca$, con $0<e<1$.
+
+**De ordinaria a general (paso a paso):**
+
+1. Multiplicá todo por $a^2b^2$ (saca denominadores).
+2. Desarrollá los cuadrados de $(x-h)$ y $(y-k)$.
+3. Pasá a un miembro igualado a $0$ y agrupá.
+4. Queda $Ax^2+Cy^2+Dx+Ey+F=0$.
+
+**Cómo graficarla:** ubicá el centro; marcá $\pm a$ (vértices) sobre el eje focal; $\pm b$ (co-vértices) sobre el otro; ubicá los focos a $\pm c$ ($c$ de $a^2=b^2+c^2$); dibujá el óvalo por esos cuatro puntos.
+
+<Nota tipo="tip">
+
+El **denominador mayor** es $a^2$ y marca el eje focal. Si $e\to0$ se parece a circunferencia; si $e\to1$ se estira.
+
+</Nota>
+
+## 5. Hipérbola
+
+**Definición:** lugar geométrico de los puntos tales que el **valor absoluto de la diferencia** de distancias a dos focos es constante e igual a $2a$.
+
+<Fig name="u10-hiperbola" pie="Dos ramas que se acercan a las asíntotas (punteadas) sin tocarlas. Los focos quedan por fuera de los vértices." />
+
+**Elementos:** $a$ = semieje transverso, $b$ = semieje conjugado, $c$ = centro a cada foco. Relación: $\boxed{c^2=a^2+b^2}$ ($c$ es el mayor).
+
+**Ecuaciones (todas las formas):**
+
+- Origen, eje transverso en $x$: $\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=1$.
+- Origen, eje transverso en $y$: $\dfrac{y^2}{a^2}-\dfrac{x^2}{b^2}=1$.
+- Centro $(h;k)$, eje $\parallel x$: $\dfrac{(x-h)^2}{a^2}-\dfrac{(y-k)^2}{b^2}=1$.
+- Centro $(h;k)$, eje $\parallel y$: $\dfrac{(y-k)^2}{a^2}-\dfrac{(x-h)^2}{b^2}=1$.
+- General: $Ax^2-Cy^2+Dx+Ey+F=0$ (cuadráticos de signos opuestos).
+
+**Asíntotas** (centro en el origen), dos fórmulas según el eje transverso:
+
+- Transverso horizontal: $y=\pm\dfrac ba\,x$.
+- Transverso vertical: $y=\pm\dfrac ab\,x$.
+
+Con centro $(h;k)$ se trasladan: $y-k=\pm\dfrac ba(x-h)$, o $y-k=\pm\dfrac ab(x-h)$.
+
+**Excentricidad:** $e=\dfrac ca$, con $e>1$.
+
+**De ordinaria a general (paso a paso):**
+
+1. Multiplicá todo por $a^2b^2$.
+2. Desarrollá los cuadrados (ojo el signo menos del segundo término).
+3. Pasá a un miembro igualado a $0$ y agrupá.
+4. Queda $Ax^2-Cy^2+Dx+Ey+F=0$.
+
+**Cómo graficarla:** ubicá el centro; marcá $\pm a$ (vértices) sobre el eje transverso (el de la variable con término positivo); marcá $\pm b$ sobre el otro y dibujá el **rectángulo guía** de lados $2a$ y $2b$; trazá las **diagonales** = asíntotas; dibujá las ramas desde los vértices acercándose a las asíntotas; focos a $\pm c$ ($c^2=a^2+b^2$), por fuera de los vértices.
+
+<Nota tipo="tip">
+
+**Casos particulares:** **equilátera** si $2a=2b$; **conjugadas** si el eje transverso de una es el conjugado de la otra.
+
+</Nota>
+
+## 6. Parábola
+
+**Definición:** lugar geométrico de los puntos que están a **igual distancia** de una recta fija (directriz) y de un punto fijo (foco).
+
+<Fig name="u10-parabola" pie="La distancia de P al foco F es igual a su distancia a la directriz. El vértice V está a mitad de camino entre foco y directriz." />
+
+**Elementos:** $p$ = distancia del vértice al foco (igual a la del vértice a la directriz). No tiene centro: tiene vértice.
+
+**Ecuaciones (todas las formas):**
+
+- Vértice en el origen, eje en $x$: $y^2=4px$.
+- Vértice en el origen, eje en $y$: $x^2=4py$.
+- Vértice $(h;k)$, eje $\parallel x$: $(y-k)^2=4p(x-h)$.
+- Vértice $(h;k)$, eje $\parallel y$: $(x-h)^2=4p(y-k)$.
+- General (un solo cuadrático): eje horizontal $Cy^2+Dx+Ey+F=0$; eje vertical $Ax^2+Dx+Ey+F=0$.
+
+**Excentricidad:** $e=1$.
+
+**De ordinaria a general (paso a paso):**
+
+1. Desarrollá el cuadrado del binomio: $(y-k)^2=y^2-2ky+k^2$.
+2. Distribuí el otro miembro: $4p(x-h)=4px-4ph$.
+3. Pasá a un miembro igualado a $0$ y ordená.
+4. Queda $Cy^2+Dx+Ey+F=0$.
+
+**Cómo graficarla:** ubicá el vértice; el **eje** es el de la variable que NO está al cuadrado; ubicá el foco a $p$ del vértice sobre el eje y la directriz a $p$ del otro lado; marcá dos puntos a la altura del foco (ancho $4p$, $2p$ a cada lado); trazá la curva.
+
+<Nota tipo="tip">
+
+Si $p>0$ abre hacia el lado positivo del eje; si $p<0$, hacia el negativo.
+
+</Nota>
+
+## 7. Comparación de excentricidades
+
+| Cónica | Relación | $e=c/a$ |
+|---|---|---|
+| Circunferencia | caso límite | $e=0$ |
+| Elipse | $a^2=b^2+c^2$ | $0<e<1$ |
+| Parábola | — | $e=1$ |
+| Hipérbola | $c^2=a^2+b^2$ | $e>1$ |
+
+<Nota tipo="tip">
+
+**Leer los gráficos:** elipse = óvalo cerrado (suma de distancias constante); hipérbola = dos ramas entre asíntotas (diferencia constante); parábola = una rama (equidista de foco y directriz); circunferencia = elipse con los focos juntos en el centro.
+
+</Nota>

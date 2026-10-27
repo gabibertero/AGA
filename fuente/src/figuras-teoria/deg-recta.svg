@@ -1,0 +1,6 @@
+<svg viewBox="0 0 120 150" role="img" aria-label="Plano tangente al cono a lo largo de una generatriz; la intersección es una recta">
+<g stroke="#cfc8ba" stroke-width="1.2" fill="none"><ellipse cx="60" cy="128" rx="34" ry="9"/><line x1="26" y1="128" x2="60" y2="74"/><line x1="94" y1="128" x2="60" y2="74"/></g>
+<g stroke="#8a8372" stroke-width="1.3" fill="none"><ellipse cx="60" cy="20" rx="34" ry="9"/><line x1="26" y1="20" x2="60" y2="74"/><line x1="94" y1="20" x2="60" y2="74"/></g>
+<polygon points="55,71 89,20 99,25 65,77" fill="#1e5fa8" opacity="0.14" stroke="#7d93b5" stroke-width="1"/>
+<line x1="60" y1="74" x2="94" y2="20" stroke="#b4531f" stroke-width="2.6"/>
+</svg>

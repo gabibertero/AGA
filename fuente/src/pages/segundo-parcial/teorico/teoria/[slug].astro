@@ -1,0 +1,27 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../../../layouts/Layout.astro';
+export async function getStaticPaths() {
+  const items = await getCollection('teorias');
+  return items.map((e) => ({ params: { slug: e.id }, props: { e } }));
+}
+const { e } = Astro.props;
+const { Content } = await render(e);
+const base = import.meta.env.BASE_URL;
+---
+<Layout titulo={`${e.data.titulo} · Teoría`}>
+  <p class="eyebrow"><a href={`${base}segundo-parcial/teorico/teoria/`}>Teoría</a> · {e.data.unidad}</p>
+  <h1>{e.data.titulo}</h1>
+  <p class="suave leyenda-fte">Apuntes elaborados para el sitio a partir del material de cátedra (no oficial). Los controles ✅ y los errores típicos ⚠️ sirven para chequear las cuentas.</p>
+  <article class="lectura teoria" data-unidad={e.data.unidad}><Content /></article>
+  <p class="suave">Siguiente paso: <a href={`${base}segundo-parcial/teorico/machete/`}>machete de fórmulas</a> · <a href={`${base}segundo-parcial/teorico/aprendizaje/`}>practicar con preguntas</a>.</p>
+</Layout>
+<style is:global>
+  .teoria { max-width: 100%; min-width: 0; font-size: 1.04rem; }
+  .teoria > * { max-width: 72ch; }
+  .teoria > .teo-fig, .teoria > .teo-minis { max-width: 72ch; }
+  .teoria .katex-display { overflow-x: auto; overflow-y: hidden; position: relative; }
+  .teoria li, .teoria p { min-width: 0; }
+  .teoria img { max-width: 100%; height: auto; }
+  .leyenda-fte { font-size: .85rem; max-width: 60rem; }
+</style>

@@ -1,0 +1,22 @@
+---
+// Figura SVG inline de la teoría (src/figuras-teoria/<name>.svg, contenido propio y estático).
+// Siempre sobre tarjeta blanca: los SVG usan colores fijos y se leen bien también en tema oscuro.
+const { name, pie = '', titulo = '', mini = false } = Astro.props;
+const svgs = import.meta.glob('../figuras-teoria/*.svg', { query: '?raw', import: 'default', eager: true });
+const svg = svgs[`../figuras-teoria/${name}.svg`];
+if (!svg) throw new Error(`TeoFig: no existe la figura "${name}"`);
+---
+<figure class:list={['teo-fig', { mini }]}>
+  <div class="teo-fig-svg" set:html={svg} />
+  {(pie || titulo) && <figcaption>{titulo && <b>{titulo}</b>}{pie}</figcaption>}
+</figure>
+<style is:global>
+  .teo-fig { margin: 1rem 0 1.4rem; background: #fff; border: 1px solid var(--borde-fuerte); border-radius: var(--r); padding: 14px; text-align: center; min-width: 0; }
+  .teo-fig-svg svg { display: block; width: 100%; max-width: 420px; height: auto; margin: 0 auto; }
+  .teo-fig figcaption { font-size: .88rem; line-height: 1.45; color: #5f5a52; margin-top: 8px; }
+  .teo-fig.mini { margin: 0; padding: 10px 8px; }
+  .teo-fig.mini .teo-fig-svg svg { max-width: 190px; }
+  .teo-fig.mini figcaption { font-size: .82rem; margin-top: 4px; }
+  .teo-fig figcaption b { display: block; color: #b4531f; font-family: var(--f-ed); font-size: .98rem; }
+  .teo-minis { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr)); margin: 1rem 0 1.4rem; }
+</style>

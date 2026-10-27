@@ -1,0 +1,10 @@
+<svg viewBox="0 0 340 170" role="img" aria-label="Una recta con un punto P1 y un vector director a que marca su dirección">
+<defs><marker id="u9a1" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" refX="8.5" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 Z" fill="#1e5fa8"/></marker></defs>
+<line x1="30" y1="140" x2="320" y2="48" stroke="#7b8190" stroke-width="1.6"/>
+<circle cx="95" cy="119" r="4" fill="#1b1a17"/>
+<text x="74" y="114" font-family="Newsreader, serif" font-size="15" fill="#1b1a17">P<tspan baseline-shift="sub" font-size="11">1</tspan></text>
+<circle cx="235" cy="75" r="4" fill="#1b1a17"/>
+<text x="238" y="62" font-family="Newsreader, serif" font-size="15" fill="#1b1a17">P</text>
+<line x1="95" y1="119" x2="170" y2="96" stroke="#1e5fa8" stroke-width="2.6" marker-end="url(#u9a1)"/>
+<text x="126" y="120" font-family="Newsreader, serif" font-size="16" fill="#1e5fa8">a</text>
+</svg>

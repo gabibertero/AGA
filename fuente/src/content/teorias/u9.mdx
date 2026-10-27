@@ -1,0 +1,255 @@
+---
+titulo: "U9 · Recta y plano"
+unidad: "U9"
+orden: 2
+resumen: "Todas las formas de la ecuación de la recta y del plano, posiciones relativas, ángulos y distancias."
+---
+import Fig from '../../components/TeoFig.astro';
+import Nota from '../../components/TeoNota.astro';
+
+## La recta
+
+**Definición:** la recta es el conjunto de puntos que, partiendo de un punto conocido $P_1$, van todos en la dirección de un **vector director** $\bar a$. Por eso $\overrightarrow{P_1P}=\lambda\,\bar a$ ($\lambda$ real).
+
+<Fig name="u9-recta" pie="Un punto P₁ fija dónde está la recta; el director a fija hacia dónde va. P se alcanza avanzando λ veces a desde P₁." />
+
+<Nota tipo="tip">
+
+La recta necesita un punto y **un** director (1 parámetro, $\lambda$). Es 1D.
+
+</Nota>
+
+### 1. Formas de la ecuación (punto + director, o dos puntos)
+
+**Conseguir el director:** 2 puntos $A,B$ → $\bar a=B-A$. Pendiente $m$ → $\bar a=(1;m)$.
+
+- **Vectorial:** $(x;y)=(x_1;y_1)+\lambda\,(a_1;a_2)$.
+- **Paramétrica:** $x=x_1+\lambda a_1$, $\ y=y_1+\lambda a_2$ (y $z$ en $\mathbb R^3$).
+- **Simétrica (continua):** $\dfrac{x-x_1}{a_1}=\dfrac{y-y_1}{a_2}$.
+- **General (implícita):** $Ax+By+C=0$.
+- **Explícita ($\mathbb R^2$):** $y=mx+b$.
+- **Punto-pendiente ($\mathbb R^2$):** $y-y_1=m\,(x-x_1)$.
+- **Segmentaria ($\mathbb R^2$):** $\dfrac xp+\dfrac yq=1$ ($p$ y $q$ son los cortes con los ejes $x$ e $y$).
+- **Normal ($\mathbb R^2$):** $x\cos w+y\,\mathrm{sen}\,w-p=0$.
+
+<Nota tipo="control">
+
+Reemplazá $P_1$ en cada forma; debe cumplirla.
+
+</Nota>
+
+<Nota tipo="ojo">
+
+En la general, $(A;B)$ es el vector **normal**, NO el director. El director es $(-B;A)$.
+
+</Nota>
+
+<Nota tipo="ejemplo">
+
+$A=(1;2)$, $B=(3;6)$ → $\bar a=(2;4)$. Vectorial: $(x;y)=(1;2)+\lambda(2;4)$. Simétrica: $\dfrac{x-1}{2}=\dfrac{y-2}{4}$. General: $4(x-1)=2(y-2)$ → $\mathbf{2x-y=0}$.
+
+</Nota>
+
+### 2. Cómo pasar de una forma a otra
+
+- **General → vectorial:** director $\bar a=(-B;A)$; un punto sale dándole un valor a $x$ y despejando $y$.
+- **Simétrica → paramétrica:** igualá cada fracción a $\lambda$ y despejá $x,y$.
+- **Vectorial → general:** paramétrica → simétrica → multiplicá en cruz.
+
+<Nota tipo="control">
+
+Tomá un punto en una forma y verificá que cumple la otra.
+
+</Nota>
+
+### 3. Ángulo entre dos rectas
+
+1. Identificá los directores $\bar r_1,\bar r_2$ (de la general, director $=(-B;A)$).
+2. $\cos\alpha=\dfrac{\lvert\bar r_1\cdot\bar r_2\rvert}{\lvert\bar r_1\rvert\,\lvert\bar r_2\rvert}$ ← el valor absoluto asegura el ángulo agudo.
+
+<Nota tipo="control">
+
+Si $\bar r_1\cdot\bar r_2=0$ → **perpendiculares**; si un director es múltiplo del otro → **paralelas**.
+
+</Nota>
+
+### 4. Posiciones relativas en $\mathbb R^3$
+
+- Directores **múltiplos** → paralelas o coincidentes (¿un punto de una está en la otra? sí → **coincidentes**, no → **paralelas**).
+- Directores **no** múltiplos → igualá las paramétricas: con solución → **se cortan**; incompatible → **alabeadas**.
+
+<Nota tipo="tip">
+
+**Atajo:** si el producto mixto $[\overrightarrow{P_1P_2},\bar a_1,\bar a_2]\neq0$ → **alabeadas** (los datos no son coplanares).
+
+</Nota>
+
+### 5. Distancias
+
+- **Punto–recta en $\mathbb R^2$** (recta en general): $d=\dfrac{\lvert Ax_0+By_0+C\rvert}{\sqrt{A^2+B^2}}$.
+- **Punto–recta en $\mathbb R^3$** (punto $P_1$ y director $\bar a$): $d=\dfrac{\lvert\overrightarrow{P_1P_0}\times\bar a\rvert}{\lvert\bar a\rvert}$.
+- **Entre rectas paralelas en $\mathbb R^3$:** $d=\dfrac{\lvert\overrightarrow{P_1P_2}\times\bar a\rvert}{\lvert\bar a\rvert}$ (mismo esquema).
+- **Entre rectas alabeadas en $\mathbb R^3$:** $d=\dfrac{\lvert\overrightarrow{P_1P_2}\cdot(\bar a_1\times\bar a_2)\rvert}{\lvert\bar a_1\times\bar a_2\rvert}$ (módulo del mixto sobre módulo del producto vectorial de los directores).
+
+<Nota tipo="tip">
+
+En $\mathbb R^3$ el numerador $\lvert\overrightarrow{P_1P_0}\times\bar a\rvert$ es el área de un paralelogramo; dividida por la base $\lvert\bar a\rvert$ da la altura, que es la distancia.
+
+</Nota>
+
+<Nota tipo="control">
+
+Si el punto está sobre la recta, da $0$. Si la distancia entre alabeadas da $0$, en realidad se cortan.
+
+</Nota>
+
+<Nota tipo="ejemplo">
+
+**($\mathbb R^2$)** recta $3x+4y-10=0$, punto $(0;0)$ → $d=\dfrac{\lvert-10\rvert}{\sqrt{9+16}}=\dfrac{10}{5}=\mathbf{2}$.
+
+</Nota>
+
+### 6. Cosenos directores ($\mathbb R^3$)
+
+1. Tomá el director $\bar a=(a_1;a_2;a_3)$ y su módulo $\lvert\bar a\rvert$.
+2. $\cos\alpha=\dfrac{a_1}{\lvert\bar a\rvert}$, $\ \cos\beta=\dfrac{a_2}{\lvert\bar a\rvert}$, $\ \cos\gamma=\dfrac{a_3}{\lvert\bar a\rvert}$ (ángulos con los ejes $x,y,z$).
+
+<Nota tipo="control">
+
+$\cos^2\alpha+\cos^2\beta+\cos^2\gamma=1$ **siempre**.
+
+</Nota>
+
+## El plano
+
+**Definición:** un plano queda fijado por un punto $P_1$ y un **vector normal** $\bar n=(A;B;C)$ perpendicular a él. Todo vector $\overrightarrow{P_1P}$ contenido en el plano cumple $\bar n\cdot\overrightarrow{P_1P}=0$.
+
+<Fig name="u9-plano" pie="El normal n es perpendicular a todo el plano π. Esa perpendicularidad (n · P₁P = 0) es la que da la ecuación." />
+
+<Nota tipo="tip">
+
+El plano necesita un punto y **dos** directores, o un punto y el normal (2 parámetros, $\alpha$ y $\beta$). Es 2D.
+
+</Nota>
+
+### 1. Formas de la ecuación del plano
+
+De la condición $\bar n\cdot\overrightarrow{P_1P}=0$, en componentes: $A(x-x_1)+B(y-y_1)+C(z-z_1)=0$. Distribuyendo se llega a la general.
+
+- **General:** $Ax+By+Cz+D=0$, con $D=-(Ax_1+By_1+Cz_1)$.
+- **Vectorial:** $\overrightarrow{OP}=\overrightarrow{OP_1}+\alpha\,\bar u+\beta\,\bar v$ ($\bar u,\bar v$ dos directores del plano, no paralelos).
+- **Paramétrica:** $x=x_1+\alpha u_1+\beta v_1$; $y,z$ igual.
+- **Segmentaria:** $\dfrac xp+\dfrac yq+\dfrac zr=1$ (cortes con los ejes).
+- **Normal:** $x\cos\alpha+y\cos\beta+z\cos\gamma-p=0$ (ver punto 8).
+
+<Nota tipo="control">
+
+Reemplazá $P_1$ en la general; debe dar $0$.
+
+</Nota>
+
+<Nota tipo="ojo">
+
+En el plano, $(A;B;C)$ **es** el normal (en la recta, $(A;B)$ no era el director).
+
+</Nota>
+
+<Nota tipo="ejemplo">
+
+$P_1=(1;0;2)$, $\bar n=(2;-1;3)$ → $2(x-1)-1(y-0)+3(z-2)=0$ → $\mathbf{2x-y+3z-8=0}$.
+
+</Nota>
+
+### 2. Dados tres puntos
+
+1. Con $P_1,P_2,P_3$ armá dos vectores: $\overrightarrow{P_1P_2}$ y $\overrightarrow{P_1P_3}$.
+2. El normal es $\bar n=\overrightarrow{P_1P_2}\times\overrightarrow{P_1P_3}$ (podés simplificarlo dividiendo por un factor común).
+3. Aplicá la general con ese $\bar n$ y cualquiera de los tres puntos.
+
+<Nota tipo="control">
+
+Los tres puntos deben verificar la ecuación final.
+
+</Nota>
+
+### 3. Posiciones relativas entre dos planos
+
+- **Normales múltiplos** y todo proporcional (incluido $D$) → **coincidentes**.
+- **Normales múltiplos** pero $D$ no proporcional → **paralelos**.
+- **Normales no múltiplos** → **secantes** (se cortan en una recta).
+
+<Nota tipo="control">
+
+Si $\bar n_1\cdot\bar n_2=0$ → los planos son **perpendiculares**.
+
+</Nota>
+
+### 4. Posición relativa recta–plano
+
+- Si $\bar r\cdot\bar n=0$ → la recta es **paralela** al plano o está **contenida** (¿un punto de la recta cumple el plano? sí → contenida, no → paralela).
+- Si $\bar r\cdot\bar n\neq0$ → la recta **corta** al plano en un punto (reemplazá la paramétrica de la recta en la ecuación del plano, despejá $\lambda$, hallá el punto).
+
+<Nota tipo="control">
+
+Si $\bar r$ es paralelo a $\bar n$ → la recta es **perpendicular** al plano.
+
+</Nota>
+
+### 5. Ángulos
+
+- **Entre dos planos (coseno):** $\cos\theta=\dfrac{\lvert\bar n_1\cdot\bar n_2\rvert}{\lvert\bar n_1\rvert\,\lvert\bar n_2\rvert}$.
+- **Entre recta y plano (SENO):** $\mathrm{sen}\,\beta=\dfrac{\lvert\bar n\cdot\bar r\rvert}{\lvert\bar n\rvert\,\lvert\bar r\rvert}$.
+
+<Fig name="u9-recta-plano" pie="β se mide entre la recta y el plano. Como es el complemento del ángulo entre la recta y la normal, aparece el seno." />
+
+<Nota tipo="ojo">
+
+**Error típico:** entre planos y entre rectas → **coseno**; recta–plano → **seno**. Regla: dos cosas del mismo tipo (dos directores o dos normales) → coseno; se mezcla recta con plano → seno.
+
+</Nota>
+
+<Nota tipo="tip">
+
+**Por qué el seno:** el ángulo recta–plano es el **complementario** del ángulo entre la recta y la normal.
+
+</Nota>
+
+### 6. Distancia punto–plano
+
+1. Plano en **general** $Ax+By+Cz+D=0$, punto $P_0=(x_0;y_0;z_0)$.
+2. $d=\dfrac{\lvert Ax_0+By_0+Cz_0+D\rvert}{\sqrt{A^2+B^2+C^2}}$.
+
+<Nota tipo="control">
+
+Si el punto está en el plano, da $0$.
+
+</Nota>
+
+<Nota tipo="ejemplo">
+
+Plano $2x-y+3z-8=0$, punto $(0;0;0)$ → $d=\dfrac{8}{\sqrt{14}}\approx\mathbf{2{,}14}$.
+
+</Nota>
+
+### 7. Haz de planos
+
+1. Dados dos planos $\pi_1$ y $\pi_2$ que se cortan, el haz por su recta intersección es $\pi_1+k\,\pi_2=0$.
+2. Meté la condición extra (pasar por un punto, ser $\perp$ a otro plano…) y despejá $k$.
+3. Reemplazá $k$ y ordená.
+
+<Nota tipo="control">
+
+Resuelve «el plano que contiene a la recta intersección y cumple tal condición» sin calcular la recta.
+
+</Nota>
+
+### 8. Ecuación normal del plano
+
+1. Tomá la general y **normalizá**: dividí todo por $\pm\sqrt{A^2+B^2+C^2}$ (signo **opuesto** al de $D$, para que el término independiente quede negativo).
+2. Queda $x\cos\alpha+y\cos\beta+z\cos\gamma-p=0$, donde $(\cos\alpha,\cos\beta,\cos\gamma)$ es el **normal unitario** y $p=\dfrac{\lvert D\rvert}{\lvert\bar n\rvert}$ es la **distancia del plano al origen**.
+
+<Nota tipo="control">
+
+$\cos^2\alpha+\cos^2\beta+\cos^2\gamma=1$ y $p\ge0$.
+
+</Nota>

@@ -1,0 +1,14 @@
+<svg viewBox="0 0 340 190" role="img" aria-label="Dos vectores a y b con origen común y el ángulo theta entre ellos">
+<defs>
+<marker id="u8a1" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" refX="8.5" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 Z" fill="#0f766e"/></marker>
+<marker id="u8b1" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" refX="8.5" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 Z" fill="#1e5fa8"/></marker>
+</defs>
+<circle cx="54" cy="150" r="3.5" fill="#1b1a17"/>
+<text x="38" y="166" font-family="Newsreader, serif" font-size="15" fill="#1b1a17">O</text>
+<line x1="54" y1="150" x2="298" y2="57" stroke="#0f766e" stroke-width="2.4" marker-end="url(#u8a1)"/>
+<line x1="54" y1="150" x2="283" y2="140" stroke="#1e5fa8" stroke-width="2.4" marker-end="url(#u8b1)"/>
+<path d="M 104 149 A 52 52 0 0 0 96 129" fill="none" stroke="#8a8372" stroke-width="1.6"/>
+<text x="112" y="138" font-family="Newsreader, serif" font-size="16" fill="#5c574e">θ</text>
+<text x="305" y="56" font-family="Newsreader, serif" font-size="17" fill="#0f766e">a</text>
+<text x="290" y="142" font-family="Newsreader, serif" font-size="17" fill="#1e5fa8">b</text>
+</svg>

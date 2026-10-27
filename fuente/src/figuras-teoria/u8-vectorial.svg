@@ -1,0 +1,18 @@
+<svg viewBox="0 0 340 220" role="img" aria-label="Vectores a y b que forman un paralelogramo y el vector a por b perpendicular al plano">
+<defs>
+<marker id="u8a5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" refX="8.5" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 Z" fill="#1e5fa8"/></marker>
+<marker id="u8a6" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" refX="8.5" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 Z" fill="#0f766e"/></marker>
+<marker id="u8a7" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" refX="8.5" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 Z" fill="#b4531f"/></marker>
+</defs>
+<polygon points="110,170 250,150 300,185 160,205" fill="#0f766e" opacity="0.12"/>
+<text x="236" y="176" font-family="Newsreader, serif" font-size="14" fill="#0a5450" text-anchor="middle">área = |a × b|</text>
+<circle cx="110" cy="170" r="3.5" fill="#1b1a17"/>
+<text x="92" y="184" font-family="Newsreader, serif" font-size="15" fill="#1b1a17">O</text>
+<path d="M110,158 L122,158 L122,168" fill="none" stroke="#5c574e" stroke-width="1.4"/>
+<line x1="110" y1="170" x2="250" y2="150" stroke="#1e5fa8" stroke-width="2.4" marker-end="url(#u8a5)"/>
+<text x="256" y="146" font-family="Newsreader, serif" font-size="17" fill="#1e5fa8">b</text>
+<line x1="110" y1="170" x2="160" y2="205" stroke="#0f766e" stroke-width="2.4" marker-end="url(#u8a6)"/>
+<text x="166" y="218" font-family="Newsreader, serif" font-size="17" fill="#0f766e">a</text>
+<line x1="110" y1="170" x2="110" y2="42" stroke="#b4531f" stroke-width="2.6" marker-end="url(#u8a7)"/>
+<text x="118" y="46" font-family="Newsreader, serif" font-size="17" fill="#b4531f">a × b</text>
+</svg>

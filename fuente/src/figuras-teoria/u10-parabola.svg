@@ -1,0 +1,12 @@
+<svg viewBox="0 0 340 240" role="img" aria-label="Parábola con vértice, foco, directriz, y un punto P a igual distancia del foco y de la directriz">
+<line x1="20" y1="120" x2="320" y2="120" stroke="#d8d2c6" stroke-width="1"/>
+<path d="M187.5,30 Q52.5,120 187.5,210" fill="none" stroke="#b4531f" stroke-width="2"/>
+<line x1="90" y1="28" x2="90" y2="212" stroke="#1e5fa8" stroke-width="1.8"/>
+<text x="96" y="206" font-family="Newsreader, serif" font-size="14" fill="#1e5fa8">directriz</text>
+<circle cx="120" cy="120" r="3.5" fill="#6d2c0f"/><text x="106" y="137" font-family="Newsreader, serif" font-size="14" fill="#6d2c0f">V</text>
+<circle cx="150" cy="120" r="3.5" fill="#1b1a17"/><text x="150" y="137" font-family="Newsreader, serif" font-size="14" fill="#1b1a17">F</text>
+<circle cx="173" cy="40" r="3.5" fill="#1b1a17"/><text x="167" y="37" text-anchor="end" font-family="Newsreader, serif" font-size="14" fill="#1b1a17">P</text>
+<line x1="173" y1="40" x2="150" y2="120" stroke="#b4531f" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="173" y1="40" x2="90" y2="40" stroke="#b4531f" stroke-width="1.5" stroke-dasharray="4 3"/>
+<rect x="90" y="40" width="11" height="11" fill="none" stroke="#8a8372" stroke-width="1.2"/>
+</svg>

@@ -1,0 +1,19 @@
+---
+// Cuadro de la teoría: control, ojo, ejemplo, tip o definición. Rótulo con ícono + texto (no solo color).
+const { tipo = 'tip' } = Astro.props;
+const ROT = { control: '✅ Control', ojo: '⚠️ Ojo', ejemplo: '📝 Ejemplo', tip: '💡 Para acordarte', def: 'Definición' };
+---
+<aside class={`teo-nota teo-${tipo}`}>
+  <p class="teo-rot">{ROT[tipo] ?? tipo}</p>
+  <div class="teo-nota-c"><slot /></div>
+</aside>
+<style is:global>
+  .teo-nota { margin: 1rem 0; padding: 10px 16px 12px; border: 1px solid var(--borde); border-left: 5px solid var(--tn, var(--borde-fuerte)); border-radius: 0 var(--r-s) var(--r-s) 0; background: var(--tn-bg, var(--sup2)); min-width: 0; max-width: 100%; position: relative; overflow-x: auto; }
+  .teo-rot { margin: 0 0 .3rem; font-size: .76rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--tn, var(--suave)); }
+  .teo-nota-c > :first-child { margin-top: 0; } .teo-nota-c > :last-child { margin-bottom: 0; }
+  .teo-control { --tn: var(--elaborado); --tn-bg: var(--elaborado-fondo); }
+  .teo-ojo { --tn: var(--generado); --tn-bg: var(--generado-fondo); }
+  .teo-ejemplo { --tn: var(--oficial); --tn-bg: var(--oficial-fondo); }
+  .teo-tip { --tn: var(--uc, var(--acento)); --tn-bg: var(--sup2); }
+  .teo-def { --tn: var(--uc, var(--acento)); --tn-bg: var(--sup); }
+</style>

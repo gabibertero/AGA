@@ -1,0 +1,11 @@
+<svg viewBox="0 0 300 250" role="img" aria-label="Circunferencia de centro C y radio r, con un punto P sobre ella y el radio dibujado">
+<line x1="20" y1="200" x2="285" y2="200" stroke="#d8d2c6" stroke-width="1"/>
+<line x1="90" y1="20" x2="90" y2="240" stroke="#d8d2c6" stroke-width="1"/>
+<circle cx="160" cy="125" r="82" fill="#b4531f" opacity="0.08" stroke="#b4531f" stroke-width="2"/>
+<circle cx="160" cy="125" r="3.5" fill="#1b1a17"/>
+<text x="166" y="140" font-family="Newsreader, serif" font-size="15" fill="#1b1a17">C(h; k)</text>
+<line x1="160" y1="125" x2="218" y2="67" stroke="#b4531f" stroke-width="2.2"/>
+<text x="182" y="90" font-family="Newsreader, serif" font-size="16" fill="#b4531f">r</text>
+<circle cx="218" cy="67" r="3.5" fill="#1b1a17"/>
+<text x="224" y="63" font-family="Newsreader, serif" font-size="15" fill="#1b1a17">P(x; y)</text>
+</svg>

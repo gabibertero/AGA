@@ -1,0 +1,148 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import { texPuro, conTex } from '../../../../scripts/tex.js';
+const base = import.meta.env.BASE_URL;
+const sp = `${base}segundo-parcial/`;
+// [rótulo, TeX]. span = tarjeta de ancho completo.
+const bandas = [
+  { u: 'U8', t: 'Unidad 8 · Vectores', tarjetas: [
+    { t: 'Escalar y ángulo', f: [
+      ['Escalar', String.raw`\bar a\cdot\bar b=a_1b_1+a_2b_2+a_3b_3=\lvert\bar a\rvert\lvert\bar b\rvert\cos\theta`],
+      ['Módulo', String.raw`\lvert\bar u\rvert=\sqrt{u_1^2+u_2^2+u_3^2}`],
+      ['Versor', String.raw`\hat u=\dfrac{\bar u}{\lvert\bar u\rvert}`],
+      ['Ángulo', String.raw`\cos\theta=\dfrac{\bar a\cdot\bar b}{\lvert\bar a\rvert\lvert\bar b\rvert}`],
+      ['Perpendiculares', String.raw`\bar a\cdot\bar b=0\iff\bar a\perp\bar b`],
+    ] },
+    { t: 'Proyección', f: [
+      ['Paralela', String.raw`\bar w_1=\dfrac{\bar a\cdot\bar b}{\lvert\bar b\rvert^2}\,\bar b`],
+      ['Perpendicular', String.raw`\bar w_2=\bar a-\bar w_1\quad(\bar w_2\cdot\bar b=0)`],
+    ] },
+    { t: 'Vectorial y mixto', f: [
+      ['Vectorial', String.raw`\bar a\times\bar b=\begin{vmatrix}\bar i&\bar j&\bar k\\a_1&a_2&a_3\\b_1&b_2&b_3\end{vmatrix}`],
+      ['Módulo', String.raw`\lvert\bar a\times\bar b\rvert=\lvert\bar a\rvert\lvert\bar b\rvert\,\mathrm{sen}\,\theta\quad\bar a\times\bar b=-(\bar b\times\bar a)`],
+      ['Mixto', String.raw`(\bar a\times\bar b)\cdot\bar c=\begin{vmatrix}a_1&a_2&a_3\\b_1&b_2&b_3\\c_1&c_2&c_3\end{vmatrix}`],
+      ['Coplanares', String.raw`(\bar a\times\bar b)\cdot\bar c=0`],
+    ] },
+    { t: 'Áreas y volúmenes', f: [
+      ['Paralelogramo', String.raw`\lvert\bar a\times\bar b\rvert`],
+      ['Triángulo', String.raw`\dfrac{\lvert\bar a\times\bar b\rvert}{2}`],
+      ['Paralelepípedo', String.raw`\lvert(\bar a\times\bar b)\cdot\bar c\rvert`],
+      ['Tetraedro', String.raw`\dfrac{\lvert(\bar a\times\bar b)\cdot\bar c\rvert}{6}`],
+    ] },
+  ] },
+  { u: 'U9', t: 'Unidad 9 · Recta', tarjetas: [
+    { t: 'Formas de la recta', f: [
+      ['Director', String.raw`\bar a=B-A\quad\text{de la general: }(-B;A)`],
+      ['Vectorial', String.raw`(x;y)=(x_1;y_1)+\lambda(a_1;a_2)`],
+      ['Paramétrica', String.raw`x=x_1+\lambda a_1\ ;\ y=y_1+\lambda a_2`],
+      ['Simétrica', String.raw`\dfrac{x-x_1}{a_1}=\dfrac{y-y_1}{a_2}`],
+      ['General', String.raw`Ax+By+C=0`],
+      ['Explícita', String.raw`y=mx+b`],
+      ['Punto-pendiente', String.raw`y-y_1=m(x-x_1)`],
+      ['Segmentaria', String.raw`\dfrac xp+\dfrac yq=1`],
+      ['Normal', String.raw`x\cos w+y\,\mathrm{sen}\,w-p=0`],
+    ] },
+    { t: 'Ángulos y distancias', f: [
+      ['Ángulo', String.raw`\cos\alpha=\dfrac{\lvert\bar r_1\cdot\bar r_2\rvert}{\lvert\bar r_1\rvert\lvert\bar r_2\rvert}`],
+      ['Punto-recta R²', String.raw`\dfrac{\lvert Ax_0+By_0+C\rvert}{\sqrt{A^2+B^2}}`],
+      ['Punto-recta R³', String.raw`\dfrac{\lvert\overrightarrow{P_1P_0}\times\bar a\rvert}{\lvert\bar a\rvert}`],
+      ['Alabeadas', String.raw`\dfrac{\lvert\overrightarrow{P_1P_2}\cdot(\bar a_1\times\bar a_2)\rvert}{\lvert\bar a_1\times\bar a_2\rvert}`],
+      ['Cosenos directores', String.raw`\cos\alpha=\dfrac{a_1}{\lvert\bar a\rvert}\ ;\ \textstyle\sum\cos^2=1`],
+    ] },
+  ] },
+  { u: 'U9', t: 'Unidad 9 · Plano', tarjetas: [
+    { t: 'Formas del plano', f: [
+      ['General', String.raw`Ax+By+Cz+D=0`],
+      ['D', String.raw`D=-(Ax_1+By_1+Cz_1)`],
+      ['Vectorial', String.raw`\overrightarrow{OP}=\overrightarrow{OP_1}+\alpha\bar u+\beta\bar v`],
+      ['Paramétrica', String.raw`x=x_1+\alpha u_1+\beta v_1\ ;\ y,z\text{ igual}`],
+      ['Segmentaria', String.raw`\dfrac xp+\dfrac yq+\dfrac zr=1`],
+      ['Normal', String.raw`x\cos\alpha+y\cos\beta+z\cos\gamma-p=0`],
+      ['3 puntos', String.raw`\bar n=\overrightarrow{P_1P_2}\times\overrightarrow{P_1P_3}`],
+    ] },
+    { t: 'Ángulos y distancia', f: [
+      ['Planos', String.raw`\cos\theta=\dfrac{\lvert\bar n_1\cdot\bar n_2\rvert}{\lvert\bar n_1\rvert\lvert\bar n_2\rvert}`],
+      ['Recta-plano', String.raw`\mathrm{sen}\,\beta=\dfrac{\lvert\bar n\cdot\bar r\rvert}{\lvert\bar n\rvert\lvert\bar r\rvert}\ \text{(SENO)}`],
+      ['Punto-plano', String.raw`\dfrac{\lvert Ax_0+By_0+Cz_0+D\rvert}{\sqrt{A^2+B^2+C^2}}`],
+      ['Haz', String.raw`\pi_1+k\,\pi_2=0`],
+    ] },
+  ] },
+  { u: 'U10', t: 'Unidad 10 · Cónicas', tarjetas: [
+    { t: 'Circunferencia', f: [
+      ['Origen', String.raw`x^2+y^2=r^2`],
+      ['Centro (h;k)', String.raw`(x-h)^2+(y-k)^2=r^2`],
+      ['General', String.raw`x^2+y^2+Dx+Ey+F=0`],
+      ['Centro', String.raw`(h;k)=\left(-\dfrac D2;-\dfrac E2\right)`],
+      ['Radio', String.raw`r^2=\left(\dfrac D2\right)^2+\left(\dfrac E2\right)^2-F`],
+    ] },
+    { t: String.raw`Elipse · $a^2=b^2+c^2$`, f: [
+      ['Origen, eje x', String.raw`\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1`],
+      ['Origen, eje y', String.raw`\dfrac{x^2}{b^2}+\dfrac{y^2}{a^2}=1`],
+      ['(h;k), ∥ x', String.raw`\dfrac{(x-h)^2}{a^2}+\dfrac{(y-k)^2}{b^2}=1`],
+      ['(h;k), ∥ y', String.raw`\dfrac{(x-h)^2}{b^2}+\dfrac{(y-k)^2}{a^2}=1`],
+      ['General', String.raw`Ax^2+Cy^2+Dx+Ey+F=0`],
+      ['Excentricidad', String.raw`e=\dfrac ca\quad(0<e<1)`],
+    ] },
+    { t: String.raw`Hipérbola · $c^2=a^2+b^2$`, f: [
+      ['Origen, eje x', String.raw`\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=1`],
+      ['Origen, eje y', String.raw`\dfrac{y^2}{a^2}-\dfrac{x^2}{b^2}=1`],
+      ['(h;k), ∥ x', String.raw`\dfrac{(x-h)^2}{a^2}-\dfrac{(y-k)^2}{b^2}=1`],
+      ['(h;k), ∥ y', String.raw`\dfrac{(y-k)^2}{a^2}-\dfrac{(x-h)^2}{b^2}=1`],
+      ['General', String.raw`Ax^2-Cy^2+Dx+Ey+F=0`],
+      ['Asíntotas, transverso horizontal', String.raw`y=\pm\dfrac ba\,x`],
+      ['Asíntotas, transverso vertical', String.raw`y=\pm\dfrac ab\,x`],
+      ['Excentricidad', String.raw`e=\dfrac ca\quad(e>1)`],
+    ] },
+    { t: 'Parábola', f: [
+      ['Origen, eje x', String.raw`y^2=4px`],
+      ['Origen, eje y', String.raw`x^2=4py`],
+      ['Vértice (h;k), ∥ x', String.raw`(y-k)^2=4p(x-h)`],
+      ['Vértice (h;k), ∥ y', String.raw`(x-h)^2=4p(y-k)`],
+      ['General', String.raw`Cy^2+Dx+Ey+F=0\ \text{(o }Ax^2+\dots\text{)}`],
+      ['Excentricidad', String.raw`e=1`],
+    ] },
+    { t: 'Excentricidad · resumen', span: true, f: [
+      ['Todas', String.raw`\text{Circunferencia }e=0\ \cdot\ \text{Elipse }0<e<1\ \cdot\ \text{Parábola }e=1\ \cdot\ \text{Hipérbola }e>1`],
+    ] },
+  ] },
+];
+const titulo = (s) => s.split('$').map((p, i) => (i % 2 ? texPuro(p) : p)).join('');
+bandas.forEach((b) => b.tarjetas.forEach((c) => { c.th = titulo(c.t); c.f = c.f.map(([l, tx]) => [l, texPuro(tx)]); }));
+---
+<Layout titulo="Machete · 2º parcial">
+  <p class="eyebrow"><a href={sp}>2º parcial</a> · <a href={`${sp}teorico/`}>Teórico</a> · Machete</p>
+  <h1>Machete: todas las fórmulas</h1>
+  <p class="lead" set:html={conTex('U8, U9 y U10 en una sola hoja. Subíndice = componente; $\\bar a\\cdot\\bar b$ es el escalar y $\\bar a\\times\\bar b$ el vectorial (la barra marca vector).')} />
+  <nav class="m-saltos" aria-label="Ir a la unidad">
+    {bandas.map((b, i) => <a class="chip chip-u chip-lg" data-unidad={b.u} href={`#m-${i}`}>{b.t}</a>)}
+  </nav>
+  {bandas.map((b, i) => (
+    <section class="m-banda" data-unidad={b.u} aria-labelledby={`m-${i}`}>
+      <h2 id={`m-${i}`}>{b.t}</h2>
+      <div class="m-grid">
+        {b.tarjetas.map((c) => (
+          <div class:list={['tarjeta', 'm-card', { span: c.span }]}>
+            <h3 set:html={c.th} />
+            {c.f.map(([l, h]) => (
+              <div class="m-fila"><span class="m-lab">{l}</span><span class="m-eq" set:html={h} /></div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </section>
+  ))}
+  <p class="suave">Todo esto explicado en la <a href={`${sp}teorico/teoria/`}>teoría</a>; para practicar, el <a href={`${sp}teorico/aprendizaje/`}>aprendizaje</a>.</p>
+</Layout>
+<style>
+  .m-saltos { display: flex; flex-wrap: wrap; gap: 6px; margin: .5rem 0 0; }
+  .m-banda h2 { color: var(--uc); border-top: 2px solid var(--uc); padding-top: .7rem; margin: 2rem 0 .8rem; font-size: 1.3rem; text-transform: uppercase; letter-spacing: .06em; }
+  .m-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 23rem), 1fr)); }
+  .m-card { min-width: 0; padding: 12px 16px 8px; border-top: 4px solid var(--uc); }
+  .m-card.span { grid-column: 1 / -1; }
+  .m-card h3 { margin: 0 0 .5rem; padding-bottom: .4rem; border-bottom: 1px solid var(--borde); font-size: 1.1rem; color: var(--uc); }
+  .m-fila { display: grid; grid-template-columns: minmax(5.5rem, 7.5rem) minmax(0, 1fr); gap: 4px 10px; align-items: baseline; padding: 4px 0; }
+  .m-fila + .m-fila { border-top: 1px dashed var(--borde); }
+  .m-lab { font-size: .72rem; letter-spacing: .04em; text-transform: uppercase; color: var(--suave); font-weight: 700; line-height: 1.35; }
+  .m-eq { overflow-x: auto; overflow-y: hidden; position: relative; max-width: 100%; padding: 2px 0; }
+  @media (max-width: 520px) { .m-fila { grid-template-columns: minmax(0, 1fr); } }
+</style>

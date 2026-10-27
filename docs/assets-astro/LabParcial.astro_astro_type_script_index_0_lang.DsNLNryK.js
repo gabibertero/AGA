@@ -1,0 +1,1 @@
+import{r as e}from"./ui.DeEsQugh.js";e(document.querySelector(`[data-lab-parcial]`));

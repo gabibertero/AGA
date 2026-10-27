@@ -1,1 +1,0 @@
-import{r as e}from"./ui.BfeRjyDB.js";e(document.querySelector(`[data-lab-parcial]`));

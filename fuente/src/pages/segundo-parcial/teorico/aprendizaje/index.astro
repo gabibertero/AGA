@@ -1,0 +1,138 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import { BANCO } from '../../../../data/aprendizaje-banco.js';
+import { conTex, bloques } from '../../../../scripts/tex.js';
+const base = import.meta.env.BASE_URL;
+const sp = `${base}segundo-parcial/`;
+const svgs = import.meta.glob('../../../../figuras-teoria/*.svg', { query: '?raw', import: 'default', eager: true });
+const figura = (n) => {
+  const s = svgs[`../../../../figuras-teoria/${n}.svg`];
+  if (!s) throw new Error(`aprendizaje: no existe la figura "${n}"`);
+  return s;
+};
+const TIPO = { mc: 'Opción múltiple', dev: 'A desarrollar', graf: 'Interpretación de gráfico' };
+const unidades = ['U8', 'U9', 'U10'];
+const porUnidad = Object.fromEntries(unidades.map((u) => [u, BANCO.filter((q) => q.unidad === u).length]));
+const ids = new Set();
+BANCO.forEach((q) => { if (ids.has(q.id)) throw new Error(`aprendizaje: id repetido ${q.id}`); ids.add(q.id); });
+---
+<Layout titulo="Aprendizaje · 2º parcial">
+  <p class="eyebrow"><a href={sp}>2º parcial</a> · <a href={`${sp}teorico/`}>Teórico</a> · Aprendizaje</p>
+  <h1>Aprendizaje</h1>
+  <p class="lead">Practicá la teoría de U8, U9 y U10 con preguntas de opción múltiple, a desarrollar e interpretación de gráficos. Podés elegir una unidad o las tres mezcladas al azar. Tu resultado en cada pregunta queda guardado en este navegador.</p>
+  <p class="suave">¿Primero repasar? <a href={`${sp}teorico/teoria/`}>Teoría</a> · <a href={`${sp}teorico/machete/`}>Machete</a>.</p>
+
+  <section class="ap-config tarjeta" data-js data-config hidden aria-labelledby="ap-cfg-t">
+    <h2 id="ap-cfg-t">Armar una sesión</h2>
+    <div class="ap-grupo" role="group" aria-label="Unidad a practicar" data-unidades>
+      {unidades.map((u) => <button type="button" class="ap-u" data-unidad-btn={u} data-unidad={u} aria-pressed="false">{u} <small>({porUnidad[u]})</small></button>)}
+      <button type="button" class="ap-u" data-unidad-btn="mezcla" aria-pressed="false">Las tres, al azar <small>({BANCO.length})</small></button>
+    </div>
+    <p class="ap-fila">
+      <label for="ap-n">Cantidad de preguntas</label>
+      <select id="ap-n" data-n><option value="5">5</option><option value="10" selected>10</option><option value="15">15</option><option value="0">Todas</option></select>
+    </p>
+    <p class="ap-fila"><button type="button" class="btn btn-primario" data-empezar>Empezar</button></p>
+    <p class="suave ap-prog" data-prog></p>
+  </section>
+
+  <section class="ap-sesion" data-sesion hidden aria-label="Sesión de práctica">
+    <div class="ap-top">
+      <p class="ap-cont" data-cont tabindex="-1"></p>
+      <span class="barra" data-barra aria-hidden="true"></span>
+    </div>
+    <div data-stage></div>
+    <div class="ap-ctl">
+      <button type="button" class="btn-primario" data-ver hidden aria-expanded="false">Ver respuesta modelo</button>
+      <div class="ap-eval" data-eval role="group" aria-label="¿Cómo te fue?" hidden>
+        <span class="suave">Autoevaluación:</span>
+        <button type="button" data-r="bien" aria-pressed="false">Bien</button>
+        <button type="button" data-r="medias" aria-pressed="false">A medias</button>
+        <button type="button" data-r="mal" aria-pressed="false">Mal</button>
+      </div>
+      <button type="button" data-sig>Siguiente</button>
+    </div>
+    <p class="ap-aviso" role="status" data-aviso></p>
+  </section>
+
+  <section class="ap-fin tarjeta" data-fin hidden aria-labelledby="ap-fin-t">
+    <h2 id="ap-fin-t" tabindex="-1">Sesión terminada</h2>
+    <p data-resumen></p>
+    <p><button type="button" class="btn btn-primario" data-nueva>Nueva sesión</button></p>
+  </section>
+
+  <noscript><p class="generado capa">Sin JavaScript no se puede practicar de a una; abajo está todo el banco con sus respuestas.</p></noscript>
+
+  <section data-banco aria-labelledby="ap-banco-t">
+    <h2 id="ap-banco-t" class="ap-banco-t">Banco completo ({BANCO.length} preguntas)</h2>
+    {BANCO.map((q) => {
+      const forma = q.tipo === 'graf' ? q.forma : q.tipo;
+      return (
+        <article class="ap-q" data-q data-id={q.id} data-unidad={q.unidad} data-tipo={q.tipo} data-forma={forma} data-nopc={forma === 'mc' ? q.opc.length : 0} data-correcta={forma === 'mc' ? q.correcta : undefined}>
+          <header class="ap-q-cab">
+            <span class="chip chip-u" data-unidad={q.unidad}>{q.unidad}</span>
+            <span class="chip">{TIPO[q.tipo]}</span>
+            {q.tipo === 'graf' && <span class="chip">{forma === 'mc' ? 'opción múltiple' : 'a desarrollar'}</span>}
+          </header>
+          <div class="q-enun" set:html={conTex(q.enun)} />
+          {q.fig && <figure class="q-fig" set:html={figura(q.fig)} />}
+          {forma === 'mc' && <ol class="q-opts" type="A">{q.opc.map((o, i) => <li data-i={i} set:html={conTex(o)} />)}</ol>}
+          <details class="q-sinjs">
+            <summary>Ver respuesta</summary>
+            <div class="q-resp" set:html={
+              forma === 'mc'
+                ? `<p><strong>Correcta:</strong> ${conTex(q.opc[q.correcta])}</p><div class="q-expl">${conTex(q.expl)}</div>`
+                : bloques(q.modelo)
+            } />
+          </details>
+        </article>
+      );
+    })}
+  </section>
+</Layout>
+
+<script>
+  import '../../../../scripts/aprendizaje.js';
+</script>
+
+<style is:global>
+  .ap-config h2, .ap-banco-t { margin-top: .2rem; }
+  .ap-grupo { display: flex; flex-wrap: wrap; gap: 8px; margin: .6rem 0; }
+  .ap-u small { font-weight: 500; margin-left: 4px; color: var(--suave); }
+  .ap-u[aria-pressed='true'] { background: var(--acento); color: var(--sobre-acento); border-color: var(--acento); }
+  .ap-u[aria-pressed='true'] small { color: inherit; }
+  .ap-fila { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: .6rem 0; }
+  .ap-fila select { min-height: 44px; font: inherit; padding: 0 10px; border: 1px solid var(--borde-fuerte); border-radius: var(--r-s); background: var(--sup2); color: var(--texto); }
+  .ap-top { margin: 1.2rem 0 .8rem; }
+  .ap-cont { margin: 0 0 6px; font-weight: 700; color: var(--suave); }
+  .ap-q { background: var(--sup); border: 1px solid var(--borde); border-top: 5px solid var(--uc, var(--borde-fuerte)); border-radius: var(--r); box-shadow: var(--sombra); padding: 14px 20px 16px; margin: 0 0 1.25rem; min-width: 0; }
+  .ap-q-cab { display: flex; flex-wrap: wrap; gap: 2px; }
+  .q-enun { margin: .5rem 0; font-size: 1.08rem; overflow-x: auto; position: relative; max-width: 100%; }
+  .q-fig { margin: .6rem auto; background: #fff; border: 1px solid var(--borde-fuerte); border-radius: var(--r-s); padding: 10px; max-width: 26rem; }
+  .q-fig svg { display: block; width: 100%; height: auto; }
+  .q-opts { margin: .6rem 0; padding-left: 1.6rem; }
+  .q-opts li { margin: .35rem 0; overflow-x: auto; position: relative; }
+  .ap-opcs { display: grid; gap: 8px; margin: .7rem 0; }
+  .ap-opc { display: flex; justify-content: flex-start; align-items: center; gap: 10px; width: 100%; text-align: left; border-radius: var(--r-s); font-weight: 500; padding: 8px 14px; min-height: 48px; background: var(--sup2); }
+  .ap-opc > .ap-txt { min-width: 0; flex: 1; overflow-x: auto; overflow-y: hidden; position: relative; }
+  .ap-letra { flex: none; font-weight: 700; color: var(--suave); }
+  .ap-opc[aria-pressed='true'] { border-color: var(--acento); box-shadow: inset 0 0 0 2px var(--acento); }
+  .ap-opc[data-v='ok'] { background: var(--e-ok-bg); color: var(--e-ok); border-color: var(--e-ok); box-shadow: inset 0 0 0 2px var(--e-ok); }
+  .ap-opc[data-v='ok'] .ap-letra::after { content: ' ✓'; }
+  .ap-opc[data-v='mal'] { background: var(--generado-fondo); color: var(--generado); border-color: var(--generado); box-shadow: inset 0 0 0 2px var(--generado); }
+  .ap-opc[data-v='mal'] .ap-letra::after { content: ' ✗'; }
+  .ap-opc:disabled { opacity: 1; cursor: default; }
+  .q-resp { margin-top: .75rem; padding: 4px 16px 10px; border: 1px solid var(--borde); border-left: 4px solid var(--elaborado); background: var(--elaborado-fondo); border-radius: var(--r-s); overflow-x: auto; max-width: 100%; position: relative; }
+  .q-resp::before { content: 'Respuesta elaborada para el sitio, no oficial'; display: block; margin: 6px 0 4px; font-size: .76rem; font-weight: 700; color: var(--elaborado); text-transform: uppercase; letter-spacing: .03em; }
+  .q-resp .katex-display, .q-disp { overflow-x: auto; overflow-y: hidden; position: relative; padding: 2px 0; }
+  .q-sinjs { margin-top: .6rem; }
+  .q-sinjs summary { cursor: pointer; font-weight: 700; color: var(--acento); min-height: 40px; display: flex; align-items: center; }
+  .ap-ctl { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: .8rem 0 0; }
+  .ap-ctl [data-sig] { margin-left: auto; }
+  .ap-eval { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .ap-eval button[aria-pressed='true'][data-r='bien'] { background: var(--e-ok-bg); color: var(--e-ok); border-color: var(--e-ok); }
+  .ap-eval button[aria-pressed='true'][data-r='medias'] { background: var(--e-curso-bg); color: var(--e-curso); border-color: var(--e-curso); }
+  .ap-eval button[aria-pressed='true'][data-r='mal'] { background: var(--generado-fondo); color: var(--generado); border-color: var(--generado); }
+  .ap-aviso { min-height: 1.6em; margin: .5rem 0 0; font-weight: 600; }
+  @media (max-width: 520px) { .ap-q { padding: 12px 14px 14px; } .ap-ctl [data-sig] { margin-left: 0; } }
+</style>

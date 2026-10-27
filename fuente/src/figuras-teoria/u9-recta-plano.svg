@@ -1,0 +1,15 @@
+<svg viewBox="0 0 340 200" role="img" aria-label="Una recta corta un plano; el ángulo beta entre la recta y el plano es el complemento del ángulo con la normal">
+<defs>
+<marker id="u9a3" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" refX="8.5" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 Z" fill="#b4531f"/></marker>
+<marker id="u9a4" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" refX="8.5" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 Z" fill="#1e5fa8"/></marker>
+</defs>
+<polygon points="40,150 210,150 300,115 130,115" fill="#1e5fa8" opacity="0.14" stroke="#7d93b5" stroke-width="1.3"/>
+<line x1="150" y1="133" x2="150" y2="40" stroke="#b4531f" stroke-width="2.4" stroke-dasharray="5 4" marker-end="url(#u9a3)"/>
+<text x="132" y="46" font-family="Newsreader, serif" font-size="16" fill="#b4531f">n</text>
+<line x1="150" y1="133" x2="270" y2="69" stroke="#1e5fa8" stroke-width="2.6" marker-end="url(#u9a4)"/>
+<text x="244" y="70" font-family="Newsreader, serif" font-size="16" fill="#1e5fa8">r</text>
+<path d="M 195 133 A 45 45 0 0 0 189 112" fill="none" stroke="#5c574e" stroke-width="1.5"/>
+<text x="199" y="126" font-family="Newsreader, serif" font-size="15" fill="#5c574e">β</text>
+<path d="M 150 95 A 38 38 0 0 0 183 115" fill="none" stroke="#7b8190" stroke-width="1.4"/>
+<text x="158" y="88" font-family="Newsreader, serif" font-size="14" fill="#5c574e">90°−β</text>
+</svg>

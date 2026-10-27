@@ -1,0 +1,195 @@
+---
+titulo: "U8 · Vectores: productos escalar, vectorial y mixto"
+unidad: "U8"
+orden: 1
+resumen: "Los tres productos entre vectores, módulo, ángulo, ortogonalidad, proyección, áreas y volúmenes."
+---
+import Fig from '../../components/TeoFig.astro';
+import Nota from '../../components/TeoNota.astro';
+
+**Idea base:** hay tres productos entre vectores. El **escalar** da un número (sirve para ángulos y perpendicularidad); el **vectorial** da un vector perpendicular (sirve para áreas); el **mixto** da un número (sirve para volúmenes y coplanaridad).
+
+<Nota tipo="tip">
+
+El nombre dice qué devuelve. El escalar da un escalar (número), el vectorial da un vector.
+
+</Nota>
+
+## 1. Producto escalar
+
+<Nota tipo="def">
+
+Número que se obtiene multiplicando las componentes correspondientes y sumando.
+
+</Nota>
+
+**Cómo se hace:**
+
+1. Multiplicá las componentes homólogas ($x$ con $x$, $y$ con $y$, $z$ con $z$).
+2. Sumá los productos: $\bar a\cdot\bar b=a_1b_1+a_2b_2+a_3b_3$ (en $\mathbb R^2$ sin el tercer término).
+
+**Interpretación geométrica:** $\bar a\cdot\bar b=\lvert\bar a\rvert\,\lvert\bar b\rvert\cos\theta$, con $\theta$ el ángulo entre los dos vectores.
+
+<Fig name="u8-angulo" pie="θ es el ángulo entre los dos vectores." />
+
+<Nota tipo="control">
+
+El resultado es un **número**, no un vector.
+
+</Nota>
+
+<Nota tipo="ejemplo">
+
+$\bar a=(1;2;3)$, $\bar b=(4;0;-1)$ → $1\cdot4+2\cdot0+3\cdot(-1)=4-3=\mathbf{1}$.
+
+</Nota>
+
+<Nota tipo="tip">
+
+**Leer el signo:** $\bar a\cdot\bar b$ positivo → ángulo agudo; cero → recto; negativo → obtuso (lo único que cambia de signo es $\cos\theta$).
+
+</Nota>
+
+## 2. Módulo / longitud
+
+**Definición:** longitud del vector; sale del producto escalar del vector por sí mismo.
+
+$$\lvert\bar u\rvert=\sqrt{\bar u\cdot\bar u}=\sqrt{u_1^2+u_2^2+u_3^2}$$
+
+<Nota tipo="control">
+
+Siempre $\ge 0$; da $0$ solo para el vector nulo. Un **versor** es un vector de módulo $1$: $\hat u=\dfrac{\bar u}{\lvert\bar u\rvert}$.
+
+</Nota>
+
+<Nota tipo="ejemplo">
+
+$\bar u=(3;4)$ → $\sqrt{9+16}=\sqrt{25}=\mathbf{5}$.
+
+</Nota>
+
+<Nota tipo="tip">
+
+El módulo es **Pitágoras** en varias dimensiones.
+
+</Nota>
+
+## 3. Ángulo entre vectores
+
+1. Calculá $\bar a\cdot\bar b$ y los módulos $\lvert\bar a\rvert$, $\lvert\bar b\rvert$.
+2. $\cos\theta=\dfrac{\bar a\cdot\bar b}{\lvert\bar a\rvert\,\lvert\bar b\rvert}$.
+3. $\theta=\arccos(\dots)$.
+
+<Nota tipo="control">
+
+$\cos\theta$ tiene que quedar entre $-1$ y $1$. Si da fuera de ese rango, hay error de cuenta.
+
+</Nota>
+
+## 4. Ortogonalidad (perpendicularidad)
+
+**Propiedad:** dos vectores no nulos son perpendiculares cuando su producto escalar es cero (es el caso $\theta=90^\circ$, $\cos 90^\circ=0$).
+
+1. Calculá $\bar a\cdot\bar b$. Si da $0$ → **perpendiculares**.
+
+$$\bar a\cdot\bar b=0\iff\bar a\perp\bar b$$
+
+<Nota tipo="ejemplo">
+
+$\bar a=(2;1)$, $\bar b=(-1;2)$ → $2\cdot(-1)+1\cdot2=0$ → **perpendiculares**.
+
+</Nota>
+
+## 5. Proyección ortogonal
+
+**Buscás** partir $\bar a$ en una parte paralela a $\bar b$ y otra perpendicular.
+
+**Cómo se hace:**
+
+1. Calculá $\bar a\cdot\bar b$ y $\lvert\bar b\rvert^2$.
+2. **Proyección** (paralela a $\bar b$): $\bar w_1=\dfrac{\bar a\cdot\bar b}{\lvert\bar b\rvert^2}\,\bar b$.
+3. **Componente ortogonal:** $\bar w_2=\bar a-\bar w_1$.
+
+<Fig name="u8-proyeccion" pie="w₁ es la sombra de a sobre b; w₂ es lo que falta, perpendicular a b. El cuadradito marca el ángulo recto: w₂ ⊥ b." />
+
+<Nota tipo="control">
+
+**Control obligatorio:** $\bar w_2\cdot\bar b=0$ (tiene que dar exactamente $0$).
+
+</Nota>
+
+<Nota tipo="ejemplo">
+
+$\bar a=(3;3)$, $\bar b=(1;0)$ → $\bar a\cdot\bar b=3$, $\lvert\bar b\rvert^2=1$ → $\bar w_1=3\cdot(1;0)=(3;0)$, $\bar w_2=(3;3)-(3;0)=(0;3)$. Control: $(0;3)\cdot(1;0)=0$ ✓.
+
+</Nota>
+
+## 6. Producto vectorial (solo $\mathbb R^3$)
+
+**Definición:** vector **perpendicular** a los dos a la vez.
+
+**Cómo se hace:**
+
+1. Armá el determinante simbólico $3\times3$: $\bar i,\bar j,\bar k$ en la 1ª fila, $\bar a$ en la 2ª, $\bar b$ en la 3ª.
+2. Desarrollalo por la 1ª fila con signos $+,-,+$:
+
+$$\bar a\times\bar b=\begin{vmatrix}\bar i&\bar j&\bar k\\a_1&a_2&a_3\\b_1&b_2&b_3\end{vmatrix}=(a_2b_3-a_3b_2)\,\bar i-(a_1b_3-a_3b_1)\,\bar j+(a_1b_2-a_2b_1)\,\bar k$$
+
+**Módulo (área):** $\lvert\bar a\times\bar b\rvert=\lvert\bar a\rvert\,\lvert\bar b\rvert\,\mathrm{sen}\,\theta$ = área del paralelogramo de lados $\bar a$ y $\bar b$.
+
+<Fig name="u8-vectorial" pie="a × b sale perpendicular al plano de a y b. Su longitud es el área del paralelogramo sombreado." />
+
+<Nota tipo="control">
+
+$\bar a\times\bar b$ debe dar producto escalar $0$ con $\bar a$ y con $\bar b$. Ojo: $\bar a\times\bar b=-(\bar b\times\bar a)$.
+
+</Nota>
+
+<Nota tipo="ejemplo">
+
+$\bar a=(1;0;0)$, $\bar b=(0;1;0)$ → $\bar a\times\bar b=(0;0;1)=\bar k$.
+
+</Nota>
+
+<Nota tipo="tip">
+
+**Regla de la mano derecha:** dedos de $\bar a$ cerrando hacia $\bar b$, el pulgar marca $\bar a\times\bar b$. Por eso el orden importa.
+
+</Nota>
+
+## 7. Producto mixto (solo $\mathbb R^3$)
+
+**Definición:** número $(\bar a\times\bar b)\cdot\bar c$.
+
+**Cómo se hace:**
+
+1. Armá un determinante $3\times3$ con las componentes de $\bar a,\bar b,\bar c$ en **filas**.
+2. Calculalo: ese número es $(\bar a\times\bar b)\cdot\bar c$.
+
+$$(\bar a\times\bar b)\cdot\bar c=\begin{vmatrix}a_1&a_2&a_3\\b_1&b_2&b_3\\c_1&c_2&c_3\end{vmatrix}$$
+
+<Nota tipo="control">
+
+Si da $0$ → los tres son **coplanares** (el paralelepípedo se aplana, volumen $0$).
+
+</Nota>
+
+## 8. Aplicaciones geométricas (área · volumen · coplanaridad)
+
+- **Área del paralelogramo** de lados $\bar a,\bar b$: $\lvert\bar a\times\bar b\rvert$. Si es **triángulo**, dividí por $2$.
+- **Volumen del paralelepípedo** de aristas $\bar a,\bar b,\bar c$: $\lvert(\bar a\times\bar b)\cdot\bar c\rvert$ (módulo del mixto). Si es **tetraedro**, dividí por $6$.
+- **Coplanaridad:** producto mixto $=0$.
+
+<Fig name="u8-mixto" pie="Los tres vectores arman un paralelepípedo. El valor absoluto del producto mixto es su volumen." />
+
+<Nota tipo="control">
+
+Áreas y volúmenes siempre **positivos** (por eso el módulo / valor absoluto).
+
+</Nota>
+
+<Nota tipo="ejemplo">
+
+**Área de un triángulo** de vértices $A,B,C$: armá $\bar u=B-A$ y $\bar v=C-A$ → área $=\dfrac{\lvert\bar u\times\bar v\rvert}{2}$.
+
+</Nota>

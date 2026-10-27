@@ -1,0 +1,14 @@
+<svg viewBox="0 0 340 230" role="img" aria-label="Elipse con centro, focos F y F prima, vértices, semiejes a y b, y un punto P con sus dos radios a los focos">
+<line x1="20" y1="115" x2="320" y2="115" stroke="#d8d2c6" stroke-width="1"/>
+<line x1="170" y1="20" x2="170" y2="210" stroke="#d8d2c6" stroke-width="1"/>
+<ellipse cx="170" cy="115" rx="130" ry="72" fill="#b4531f" opacity="0.08" stroke="#b4531f" stroke-width="2"/>
+<circle cx="278" cy="115" r="3.5" fill="#1b1a17"/><text x="270" y="132" font-family="Newsreader, serif" font-size="14" fill="#1b1a17">F</text>
+<circle cx="62" cy="115" r="3.5" fill="#1b1a17"/><text x="50" y="132" font-family="Newsreader, serif" font-size="14" fill="#1b1a17">F′</text>
+<circle cx="300" cy="115" r="3" fill="#6d2c0f"/><text x="300" y="132" font-family="Newsreader, serif" font-size="14" fill="#6d2c0f">V</text>
+<circle cx="40" cy="115" r="3" fill="#6d2c0f"/><text x="30" y="132" font-family="Newsreader, serif" font-size="14" fill="#6d2c0f">V′</text>
+<line x1="170" y1="115" x2="300" y2="115" stroke="#6d2c0f" stroke-width="1.6"/><text x="228" y="110" font-family="Newsreader, serif" font-size="15" fill="#6d2c0f">a</text>
+<line x1="170" y1="115" x2="170" y2="43" stroke="#1e5fa8" stroke-width="1.6"/><text x="164" y="85" text-anchor="end" font-family="Newsreader, serif" font-size="15" fill="#1e5fa8">b</text>
+<line x1="278" y1="115" x2="140" y2="45" stroke="#b4531f" stroke-width="1.6"/>
+<line x1="62" y1="115" x2="140" y2="45" stroke="#b4531f" stroke-width="1.6"/>
+<circle cx="140" cy="45" r="3.5" fill="#1b1a17"/><text x="146" y="42" font-family="Newsreader, serif" font-size="14" fill="#1b1a17">P</text>
+</svg>
