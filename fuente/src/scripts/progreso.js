@@ -45,7 +45,7 @@ function iniciarEjercicio(ej) {
   const estado = ['pendiente', 'en-curso', 'resuelto'].includes(guardado) ? guardado : 'pendiente';
   radios.forEach((r) => {
     r.checked = r.value === estado;
-    r.onchange = () => guardar('estado:' + id, r.value);
+    r.onchange = () => { guardar('estado:' + id, r.value); pintarProgreso(); };
   });
   pintar();
 }

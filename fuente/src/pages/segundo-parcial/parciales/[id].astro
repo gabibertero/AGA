@@ -17,7 +17,12 @@ const d = entry.data;
     <h1>{d.titulo}</h1>
     <p class="meta">{d.fecha && `${d.fecha} · `}{d.tipo}{d.tema && ` · Tema ${d.tema}`} · Unidades: {d.unidades.map((u) => <span class="chip chip-u" data-unidad={u}>{u}</span>)}</p>
     <p class="meta">Fuente: {d.fuente} (enunciado p.{d.paginasEnunciado}{d.paginasResolucion ? `, resolución p.${d.paginasResolucion}` : "; sin resolución oficial"})</p>
-    <span class="barra" aria-hidden="true" data-barra data-ids={idsDeEjercicios(entry.body).join(',')}></span>
+    {(() => { const ids = idsDeEjercicios(entry.body).join(','); return (
+      <div class="prog-fila">
+        <span class="barra" aria-hidden="true" data-barra data-ids={ids}></span>
+        <span class="meta" data-progreso data-ids={ids}></span>
+      </div>
+    ); })()}
   </div>
   <section class="hoja tarjeta" data-hoja hidden aria-labelledby="hoja-t">
     <h2 id="hoja-t">El parcial tal cual</h2>
@@ -45,6 +50,7 @@ const d = entry.data;
     </div>
     <p class="ex-aviso" data-ex="aviso" role="alert" hidden>Se terminó el tiempo. Podés seguir, pero ya pasó el límite.</p>
     <div data-en="entregado" aria-live="polite">
+      <p class="ex-sello"><span aria-hidden="true">✔</span> Entregado</p>
       <p class="ex-nota">Nota: <strong data-ex="nota"></strong>/100 · Tiempo usado: <span data-ex="usado"></span></p>
       <p class="meta" data-ex="detalle"></p>
       <p class="meta" data-ex="oficial" hidden>Puntajes no oficiales: reparto igual.</p>
@@ -90,15 +96,19 @@ const d = entry.data;
   }
 </script>
 <style is:global>
+  .prog-fila { display: flex; align-items: center; gap: 12px; }
+  .prog-fila .barra { flex: 1; min-width: 0; }
+  .prog-fila [data-progreso] { white-space: nowrap; font-size: .88rem; }
+  .ex-sello { display: inline-block; margin: 0; padding: 2px 12px; font-weight: 700; border: 2px solid var(--e-ok); border-radius: 99px; }
   .otros { margin: 0 0 1rem; }
-  .otros > summary { cursor: pointer; font-weight: 600; color: var(--link); min-height: 36px; display: flex; align-items: center; }
+  .otros > summary { cursor: pointer; font-weight: 600; color: var(--link); min-height: 44px; display: flex; align-items: center; }
   .otros .tabs { margin-top: 8px; }
   .hoja { margin-bottom: 1.5rem; }
   .hoja .hoja-ej { display: flex; gap: 10px; margin: .8rem 0; }
   .hoja .hoja-ej .capa { flex: 1; min-width: 0; margin: 0; overflow-x: auto; position: relative; }
   .hoja .hoja-n { font-weight: 700; }
   .hoja .hoja-escaneo { margin-top: .8rem; }
-  .hoja .hoja-escaneo summary { cursor: pointer; font-weight: 600; color: var(--link); min-height: 36px; display: inline-flex; align-items: center; }
+  .hoja .hoja-escaneo summary { cursor: pointer; font-weight: 600; color: var(--link); min-height: 44px; display: inline-flex; align-items: center; }
   .hoja .hoja-escaneo img { max-width: 100%; height: auto; background: #fff; border: 1px solid var(--borde-fuerte); border-radius: var(--r-s); }
   .fin-lab { margin-top: 2rem; }
   .btn-lab { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 16px; border-radius: 999px; background: var(--acento); color: var(--sobre-acento); font-weight: 600; text-decoration: none; }

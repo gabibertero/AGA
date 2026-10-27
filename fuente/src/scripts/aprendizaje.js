@@ -225,6 +225,14 @@ function mostrar() {
   }
   if (actual.forma === 'dev') montarDev(art, id);
   if (actual.forma === 'demo') montarDemo(art);
+  if (actual.forma === 'demo') { // derivación larga plegada por defecto
+    const det = document.createElement('details');
+    det.className = 'q-deriv';
+    const sum = document.createElement('summary');
+    sum.textContent = 'Ver la derivación completa';
+    det.append(sum, ...resp.childNodes);
+    resp.append(det);
+  }
   art.append(resp);
   stage.replaceChildren(art);
   btnVer.hidden = actual.forma !== 'dev';

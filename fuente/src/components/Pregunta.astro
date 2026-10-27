@@ -33,7 +33,7 @@ const fuentes = (s) => s.split(';').map((x) => x.trim()).filter(Boolean).map((x)
     <div class="resp lectura-resp"><slot /></div>
     {fr && <p class="preg-fte">Respuesta elaborada a partir de: {fuentes(fr).map((f, i) => <>{i > 0 && ' · '}<em>{f.archivo}</em>{f.p && <>, {/^\d/.test(f.p) ? 'p. ' : ''}{f.p}</>}</>)}</p>}
   </details>
-  <div class="preg-acc" role="group" aria-label="Marcar pregunta">
+  <div class="preg-acc" data-solo-js role="group" aria-label="Marcar pregunta">
     <button type="button" class="btn-sabe" data-marca="sabe" aria-pressed="false">✓ La sé</button>
     <button type="button" class="btn-repasar" data-marca="repasar" aria-pressed="false">↻ Repasar</button>
   </div>

@@ -36,7 +36,7 @@ const estados = [['pendiente', 'Pendiente'], ['en-curso', 'En curso'], ['resuelt
     </span>
   </fieldset>
   <div id={ayudas} aria-live="polite"><slot /></div>
-  <div class="acciones">
+  <div class="acciones" data-solo-js>
     <button type="button" data-accion="pista" aria-expanded="false" aria-controls={ayudas}>Ver pista</button>
     <button type="button" data-accion="paso" aria-expanded="false" aria-controls={ayudas}>Siguiente paso</button>
     <button type="button" data-accion="solucion" aria-expanded="false" aria-controls={ayudas}>Ver solución completa</button>

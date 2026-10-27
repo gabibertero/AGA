@@ -25,6 +25,7 @@ const actual = Astro.url.pathname;
     <title>{titulo} · AGA</title>
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
     <meta name="color-scheme" content="light" />
+    <script is:inline>document.documentElement.classList.add('js')</script>
     <meta name="description" content={descripcion} />
     <meta name="theme-color" content="#f5f2ec" />
     <link rel="apple-touch-icon" href={`${base}apple-touch-icon.png`} />
