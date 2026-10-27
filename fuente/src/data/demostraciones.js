@@ -322,8 +322,8 @@ export const DEMOSTRACIONES = [
         ],
       },
       {
-        que: 'Identificá A (coeficiente de $x^2$)',
-        porque: 'El número que multiplica a \\(x^2\\) es \\(A = b^2\\) (positivo; C va a salir negativo).',
+        que: 'Identificá A, el coeficiente de $x^2$',
+        porque: 'Es el número que multiplica a \\(x^2\\). Sale positivo, y por eso C va a salir negativo.',
         linea: [
           { t: 'A=' },
           { b: { op: ['b^2', 'a^2', '-b^2'], ok: 0 } },
