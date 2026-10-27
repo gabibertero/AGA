@@ -213,7 +213,7 @@ export const DEMOSTRACIONES = [
       },
       {
         que: 'Identificá F (término independiente)',
-        porque: 'El término sin \\(x\\) ni \\(y\\) es \\(F = h^2 + 4pk\\). Hay un solo término cuadrático (\\(x^2\\), con \\(C = 0\\)): es una parábola de eje paralelo a y.',
+        porque: 'El término sin \\(x\\) ni \\(y\\) es \\(F = h^2 + 4pk.\\) Hay un solo término cuadrático (\\(x^2\\), con \\(C = 0\\)): es una parábola de eje paralelo a y.',
         linea: [
           { t: 'F =' },
           { b: { op: ['h^2+4pk', 'h^2-4pk', '4pk'], ok: 0 } },
@@ -272,7 +272,7 @@ export const DEMOSTRACIONES = [
       },
       {
         que: 'Identificá F (término independiente)',
-        porque: 'El término sin \\(x\\) ni \\(y\\) es \\(F = k^2 + 4ph\\). Hay un solo término cuadrático (\\(y^2\\), con \\(A = 0\\)): es una parábola de eje paralelo a x.',
+        porque: 'El término sin \\(x\\) ni \\(y\\) es \\(F = k^2 + 4ph.\\) Hay un solo término cuadrático (\\(y^2\\), con \\(A = 0\\)): es una parábola de eje paralelo a x.',
         linea: [
           { t: 'F =' },
           { b: { op: ['k^2+4ph', 'k^2-4ph', '4ph'], ok: 0 } },

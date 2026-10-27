@@ -46,10 +46,10 @@ const fuentes = (s) => s.split(';').map((x) => x.trim()).filter(Boolean).map((x)
   .preg-estado { margin-left: auto; font-size: .82rem; font-weight: 700; color: var(--suave); }
   .preg[data-estado='sabe'] .preg-estado { color: var(--e-ok); }
   .preg[data-estado='repasar'] .preg-estado { color: var(--generado); }
-  .preg-tit { margin: .4rem 0 .5rem; font-family: var(--f-ed); font-size: 1.2rem; }
-  .preg-enun { margin: 0 0 .6rem; padding: 8px 14px; border-left: 4px solid var(--uc, var(--borde-fuerte)); background: var(--sup2); border-radius: 0 var(--r-s) var(--r-s) 0; font-style: italic; overflow-wrap: anywhere; }
-  .preg-fte { margin: .4rem 0 0; font-size: .82rem; color: var(--suave); overflow-wrap: anywhere; }
-  .preg-resp { margin: .6rem 0 .4rem; }
+  .preg-tit { margin: .5rem 0 .5rem; font-family: var(--f-ed); font-size: 1.2rem; }
+  .preg-enun { margin: 0 0 .75rem; padding: 8px 14px; border-left: 4px solid var(--uc, var(--borde-fuerte)); background: var(--sup2); border-radius: 0 var(--r-s) var(--r-s) 0; font-style: italic; overflow-wrap: anywhere; }
+  .preg-fte { margin: .5rem 0 0; font-size: .82rem; color: var(--suave); overflow-wrap: anywhere; }
+  .preg-resp { margin: .75rem 0 .5rem; }
   .preg-resp > summary { cursor: pointer; font-weight: 700; min-height: 40px; display: inline-flex; align-items: center; padding: 4px 14px; border: 1px solid var(--acento); border-radius: 999px; color: var(--acento); list-style: none; }
   .preg-resp > summary::-webkit-details-marker { display: none; }
   .preg-resp .s-ocultar, .preg-resp[open] .s-ver { display: none; }
@@ -60,7 +60,7 @@ const fuentes = (s) => s.split(';').map((x) => x.trim()).filter(Boolean).map((x)
   .resp table { display: block; overflow-x: auto; border-collapse: collapse; max-width: 100%; }
   .resp th, .resp td { border: 1px solid var(--borde-fuerte); padding: 5px 9px; vertical-align: top; }
   .resp img { max-width: 100%; height: auto; }
-  .preg-acc { display: flex; flex-wrap: wrap; gap: 8px; margin-top: .6rem; }
+  .preg-acc { display: flex; flex-wrap: wrap; gap: 8px; margin-top: .75rem; }
   .preg-acc button { min-height: 40px; padding: 6px 16px; border-radius: 999px; border: 1px solid var(--borde-fuerte); background: var(--sup2); color: var(--texto); font: inherit; font-weight: 600; cursor: pointer; }
   .preg-acc button[aria-pressed='true'].btn-sabe { background: var(--e-ok-bg); color: var(--e-ok); border-color: var(--e-ok); }
   .preg-acc button[aria-pressed='true'].btn-repasar { background: var(--generado-fondo); color: var(--generado); border-color: var(--generado); }

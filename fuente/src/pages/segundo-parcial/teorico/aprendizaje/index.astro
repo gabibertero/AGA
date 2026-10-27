@@ -133,20 +133,20 @@ BANCO.forEach((q) => { if (ids.has(q.id)) throw new Error(`aprendizaje: id repet
 
 <style is:global>
   .ap-config h2, .ap-banco-t { margin-top: .2rem; }
-  .ap-grupo { display: flex; flex-wrap: wrap; gap: 8px; margin: .6rem 0; }
+  .ap-grupo { display: flex; flex-wrap: wrap; gap: 8px; margin: .75rem 0; }
   .ap-u small { font-size: var(--t-xs); font-weight: 500; margin-left: 4px; color: var(--suave); }
   .ap-u[aria-pressed='true'] { background: var(--acento); color: var(--sobre-acento); border-color: var(--acento); }
   .ap-u[aria-pressed='true'] small { color: inherit; }
-  .ap-fila { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: .6rem 0; }
+  .ap-fila { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: .75rem 0; }
   .ap-fila select { min-height: 44px; font: inherit; padding: 0 10px; border: 1px solid var(--borde-fuerte); border-radius: var(--r-s); background: var(--sup2); color: var(--texto); }
   .ap-top { margin: 1.2rem 0 .8rem; }
   .ap-cont { margin: 0 0 6px; font-weight: 700; color: var(--suave); }
   .ap-q { background: var(--sup); border: 1px solid var(--borde); border-top: 5px solid var(--uc, var(--borde-fuerte)); border-radius: var(--r); box-shadow: var(--sombra); padding: 14px 20px 16px; margin: 0 0 1.25rem; min-width: 0; }
   .ap-q-cab { display: flex; flex-wrap: wrap; gap: 2px; }
   .q-enun { margin: .5rem 0; font-size: 1.08rem; overflow-x: auto; position: relative; max-width: 100%; }
-  .q-fig { margin: .6rem auto; background: #fff; border: 1px solid var(--borde-fuerte); border-radius: var(--r-s); padding: 10px; max-width: 26rem; }
+  .q-fig { margin: .75rem auto; background: #fff; border: 1px solid var(--borde-fuerte); border-radius: var(--r-s); padding: 10px; max-width: 26rem; }
   .q-fig svg { display: block; width: 100%; height: auto; }
-  .q-opts { margin: .6rem 0; padding-left: 1.6rem; }
+  .q-opts { margin: .75rem 0; padding-left: 1.6rem; }
   .q-opts li { margin: .35rem 0; overflow-x: auto; position: relative; }
   .ap-opcs { display: grid; gap: 8px; margin: .7rem 0; }
   .ap-opc { display: flex; justify-content: flex-start; align-items: center; gap: 10px; width: 100%; text-align: left; border-radius: var(--r-s); font-weight: 500; padding: 8px 14px; min-height: 48px; background: var(--sup2); }
@@ -181,7 +181,7 @@ BANCO.forEach((q) => { if (ids.has(q.id)) throw new Error(`aprendizaje: id repet
   .dm-deriv li { counter-increment: dd; padding: 12px; background: var(--sup); border: 1px solid var(--borde); border-radius: var(--r-s); line-height: 1.5; }
   .dm-deriv li > strong::before { content: counter(dd) '. '; }
   .dm-deriv .dm-linea { display: flex; margin: 4px 0; }
-  .q-sinjs { margin-top: .6rem; }
+  .q-sinjs { margin-top: .75rem; }
   .q-sinjs summary { cursor: pointer; font-weight: 700; color: var(--acento); min-height: 44px; display: flex; align-items: center; }
   .ap-ctl { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: .8rem 0 0; }
   .ap-ctl [data-sig] { margin-left: auto; }

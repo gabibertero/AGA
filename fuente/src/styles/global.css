@@ -35,9 +35,9 @@ a { color: var(--link); text-underline-offset: 3px; }
 .saltar { position: absolute; left: -999px; }
 .saltar:focus { left: 8px; top: 8px; background: var(--sup); padding: 8px 12px; z-index: 30; border-radius: 8px; }
 h1, h2, h3 { font-family: var(--f-ed); font-weight: 700; line-height: 1.2; letter-spacing: -.01em; }
-h1 { font-size: clamp(1.9rem, 4.5vw, 2.7rem); margin: .4em 0 .5em; }
-h2 { font-size: 1.55rem; margin: 2em 0 .6em; }
-h3 { font-size: 1.2rem; margin: 1.6em 0 .4em; }
+h1 { font-size: clamp(1.9rem, 4.5vw, 2.7rem); margin: .5em 0 .5em; }
+h2 { font-size: 1.55rem; margin: 2em 0 .75em; }
+h3 { font-size: 1.2rem; margin: 1.6em 0 .5em; }
 code { font-size: .88em; background: var(--sup2); border: 1px solid var(--borde); border-radius: 6px; padding: 1px 5px; }
 .suave, .meta { color: var(--suave); }
 .meta { font-size: .92rem; margin: 0 0 .75rem; }
@@ -102,7 +102,7 @@ button[data-accion='ocultar'] { border-color: transparent; background: transpare
 .emo { font-size: 1.6rem; line-height: 1; }
 .tarjeta-link strong { font-family: var(--f-ed); font-size: 1.25rem; }
 .ec-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px; }
-.ec-titulo { font-family: var(--f-ed); font-weight: 700; font-size: 1.15rem; line-height: 1.3; color: var(--texto); text-decoration: none; }
+.ec-titulo { display: block; padding-block: 11px; margin-block: -11px; font-family: var(--f-ed); font-weight: 700; font-size: 1.15rem; line-height: 1.3; color: var(--texto); text-decoration: none; }
 .lista-ex .tarjeta { position: relative; } /* contiene el ::after del link */
 .ec-titulo::after { content: ''; position: absolute; inset: 0; border-radius: var(--r); } /* tarjeta entera clickeable */
 .ec-titulo:hover { text-decoration: underline; }
@@ -116,7 +116,7 @@ button[data-accion='ocultar'] { border-color: transparent; background: transpare
 /* Inicio */
 .hero { padding: 32px 0 8px; }
 .hero h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); max-width: 24ch; }
-.hero-acc { display: flex; flex-wrap: wrap; gap: var(--s-3); margin: 1.4rem 0 2rem; }
+.hero-acc { display: flex; flex-wrap: wrap; gap: var(--s-3); margin: var(--s-6) 0 2rem; }
 .grilla-sec { margin-bottom: 2rem; }
 .tp { display: flex; flex-direction: column; gap: var(--s-2); background: var(--sup2); }
 .tp strong { font-family: var(--f-ed); font-size: 1.25rem; }
@@ -153,7 +153,7 @@ main > p { max-width: 46rem; }
 .tabs a[aria-current] { background: var(--acento); color: var(--sobre-acento); border-color: var(--acento); }
 .examen-cab { margin-bottom: 1.5rem; }
 .examen-cab h1 { margin: 0 0 .3em; font-size: clamp(1.6rem, 4vw, 2.2rem); }
-.examen-cab .meta { margin-bottom: .4rem; }
+.examen-cab .meta { margin-bottom: .5rem; }
 .examen-grid { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 32px; align-items: start; }
 .examen-cont { min-width: 0; max-width: 48rem; }
 .indice { position: sticky; top: 76px; background: var(--sup); border: 1px solid var(--borde); border-radius: var(--r); padding: var(--s-4); }
@@ -190,7 +190,7 @@ main > p { max-width: 46rem; }
 .seg label:has(input[value='resuelto']:checked)::before { content: '✓\00a0'; }
 .seg label:has(input:focus-visible) { outline: 3px solid var(--link); outline-offset: 2px; }
 .acciones { display: flex; flex-wrap: wrap; gap: 8px; margin: 1rem 0 0; padding-top: 1rem; border-top: 1px dashed var(--borde); }
-.ejercicio .capa { margin: .85rem 0; }
+.ejercicio .capa { margin: .75rem 0; }
 .ejercicio [data-solucion].elaborado { border-width: 2px; border-left-width: 6px; box-shadow: var(--sombra); }
 .ejercicio [data-solucion] > .rotulo { font-size: .85rem; }
 
@@ -248,15 +248,15 @@ main > p { max-width: 46rem; }
 .ex-aviso { color: var(--e-curso); font-weight: 700; }
 .ex-nota { font-size: 1.2rem; margin: .5rem 0 0; }
 .examen-panel[data-fase='corriendo'] { position: sticky; top: 58px; z-index: 15; } /* debajo del header sticky (.sitio, 58px) */
-.autocorr { margin: .85rem 0 0; padding-top: .75rem; border-top: 1px dashed var(--borde); }
+.autocorr { margin: .75rem 0 0; padding-top: .75rem; border-top: 1px dashed var(--borde); }
 .autocorr-t { margin: 0 0 .5rem; font-weight: 700; }
 .criterios { margin: 0 0 .75rem; font-size: .92rem; }
-.criterios dt { font-weight: 700; margin-top: .4rem; }
+.criterios dt { font-weight: 700; margin-top: .5rem; }
 .criterios dd { margin: 0; color: var(--suave); }
 .autocorr-b { display: flex; flex-wrap: wrap; gap: 8px; }
 .autocorr-b button[aria-pressed='true'] { background: var(--e-ok-bg); color: var(--e-ok); box-shadow: inset 0 0 0 2px var(--e-ok); }
 .autocorr-b button:focus-visible, .ex-fila button:focus-visible { outline: 3px solid var(--link); outline-offset: 2px; }
-.autocorr .recordatorio { margin: .6rem 0 0; font-size: .9rem; color: var(--suave); }
+.autocorr .recordatorio { margin: .75rem 0 0; font-size: .9rem; color: var(--suave); }
 /* Durante el examen se ocultan ayudas, soluciones y estado; al entregar vuelven soluciones y pasos. */
 body[data-examen] [data-pista], body[data-examen] .acciones, body[data-examen] .estado, body[data-examen='activo'] [data-paso], body[data-examen='activo'] [data-solucion], body[data-examen='activo'] [data-respuestas] { display: none !important; }
 body[data-examen='entregado'] .ejercicio .capa[data-paso], body[data-examen='entregado'] .ejercicio .capa[data-solucion], body[data-examen='entregado'] [data-respuestas] { display: block !important; }
@@ -268,7 +268,7 @@ body[data-examen='entregado'] [data-respuestas] > summary { display: list-item !
 .hero-sigla { display: block; font-size: clamp(3.4rem, 11vw, 6rem); letter-spacing: -.03em; color: var(--acento); }
 .hero-mat { display: block; font-size: clamp(1.25rem, 3.2vw, 1.75rem); font-weight: 600; color: var(--texto); letter-spacing: 0; }
 .hero-home .hero-acc { margin: 1.2rem 0 .8rem; }
-.btn-examen { min-height: 48px; padding: var(--s-3) 22px; font-size: 1rem; box-shadow: var(--sombra); }
+.btn-examen { min-height: 48px; padding: var(--s-3) var(--s-6); font-size: 1rem; box-shadow: var(--sombra); }
 .hero-seguir { margin: 0; font-size: .95rem; color: var(--suave); }
 .hero-svg { width: 100%; height: auto; max-height: 300px; }
 .hero-svg .h-ejes { stroke: var(--suave); }
@@ -356,7 +356,13 @@ body[data-examen='entregado'] [data-respuestas] > summary { display: list-item !
 
 /* Foco de teclado visible en controles propios */
 .cuenta input:focus-visible, .cuenta input:focus-within, summary:focus-visible, button:focus-visible, .btn:focus-visible, select:focus-visible, .mapa-g h3 a:focus-visible { outline: 3px solid var(--link); outline-offset: 2px; box-shadow: 0 0 0 5px var(--fondo); }
-.otros > summary, .hoja .hoja-escaneo summary, .capa summary, .lectura summary, details > summary { min-height: 44px; display: flex; align-items: center; }
+.otros > summary, .hoja .hoja-escaneo summary, .capa summary, .lectura summary, details > summary { min-height: 44px; display: flex; align-items: center; gap: var(--s-2); }
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+details > summary::before { content: '\25B8'; flex: none; display: inline-block; width: 1em; text-align: center; font-size: 1.15em; color: var(--link); transition: transform .15s; }
+details[open] > summary::before { transform: rotate(90deg); }
+@media (prefers-reduced-motion: reduce) { details > summary::before { transition: none; } }
+.pie a { display: inline-block; padding-block: 12px; }
 @media (max-width: 900px) { .panel-home { grid-template-columns: minmax(0, 1fr); } }
 .mapa ol:last-child { margin-bottom: 0; }
 /* Controles que solo sirven con JS: ocultos hasta que el script de <head> marca <html class="js"> */
