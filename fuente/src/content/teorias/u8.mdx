@@ -19,7 +19,7 @@ El nombre dice qué devuelve. El escalar da un escalar (número), el vectorial d
 
 <Nota tipo="def">
 
-Número que se obtiene multiplicando las componentes correspondientes y sumando.
+El producto escalar de $\bar a$ y $\bar b$ es el **número** que resulta de multiplicar sus módulos por el coseno del ángulo $\theta$ que forman: $\bar a\cdot\bar b=\lvert\bar a\rvert\,\lvert\bar b\rvert\cos\theta$, con $0^\circ\le\theta\le180^\circ$.
 
 </Nota>
 
@@ -28,7 +28,7 @@ Número que se obtiene multiplicando las componentes correspondientes y sumando.
 1. Multiplicá las componentes homólogas ($x$ con $x$, $y$ con $y$, $z$ con $z$).
 2. Sumá los productos: $\bar a\cdot\bar b=a_1b_1+a_2b_2+a_3b_3$ (en $\mathbb R^2$ sin el tercer término).
 
-**Interpretación geométrica:** $\bar a\cdot\bar b=\lvert\bar a\rvert\,\lvert\bar b\rvert\cos\theta$, con $\theta$ el ángulo entre los dos vectores.
+**Por qué la cuenta da lo mismo:** al distribuir, $\bar i\cdot\bar i=\bar j\cdot\bar j=\bar k\cdot\bar k=1$ y los productos entre versores distintos dan $0$.
 
 <Fig name="u8-angulo" pie="θ es el ángulo entre los dos vectores." />
 
@@ -52,7 +52,7 @@ $\bar a=(1;2;3)$, $\bar b=(4;0;-1)$ → $1\cdot4+2\cdot0+3\cdot(-1)=4-3=\mathbf{
 
 ## 2. Módulo / longitud
 
-**Definición:** longitud del vector; sale del producto escalar del vector por sí mismo.
+**Definición:** el módulo de $\bar u$ es el **número no negativo** que mide su longitud. Como el ángulo de $\bar u$ consigo mismo es $0^\circ$, $\bar u\cdot\bar u=\lvert\bar u\rvert^2$, y de ahí:
 
 $$\lvert\bar u\rvert=\sqrt{\bar u\cdot\bar u}=\sqrt{u_1^2+u_2^2+u_3^2}$$
 
@@ -126,7 +126,7 @@ $\bar a=(3;3)$, $\bar b=(1;0)$ → $\bar a\cdot\bar b=3$, $\lvert\bar b\rvert^2=
 
 ## 6. Producto vectorial (solo $\mathbb R^3$)
 
-**Definición:** vector **perpendicular** a los dos a la vez.
+**Definición:** el producto vectorial de $\bar a$ y $\bar b$ es el **vector** $\bar a\times\bar b$ que tiene: **dirección** perpendicular a $\bar a$ y a $\bar b$ (al plano que determinan); **sentido** dado por la regla de la mano derecha (de $\bar a$ hacia $\bar b$); **módulo** $\lvert\bar a\rvert\,\lvert\bar b\rvert\,\mathrm{sen}\,\theta$. Si $\bar a\parallel\bar b$ da $\bar 0$.
 
 **Cómo se hace:**
 
@@ -159,7 +159,7 @@ $\bar a=(1;0;0)$, $\bar b=(0;1;0)$ → $\bar a\times\bar b=(0;0;1)=\bar k$.
 
 ## 7. Producto mixto (solo $\mathbb R^3$)
 
-**Definición:** número $(\bar a\times\bar b)\cdot\bar c$.
+**Definición:** el producto mixto de $\bar a$, $\bar b$, $\bar c$ es el **número** que resulta de multiplicar vectorialmente $\bar a$ por $\bar b$ y el resultado, escalarmente, por $\bar c$: $(\bar a\times\bar b)\cdot\bar c$. Su valor absoluto es el volumen del paralelepípedo de aristas $\bar a,\bar b,\bar c$.
 
 **Cómo se hace:**
 

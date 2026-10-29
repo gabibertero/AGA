@@ -67,7 +67,7 @@ export const BANCO = [
     id: 'u8-dev-03', unidad: 'U8', tipo: 'dev',
     enun: T`Definí el producto vectorial: cómo se calcula, qué significa su módulo y qué propiedades tiene. ¿Qué control hacés?`,
     modelo: [
-      T`**Definición:** es el vector **perpendicular** a los dos a la vez (solo en $\mathbb R^3$).`,
+      T`**Definición:** es el **vector** (solo en $\mathbb R^3$) con dirección perpendicular a $\bar a$ y a $\bar b$, sentido por la regla de la mano derecha y módulo $|\bar a||\bar b|\,\mathrm{sen}\,\theta$.`,
       T`1. Se arma el determinante simbólico $3\times3$ con $\bar i,\bar j,\bar k$ en la 1ª fila, $\bar a$ en la 2ª y $\bar b$ en la 3ª.`,
       T`2. Se desarrolla por la 1ª fila con signos $+,-,+$:`,
       T`$$\bar a\times\bar b=(a_2b_3-a_3b_2)\,\bar i-(a_1b_3-a_3b_1)\,\bar j+(a_1b_2-a_2b_1)\,\bar k$$`,
@@ -237,7 +237,7 @@ export const BANCO = [
     id: 'u10-dev-01', unidad: 'U10', tipo: 'dev',
     enun: T`Elipse: definí, nombrá sus elementos y la relación entre $a$, $b$ y $c$, escribí sus ecuaciones y explicá cómo se grafica.`,
     modelo: [
-      T`**Definición:** lugar geométrico de los puntos tales que la **suma** de distancias a dos focos es constante e igual a $2a$.`,
+      T`**Definición:** lugar geométrico de los puntos $P$ del plano cuya **suma** de distancias a dos focos es constante e igual a $2a$, con $2a>2c$: $PF+PF'=2a$.`,
       T`**Elementos:** $a$ semieje mayor, $b$ semieje menor, $c$ distancia del centro a cada foco; $\boxed{a^2=b^2+c^2}$. Excentricidad $e=\dfrac ca$, con $0<e<1$.`,
       T`- Origen, eje focal en $x$: $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$; en $y$: $\dfrac{x^2}{b^2}+\dfrac{y^2}{a^2}=1$ ($a^2$ siempre bajo el eje focal).`,
       T`- Centro $(h;k)$, eje $\parallel x$: $\dfrac{(x-h)^2}{a^2}+\dfrac{(y-k)^2}{b^2}=1$; eje $\parallel y$: $\dfrac{(x-h)^2}{b^2}+\dfrac{(y-k)^2}{a^2}=1$.`,
@@ -262,7 +262,7 @@ export const BANCO = [
     id: 'u10-dev-03', unidad: 'U10', tipo: 'dev',
     enun: T`Hipérbola: definición, relación entre $a$, $b$ y $c$, asíntotas y cómo se grafica.`,
     modelo: [
-      T`**Definición:** lugar geométrico de los puntos tales que el **valor absoluto de la diferencia** de distancias a dos focos es constante e igual a $2a$.`,
+      T`**Definición:** lugar geométrico de los puntos $P$ del plano tales que el **valor absoluto de la diferencia** de distancias a dos focos es constante e igual a $2a$, con $2a<2c$: $|PF-PF'|=2a$.`,
       T`**Elementos:** $a$ semieje transverso, $b$ semieje conjugado, $c$ distancia del centro a cada foco; $\boxed{c^2=a^2+b^2}$ ($c$ es el mayor). Excentricidad $e=\dfrac ca>1$.`,
       T`**Ecuación:** $\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=1$ (transverso en $x$) o $\dfrac{y^2}{a^2}-\dfrac{x^2}{b^2}=1$ (transverso en $y$); con centro $(h;k)$ se reemplazan $x\to x-h$, $y\to y-k$. General: $Ax^2-Cy^2+Dx+Ey+F=0$ (cuadráticos de signos opuestos).`,
       T`**Asíntotas** (centro en el origen): transverso horizontal $y=\pm\dfrac ba\,x$; transverso vertical $y=\pm\dfrac ab\,x$.`,
@@ -355,7 +355,7 @@ export const BANCO = [
     id: 'u8-dev-04', unidad: 'U8', tipo: 'dev',
     enun: T`Producto mixto: definilo, explicá cómo se calcula y qué indica que dé $0$. Calculalo para $\bar a=(2;1;1)$, $\bar b=(1;2;0)$, $\bar c=(1;0;2)$ y decí cuánto vale el volumen del paralelepípedo y del tetraedro.`,
     modelo: [
-      T`**Definición:** es el número $(\bar a\times\bar b)\cdot\bar c$ (solo en $\mathbb R^3$).`,
+      T`**Definición:** es el **número** que resulta de multiplicar vectorialmente $\bar a$ por $\bar b$ y el resultado, escalarmente, por $\bar c$: $(\bar a\times\bar b)\cdot\bar c$ (solo en $\mathbb R^3$).`,
       T`1. Se arma un determinante $3\times3$ con las componentes de $\bar a,\bar b,\bar c$ en **filas**.`,
       T`2. Se calcula: ese número es el producto mixto.`,
       T`$$\begin{vmatrix}2&1&1\\1&2&0\\1&0&2\end{vmatrix}=2(4-0)-1(2-0)+1(0-2)=8-2-2=4$$`,
@@ -586,7 +586,7 @@ export const BANCO = [
     id: 'u10-dev-04', unidad: 'U10', tipo: 'dev',
     enun: T`Parábola: definí, nombrá sus elementos, escribí sus ecuaciones y explicá cómo se grafica.`,
     modelo: [
-      T`**Definición:** lugar geométrico de los puntos que están a **igual distancia** de una recta fija (directriz) y de un punto fijo (foco).`,
+      T`**Definición:** lugar geométrico de los puntos $P$ del plano que están a **igual distancia** de un punto fijo (foco) y de una recta fija (directriz) que no pasa por él: $PF=d(P;\ell)$.`,
       T`**Elementos:** $p$ es la distancia del vértice al foco (igual a la del vértice a la directriz). No tiene centro: tiene vértice. Excentricidad $e=1$.`,
       T`- Vértice en el origen: eje en $x$, $y^2=4px$; eje en $y$, $x^2=4py$.`,
       T`- Vértice $(h;k)$: eje $\parallel x$, $(y-k)^2=4p(x-h)$; eje $\parallel y$, $(x-h)^2=4p(y-k)$.`,

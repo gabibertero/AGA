@@ -7,9 +7,9 @@ resumen: "Cortes cono–plano, ecuación general, circunferencia, elipse, hipér
 import Fig from '../../components/TeoFig.astro';
 import Nota from '../../components/TeoNota.astro';
 
-**Superficie cónica:** es la superficie que genera una recta (la **generatriz**) al girar alrededor de un **eje**, pasando siempre por un punto fijo (el **vértice**). Queda formada por dos hojas unidas en el vértice.
+**Superficie cónica:** es la superficie que genera una recta (la **generatriz**) al girar alrededor de otra recta fija (el **eje**) a la que corta en un punto (el **vértice**), manteniendo constante el ángulo con ella. Queda formada por dos hojas unidas en el vértice.
 
-**Cónica:** es el **lugar geométrico** de las curvas que resultan de la intersección de un plano con esa superficie cónica. El tipo de curva depende de la inclinación del plano respecto del eje y de la generatriz.
+**Cónica:** es la curva que resulta de **cortar la superficie cónica con un plano** que no pasa por el vértice. El tipo de curva depende de la inclinación del plano respecto del eje y de la generatriz.
 
 ## 1. Origen: cortes cono–plano
 
@@ -56,7 +56,7 @@ Es de segundo grado con dos variables. $xy$ es el término rectangular (solo apa
 
 ## 3. Circunferencia
 
-**Definición:** lugar geométrico de los puntos que están a una **distancia constante $r$** (radio) de un punto fijo $C$ (centro).
+**Definición:** lugar geométrico de los puntos $P$ del plano que están a una **distancia constante $r>0$** (radio) de un punto fijo $C$ (centro): $PC=r$.
 
 <Fig name="u10-circunferencia" pie="Todos los puntos P están a la misma distancia r del centro C." />
 
@@ -79,7 +79,7 @@ Es de segundo grado con dos variables. $xy$ es el término rectangular (solo apa
 
 ## 4. Elipse
 
-**Definición:** lugar geométrico de los puntos tales que la **suma** de distancias a dos focos es constante e igual a $2a$.
+**Definición:** lugar geométrico de los puntos $P$ del plano cuya **suma** de distancias a dos puntos fijos (focos $F$ y $F'$) es constante e igual a $2a$, mayor que la distancia focal $2c$: $PF+PF'=2a$.
 
 <Fig name="u10-elipse" pie="Para todo punto P de la elipse, PF + PF′ = 2a. El semieje mayor es a; el menor, b." />
 
@@ -112,7 +112,7 @@ El **denominador mayor** es $a^2$ y marca el eje focal. Si $e\to0$ se parece a c
 
 ## 5. Hipérbola
 
-**Definición:** lugar geométrico de los puntos tales que el **valor absoluto de la diferencia** de distancias a dos focos es constante e igual a $2a$.
+**Definición:** lugar geométrico de los puntos $P$ del plano tales que el **valor absoluto de la diferencia** de sus distancias a dos puntos fijos (focos $F$ y $F'$) es constante e igual a $2a$, menor que la distancia focal $2c$: $\lvert PF-PF'\rvert=2a$.
 
 <Fig name="u10-hiperbola" pie="Dos ramas que se acercan a las asíntotas (punteadas) sin tocarlas. Los focos quedan por fuera de los vértices." />
 
@@ -152,7 +152,7 @@ Con centro $(h;k)$ se trasladan: $y-k=\pm\dfrac ba(x-h)$, o $y-k=\pm\dfrac ab(x-
 
 ## 6. Parábola
 
-**Definición:** lugar geométrico de los puntos que están a **igual distancia** de una recta fija (directriz) y de un punto fijo (foco).
+**Definición:** lugar geométrico de los puntos $P$ del plano que están a **igual distancia** de un punto fijo $F$ (foco) y de una recta fija $\ell$ (directriz) que no pasa por el foco: $PF=d(P;\ell)$.
 
 <Fig name="u10-parabola" pie="La distancia de P al foco F es igual a su distancia a la directriz. El vértice V está a mitad de camino entre foco y directriz." />
 
