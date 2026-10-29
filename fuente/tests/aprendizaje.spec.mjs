@@ -33,6 +33,8 @@ test('machete combinado: todas las unidades y sin scroll horizontal', async ({ p
   await expect(page.locator('.m-banda')).toHaveCount(4);
   await expect(page.locator('.katex-error')).toHaveCount(0);
   expect(await page.locator('.m-fila').count()).toBeGreaterThan(60);
+  await expect(page.locator('.r-sec')).toHaveCount(5);
+  expect(await page.locator('.r-pasos li').count()).toBeGreaterThan(80);
   expect(await sinScrollH(page)).toBe(true);
 });
 

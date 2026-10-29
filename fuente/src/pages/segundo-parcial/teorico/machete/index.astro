@@ -106,8 +106,211 @@ const bandas = [
     ] },
   ] },
 ];
+// Recetario: por tipo de ejercicio, datos → pasos → control (ok). Texto con $...$ inline.
+const R = String.raw;
+const recetario = [
+  { u: 'U8', t: 'Vectores', recetas: [
+    { t: 'Módulo, ángulo y proyección', p: [
+      R`Módulo $\lvert\bar a\rvert=\sqrt{a_1^2+a_2^2+a_3^2}$; versor $\frac{\bar a}{\lvert\bar a\rvert}$; cosenos directores $\cos\alpha=\frac{a_1}{\lvert\bar a\rvert}$, etc.`,
+      R`Escalar $\bar a\cdot\bar b=a_1b_1+a_2b_2+a_3b_3$; ángulo $\cos\theta=\frac{\bar a\cdot\bar b}{\lvert\bar a\rvert\lvert\bar b\rvert}$.`,
+      R`**Perpendiculares:** $\bar a\cdot\bar b=0$. **Paralelos:** componentes proporcionales ($\bar a\times\bar b=\bar 0$).`,
+      R`**Proyección** de $\bar a$ sobre $\bar b$: escalar $\frac{\bar a\cdot\bar b}{\lvert\bar b\rvert}$; vectorial $\bar w_1=\frac{\bar a\cdot\bar b}{\lvert\bar b\rvert^2}\bar b$; componente perpendicular $\bar w_2=\bar a-\bar w_1$.`,
+    ], ok: R`$\bar w_2\cdot\bar b=0$ y $\sum\cos^2=1$.` },
+    { t: 'Vectorial y mixto: áreas y volúmenes', p: [
+      R`**Vectorial:** determinante con $\bar i,\bar j,\bar k$ en la 1.ª fila, $\bar a$ en la 2.ª y $\bar b$ en la 3.ª.`,
+      R`Área del paralelogramo $\lvert\bar a\times\bar b\rvert$; del triángulo, la mitad.`,
+      R`**Mixto:** determinante con $\bar a,\bar b,\bar c$ en filas $=(\bar a\times\bar b)\cdot\bar c$.`,
+      R`Volumen del paralelepípedo $\lvert(\bar a\times\bar b)\cdot\bar c\rvert$; del tetraedro, $\frac16$ de eso. **Coplanares** si da $0$.`,
+      R`**Despejar un vector** de $\bar a\times\bar x=\bar b$: planteá $\bar x=(x;y;z)$, igualá componentes y sumá la condición extra del enunciado.`,
+    ], ok: R`$\bar a\times\bar b$ da $0$ en escalar con $\bar a$ y con $\bar b$.` },
+  ] },
+  { u: 'U9', t: 'Rectas', recetas: [
+    { t: 'Recta por un punto y un director', p: [
+      R`**Datos:** $P_1(x_1;y_1;z_1)$ y $\bar a=(a_1;a_2;a_3)\neq\bar 0$.`,
+      R`Vectorial: $(x;y;z)=(x_1;y_1;z_1)+\lambda(a_1;a_2;a_3)$.`,
+      R`Paramétrica: igualá componente a componente, $x=x_1+\lambda a_1$, etc.`,
+      R`Simétrica: despejá $\lambda$ en cada una e igualá, $\frac{x-x_1}{a_1}=\frac{y-y_1}{a_2}=\frac{z-z_1}{a_3}$. Si una $a_i=0$, esa coordenada queda fija aparte (ej. $x=x_1$).`,
+      R`**Director desconocido:** $\perp$ a dos rectas → $\bar a=\bar a_1\times\bar a_2$; paralela a dos planos → $\bar a=\bar n_1\times\bar n_2$; $\perp$ a un plano → $\bar a=\bar n$.`,
+    ], ok: R`con $\lambda=0$ sale $P_1$.` },
+    { t: 'Recta por dos puntos', p: [
+      R`**Datos:** $P_1$ y $P_2$.`,
+      R`Director: $\bar a=\overrightarrow{P_1P_2}=P_2-P_1$.`,
+      R`Seguí la receta anterior con $P_1$ y $\bar a$.`,
+    ], ok: R`$P_2$ verifica con $\lambda=1$.` },
+    { t: 'Cambiar de forma', p: [
+      R`**Leer la simétrica:** lo que se resta arriba es $P_1$; los denominadores son $\bar a$.`,
+      R`**Simétrica → general** (en $\mathbb R^2$): multiplicá en cruz y pasá todo a un miembro: $Ax+By+C=0$.`,
+      R`**General → explícita:** despejá $y$: $y=mx+b$ con $m=-\frac AB$.`,
+      R`**General → director:** $\bar a=(-B;A)$; la normal es $(A;B)$.`,
+      R`**Recta como intersección de dos planos** (en $\mathbb R^3$): director $\bar a=\bar n_1\times\bar n_2$; punto: poné una variable en $0$ y resolvé el $2\times2$ (si no tiene solución única, otra variable). Después $P+\lambda\bar a$.`,
+    ], ok: R`un punto conocido de la recta verifica la forma nueva.` },
+    { t: 'Recta en el plano: pendiente', p: [
+      R`**Pendiente:** $m=\frac{y_2-y_1}{x_2-x_1}=\frac{a_2}{a_1}=-\frac AB$.`,
+      R`Ecuación por un punto: $y-y_1=m(x-x_1)$.`,
+      R`**Paralelas:** $m_1=m_2$. **Perpendiculares:** $m_1\cdot m_2=-1$ (o sea $m_2=-\frac1{m_1}$).`,
+      R`**Corte de dos rectas:** resolvé el sistema $2\times2$.`,
+    ], ok: R`el punto de corte verifica las dos ecuaciones.` },
+    { t: 'Posición de dos rectas en el espacio', p: [
+      R`**Datos:** $r_1:(P_1;\bar a_1)$ y $r_2:(P_2;\bar a_2)$.`,
+      R`¿$\bar a_1\parallel\bar a_2$ (componentes proporcionales)? Si sí: $P_2\in r_1$ → **coincidentes**; si no → **paralelas**.`,
+      R`Si no son paralelas, calculá el mixto $[\overrightarrow{P_1P_2},\bar a_1,\bar a_2]$: $=0$ → **secantes**; $\neq0$ → **alabeadas**.`,
+      R`**Intersección (secantes):** igualá las paramétricas con $\lambda$ y $\mu$, resolvé dos ecuaciones, verificá la tercera y reemplazá $\lambda$.`,
+      R`**Con un parámetro** del enunciado ($k$): coplanares → mixto $=0$; perpendiculares → $\bar a_1\cdot\bar a_2=0$. Despejá $k$.`,
+    ], ok: R`el punto de corte está en las dos rectas; si la tercera ecuación no cierra, eran alabeadas.` },
+    { t: 'Perpendicular, pie y proyección', p: [
+      R`**Recta por** $P$ **perpendicular a** $\pi$: $\bar a=\bar n$, o sea $P+\lambda\bar n$.`,
+      R`**Pie de la perpendicular** de $P$ a $\pi$: intersecá esa recta con $\pi$ → $Q$. Simétrico de $P$: $P'=2Q-P$.`,
+      R`**Pie de la perpendicular** de $P$ a una recta $r$: plano por $P$ con normal $\bar a_r$, cortalo con $r$ → $Q$.`,
+      R`**Proyección de una recta** sobre $\pi$: es un **punto** solo si la recta es perpendicular al plano ($\bar a\parallel\bar n$); si no, armá el plano que contiene a $r$ y es $\perp$ a $\pi$ ($\bar n'=\bar a\times\bar n$, punto de $r$); la proyección es la recta intersección de ese plano con $\pi$.`,
+    ], ok: R`$Q$ está en $\pi$ (o en $r$), $\overrightarrow{PQ}\parallel\bar n$ (o $\perp\bar a_r$) y $\lvert PQ\rvert$ es la distancia.` },
+  ] },
+  { u: 'U9', t: 'Planos', recetas: [
+    { t: 'Plano por un punto y una normal', p: [
+      R`**Datos:** $P_1$ y $\bar n=(A;B;C)$.`,
+      R`$A(x-x_1)+B(y-y_1)+C(z-z_1)=0$.`,
+      R`Distribuí: $Ax+By+Cz+D=0$ con $D=-(Ax_1+By_1+Cz_1)$.`,
+    ], ok: R`$P_1$ verifica la ecuación.` },
+    { t: 'Plano por tres puntos', p: [
+      R`**Datos:** $P_1,P_2,P_3$.`,
+      R`$\bar u=\overrightarrow{P_1P_2}$, $\bar v=\overrightarrow{P_1P_3}$, $\bar n=\bar u\times\bar v$.`,
+      R`Si $\bar n=\bar 0$ están alineados: no hay un único plano.`,
+      R`Seguí con punto y normal ($P_1$, $\bar n$).`,
+    ], ok: R`los **tres** puntos verifican.` },
+    { t: 'Plano por un punto y dos direcciones', p: [
+      R`**Datos:** $P_1$, $\bar u$, $\bar v$ no paralelos.`,
+      R`Vectorial: $\overrightarrow{OP}=\overrightarrow{OP_1}+\alpha\bar u+\beta\bar v$; paramétrica: componente a componente.`,
+      R`Cartesiana: $\bar n=\bar u\times\bar v$ y punto y normal.`,
+    ], ok: R`$\bar n\cdot\bar u=\bar n\cdot\bar v=0$.` },
+    { t: 'Plano desde rectas', p: [
+      R`**Dos rectas secantes:** $\bar n=\bar a_1\times\bar a_2$, punto $P_1$.`,
+      R`**Dos rectas paralelas:** $\bar n=\bar a\times\overrightarrow{P_1P_2}$ (el director solo no alcanza).`,
+      R`**Por un punto** $P$ **y una recta** $r(P_1;\bar a)$: $\bar n=\bar a\times\overrightarrow{P_1P}$.`,
+      R`**Por** $P_1$, $P_2$ **y perpendicular a** $\pi_3$: $\bar n=\overrightarrow{P_1P_2}\times\bar n_3$.`,
+      R`**Paralelo a un plano** $\pi$: misma normal; $D$ sale con el punto.`,
+      R`**Por** $P$ **y paralelo a dos rectas**: $\bar n=\bar a_1\times\bar a_2$.`,
+      R`**Contiene** $r_1$ **y es paralelo a** $r_2$: $\bar n=\bar a_1\times\bar a_2$, punto $P_1$.`,
+      R`**Contiene una recta y es perpendicular a un plano** $\pi_1$: $\bar n=\bar a\times\bar n_1$, punto de la recta.`,
+      R`**Pasa por** $P$ **y es perpendicular a dos planos:** $\bar n=\bar n_1\times\bar n_2$. Es lo mismo que **plano por** $P$ **perpendicular a la recta** $r=\pi_1\cap\pi_2$: el director de $r$ es la normal. (Recta por $P$ paralela a dos planos: $\bar a=\bar n_1\times\bar n_2$.)`,
+    ], ok: R`$\bar n$ es $\perp$ a cada director o vector que usaste ($\bar n\cdot\bar a=0$) y los puntos dados verifican la ecuación.` },
+    { t: 'Paramétrica ↔ cartesiana', p: [
+      R`**Paramétrica → cartesiana:** leé $P_1$ (términos sueltos), $\bar u$ (coef. de $\alpha$) y $\bar v$ (coef. de $\beta$); $\bar n=\bar u\times\bar v$; punto y normal.`,
+      R`**Cartesiana → paramétrica:** elegí dos variables como parámetros ($x=\alpha$, $y=\beta$) y despejá la tercera: $z=\frac{-D-A\alpha-B\beta}{C}$ (con $C\neq0$).`,
+    ], ok: R`reemplazá la paramétrica en la cartesiana: tiene que dar $0=0$.` },
+    { t: 'Haz de planos', p: [
+      R`**Cuándo:** el plano pasa por la recta intersección de $\pi_1$ y $\pi_2$.`,
+      R`Escribí $\pi_1+\lambda\,\pi_2=0$ y agrupá: la normal queda en función de $\lambda$.`,
+      R`Imponé la otra condición: pasa por un punto (reemplazá), paralelo a una recta ($\bar n\cdot\bar a=0$) o $\perp$ a un plano ($\bar n\cdot\bar n_3=0$). Despejá $\lambda$. Si esa recta viene como intersección de dos planos, su director es $\bar n_3\times\bar n_4$.`,
+      R`**Plano del haz perpendicular a una recta** (o proyección de la recta sobre él = un punto): agrupá la normal por $x,y,z$ y exigí $\bar n=t\,\bar a$. Si hay otro parámetro ($k$), sacalo con un punto del plano.`,
+      R`Si no hay $\lambda$ que sirva, probá con $\pi_2$ solo (el haz no lo incluye).`,
+    ], ok: R`el plano final cumple la condición pedida.` },
+    { t: 'Plano mediador de dos puntos', p: [
+      R`**Datos:** $P$ y $Q$. Es el plano de los puntos que equidistan de los dos.`,
+      R`Normal $\bar n=\overrightarrow{PQ}$; punto: el punto medio $M=\frac{P+Q}2$.`,
+      R`Seguí con punto y normal ($M$, $\bar n$).`,
+    ], ok: R`$d(P;\pi)=d(Q;\pi)$ y $M$ verifica.` },
+    { t: 'Cortes con los ejes y trazas', p: [
+      R`**Corte con un eje:** las otras dos variables $=0$ (eje $x$: $y=z=0$).`,
+      R`**Segmentaria** (solo si no pasa por el origen y corta los tres ejes): $\frac xp+\frac yq+\frac zr=1$ con $p=-\frac DA$, $q=-\frac DB$, $r=-\frac DC$.`,
+      R`**Si el enunciado da un corte** con un eje, es un punto más del plano: corte en $y=q$ → $(0;q;0)$.`,
+      R`**Con parámetros** (ej. paralelo a una recta y a distancia $d$ de un punto): una ecuación por condición, $\bar n\cdot\bar a=0$ y la fórmula de distancia $=d$. Resolvé el sistema.`,
+      R`**Traza con un plano coordenado:** poné esa variable en $0$ (traza con $xy$: $z=0$) y queda una recta.`,
+    ], ok: R`los puntos de corte verifican la general.` },
+  ] },
+  { u: 'U9', t: 'Posiciones, ángulos y distancias', recetas: [
+    { t: 'Recta y plano', p: [
+      R`**Datos:** $r:(P_1;\bar a)$, $\pi:\bar n$.`,
+      R`$\bar n\cdot\bar a\neq0$ → **secantes**. Intersección: reemplazá la paramétrica en $\pi$, despejá $\lambda$ y volvé a la paramétrica.`,
+      R`$\bar n\cdot\bar a=0$ → paralela: si $P_1\in\pi$ está **contenida**; si no, **paralela exterior** (distancia = punto-plano de $P_1$).`,
+      R`**Perpendicular:** $\bar a\parallel\bar n$.`,
+    ], ok: R`el punto de intersección verifica la recta y el plano.` },
+    { t: 'Dos planos', p: [
+      R`$\bar n_1\parallel\bar n_2$: si toda la ecuación es proporcional (también $D$) → **coincidentes**; si no → **paralelos**.`,
+      R`Si no: se cortan en una recta. Director $\bar a=\bar n_1\times\bar n_2$; punto: dale un valor a una variable (ej. $z=0$) y resolvé el $2\times2$; si no tiene solución única, probá con otra variable.`,
+      R`**Perpendiculares:** $\bar n_1\cdot\bar n_2=0$.`,
+    ], ok: R`el punto hallado verifica los dos planos y $\bar a\cdot\bar n_1=\bar a\cdot\bar n_2=0$.` },
+    { t: 'Ángulos', p: [
+      R`**Mismo tipo** (dos directores o dos normales) → **coseno** con valor absoluto: $\cos\theta=\frac{\lvert\bar u\cdot\bar v\rvert}{\lvert\bar u\rvert\lvert\bar v\rvert}$.`,
+      R`**Recta–plano** → **seno**: $\mathrm{sen}\,\beta=\frac{\lvert\bar n\cdot\bar a\rvert}{\lvert\bar n\rvert\lvert\bar a\rvert}$.`,
+    ], ok: R`el ángulo queda entre $0^\circ$ y $90^\circ$.` },
+    { t: 'Distancia de un punto', p: [
+      R`**Punto–plano:** $\frac{\lvert Ax_0+By_0+Cz_0+D\rvert}{\sqrt{A^2+B^2+C^2}}$.`,
+      R`**Punto–recta** (en $\mathbb R^3$): $\frac{\lvert\overrightarrow{P_1P_0}\times\bar a\rvert}{\lvert\bar a\rvert}$. En $\mathbb R^2$: $\frac{\lvert Ax_0+By_0+C\rvert}{\sqrt{A^2+B^2}}$.`,
+    ], ok: R`da $0$ solo si el punto pertenece al plano o a la recta.` },
+    { t: 'Distancia entre objetos', p: [
+      R`**Planos paralelos:** igualá $A,B,C$ (multiplicando una ecuación) y hacé $\frac{\lvert D_1-D_2\rvert}{\sqrt{A^2+B^2+C^2}}$, o punto de uno al otro.`,
+      R`**Rectas paralelas:** punto de una a la otra (punto–recta).`,
+      R`**Alabeadas:** $\frac{\lvert\overrightarrow{P_1P_2}\cdot(\bar a_1\times\bar a_2)\rvert}{\lvert\bar a_1\times\bar a_2\rvert}$.`,
+      R`**Recta–plano paralelos:** punto de la recta al plano.`,
+    ], ok: R`entre alabeadas da $>0$ (si da $0$, eran secantes); entre paralelos, $0$ significa que coinciden o la recta está contenida.` },
+  ] },
+  { u: 'U10', t: 'Cónicas', recetas: [
+    { t: 'Reconocer la cónica', p: [
+      R`**Datos:** $Ax^2+Cy^2+Dx+Ey+F=0$ (sin término $xy$).`,
+      R`$A=C$ → **circunferencia**.`,
+      R`$A\neq C$, mismo signo → **elipse**.`,
+      R`$A$ y $C$ de signo opuesto → **hipérbola**.`,
+      R`Falta un cuadrado ($A=0$ o $C=0$) → **parábola**.`,
+    ], ok: R`después de completar cuadrados: en circunferencia o elipse, 2.º miembro $=0$ es un punto y $<0$ no hay lugar geométrico; en hipérbola, $=0$ son dos rectas que se cortan; si en la parábola desaparece el término lineal, $(y-k)^2=c$ son dos rectas paralelas ($c>0$), una recta doble ($c=0$) o nada ($c<0$).` },
+    { t: 'General → ordinaria (completar cuadrados)', p: [
+      R`Agrupá los términos en $x$ y en $y$; pasá $F$ al otro miembro.`,
+      R`Sacá factor común el coeficiente del cuadrado: $9x^2-54x=9(x^2-6x)$.`,
+      R`Sumá adentro $(\text{mitad del coef. de }x)^2$ y al otro miembro **ese número por el factor de afuera**: $9(x-3)^2$ suma $9\cdot9$.`,
+      R`Elipse e hipérbola: dividí todo por el 2.º miembro para que quede $=1$. Parábola: dejá $(y-k)^2=4p(x-h)$.`,
+    ], ok: R`desarrollá la ordinaria y multiplicá: tiene que volver la general.` },
+    { t: 'Circunferencia', p: [
+      R`Ordinaria: $(x-h)^2+(y-k)^2=r^2$ → centro $C(h;k)$, radio $r$.`,
+      R`Directo de la general (con los coeficientes de $x^2$ e $y^2$ iguales a $1$; si no, dividí todo antes): $C=\left(-\frac D2;-\frac E2\right)$, $r^2=\frac{D^2}4+\frac{E^2}4-F$.`,
+      R`**Tangente en un punto** $P_0$ **de la circunferencia:** $\overrightarrow{CP_0}$ es su normal: $(x_0-h)(x-x_0)+(y_0-k)(y-y_0)=0$.`,
+      R`**Graficar:** centro y 4 puntos a distancia $r$ (arriba, abajo, izquierda, derecha).`,
+    ], ok: R`$r^2>0$ (si da $0$ es un punto; negativo, no hay lugar geométrico); $P_0$ verifica la circunferencia y $d(C;\text{tangente})=r$.` },
+    { t: 'Parábola', p: [
+      R`Ordinaria: $(y-k)^2=4p(x-h)$ (eje $\parallel x$) o $(x-h)^2=4p(y-k)$ (eje $\parallel y$). Vértice $V(h;k)$.`,
+      R`**Eje** (la cátedra lo rotula $a$; no confundir con el semieje): paralelo al de la variable que **no** está al cuadrado; pasa por $V$ ($y=k$ o $x=h$).`,
+      R`**Apertura:** $p>0$ hacia la derecha/arriba; $p<0$ izquierda/abajo.`,
+      R`**Foco** a $\lvert p\rvert$ del vértice sobre el eje ($p$ con signo da el sentido): $F(h+p;k)$ o $F(h;k+p)$. **Directriz** $l$ a $p$ del otro lado: $x=h-p$ o $y=k-p$; $A=l\cap\text{eje}$.`,
+      R`**Lado recto:** $LL'=\lvert4p\rvert$, extremos a $2p$ del foco, perpendicular al eje.`,
+      R`**Radio vector** de $P$: $\lvert FP\rvert$ = distancia de $P$ a la directriz.`,
+      R`**Graficar:** $V$, $F$, directriz, eje, $L$, $L'$ y la curva por $V$, $L$, $L'$ (misma escala en los dos ejes).`,
+    ], ok: R`$V$ es punto medio entre $A$ y $F$; un punto de la curva cumple $\lvert PF\rvert=d(P;l)$.` },
+    { t: 'Elipse', p: [
+      R`Ordinaria $=1$; $a^2$ es el denominador **mayor** y su variable marca el **eje focal**.`,
+      R`$C(h;k)$; $c=\sqrt{a^2-b^2}$ (porque $a^2=b^2+c^2$).`,
+      R`Sobre el eje focal: vértices $V,V'=C\pm a$ y focos $F,F'=C\pm c$. Sobre el otro: $A,A'=C\pm b$.`,
+      R`$e=\frac ca$ ($0<e<1$). Directrices $l,l'$ $\perp$ al eje focal a $\frac ae=\frac{a^2}c$ del centro.`,
+      R`Lado recto $LL'=\frac{2b^2}a$, por cada foco, extremos a $\frac{b^2}a$ del foco.`,
+      R`**Graficar:** $C$, $V,V'$, $A,A'$, $F,F'$, ejes, lados rectos y el óvalo por $V,A,V',A'$.`,
+      R`**Radio vector** de $P$: $\lvert PF\rvert$ y $\lvert PF'\rvert$; cumplen $\lvert PF\rvert+\lvert PF'\rvert=2a$.`,
+    ], ok: R`$a>b$ y $a>c$; $V$ verifica la ordinaria.` },
+    { t: 'Hipérbola', p: [
+      R`Ordinaria $=1$; la variable con signo **positivo** marca el **eje transverso**, y su denominador es $a^2$ (no hace falta que sea el mayor).`,
+      R`$C(h;k)$; $c=\sqrt{a^2+b^2}$.`,
+      R`Sobre el eje transverso: $V,V'=C\pm a$ y $F,F'=C\pm c$. Sobre el conjugado: $A,A'=C\pm b$.`,
+      R`$e=\frac ca$ ($e>1$). Directrices $l,l'$ $\perp$ al eje transverso a $\frac{a^2}c$ del centro (entre $C$ y los vértices).`,
+      R`**Asíntotas:** transverso horizontal $y-k=\pm\frac ba(x-h)$; vertical $y-k=\pm\frac ab(x-h)$.`,
+      R`Lado recto $LL'=\frac{2b^2}a$.`,
+      R`**Graficar:** rectángulo guía de lados $2a$ y $2b$, sus diagonales (asíntotas), ramas desde $V$ y $V'$ acercándose a ellas, focos por fuera.`,
+      R`**Radio vector** de $P$: $\lvert PF\rvert$ y $\lvert PF'\rvert$; cumplen $\bigl\lvert\lvert PF\rvert-\lvert PF'\rvert\bigr\rvert=2a$.`,
+    ], ok: R`$c>a$; los focos quedan fuera de los vértices y las asíntotas pasan por $C$.` },
+    { t: 'Recta y cónica: intersección y tangente', p: [
+      R`Reemplazá la recta ($y=mx+b$) en la ecuación de la cónica: queda una ecuación de 2.º grado en $x$.`,
+      R`Discriminante $\Delta$: $>0$ **secante** (2 puntos), $=0$ **tangente** (1 punto), $<0$ **exterior**.`,
+      R`**Tangente por un punto** $P_0$ dado: recta $y-y_0=m(x-x_0)$, reemplazá, imponé $\Delta=0$ y despejá $m$ (desde un punto exterior suelen salir 2; en la hipérbola puede haber menos). Probá también la vertical $x=x_0$, que $y=mx+b$ no representa.`,
+      R`**Tangente de pendiente dada** (o paralela/perpendicular a una recta): $y=mx+n$ con $m$ conocida, reemplazá, imponé $\Delta=0$ y despejá $n$ (elipse: siempre 2; hipérbola: 2 solo si $\lvert m\rvert$ supera la pendiente de las asíntotas, si no ninguna; parábola: 1).`,
+      R`Los puntos de corte: resolvé la cuadrática y volvé a la recta para sacar $y$.`,
+    ], ok: R`cada punto hallado verifica la recta y la cónica.` },
+    { t: 'De los datos a la ecuación', p: [
+      R`**Datos típicos:** focos, vértices, excentricidad, eje, distancia focal.`,
+      R`Centro = punto medio de los focos (o de los vértices). La orientación sale de qué coordenada comparten.`,
+      R`Sacá $a$, $c$ o $b$ de los datos ($2a$ entre vértices, $2c$ entre focos, $e=\frac ca$) y el que falta con la relación de la cónica.`,
+      R`**Parábola con foco y directriz:** $A=l\cap\text{eje}$, $V$ = punto medio de $A$ y $F$, $p$ = de $V$ a $F$ con signo. O bien $\lvert PF\rvert=d(P;l)$, elevá al cuadrado y desarrollá.`,
+      R`Armá la ordinaria y, si la piden, desarrollá a la general.`,
+      R`**Punto de la cónica con una coordenada dada:** reemplazala y despejá la otra (puede haber 1 o 2 soluciones).`,
+    ], ok: R`los puntos dados (vértices, focos, directriz) salen de la ecuación final.` },
+  ] },
+];
 const titulo = (s) => s.split('$').map((p, i) => (i % 2 ? texPuro(p) : p)).join('');
 bandas.forEach((b) => b.tarjetas.forEach((c) => { c.th = titulo(c.t); c.f = c.f.map(([l, tx]) => [l, texPuro(tx)]); }));
+recetario.forEach((b) => b.recetas.forEach((r) => { r.p = r.p.map(conTex); r.ok = conTex(r.ok); }));
 ---
 <Layout titulo="Machete · 2º parcial">
   <p class="eyebrow"><a href={sp}>2º parcial</a> · <a href={`${sp}teorico/`}>Teórico</a> · Machete</p>
@@ -115,6 +318,7 @@ bandas.forEach((b) => b.tarjetas.forEach((c) => { c.th = titulo(c.t); c.f = c.f.
   <p class="lead" set:html={conTex('U8, U9 y U10 en una sola hoja. Subíndice = componente; $\\bar a\\cdot\\bar b$ es el escalar y $\\bar a\\times\\bar b$ el vectorial (la barra marca vector).')} />
   <nav class="m-saltos" aria-label="Ir a la unidad">
     {bandas.map((b, i) => <a class="chip chip-u chip-lg" data-unidad={b.u} href={`#m-${i}`}>{b.t}</a>)}
+    <a class="chip chip-lg" href="#recetario">Recetario</a>
   </nav>
   {bandas.map((b, i) => (
     <section class="m-banda" data-unidad={b.u} aria-labelledby={`m-${i}`}>
@@ -126,6 +330,22 @@ bandas.forEach((b) => b.tarjetas.forEach((c) => { c.th = titulo(c.t); c.f = c.f.
             {c.f.map(([l, h]) => (
               <div class="m-fila"><span class="m-lab">{l}</span><span class="m-eq" set:html={h} /></div>
             ))}
+          </div>
+        ))}
+      </div>
+    </section>
+  ))}
+  <h2 id="recetario" class="r-titulo">Recetario: cómo resolver cada ejercicio</h2>
+  <p class="suave">Pasos cortos por tipo de ejercicio. Al final de cada uno, el control antes de entregar.</p>
+  {recetario.map((b, i) => (
+    <section class="r-sec" data-unidad={b.u} aria-labelledby={`r-${i}`}>
+      <h3 id={`r-${i}`} class="r-banda">{b.t}</h3>
+      <div class="m-grid">
+        {b.recetas.map((r) => (
+          <div class="tarjeta m-card">
+            <h4 class="r-h">{r.t}</h4>
+            <ol class="r-pasos">{r.p.map((h) => <li set:html={h} />)}</ol>
+            <p class="r-ok"><strong>Control:</strong> <span set:html={r.ok} /></p>
           </div>
         ))}
       </div>
@@ -144,5 +364,12 @@ bandas.forEach((b) => b.tarjetas.forEach((c) => { c.th = titulo(c.t); c.f = c.f.
   .m-fila + .m-fila { border-top: 1px dashed var(--borde); }
   .m-lab { font-size: .72rem; letter-spacing: .04em; text-transform: uppercase; color: var(--suave); font-weight: 700; line-height: 1.35; }
   .m-eq { overflow-x: auto; overflow-y: hidden; position: relative; max-width: 100%; padding: 2px 0; }
+  .r-titulo { margin: 3rem 0 .3rem; font-size: 1.5rem; }
+  .r-banda { color: var(--uc); border-top: 2px solid var(--uc); padding-top: .7rem; margin: 1.6rem 0 .8rem; font-size: 1.15rem; text-transform: uppercase; letter-spacing: .06em; }
+  .r-h { margin: 0 0 .4rem; padding-bottom: .4rem; border-bottom: 1px solid var(--borde); font-size: 1.05rem; color: var(--uc); }
+  .r-pasos { margin: 0; padding-left: 1.3rem; }
+  .r-pasos li { padding: 3px 0; overflow-wrap: anywhere; }
+  .r-pasos :global(.katex) { white-space: normal; }
+  .r-ok { margin: .5rem 0 .3rem; padding-top: .4rem; border-top: 1px dashed var(--borde); font-size: .95rem; }
   @media (max-width: 520px) { .m-fila { grid-template-columns: minmax(0, 1fr); } }
 </style>
