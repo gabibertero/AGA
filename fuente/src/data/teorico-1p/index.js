@@ -1,2 +1,3 @@
 import u1 from './u1.js';
-export const units = [u1];
+import u2 from './u2.js';
+export const units = [u1, u2];

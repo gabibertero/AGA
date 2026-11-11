@@ -39,6 +39,15 @@ export function vectorFigure(type,params={}){
 export function figure(type){
  if(vectorTypes.has(type))return vectorFigure(type);
  let s='';
+ if(type.startsWith('class-')){
+  const kind=type.slice(6), examples={
+   'fila-columna':[['a','b','c']],rectangular:[['a','b','c'],['d','e','f']],cuadrada:generic,nula:[['0','0'],['0','0']],diagonal:[['a','0','0'],['0','b','0'],['0','0','c']],escalar:[['k','0','0'],['0','k','0'],['0','0','k']],identidad:[['1','0','0'],['0','1','0'],['0','0','1']],
+   'triangular-superior':[['a','b','c'],['0','d','e'],['0','0','f']],'triangular-inferior':[['a','0','0'],['b','c','0'],['d','e','f']],simetrica:[['a','b','c'],['b','d','e'],['c','e','f']],antisimetrica:[['0','a','b'],['−a','0','c'],['−b','−c','0']],ortogonal:[['cos θ','−sin θ'],['sin θ','cos θ']]
+  };
+  const caption=kind==='ortogonal'?'Rotación: columnas ortonormales; AᵗA=I.':kind==='fila-columna'?'Fila: 1×n. La versión columna tiene tamaño m×1.':'Ejemplo genérico · se destacan las entradas diagonales.';
+  return svg(matrix(examples[kind]||generic,190,75,(i,j)=>i===j)+text(300,265,caption,colors.green,14),'Matriz '+kind);
+ }
+
  if(['matrix','classification','determinant','cofactor','transpose','triangular','echelon','rank','eigen-equation','characteristic','eigen-properties','multiplicity','diagonalization','adjugate'].includes(type)){
   let rows=generic,caption='La posición de aᵢⱼ indica fila i y columna j.',hi=(i,j)=>i===j;
   if(type==='classification'){rows=[['a','0','0'],['0','b','0'],['0','0','c']];caption='Diagonal: ceros fuera de la diagonal principal.';}
