@@ -11,6 +11,7 @@ const parciales = (await getCollection('parciales')).sort((a, b) => a.data.orden
 const filas = parciales.map((p) => ({ id: p.id, titulo: p.data.titulo, tipo: p.data.tipo, unidades: p.data.unidades, ids: idsDeEjercicios(p.body) }));
 const totalEj = filas.reduce((s, f) => s + f.ids.length, 0);
 const acc1 = [
+  ['Teórico paso a paso', 'Respuestas modelo y gráficos de U1 a U7', `${pp}teorico/`],
   ['Machete', 'Fórmulas y recetas de U1 a U7', `${pp}index.html`],
   ['Preguntero', 'Teoría tipo parcial, con respuesta', `${pp}preguntero.html`],
   ['Prácticos', 'Ejercicios resueltos paso a paso', `${pp}practicos.html`],

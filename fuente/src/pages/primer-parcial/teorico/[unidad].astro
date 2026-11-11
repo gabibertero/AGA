@@ -1,0 +1,55 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { units } from '../../../data/teorico-1p/index.js';
+import { conTex, texPuro } from '../../../scripts/tex.js';
+import '../../../styles/teorico-1p.css';
+import { figure, vectorTypes } from '../../../data/teorico-1p/figures.js';
+import { createMarkdownProcessor } from '@astrojs/markdown-remark';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+export function getStaticPaths() { return units.map(unit=>({params:{unidad:unit.id},props:{unit}})); }
+const {unit}=Astro.props;
+const processor=await createMarkdownProcessor({remarkPlugins:[remarkMath],rehypePlugins:[[rehypeKatex,{throwOnError:true}]]});
+const lessons=await Promise.all(unit.lessons.map(async lesson=>({...lesson,html:lesson.body?(await processor.render(lesson.body)).code:null})));
+const base=import.meta.env.BASE_URL;
+const next=units.find(u=>u.number===unit.number+1);
+---
+<Layout titulo={`U${unit.number} · ${unit.title} · Teórico`}>
+  <div class="tutor" data-tutor data-unit={unit.id}>
+    <div class="tutor-breadcrumb"><a href={`${base}primer-parcial/teorico/`}>← Todas las unidades</a><span>Teórico · Primer parcial</span></div>
+    <header class="tutor-heading"><p class="eyebrow">Unidad {String(unit.number).padStart(2,'0')}</p><h1>{unit.title}</h1><p>{unit.subtitle}</p></header>
+    <div class="tutor-layout">
+      <aside class="tutor-index"><details open><summary>En esta unidad <span data-counter></span></summary>
+        <ol>{unit.lessons.map((l,i)=><li><a href={`#${l.id}`} data-jump={i}><span>{String(i+1).padStart(2,'0')}</span>{l.title}<i data-state-icon aria-hidden="true"></i></a></li>)}</ol>
+      </details><p class="tutor-index-foot" data-progress></p></aside>
+      <div class="tutor-stage">
+        <noscript><p>Podés leer todas las definiciones. Activá JavaScript para usar los gráficos y guardar tu avance.</p><style>{`.tutor [data-lesson][hidden]{display:block!important}.tutor [data-controls],.tutor [data-practice]{display:none}`}</style></noscript>
+        {lessons.map((l,i)=><article class="tutor-lesson" data-lesson data-id={l.id} hidden={i!==0}>
+          <div class="tutor-lesson-top"><span class="tutor-pill">Concepto {i+1} de {unit.lessons.length}</span><span data-current-state>Pendiente</span></div>
+          <h2 data-lesson-title tabindex="-1">{l.title}</h2>
+          {l.html ? <section class="tutor-definition tutor-model"><p class="tutor-label">Respuesta modelo</p><div class="tutor-model-body" set:html={l.html} /></section> : <><section class="tutor-definition"><p class="tutor-label">Respuesta modelo · definición</p><p set:html={conTex(l.def)} /></section><p class="tutor-simple" set:html={conTex(l.simple)} /></>}
+          <section class="tutor-figure"><div class="tutor-figure-head"><h3>Gráfico / esquema</h3><span>{vectorTypes.has(l.visual)?'Exploración geométrica':'Ejemplo genérico'}</span></div>
+            <div data-visual={l.visual} data-label={l.title} set:html={figure(l.visual)}></div>
+            {l.read && <p class="tutor-reading" set:html={conTex(l.read)} />}
+          </section>
+          {l.math && <section class="tutor-notation"><h3>Con letras</h3><div class="tutor-formula" set:html={texPuro(l.math)} /><p set:html={conTex(l.symbols)} /></section>}
+          {l.extra?.map(([title,math,text])=><section class="tutor-notation"><h3>{title}</h3><div class="tutor-formula" set:html={texPuro(math)} /><p set:html={conTex(text)} /></section>)}
+          {l.warning&&<aside class="tutor-warning"><b>Ojo con esta condición</b><p set:html={conTex(l.warning)} /></aside>}
+          <section class="tutor-practice" data-practice><p class="tutor-label">Ahora explicalo vos</p><h3 set:html={conTex(l.question)} />
+            <label for={`${unit.id}-${l.id}-answer`}>Tu respuesta <small>· borrador personal, sin corrección automática</small></label>
+            <textarea id={`${unit.id}-${l.id}-answer`} rows="3" placeholder="Escribí la idea y el porqué…" data-draft></textarea>
+            <details><summary>Comparar con la respuesta orientativa</summary><p set:html={conTex(l.answer)} /><p class="suave">Primero intentá responder sin mirar. Ver la respuesta no marca el concepto como entendido.</p></details>
+          </section>
+          <div class="tutor-self" data-controls><span>¿Cómo te quedó?</span><button type="button" data-mark="understood" aria-pressed="false">✓ Entendido</button><button type="button" data-mark="review" aria-pressed="false">↻ Repasar</button></div>
+          <p class="tutor-citation">Fuente de la unidad: apunte AGA 2026, pp. {unit.pages}. Respuesta modelo revisada con el apunte. Redacción de estudio elaborada con ChatGPT; no es una respuesta oficial.</p>
+        </article>)}
+        <nav class="tutor-navigation" aria-label="Recorrido de definiciones" data-controls><button type="button" data-prev>← Anterior</button><button type="button" class="btn-primario" data-next>Siguiente definición →</button><a class="btn btn-primario" data-finish hidden href={next?`${base}primer-parcial/teorico/${next.id}/`:`${base}primer-parcial/teorico/`}>{next?`Seguir con U${next.number} →`:'Volver a las unidades →'}</a></nav>
+        <p role="status" class="tutor-save" data-save-status></p>
+      </div>
+    </div>
+  </div>
+  <script>
+    import { initTutor } from '../../../scripts/teorico-1p.js';
+    initTutor();
+  </script>
+</Layout>
