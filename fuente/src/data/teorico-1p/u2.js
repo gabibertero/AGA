@@ -57,7 +57,7 @@ export default {
       "visual": "class-diagonal",
       "read": "Los ceros y unos son estructurales; las letras representan entradas genéricas.",
       "question": "¿Qué condición define esta clase de matriz?",
-      "answer": "Cuadrada, a_{ij}=0 cuando i≠j."
+      "answer": "Cuadrada, $a_{ij}=0$ cuando i≠j."
     },
     {
       "id": "escalar",
@@ -70,7 +70,7 @@ export default {
     },
     {
       "id": "identidad",
-      "title": "Matriz identidad $i_n$",
+      "title": "Matriz identidad Iₙ",
       "body": "**Identidad $I_n$**: Diagonal con unos en la diagonal.\n\n$$I_3=\\begin{pmatrix}1&0&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}.$$\n\nLas letras representan escalares; m es cantidad de filas, n de columnas, e i,j indican fila y columna de una entrada. Una matriz puede pertenecer a varias clases.",
       "visual": "class-identidad",
       "read": "Los ceros y unos son estructurales; las letras representan entradas genéricas.",
@@ -102,7 +102,7 @@ export default {
       "visual": "class-simetrica",
       "read": "Los ceros y unos son estructurales; las letras representan entradas genéricas.",
       "question": "¿Qué condición define esta clase de matriz?",
-      "answer": "Cuadrada, A^t=A, es decir a_{ij}=a_{ji}."
+      "answer": "Cuadrada, $A^t=A$, es decir $a_{ij}=a_{ji}$."
     },
     {
       "id": "antisimetrica",
@@ -111,7 +111,7 @@ export default {
       "visual": "class-antisimetrica",
       "read": "Los ceros y unos son estructurales; las letras representan entradas genéricas.",
       "question": "¿Qué condición define esta clase de matriz?",
-      "answer": "Cuadrada, A^t=-A; sobre reales/complejos, diagonal nula."
+      "answer": "Cuadrada, $A^t=-A$; sobre reales/complejos, diagonal nula."
     },
     {
       "id": "ortogonal",
@@ -120,7 +120,7 @@ export default {
       "visual": "class-ortogonal",
       "read": "Los ceros y unos son estructurales; las letras representan entradas genéricas.",
       "question": "¿Qué condición define esta clase de matriz?",
-      "answer": "Cuadrada, A^tA=AA^t=I, equivalente a A^{-1}=A^t."
+      "answer": "Cuadrada, $A^tA=AA^t=I$, equivalente a $A^{-1}=A^t$."
     },
     {
       "id": "diagonal-traza",
