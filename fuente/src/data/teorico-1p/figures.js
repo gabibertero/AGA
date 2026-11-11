@@ -79,7 +79,7 @@ export function figure(type){
   s=arrow(55,240,550,240,'#b8c9c0')+arrow(230,285,230,30,'#b8c9c0')+text(215,261,'O');
   if(type==='affine'){s+=line(75,155,510,60,colors.purple)+text(430,50,'xₚ + ker A',colors.purple)+line(75,274,510,179,colors.green)+text(465,205,'ker A',colors.green);}
   else if(type==='kernel'||type==='eigenspace'){s+=line(150,280,550,80,colors.green)+text(420,260,type==='kernel'?'T(v) = 0 para v ∈ ker T':'Eλ = ker(A−λI)',colors.blue)+text(300,55,type==='kernel'?'Recta del núcleo en el dominio':'Autoespacio: incluye al cero',colors.green);}
-  else{s+=`<path d="M70,220L320,65L535,130L280,285Z" fill="#dcebe6" stroke="#aacdbb"/>`+arrow(230,240,365,156,colors.blue)+text(380,146,'u',colors.blue)+arrow(230,240,330,270,colors.purple)+text(350,275,'v',colors.purple)+text(300,35,type==='basis'?'LI + generador = base':type==='span'?'Todas las combinaciones de u y v':'W: plano por el origen',colors.green);}
+  else{s+=`<path d="M70,220L320,65L535,130L280,285Z" fill="#dcebe6" stroke="#aacdbb"/>`+arrow(230,240,365,156,colors.blue)+text(380,146,'u',colors.blue)+arrow(230,240,330,215,colors.purple)+text(350,215,'v',colors.purple)+text(300,35,type==='basis'?'LI + generador = base':type==='span'?'Todas las combinaciones de u y v':'W: plano por el origen',colors.green);}
  }else{return vectorFigure('independence');}
  return svg(s,'Esquema: '+type);
 }

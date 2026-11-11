@@ -64,7 +64,7 @@ export default {
       "title": "Base",
       "body": "Una base de V es un conjunto de vectores de V que es linealmente independiente y genera V. Ambas condiciones son necesarias. Esto equivale a que cada vector de V admite una única expresión como combinación lineal de los vectores de la base.\n\nGenerar da existencia de la expresión; LI da unicidad. La base no tiene que ser ortogonal ni formada por versores. Base ordenada: además se fija el orden para definir coordenadas.\n\n**Ejemplo genérico en $\\mathbb R^3$:** $B=\\{(a,0,0),(b,c,0),(d,e,f)\\}$, con a,c,f no nulos. La matriz con esos vectores como columnas es triangular superior y su determinante es acf≠0. Por tanto sus columnas son LI y generan $\\mathbb R^3$. No confundir las tres filas con las tres columnas del ejemplo. ",
       "visual": "basis",
-      "read": "",
+      "read": "El esquema muestra una base de dos vectores de un plano. El ejemplo algebraico de arriba construye una base de tres vectores de ℝ³.",
       "question": "¿Qué aporta cada condición de base?",
       "answer": "Generar asegura existencia de la expresión; la independencia lineal asegura su unicidad."
     },
