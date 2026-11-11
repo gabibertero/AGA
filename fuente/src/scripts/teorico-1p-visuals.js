@@ -16,7 +16,7 @@ export function mountVisual(host) {
  for(const [label,key,min,max,step] of sliders){
   const row=document.createElement('label');row.className='tutor-slider';
   const name=document.createElement('span');name.textContent=label;
-  const input=document.createElement('input');input.type='range';Object.assign(input,{min:String(min),max:String(max),step:String(step),value:String(state[key])});
+  const input=document.createElement('input');input.type='range';input.setAttribute('aria-label',label);Object.assign(input,{min:String(min),max:String(max),step:String(step),value:String(state[key])});
   const out=document.createElement('output');out.value=String(state[key]);
   input.addEventListener('input',()=>{state[key]=Number(input.value);out.value=input.value;draw();});row.append(name,input,out);controls.append(row);
  }

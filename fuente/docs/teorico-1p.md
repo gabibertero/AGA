@@ -23,3 +23,5 @@ Correcciones matemáticas respecto de erratas del apunte:
 - U7 pp. 144–147: autovector siempre no nulo, aunque λ=0; raíces contando multiplicidades sobre ℂ; diagonalización condicionada al campo.
 
 Validación: compilación con KaTeX, navegación y persistencia con Playwright en escritorio y móvil; comprobaciones simbólicas de los ejemplos con parámetros. Los commits separan infraestructura/U1, cada unidad incorporada y la compilación final para GitHub Pages.
+
+Resultado de la tanda inicial: 79 conceptos (U1: 16; U2: 21; U3: 6; U4: 9; U5: 9; U6: 10; U7: 8). Compilación de 46 páginas correcta; 216 pruebas generales aprobadas y recorrido específico de 8 pruebas aprobado tras el último ajuste de fórmulas en móvil. Se verifica el ancho después de cargar las fuentes. Se comprobaron simbólicamente seis relaciones: cofactores, triangulación, producto nulo, polinomio característico de orden dos, núcleo y raíz repetida.
