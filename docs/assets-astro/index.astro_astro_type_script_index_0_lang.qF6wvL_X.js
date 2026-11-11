@@ -1,0 +1,1 @@
+import{n as e}from"./teorico-1p.B-w9v-if.js";e();
